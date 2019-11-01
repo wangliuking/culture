@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <title>信虹智慧服务平台</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description"/>
+    <meta content="Coderthemes" name="author"/>
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="./favicon.ico">
+    <!-- third party css -->
+    <!--<link href="./css/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />-->
+    <!-- third party css end -->
+    <!-- App css -->
+    <!-- build:css -->
+    <link href="./css/app.min.css" rel="stylesheet" type="text/css"/>
+    <link href="./css/sweet-alert.css" rel="stylesheet" type="text/css"/>
+    <link href="./css/toastr.min.css" rel="stylesheet" type="text/css"/>
+    <style>
+        #mytitle {
+            position: absolute;
+            color: #ffffff;
+            max-width: 160px;
+            font-size: 18px;
+            padding: 4px;
+            background: rgba(40, 40, 40, 0.8);
+            border: solid 1px #e9f7f6;
+            border-radius:5px;
+        }
+        /*下拉菜单样式*/
+        .selectForArea {
+            padding: .45rem .9rem;
+            font-size: .875rem;
+            line-height: 1.5;
+            color: #6c757d;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid black;
+            border-radius: .1rem;
+            border-radius: 8px;
+        }
+
+        .tableStyle {
+            width: 9%;
+            height: 60px;
+            text-align: center;
+            line-height: 60px;
+            border:0px;
+            background:-webkit-linear-gradient(#37578C, #608BAE);
+            background:-moz-linear-gradient(#37578C, #608BAE);
+            background:-ms-linear-gradient(#37578C, #608BAE);
+            background:-o-linear-gradient(#37578C, #608BAE);
+            background:linear-gradient(#37578C, #608BAE);
+            box-shadow:0px 4px 0px 0px #37578C;
+            color:#FFFFFF;
+            font-family:Verdana, Geneva, sans-serif;
+            font-weight:bold;
+            font-size:1vw;
+            text-decoration:none;
+            vertical-align:middle;
+
+            padding:2px 10px 2px 10px;
+            border-radius:5px 5px 5px 5px;
+
+        }
+        .tableStyle:hover{
+            background:-webkit-linear-gradient(#37578C, #5467ae);
+            background:-moz-linear-gradient(#37578C, #5467ae);
+            background:-ms-linear-gradient(#37578C, #5467ae);
+            background:-o-linear-gradient(#37578C, #5467ae);
+            background:linear-gradient(#37578C, #5467ae);
+        }
+        table tr{
+            margin-top: 10px;
+        }
+        .rtuTable{
+            height:320px;
+            width: 100%;
+            border-collapse:separate;
+            border-spacing:2px 5px;
+        }
+        .popover{
+            z-index: 99;
+        }
+    </style>
+</head>
+<body ng-app="app" ng-controller="xhcontroller" style="padding-right:0!important;background-color: #d8d4d4;">
+<!-- splash screen-->
+<div class="splash" style="position: fixed;z-index: 2001;background: white;color: gray;top: 0;bottom: 0;left: 0;right: 0;">
+    <div class="splash-title" style="text-align: center;max-width: 500px;margin: 15% auto;padding: 20px;">
+        <h1 style="font-size: 26px;color: #004894;">数据加载中，请耐心等待</h1>
+        <img src="xhIcon/loading.gif" width="100" height="100"/>
+    </div>
+</div>
+<!-- Begin page -->
+<div class="wrapper">
+    <!-- ============================================================== -->
+    <!-- Start Page Content here -->
+    <!-- ============================================================== -->
+
+    <div class="content-page" style="padding: 5px 5px 5px 0px;">
+        <!-- Start Content-->
+        <div class="container-fluid" style="border: 1px solid #8B8378;border-radius: 8px;">
+
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box">
+                        <div class="page-title-left">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item">当前位置</li>
+                                <li class="breadcrumb-item"><a href="Views/menu/menu_search.html" target="_self">数据查询</a></li>
+                                <li class="breadcrumb-item"><a style="color: #0caff4">实时数据</a></li>
+                            </ol>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <form id="searchForm" class="form-inline">
+                    <select class="selectForArea" id="testIndustrys" ng-model="x" ng-change="changeIndustry(x)" style="width:12%;">
+                        <option value="">请选择行业</option>
+                        <option ng-repeat="x in industrys" ng-value="x">{{x}}</option>
+                    </select>
+                    <select class="selectForArea" id="testCompanyName" ng-model="y" ng-change="changeCompany(y)" style="width:12%;">
+                        <option value="">请选择组织结构</option>
+                        <option ng-repeat="y in companys" ng-value="y.id">{{y.name}}</option>
+                    </select>
+                    <select class="selectForArea" id="testSiteName" ng-model="z" ng-change="changeSite(z)" style="width:12%;">
+                        <option value="">请选择站点</option>
+                        <option ng-repeat="z in siteNames" ng-value="z.id">{{z.name}}</option>
+                    </select>
+                    <select class="selectForArea" id="testRTU" style="width:12%;">
+                        <option value="">RTU-ID</option>
+                        <option ng-repeat="a in rtuNames" ng-value="a.rtu_id" ng-selected="a.rtu_id == rtuChooseId">{{a.rtu_id}}</option>
+                    </select>
+                    <button type="button" class="btn btn-success btn-rounded" ng-click="searchDevicesByRTU(-1)">查询
+                    </button>
+                </form>
+
+            </div>
+
+            <hr/>
+            <div ng-show="rtuData != null && rtuData != ''" style="font-size: 16px;">
+                <span style="color: black;">RTU-ID：</span>
+                <span style="margin-right: 30px;color: blue;">{{rtuData.rtu_id}}</span>
+                <span style="color: black;">IP：</span>
+                <span style="margin-right: 30px;color: blue;">{{rtuData.rtu_ip}}</span>
+                <span style="color: black;">所属站点：</span>
+                <span style="margin-right: 30px;color: blue;">{{siteInfo.site_name}}</span>
+                <span style="color: black;">所属区域：</span>
+                <span style="margin-right: 30px;color: blue;">{{siteInfo.site_province}} {{siteInfo.site_city}} {{siteInfo.site_county}}</span>
+                <span style="color: black;">设备数量：</span>
+                <span style="margin-right: 30px;color: blue;">{{spdNum+etcrNum+lightningNum+staticNum+rswsNum+svtNum+hcNum+strayNum+catNum}}</span>
+                <span style="color: black;">连接方式：</span>
+                <span ng-if="rtuData.connect_type == 0" style="margin-right: 30px;color: blue;">UDP</span>
+                <span ng-if="rtuData.connect_type == 1" style="margin-right: 30px;color: blue;">TCP</span>
+                <span style="color: black;">状态：</span>
+                <span ng-if="rtuData.rtu_state == 0" style="margin-right: 30px;color: green;">在线</span>
+                <span ng-if="rtuData.rtu_state == 1" style="margin-right: 30px;color: red;">离线</span>
+            </div>
+            <hr/>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="header-title">RTU下挂设备</h4>
+                            <hr/>
+                            <div ng-show="rtuId == 0">暂无相关设备</div>
+                            <table ng-show="rtuId != 0" class="rtuTable">
+                                <tbody>
+                                <tr>
+                                    <td rowspan="1" class="tableStyle">数字量</td>
+                                    <td class="tableStyle" ng-repeat="x in spdPort1" ng-style="compareSpd(x)" ng-mouseover="mouseoverSPD(x,$event)" ng-mouseout="mouseoutSPD(x)">{{nameSPD(x)}}</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="1" class="tableStyle" style="pointer-events: none;">模拟量</td>
+                                    <td class="tableStyle" ng-repeat="x in testPort1" ng-style="compareTestStyle(x)" ng-click="showTestDevice(x)">{{compareTest(x)}}</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="1" class="tableStyle" style="pointer-events: none;">RS485</td>
+                                    <td class="tableStyle" ng-repeat="x in testRS1" ng-style="compareRSStyle(x)" ng-click="showRSDev($event,x)">{{compareRS(x)}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div> <!-- end card body-->
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div> <!-- container -->
+
+
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- End Page content -->
+    <!-- ============================================================== -->
+
+
+</div>
+<!-- END wrapper -->
+
+<div ng-include="'rtuShow-show.html'"></div>
+<!-- bundle -->
+<script src="js/popper.js"></script>
+<script src="angularjs/jquery-3.2.1.min.js"></script>
+<script src="angularjs/angular.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/echarts.min.js"></script>
+<script src="js/macarons.js"></script>
+<script src="angularjs/metisMenu.min.js"></script>
+<script src="js/sweet-alert.js"></script>
+<script src="js/toastr.min.js"></script>
+<script src="js/rtuShow.js"></script>
+<!--<script src="./javascript/demo.dashboard.js"></script>-->
+<script type="text/javascript">
+    xh.load();
+    $(document).ready(function() {
+        $('.splash').css('display', 'none');
+        $("[data-toggle='popover']").popover();
+    });
+
+    /*$(function () {
+        var x = 10;
+        var y = 20;
+        var newtitle = '';
+        console.log($('td.tableStyle'));
+        $('.tableStyle').mouseover(function (e) {
+            console.log("进来了");
+            newtitle = this.title;
+            this.title = '';
+            $('body').append('<div id="mytitle" >' + newtitle + '</div>');
+            $('#mytitle').css({
+                'left': (e.pageX + x + 'px'),
+                'top': (e.pageY + y - 80 + 'px')
+            }).show();
+        }).mouseout(function () {
+            this.title = newtitle;
+            $('#mytitle').remove();
+        }).mousemove(function (e) {
+            $('#mytitle').css({
+                'left': (e.pageX + x +10 + 'px'),
+                'top': (e.pageY + y - 60 + 'px')
+            }).show();
+        })
+    });*/
+</script>
+</body>
+
+</html>

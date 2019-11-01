@@ -1,0 +1,27 @@
+{
+  "button":[
+    {
+      "type":"click",
+      "name":"基本概况",
+      "key":"base"
+    },
+    {
+      "type":"click",
+      "name":"产品展览",
+      "key":"product"
+    },
+    {
+      "name":"详细介绍",
+      "sub_button":[
+        {
+          "type":"view",
+          "name":"百度",
+          "url":"https://www.baidu.com"
+        },
+        {
+          "type":"view",
+          "name":"163官网",
+          "url":"https://www.163.com"
+        }]
+    }]
+}

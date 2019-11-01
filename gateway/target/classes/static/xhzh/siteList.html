@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="utf-8" />
+        <title>信虹智慧服务平台</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+        <meta content="Coderthemes" name="author" />
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="./favicon.ico">
+        <!-- third party css -->
+        <!--<link href="./css/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />-->
+        <!-- third party css end -->
+        <!-- App css -->
+        <!-- build:css -->
+        <link href="./css/app.min.css" rel="stylesheet" type="text/css" />
+        <link href="./css/sweet-alert.css" rel="stylesheet" type="text/css" />
+        <link href="./css/toastr.min.css" rel="stylesheet" type="text/css" />
+        <style>
+            /*下拉菜单样式*/
+            .selectForArea{
+                padding: .45rem .9rem;
+                font-size: .875rem;
+                line-height: 1.5;
+                color: #6c757d;
+                background-color: #fff;
+                background-clip: padding-box;
+                border: 1px solid black;
+                border-radius: 8px;
+                outline: none;
+            }
+            .selectForPage{
+                padding: .20rem .9rem;
+                font-size: .875rem;
+                line-height: 1.5;
+                color: #6c757d;
+                background-color: #fff;
+                background-clip: padding-box;
+                border: 1px solid black;
+                border-radius: 8px;
+            }
+        </style>
+        <!-- endbuild -->
+    </head>
+    <body ng-app="app" ng-controller="xhcontroller" style="padding-right:0!important;background-color: #d8d4d4;color:black;">
+    <!-- splash screen-->
+    <div class="splash" style="position: fixed;z-index: 2001;background: white;color: gray;top: 0;bottom: 0;left: 0;right: 0;">
+        <div class="splash-title" style="text-align: center;max-width: 500px;margin: 15% auto;padding: 20px;">
+            <h1 style="font-size: 26px;color: #004894;">数据加载中，请耐心等待</h1>
+            <img src="xhIcon/loading.gif" width="100" height="100"/>
+        </div>
+    </div>
+    <!-- Begin page -->
+        <div class="wrapper">
+            <!-- ============================================================== -->
+            <!-- Start Page Content here -->
+            <!-- ============================================================== -->
+
+            <div class="content-page" style="padding: 5px 5px 5px 0px;">
+                <!--<div id="allmap" style="width: 100%; height: 850px;"></div>-->
+                <!-- Start Content-->
+                <div class="container-fluid" style="border: 1px solid #8B8378;border-radius: 8px;padding-bottom:20px;">
+
+                    <!-- start page title -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="page-title-box">
+                                <div class="page-title-left">
+                                    <ol class="breadcrumb m-0">
+                                        <li class="breadcrumb-item">当前位置</li>
+                                        <li class="breadcrumb-item"><a href="Views/menu/menu_device.html" target="_self">现场配置</a></li>
+                                        <li class="breadcrumb-item"><a style="color: #0caff4">站点列表</a></li>
+                                    </ol>
+                                </div>
+                                <div>
+                                    <form id="searchForm">
+                                    <select class="selectForArea" id="testIndustrys" style="width:13%;margin-right: 10px;">
+                                        <option ng-repeat="x in industrys" ng-value="x">{{x}}</option>
+                                    </select>
+                                    <select class="selectForArea" id="testSiteName" style="width:13%;margin-right: 10px;">
+                                        <option ng-repeat="x in siteNames" ng-value="x.site_name">{{x.site_name}}</option>
+                                    </select>
+                                    <select class="selectForArea" id="testSiteStatus" style="width:13%;margin-right: 10px;">
+                                        <option ng-repeat="x in siteStatus" ng-value="x.id">{{x.name}}</option>
+                                    </select>
+                                    <select class="selectForArea" id="testProvince" style="width:13%;margin-right: 10px;"></select>
+                                    <select class="selectForArea" id="testCity" style="width:13%;margin-right: 10px;"></select>
+                                    <select class="selectForArea" id="testArea" style="width:13%;margin-right: 10px;"></select>
+                                        <button type="button" class="btn btn-secondary btn-rounded" ng-click="showMod()">新增</button>
+                                        <button type="button" class="btn btn-success btn-rounded" ng-click="refresh()">查询</button>
+                                    </form>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- end page title -->
+                    <div class="row">
+                    <div class="card" style="width:29%;margin:30px 0 0px 30px;border-radius:8px;background-color: #FFFAFA;" ng-repeat="x in data">
+                        <div>
+                            <div ng-if="x.status == 0" style="text-align:center;float:left;width:28%;height: 41px;background-color: #27b056;line-height: 41px;border-top-left-radius:8px;">
+                                <img src="iconfont/防护.png" width="30" height="30" style="margin-bottom:6px;">
+                                <span style="color: white;">正常</span>
+                            </div>
+                            <div ng-if="x.status == 2" style="text-align:center;float:left;width:28%;height: 41px;background-color: #b08723;line-height: 41px;border-top-left-radius:8px;">
+                                <img src="iconfont/账号异常.png" width="30" height="30" style="margin-bottom:6px;">
+                                <span style="color: white;">异常</span>
+                            </div>
+                            <div ng-if="x.status == 1" style="text-align:center;float:left;width:28%;height: 41px;background-color: #bfbfbf;line-height: 41px;border-top-left-radius:8px;">
+                                <img src="iconfont/离线检查.png" width="30" height="30" style="margin-bottom:6px;">
+                                <span style="color: white;">断开</span>
+                            </div>
+
+                            <div style="float:right;width:62%;margin-top: 3px;">
+                                <button type="button" class="btn btn-outline-light"  title="在该站点中添加RTU" ng-click="showAddRtu(x.site_id)"><i class="mdi mdi-plus" style="color: #4876FF;"></i></button>
+                                <button type="button" class="btn btn-outline-light" title="修改该站点配置" ng-click="showEdit($index)"><i class="mdi mdi-box-cutter" style="color: #4876FF;"></i> </button>
+                                <button type="button" class="btn btn-outline-light" title="数据统计" ng-click="goStatistic(x.site_id)"><i class="mdi mdi-atlassian" style="color: #4876FF;"></i> </button>
+                                <button type="button" class="btn btn-outline-light" title="历史数据" ng-click="goHistory(x.site_id)"><i class="mdi mdi-chart-bar" style="color: #4876FF;"></i> </button>
+                                <button type="button" class="btn btn-outline-light" title="删除该站点" ng-click="delBs(x.site_id,x)"><i class="mdi mdi-close-circle" style="color: #EE4000;"></i> </button>
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="table-responsive-sm">
+                                <table class="table table-centered mb-0">
+                                    <tbody>
+                                    <tr>
+                                        <td>RTU数量</td>
+                                        <td>{{x.rtuNum}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>设备数量</td>
+                                        <td>{{x.deviceNum}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>站点名称</td>
+                                        <td>{{x.site_name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>所属行业</td>
+                                        <td>{{x.site_industry}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>所属区域</td>
+                                        <td>{{x.site_province}} {{x.site_city}} {{x.site_county}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div> <!-- end table-responsive-->
+
+                        </div> <!-- end card body-->
+                    </div> <!-- end card -->
+                    </div>
+
+                    <!-- end row-->
+                    <div class="page" style="float: left;margin-top: 36px;">
+                        <div class="page-info">
+                            <span>每页显示</span><select id="page-limit" ng-change="refresh()" class="selectForPage"
+                                                     ng-model="count">
+                            <option value="15">15</option>
+                            <option value="20">20</option>
+                            <option value="30">30</option>
+                            <option value="40">40</option>
+                            <option value="50">50</option>
+                        </select> <span>条,</span><span ng-model="index">显示{{start}}-</span><span
+                                ng-model="lastIndex">{{lastIndex}}条,</span> <span
+                                ng-model="totals">总计{{totals}}条</span>
+                            <i class="fa fa-refresh page-refresh" title="刷新数据" ng-click="refresh()"></i>
+                        </div>
+                    </div>
+                    <div style="float: right;margin-top: 30px;">
+                        <div class="page-paging"></div>
+                    </div>
+                </div> <!-- container -->
+
+            </div>
+
+            <!-- ============================================================== -->
+            <!-- End Page content -->
+            <!-- ============================================================== -->
+
+
+        </div>
+        <!-- END wrapper -->
+
+        <!-- 添加模态框 -->
+        <!-- 添加 -->
+        <div ng-include="'siteList-add.html'"></div>
+        <div ng-include="'rtuList-add.html'"></div>
+        <!-- 修改 -->
+        <div ng-include="'siteList-edit.html'"></div>
+        <!-- bundle -->
+        <script src="./javascript/app.min.js"></script>
+        <script src="angularjs/jquery-3.2.1.min.js"></script>
+        <script src="angularjs/angular.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+
+        <script type="text/javascript" src="bmap/map_load.js"></script>
+        <script type="text/javascript" src="bmap/echarts.js"></script>
+        <!-- 引入百度地图扩展 -->
+        <script type="text/javascript" src="bmap/bmap.min.js"></script>
+        <script type="text/javascript" src="bmap/DrawingManager_min.js"></script>
+
+        <script src="angularjs/metisMenu.min.js"></script>
+        <script src="js/sweet-alert.js"></script>
+        <script src="js/toastr.min.js"></script>
+        <script src="js/site.js"></script>
+        <script src="js/areaSelect.js"></script>
+        <script src="js/paging.js"></script>
+        <!--<script src="./javascript/demo.dashboard.js"></script>-->
+        <script type="text/javascript">
+            xh.load();
+            $(document).ready(function() {
+                $('.splash').css('display', 'none');
+            });
+        </script>
+    </body>
+
+</html>

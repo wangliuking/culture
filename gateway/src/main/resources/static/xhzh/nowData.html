@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <title>信虹智慧服务平台</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description"/>
+    <meta content="Coderthemes" name="author"/>
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="./favicon.ico">
+    <!-- third party css -->
+    <!--<link href="./css/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />-->
+    <!-- third party css end -->
+    <!-- App css -->
+    <!-- build:css -->
+    <link href="./css/app.min.css" rel="stylesheet" type="text/css"/>
+    <link href="./css/sweet-alert.css" rel="stylesheet" type="text/css"/>
+    <link href="./css/toastr.min.css" rel="stylesheet" type="text/css"/>
+    <link href="Resources/css/xhzh.min.css" rel="stylesheet" type="text/css"/>
+    <style>
+        /*下拉菜单样式*/
+        .selectForArea {
+            padding: .45rem .9rem;
+            font-size: .875rem;
+            line-height: 1.5;
+            color: #6c757d;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid black;
+            border-radius: 8px;
+        }
+
+        .btn-circle {
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            padding: 6px 0;
+            font-size: 12px;
+            line-height: 1.428571429;
+            border-radius: 15px;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body ng-app="app" ng-controller="xhcontroller" style="padding-right:0!important;background-color: #d8d4d4;color:black;">
+<!-- splash screen-->
+<div class="splash" style="position: fixed;z-index: 2001;background: white;color: gray;top: 0;bottom: 0;left: 0;right: 0;">
+    <div class="splash-title" style="text-align: center;max-width: 500px;margin: 15% auto;padding: 20px;">
+        <h1 style="font-size: 26px;color: #004894;">数据加载中，请耐心等待</h1>
+        <img src="xhIcon/loading.gif" width="100" height="100"/>
+    </div>
+</div>
+<!-- Begin page -->
+<div class="wrapper">
+
+    <div class="content-page" style="padding: 5px 5px 5px 0px;">
+        <!-- Start Content-->
+        <div class="container-fluid">
+
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box">
+                        <div class="page-title-left">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item">当前位置</li>
+                                <li class="breadcrumb-item"><a href="Views/menu/menu_search.html" target="_self">数据查询</a></li>
+                                <li class="breadcrumb-item"><a style="color: #0caff4">实时数据</a></li>
+                            </ol>
+                        </div>
+                        <div>
+                            <form id="searchForm" class="form-inline">
+                                <select class="selectForArea" id="testIndustrys" style="width:12%;">
+                                    <option ng-repeat="x in industrys" ng-value="x">{{x}}</option>
+                                </select>
+                                <select class="selectForArea" id="" style="width:12%;">
+                                    <option>全部机构</option>
+                                </select>
+                                <select class="selectForArea" id="testSiteName" style="width:12%;">
+                                    <option ng-repeat="x in siteNames" ng-value="x">{{x}}</option>
+                                </select>
+                                <!--<select class="selectForArea" id="testProvince" style="width:12%;"></select>
+                                <select class="selectForArea" id="testCity" style="width:12%;"></select>
+                                <select class="selectForArea" id="testArea" style="width:12%;"></select>-->
+
+
+                                <select class="selectForArea" id="testRTU" style="width:12%;">
+                                    <option ng-repeat="x in rtuNames" ng-value="x.rtu_id">{{x.rtu_id}}</option>
+                                </select>
+                                <button type="button" class="btn btn-success btn-rounded" ng-click="searchDevicesByRTU()">查询
+                                </button>
+                            </form>
+
+                        </div>
+                        <hr/>
+
+                        <div class="content animate-panel" data-effect="fadeInDown">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="hpanel">
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="card" style="width:100%;height:379px;">
+                                                        <div class="card-body">
+                                                            <h4 class="header-title">SPD</h4>
+                                                            <hr/>
+                                                            <div class="row">
+                                                                <div class="col-md-3">
+                                                                    <img ng-if="spdData[0].spd_state == 0" src="xhIcon/SPD1-green.png" width="57"
+                                                                         height="136.5"/>
+                                                                    <img ng-if="spdData[0].spd_state == 1" src="xhIcon/SPD1-red.png" width="57"
+                                                                         height="136.5"/>
+                                                                    <img ng-if="spdData[0].spd_state == 2" src="xhIcon/SPD1-gray.png" width="57"
+                                                                         height="136.5"/>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <img ng-if="spdData[1].spd_state == 0" src="xhIcon/SPD2-green.png" width="57"
+                                                                         height="136.5"/>
+                                                                    <img ng-if="spdData[1].spd_state == 1" src="xhIcon/SPD2-red.png" width="57"
+                                                                         height="136.5"/>
+                                                                    <img ng-if="spdData[1].spd_state == 2" src="xhIcon/SPD2-gray.png" width="57"
+                                                                         height="136.5"/>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <img ng-if="spdData[2].spd_state == 0" src="xhIcon/SPD3-green.png" width="57"
+                                                                         height="136.5"/>
+                                                                    <img ng-if="spdData[2].spd_state == 1" src="xhIcon/SPD3-red.png" width="57"
+                                                                         height="136.5"/>
+                                                                    <img ng-if="spdData[2].spd_state == 2" src="xhIcon/SPD3-gray.png" width="57"
+                                                                         height="136.5"/>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <img ng-if="spdData[3].spd_state == 0" src="xhIcon/SPD4-green.png" width="57"
+                                                                         height="136.5"/>
+                                                                    <img ng-if="spdData[3].spd_state == 1" src="xhIcon/SPD4-red.png" width="57"
+                                                                         height="136.5"/>
+                                                                    <img ng-if="spdData[3].spd_state == 2" src="xhIcon/SPD4-gray.png" width="57"
+                                                                         height="136.5"/>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row" style="margin-top:10px;">
+                                                                <div class="col-md-3">
+                                                                    <img ng-if="spdData[4].spd_state == 0" src="xhIcon/SPD5-green.png" width="57"
+                                                                         height="136.5"/>
+                                                                    <img ng-if="spdData[4].spd_state == 1" src="xhIcon/SPD5-red.png" width="57"
+                                                                         height="136.5"/>
+                                                                    <img ng-if="spdData[4].spd_state == 2" src="xhIcon/SPD5-gray.png" width="57"
+                                                                         height="136.5"/>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <img ng-if="spdData[5].spd_state == 0" src="xhIcon/SPD6-green.png" width="57"
+                                                                         height="136.5"/>
+                                                                    <img ng-if="spdData[5].spd_state == 1" src="xhIcon/SPD6-red.png" width="57"
+                                                                         height="136.5"/>
+                                                                    <img ng-if="spdData[5].spd_state == 2" src="xhIcon/SPD6-gray.png" width="57"
+                                                                         height="136.5"/>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <img ng-if="spdData[6].spd_state == 0" src="xhIcon/SPD7-green.png" width="57"
+                                                                         height="136.5"/>
+                                                                    <img ng-if="spdData[6].spd_state == 1" src="xhIcon/SPD7-red.png" width="57"
+                                                                         height="136.5"/>
+                                                                    <img ng-if="spdData[6].spd_state == 2" src="xhIcon/SPD7-gray.png" width="57"
+                                                                         height="136.5"/>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <img ng-if="spdData[7].spd_state == 0" src="xhIcon/SPD8-green.png" width="57"
+                                                                         height="136.5"/>
+                                                                    <img ng-if="spdData[7].spd_state == 1" src="xhIcon/SPD8-red.png" width="57"
+                                                                         height="136.5"/>
+                                                                    <img ng-if="spdData[7].spd_state == 2" src="xhIcon/SPD8-gray.png" width="57"
+                                                                         height="136.5"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="card" style="width:100%;">
+                                                        <div class="card-body" style="height:376px;">
+                                                            <h4 class="header-title">接触式地阻</h4>
+                                                            <ul class="nav nav-tabs mb-3">
+                                                                <li class="nav-item" ng-repeat="x in ETCROneData">
+                                                                    <a ng-if="$index == 0" ng-href="#tagIndex{{$index+1}}" data-toggle="tab" aria-expanded="true" class="nav-link active">
+                                                                        <i class="mdi mdi-home-variant d-lg-none d-block mr-1"></i>
+                                                                        <span class="d-none d-lg-block">{{$index+1}}</span>
+                                                                    </a>
+                                                                    <a ng-if="$index != 0" ng-href="#tagIndex{{$index+1}}" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                                                        <i class="mdi mdi-home-variant d-lg-none d-block mr-1"></i>
+                                                                        <span class="d-none d-lg-block">{{$index+1}}</span>
+                                                                    </a>
+                                                                </li>
+
+                                                                <li class="nav-item" ng-repeat="x in ETCRTwoData">
+                                                                    <a ng-if="ETCROneCount == 0 && $index == 0" ng-href="#tagIndex{{$index+1}}" data-toggle="tab" aria-expanded="true" class="nav-link active">
+                                                                        <i class="mdi mdi-home-variant d-lg-none d-block mr-1"></i>
+                                                                        <span class="d-none d-lg-block">{{$index+1}}</span>
+                                                                    </a>
+                                                                    <a ng-if="ETCROneCount == 0 && $index != 0" ng-href="#tagIndex{{$index+1}}" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                                                        <i class="mdi mdi-home-variant d-lg-none d-block mr-1"></i>
+                                                                        <span class="d-none d-lg-block">{{$index+1}}</span>
+                                                                    </a>
+                                                                    <a ng-if="ETCROneCount != 0" ng-href="#tagIndex{{$index+1+ETCROneCount}}" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                                                        <i class="mdi mdi-home-variant d-lg-none d-block mr-1"></i>
+                                                                        <span class="d-none d-lg-block">{{$index+1+ETCROneCount}}</span>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+
+                                                            <div class="tab-content">
+
+                                                                <div ng-if="$index == 0" class="tab-pane show active" id="tagIndex{{$index+1}}" ng-repeat="x in ETCROneData" style="text-align: center;">
+                                                                    <img src="xhIcon/接触式电阻4个测试按钮-3.png" width="57%"
+                                                                         height="262" style="margin-right: 40px;">
+                                                                    <input type="text" ng-value="x.rtu_port" style="position: absolute;top:52%;left:40%;width:90px;height:20px;" readonly/>
+                                                                    <input type="text" ng-value="x.rst_id" style="position: absolute;top:63%;left:40%;width:90px;height:20px;" readonly/>
+                                                                    <input type="text" style="position: absolute;top:73%;left:40%;width:90px;height:20px;" readonly/>
+
+                                                                    <button ng-if="x.relayno_name1 == 0" type="button" style="width: 36px;height: 36px;position: absolute;top:88%;left:25%;background-color: #0000FF;border-radius: 50%;border: none;cursor: pointer;color:white;" title="查看该继电器的值" onclick="settime(this)" value="0" name="1"></button>
+                                                                    <button ng-if="x.relayno_name1 == 1" type="button" style="width: 36px;height: 36px;position: absolute;top:88%;left:25%;background-color: red;border-radius: 50%;border: none;"></button>
+                                                                    <button ng-if="x.relayno_name1 != 1 && x.relayno_name1 != 0" type="button" style="width: 36px;height: 36px;position: absolute;top:88%;left:25%;background-color: white;border-radius: 50%;border: none;"></button>
+
+                                                                    <button ng-if="x.relayno_name2 == 0" type="button" style="width: 36px;height: 36px;position: absolute;top:88%;left:34%;background-color: #0000FF;border-radius: 50%;border: none;cursor: pointer;color:white;" title="查看该继电器的值" onclick="settime(this)" value="0" name="2"></button>
+                                                                    <button ng-if="x.relayno_name2 == 1" type="button" style="width: 36px;height: 36px;position: absolute;top:88%;left:34%;background-color: red;border-radius: 50%;border: none;"></button>
+                                                                    <button ng-if="x.relayno_name2 != 1 && x.relayno_name2 != 0" type="button" style="width: 36px;height: 36px;position: absolute;top:88%;left:34%;background-color: white;border-radius: 50%;border: none;"></button>
+
+                                                                    <button ng-if="x.relayno_name3 == 0" type="button" style="width: 36px;height: 36px;position: absolute;top:88%;left:43%;background-color: #0000FF;border-radius: 50%;border: none;cursor: pointer;color:white;" title="查看该继电器的值" onclick="settime(this)" value="0" name="3"></button>
+                                                                    <button ng-if="x.relayno_name3 == 1" type="button" style="width: 36px;height: 36px;position: absolute;top:88%;left:43%;background-color: red;border-radius: 50%;border: none;"></button>
+                                                                    <button ng-if="x.relayno_name3 != 1 && x.relayno_name3 != 0" type="button" style="width: 36px;height: 36px;position: absolute;top:88%;left:43%;background-color: white;border-radius: 50%;border: none;"></button>
+
+                                                                    <button ng-if="x.relayno_name4 == 0" type="button" style="width: 36px;height: 36px;position: absolute;top:88%;left:52%;background-color: #0000FF;border-radius: 50%;border: none;cursor: pointer;color:white;" title="查看该继电器的值" onclick="settime(this)" value="0" name="4"></button>
+                                                                    <button ng-if="x.relayno_name4 == 1" type="button" style="width: 36px;height: 36px;position: absolute;top:88%;left:52%;background-color: red;border-radius: 50%;border: none;cursor: pointer;color:white;"></button>
+                                                                    <button ng-if="x.relayno_name4 != 1 && x.relayno_name4 != 0" type="button" style="width: 36px;height: 36px;position: absolute;top:88%;left:43%;background-color: white;border-radius: 50%;border: none;"></button>
+                                                                </div>
+
+                                                                <div ng-if="$index != 0" class="tab-pane" id="tagIndex{{$index+1}}" ng-repeat="x in ETCROneData" style="text-align: center;">
+                                                                    <img src="xhIcon/接触式电阻4个测试按钮-3.png" width="57%"
+                                                                         height="262" style="margin-right: 40px;">
+                                                                    <input type="text" ng-value="x.rtu_port" style="position: absolute;top:52%;left:40%;width:90px;height:20px;" readonly/>
+                                                                    <input type="text" ng-value="x.rst_id" style="position: absolute;top:63%;left:40%;width:90px;height:20px;" readonly/>
+                                                                    <input type="text" style="position: absolute;top:73%;left:40%;width:90px;height:20px;" readonly/>
+
+                                                                    <button ng-if="x.relayno_name1 == 0" type="button" style="width: 36px;height: 36px;position: absolute;top:88%;left:25%;background-color: #0000FF;border-radius: 50%;border: none;cursor: pointer;color:white;" title="查看该继电器的值" onclick="settime(this)" value="0" name="1"></button>
+                                                                    <button ng-if="x.relayno_name1 == 1" type="button" style="width: 36px;height: 36px;position: absolute;top:88%;left:25%;background-color: red;border-radius: 50%;border: none;"></button>
+                                                                    <button ng-if="x.relayno_name1 != 1 && x.relayno_name1 != 0" type="button" style="width: 36px;height: 36px;position: absolute;top:88%;left:25%;background-color: white;border-radius: 50%;border: none;"></button>
+
+                                                                    <button ng-if="x.relayno_name2 == 0" type="button" style="width: 36px;height: 36px;position: absolute;top:88%;left:34%;background-color: #0000FF;border-radius: 50%;border: none;cursor: pointer;color:white;" title="查看该继电器的值" onclick="settime(this)" value="0" name="2"></button>
+                                                                    <button ng-if="x.relayno_name2 == 1" type="button" style="width: 36px;height: 36px;position: absolute;top:88%;left:34%;background-color: red;border-radius: 50%;border: none;"></button>
+                                                                    <button ng-if="x.relayno_name2 != 1 && x.relayno_name2 != 0" type="button" style="width: 36px;height: 36px;position: absolute;top:88%;left:34%;background-color: white;border-radius: 50%;border: none;"></button>
+
+                                                                    <button ng-if="x.relayno_name3 == 0" type="button" style="width: 36px;height: 36px;position: absolute;top:88%;left:43%;background-color: #0000FF;border-radius: 50%;border: none;cursor: pointer;color:white;" title="查看该继电器的值" onclick="settime(this)" value="0" name="3"></button>
+                                                                    <button ng-if="x.relayno_name3 == 1" type="button" style="width: 36px;height: 36px;position: absolute;top:88%;left:43%;background-color: red;border-radius: 50%;border: none;"></button>
+                                                                    <button ng-if="x.relayno_name3 != 1 && x.relayno_name3 != 0" type="button" style="width: 36px;height: 36px;position: absolute;top:88%;left:43%;background-color: white;border-radius: 50%;border: none;"></button>
+
+                                                                    <button ng-if="x.relayno_name4 == 0" type="button" style="width: 36px;height: 36px;position: absolute;top:88%;left:52%;background-color: #0000FF;border-radius: 50%;border: none;cursor: pointer;color:white;" title="查看该继电器的值" onclick="settime(this)" value="0" name="4"></button>
+                                                                    <button ng-if="x.relayno_name4 == 1" type="button" style="width: 36px;height: 36px;position: absolute;top:88%;left:52%;background-color: red;border-radius: 50%;border: none;cursor: pointer;color:white;"></button>
+                                                                    <button ng-if="x.relayno_name4 != 1 && x.relayno_name4 != 0" type="button" style="width: 36px;height: 36px;position: absolute;top:88%;left:43%;background-color: white;border-radius: 50%;border: none;"></button>
+                                                                </div>
+
+                                                                <div ng-if="ETCROneCount == 0 && $index == 0" class="tab-pane show active"
+                                                                     ng-repeat="x in ETCRTwoData" id="tagIndex{{$index+1}}" style="text-align: center;">
+                                                                    <img src="xhIcon/接触式电阻1个测试按钮-3.png" width="57%"
+                                                                         height="262" style="margin-right: 40px;">
+                                                                    <input ng-value="x.rtu_channel" type="text" style="position: absolute;top:52%;left:40%;width:90px;height:20px;" readonly/>
+                                                                    <input ng-value="x.rst_id" type="text" style="position: absolute;top:63%;left:40%;width:90px;height:20px;" readonly/>
+                                                                    <input type="text" style="position: absolute;top:73%;left:40%;width:90px;height:20px;" readonly/>
+                                                                    <button ng-if="x.rst_state == 0" type="button" style="width: 36px;height: 36px;position: absolute;top:64%;left:63%;background-color: #0000FF;border-radius: 50%;border: none;cursor: pointer;color:white;" title="查看该继电器的值" onclick="settime(this)" value="0" name="0"></button>
+                                                                    <button ng-if="x.rst_state == 0" type="button" style="width: 36px;height: 36px;position: absolute;top:64%;left:63%;background-color: red;border-radius: 50%;border: none;"></button>
+                                                                </div>
+
+                                                                <div ng-if="ETCROneCount == 0 && $index != 0" class="tab-pane"
+                                                                     ng-repeat="x in ETCRTwoData" id="tagIndex{{$index+1}}" style="text-align: center;">
+                                                                    <img src="xhIcon/接触式电阻1个测试按钮-3.png" width="57%"
+                                                                         height="262" style="margin-right: 40px;">
+                                                                    <input ng-value="x.rtu_channel" type="text" style="position: absolute;top:52%;left:40%;width:90px;height:20px;" readonly/>
+                                                                    <input ng-value="x.rst_id" type="text" style="position: absolute;top:63%;left:40%;width:90px;height:20px;" readonly/>
+                                                                    <input type="text" style="position: absolute;top:73%;left:40%;width:90px;height:20px;" readonly/>
+                                                                    <button ng-if="x.rst_state == 0" type="button" style="width: 36px;height: 36px;position: absolute;top:64%;left:63%;background-color: #0000FF;border-radius: 50%;border: none;cursor: pointer;color:white;" title="查看该继电器的值" onclick="settime(this)" value="0" name="0"></button>
+                                                                    <button ng-if="x.rst_state == 0" type="button" style="width: 36px;height: 36px;position: absolute;top:64%;left:63%;background-color: red;border-radius: 50%;border: none;"></button>
+                                                                </div>
+
+                                                                <div ng-if="ETCROneCount != 0" class="tab-pane"
+                                                                     ng-repeat="x in ETCRTwoData" id="tagIndex{{$index+1+ETCROneCount}}" style="text-align: center;">
+                                                                    <img src="xhIcon/接触式电阻1个测试按钮-3.png" width="57%"
+                                                                         height="262" style="margin-right: 40px;">
+                                                                    <input ng-value="x.rtu_channel" type="text" style="position: absolute;top:52%;left:40%;width:90px;height:20px;" readonly/>
+                                                                    <input ng-value="x.rst_id" type="text" style="position: absolute;top:63%;left:40%;width:90px;height:20px;" readonly/>
+                                                                    <input ng-value="testETCR2" type="text" style="position: absolute;top:73%;left:40%;width:90px;height:20px;" readonly/>
+                                                                    <button ng-if="x.rst_state == 0" type="button" style="width: 36px;height: 36px;position: absolute;top:64%;left:63%;background-color: #0000FF;border-radius: 50%;border: none;cursor: pointer;color:white;" title="查看该继电器的值" onclick="settime(this)" value="0" name="0"></button>
+                                                                    <button ng-if="x.rst_state == 1" type="button" style="width: 36px;height: 36px;position: absolute;top:64%;left:63%;background-color: red;border-radius: 50%;border: none;"></button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="card" style="width:100%;">
+                                                        <div class="card-body" style="height:416px;">
+                                                            <h4 class="header-title">非接触式地阻</h4>
+                                                            <ul class="nav nav-tabs mb-3">
+                                                                <li class="nav-item" ng-repeat="x in ETCRThreeData">
+                                                                    <a ng-if="$index == 0" ng-href="#tagIndexes{{$index}}" data-toggle="tab" aria-expanded="true" class="nav-link active">
+                                                                        <i class="mdi mdi-home-variant d-lg-none d-block mr-1"></i>
+                                                                        <span class="d-none d-lg-block">{{$index+1}}</span>
+                                                                    </a>
+                                                                    <a ng-if="$index != 0" ng-href="#tagIndexes{{$index}}" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                                                        <i class="mdi mdi-home-variant d-lg-none d-block mr-1"></i>
+                                                                        <span class="d-none d-lg-block">{{$index+1}}</span>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+
+                                                            <div class="tab-content">
+                                                                <div ng-if="$index == 0" ng-repeat="x in ETCRThreeData" class="tab-pane show active" id="tagIndexes{{$index}}" style="text-align: center;">
+                                                                    <img src="xhIcon/非接触式电阻-2.png" width="53%"
+                                                                         height="230">
+                                                                    <input ng-value="x.rtu_channel" type="text" style="position: absolute;top:41%;left:46%;width:70px;height:17px;" readonly/>
+                                                                    <input ng-value="x.rst_id" type="text" style="position: absolute;top:46%;left:46%;width:70px;height:17px;" readonly/>
+                                                                    <input  type="text" style="position: absolute;top:51%;left:46%;width:70px;height:17px;" readonly/>
+
+                                                                    <button ng-if="x.rst_state == 0" type="button" style="width: 36px;height: 36px;position: absolute;top:42%;left:61%;background-color: #0000FF;border-radius: 50%;border: none;cursor: pointer;color:white;" title="查看该继电器的值" onclick="settime(this)" value="1" name="0"></button>
+                                                                    <button ng-if="x.rst_state == 1" type="button" style="width: 36px;height: 36px;position: absolute;top:42%;left:61%;background-color: red;border-radius: 50%;border: none;"></button>
+                                                                </div>
+
+                                                                <div ng-if="$index != 0" ng-repeat="x in ETCRThreeData" class="tab-pane" id="tagIndexes{{$index}}" style="text-align: center;">
+                                                                    <img src="xhIcon/非接触式电阻-2.png" width="53%"
+                                                                         height="230">
+                                                                    <input ng-value="x.rtu_channel" type="text" style="position: absolute;top:41%;left:46%;width:70px;height:17px;" readonly/>
+                                                                    <input ng-value="x.rst_id" type="text" style="position: absolute;top:46%;left:46%;width:70px;height:17px;" readonly/>
+                                                                    <input  type="text" style="position: absolute;top:51%;left:46%;width:70px;height:17px;" readonly/>
+
+                                                                    <button ng-if="x.rst_state == 0" type="button" style="width: 36px;height: 36px;position: absolute;top:42%;left:61%;background-color: #0000FF;border-radius: 50%;border: none;cursor: pointer;color:white;" title="查看该继电器的值" onclick="settime(this)" value="1" name="0"></button>
+                                                                    <button ng-if="x.rst_state == 1" type="button" style="width: 36px;height: 36px;position: absolute;top:42%;left:61%;background-color: red;border-radius: 50%;border: none;"></button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="card" style="width:100%;">
+                                                        <div class="card-body" style="height:416px;">
+                                                            <h4 class="header-title">雷电流</h4>
+                                                            <ul class="nav nav-tabs mb-3">
+                                                                <li class="nav-item" ng-repeat="x in LightningData">
+                                                                    <a ng-if="$index == 0" ng-href="#tagIndexes{{$index}}" data-toggle="tab" aria-expanded="true" class="nav-link active">
+                                                                        <i class="mdi mdi-home-variant d-lg-none d-block mr-1"></i>
+                                                                        <span class="d-none d-lg-block">{{$index+1}}</span>
+                                                                    </a>
+                                                                    <a ng-if="$index != 0" ng-href="#tagIndexes{{$index}}" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                                                        <i class="mdi mdi-home-variant d-lg-none d-block mr-1"></i>
+                                                                        <span class="d-none d-lg-block">{{$index+1}}</span>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+
+                                                            <div class="tab-content">
+                                                                <div ng-if="$index == 0" ng-repeat="x in LightningData" class="tab-pane show active" id="tagIndexes{{$index}}" style="text-align: center;">
+                                                                    <img src="xhIcon/雷电流在线监测仪.jpg" width="28%"
+                                                                         height="300">
+                                                                    <input ng-value="x.rtu_channel" type="text" style="position: absolute;top:38%;left:49%;width:51px;height:17px;" readonly/>
+                                                                    <input ng-value="x.ltn_id" type="text" style="position: absolute;top:43%;left:49%;width:51px;height:17px;" readonly/>
+                                                                    <input type="text" style="position: absolute;top:49%;left:49%;width:51px;height:17px;" readonly/>
+
+                                                                    <button ng-if="x.ltn_state == 0" type="button" style="width: 36px;height: 36px;position: absolute;top:56%;left:48%;background-color: #0000FF;border-radius: 50%;border: none;cursor: pointer;color:white;" title="查看该继电器的值" onclick="settime(this)" value="2" name="0"></button>
+                                                                    <button ng-if="x.ltn_state == 1" type="button" style="width: 36px;height: 36px;position: absolute;top:56%;left:48%;background-color: red;border-radius: 50%;border: none;"></button>
+                                                                </div>
+
+                                                                <div ng-if="$index != 0" ng-repeat="x in LightningData" class="tab-pane" id="tagIndexes{{$index}}" style="text-align: center;">
+                                                                    <img src="xhIcon/雷电流在线监测仪.jpg" width="28%"
+                                                                         height="300">
+                                                                    <input ng-value="x.rtu_channel" type="text" style="position: absolute;top:38%;left:49%;width:51px;height:17px;" readonly/>
+                                                                    <input ng-value="x.ltn_id" type="text" style="position: absolute;top:43%;left:49%;width:51px;height:17px;" readonly/>
+                                                                    <input type="text" style="position: absolute;top:49%;left:49%;width:51px;height:17px;" readonly/>
+
+                                                                    <button ng-if="x.ltn_state == 0" type="button" style="width: 36px;height: 36px;position: absolute;top:56%;left:48%;background-color: #0000FF;border-radius: 50%;border: none;cursor: pointer;color:white;" title="查看该继电器的值" onclick="settime(this)" value="2" name="0"></button>
+                                                                    <button ng-if="x.ltn_state == 1" type="button" style="width: 36px;height: 36px;position: absolute;top:56%;left:48%;background-color: red;border-radius: 50%;border: none;"></button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="card" style="width:100%;">
+                                                        <div class="card-body" style="height:376px;">
+                                                            <h4 class="header-title">静电</h4>
+                                                            <ul class="nav nav-tabs mb-3">
+                                                                <li class="nav-item" ng-repeat="x in StaticData">
+                                                                    <a ng-if="$index == 0" ng-href="#tagIndexes{{$index}}" data-toggle="tab" aria-expanded="true" class="nav-link active">
+                                                                        <i class="mdi mdi-home-variant d-lg-none d-block mr-1"></i>
+                                                                        <span class="d-none d-lg-block">{{$index+1}}</span>
+                                                                    </a>
+                                                                    <a ng-if="$index != 0" ng-href="#tagIndexes{{$index}}" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                                                        <i class="mdi mdi-home-variant d-lg-none d-block mr-1"></i>
+                                                                        <span class="d-none d-lg-block">{{$index+1}}</span>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+
+                                                            <div class="tab-content">
+                                                                <div ng-if="$index == 0" ng-repeat="x in StaticData" class="tab-pane show active" id="tagIndexes{{$index}}">
+                                                                    <img src="xhIcon/XHEM-Ⅰ静电.png" width="313"
+                                                                         height="240" style="margin-right: 40px;float: left;">
+                                                                    <div style="width:313px;height:240px;float: left;color:black;font-size: 16px;padding-top: 60px;">
+                                                                        接入端口：<input ng-value="x.rtu_channel" type="text" style="width:70px;height:17px;" readonly/>
+                                                                        <br/>
+                                                                        设备ID： &nbsp;&nbsp;&nbsp;<input ng-value="x.staet_id" type="text" style="width:70px;height:17px;" readonly/>
+                                                                        <br/>
+                                                                        静电电压：<input type="text" style="width:70px;height:17px;" readonly/>
+                                                                        <br/>
+                                                                        <button ng-if="x.staet_state == 0" type="button" style="position:absolute;top:50%;right:25%;width: 36px;height: 36px;background-color: #0000FF;border-radius: 50%;border: none;cursor: pointer;color:white;" title="查看该继电器的值" onclick="settime(this)" value="4" name="0"></button>
+                                                                        <button ng-if="x.staet_state == 1" type="button" style="width: 36px;height: 36px;background-color: red;border-radius: 50%;border: none;"></button>
+                                                                    </div>
+                                                                </div>
+
+
+                                                                <div ng-if="$index != 0" ng-repeat="x in StaticData" class="tab-pane" id="tagIndexes{{$index}}" style="text-align: center;">
+                                                                    <img src="xhIcon/XHEM-Ⅰ静电.png" width="313"
+                                                                         height="240" style="margin-right: 40px;float: left;">
+                                                                    <div style="width:313px;height:240px;float: left;color:black;font-size: 16px;padding-top: 60px;">
+                                                                        接入端口：<input ng-value="x.rtu_channel" type="text" style="width:70px;height:17px;" readonly/>
+                                                                        <br/>
+                                                                        设备ID： &nbsp;&nbsp;&nbsp;<input ng-value="x.staet_id" type="text" style="width:70px;height:17px;" readonly/>
+                                                                        <br/>
+                                                                        静电电压：<input type="text" style="width:70px;height:17px;" readonly/>
+                                                                        <br/>
+                                                                        <button ng-if="x.staet_state == 0" type="button" style="position:absolute;top:50%;right:25%;width: 36px;height: 36px;background-color: #0000FF;border-radius: 50%;border: none;cursor: pointer;color:white;" title="查看该继电器的值" onclick="settime(this)" value="4" name="0"></button>
+                                                                        <button ng-if="x.staet_state == 1" type="button" style="width: 36px;height: 36px;background-color: red;border-radius: 50%;border: none;"></button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="card" style="width:100%;">
+                                                        <div class="card-body" style="height:376px;">
+                                                            <h4 class="header-title">温湿度</h4>
+                                                            <ul class="nav nav-tabs mb-3">
+                                                                <li class="nav-item" ng-repeat="x in RswsData">
+                                                                    <a ng-if="$index == 0" ng-href="#tagIndexes{{$index}}" data-toggle="tab" aria-expanded="true" class="nav-link active">
+                                                                        <i class="mdi mdi-home-variant d-lg-none d-block mr-1"></i>
+                                                                        <span class="d-none d-lg-block">{{$index+1}}</span>
+                                                                    </a>
+                                                                    <a ng-if="$index != 0" ng-href="#tagIndexes{{$index}}" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                                                        <i class="mdi mdi-home-variant d-lg-none d-block mr-1"></i>
+                                                                        <span class="d-none d-lg-block">{{$index+1}}</span>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+
+                                                            <div class="tab-content">
+                                                                <div ng-if="$index == 0" ng-repeat="x in RswsData" class="tab-pane show active" id="tagIndexes{{$index}}" style="text-align: center;">
+                                                                    <img src="xhIcon/XHTHM-Ⅰ温湿度.png" width="32%"
+                                                                         height="230" style="margin-right: 40px;">
+                                                                    <input ng-value="x.rtu_channel" type="text" style="position: absolute;top:51%;left:45%;width:43px;height:16px;" readonly/>
+                                                                    <input ng-value="x.hmt_id" type="text" style="position: absolute;top:58%;left:45%;width:43px;height:16px;" readonly/>
+                                                                    <input type="text" style="position: absolute;top:64%;left:45%;width:43px;height:16px;" readonly/>
+                                                                    <input type="text" style="position: absolute;top:70%;left:45%;width:43px;height:16px;" readonly/>
+
+                                                                    <button ng-if="x.hmt_state == 0" type="button" style="width: 36px;height: 36px;position: absolute;top:67%;left:54%;background-color: #0000FF;border-radius: 50%;border: none;cursor: pointer;color:white;" title="查看该继电器的值" onclick="settime(this)" value="3" name="0"></button>
+                                                                    <button ng-if="x.hmt_state == 1" type="button" style="width: 36px;height: 36px;position: absolute;top:67%;left:54%;background-color: red;border-radius: 50%;border: none;"></button>
+                                                                </div>
+
+                                                                <div ng-if="$index != 0" ng-repeat="x in ETCRThreeData" class="tab-pane" id="tagIndexes{{$index}}" style="text-align: center;">
+                                                                    <img src="xhIcon/XHTHM-Ⅰ温湿度.png" width="32%"
+                                                                         height="230" style="margin-right: 40px;">
+                                                                    <input ng-value="x.rtu_channel" type="text" style="position: absolute;top:51%;left:45%;width:43px;height:16px;" readonly/>
+                                                                    <input ng-value="x.hmt_id" type="text" style="position: absolute;top:58%;left:45%;width:43px;height:16px;" readonly/>
+                                                                    <input type="text" style="position: absolute;top:64%;left:45%;width:43px;height:16px;" readonly/>
+                                                                    <input type="text" style="position: absolute;top:70%;left:45%;width:43px;height:16px;" readonly/>
+
+                                                                    <button ng-if="x.hmt_state == 0" type="button" style="width: 36px;height: 36px;position: absolute;top:67%;left:54%;background-color: #0000FF;border-radius: 50%;border: none;cursor: pointer;color:white;" title="查看该继电器的值" onclick="settime(this)" value="3" name="0"></button>
+                                                                    <button ng-if="x.hmt_state == 1" type="button" style="width: 36px;height: 36px;position: absolute;top:67%;left:54%;background-color: red;border-radius: 50%;border: none;"></button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="card" style="width:100%;">
+                                                        <div class="card-body" style="height:376px;">
+                                                            <h4 class="header-title">倾斜度</h4>
+                                                            <ul class="nav nav-tabs mb-3">
+                                                                <li class="nav-item" ng-repeat="x in SvtData">
+                                                                    <a ng-if="$index == 0" ng-href="#tagIndexes{{$index}}" data-toggle="tab" aria-expanded="true" class="nav-link active">
+                                                                        <i class="mdi mdi-home-variant d-lg-none d-block mr-1"></i>
+                                                                        <span class="d-none d-lg-block">{{$index+1}}</span>
+                                                                    </a>
+                                                                    <a ng-if="$index != 0" ng-href="#tagIndexes{{$index}}" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                                                        <i class="mdi mdi-home-variant d-lg-none d-block mr-1"></i>
+                                                                        <span class="d-none d-lg-block">{{$index+1}}</span>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+
+                                                            <div class="tab-content">
+                                                                <div ng-if="$index == 0" ng-repeat="x in SvtData"
+                                                                     class="tab-pane show active"
+                                                                     id="tagIndexes{{$index}}">
+                                                                    <img src="xhIcon/XHTAM-Ⅰ倾斜度.png" width="408"
+                                                                         height="217" style="margin-right: 40px;float: left;">
+                                                                    <div style="width: auto;height: 187px;float: left;color:black;padding-top: 30px;">
+                                                                        接入端口：&nbsp;&nbsp;&nbsp;&nbsp;<input ng-value="x.rtu_channel" type="text" style="width:70px;height:17px;" readonly/>
+                                                                        <br/>
+                                                                        设备ID： &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input ng-value="x.tilt_id" type="text" style="width:70px;height:17px;" readonly/>
+                                                                        <br/>
+                                                                        顺线倾斜角：<input type="text" style="width:70px;height:17px;" readonly/>
+                                                                        <br/>
+                                                                        横向倾斜角：<input type="text" style="width:70px;height:17px;" readonly/>
+                                                                        <br/>
+                                                                        顺线倾斜度：<input type="text" style="width:70px;height:17px;" readonly/>
+                                                                        <br/>
+                                                                        横向倾斜度：<input type="text" style="width:70px;height:17px;" readonly/>
+                                                                        <br/>
+                                                                        综合倾斜角：<input type="text" style="width:70px;height:17px;" readonly/>
+                                                                        <br/>
+                                                                        <button ng-if="x.tilt_state == 0" type="button" style="position:absolute;top:51%;right:11%;width: 36px;height: 36px;background-color: #0000FF;border-radius: 50%;border: none;cursor: pointer;color:white;" title="查看该继电器的值" onclick="settime(this)" value="5" name="0"></button>
+                                                                        <button ng-if="x.tilt_state == 1" type="button" style="width: 36px;height: 36px;background-color: red;border-radius: 50%;border: none;"></button>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div ng-if="$index != 0" ng-repeat="x in StaticData" class="tab-pane" id="tagIndexes{{$index}}" style="text-align: center;">
+                                                                    <img src="xhIcon/XHTAM-Ⅰ倾斜度.png" width="408"
+                                                                         height="217" style="margin-right: 40px;float: left;">
+                                                                    <div style="width: auto;height: 187px;float: left;color:black;padding-top: 30px;">
+                                                                        接入端口：&nbsp;&nbsp;&nbsp;&nbsp;<input ng-value="x.rtu_channel" type="text" style="width:70px;height:17px;" readonly/>
+                                                                        <br/>
+                                                                        设备ID： &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input ng-value="x.tilt_id" type="text" style="width:70px;height:17px;" readonly/>
+                                                                        <br/>
+                                                                        顺线倾斜角：<input type="text" style="width:70px;height:17px;" readonly/>
+                                                                        <br/>
+                                                                        横向倾斜角：<input type="text" style="width:70px;height:17px;" readonly/>
+                                                                        <br/>
+                                                                        顺线倾斜度：<input type="text" style="width:70px;height:17px;" readonly/>
+                                                                        <br/>
+                                                                        横向倾斜度：<input type="text" style="width:70px;height:17px;" readonly/>
+                                                                        <br/>
+                                                                        综合倾斜角：<input type="text" style="width:70px;height:17px;" readonly/>
+                                                                        <br/>
+                                                                        <button ng-if="x.tilt_state == 0" type="button" style="position:absolute;top:51%;right:11%;width: 36px;height: 36px;background-color: #0000FF;border-radius: 50%;border: none;cursor: pointer;color:white;" title="查看该继电器的值" onclick="settime(this)" value="5" name="0"></button>
+                                                                        <button ng-if="x.tilt_state == 1" type="button" style="width: 36px;height: 36px;background-color: red;border-radius: 50%;border: none;"></button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="card" style="width:100%;">
+                                                        <div class="card-body" style="height:376px;">
+                                                            <h4 class="header-title">电气安全</h4>
+                                                            <ul class="nav nav-tabs mb-3">
+                                                                <li class="nav-item" ng-repeat="x in HcData">
+                                                                    <a ng-if="$index == 0" ng-href="#tagIndexes{{$index}}" data-toggle="tab" aria-expanded="true" class="nav-link active">
+                                                                        <i class="mdi mdi-home-variant d-lg-none d-block mr-1"></i>
+                                                                        <span class="d-none d-lg-block">{{$index+1}}</span>
+                                                                    </a>
+                                                                    <a ng-if="$index != 0" ng-href="#tagIndexes{{$index}}" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                                                        <i class="mdi mdi-home-variant d-lg-none d-block mr-1"></i>
+                                                                        <span class="d-none d-lg-block">{{$index+1}}</span>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+
+                                                            <div class="tab-content">
+                                                                <div ng-if="$index == 0" ng-repeat="x in HcData" class="tab-pane show active" id="tagIndexes{{$index}}" style="text-align: center;">
+                                                                    <img src="xhIcon/XHESM-Ⅰ电气安全.png" width="408"
+                                                                         height="252" style="margin-right: 40px;">
+                                                                    <input ng-value="x.rtu_channel" type="text" style="position: absolute;top:49%;left:45%;width:70px;height:17px;" readonly/>
+                                                                    <input ng-value="x.es_id" type="text" style="position: absolute;top:56%;left:45%;width:70px;height:17px;" readonly/>
+                                                                    <input type="text" style="position: absolute;top:63%;left:49%;width:70px;height:17px;" readonly/>
+                                                                    <input type="text" style="position: absolute;top:71%;left:49%;width:70px;height:17px;" readonly/>
+                                                                    <input type="text" style="position: absolute;top:79%;left:49%;width:70px;height:17px;" readonly/>
+                                                                    <input type="text" style="position: absolute;top:87%;left:49%;width:70px;height:17px;" readonly/>
+
+                                                                    <button ng-if="x.es_state == 0" type="button" style="width: 36px;height: 36px;position: absolute;top:45%;left:59%;background-color: #0000FF;border-radius: 50%;border: none;cursor: pointer;color:white;" title="查看该继电器的值" onclick="settime(this)" value="6" name="0"></button>
+                                                                    <button ng-if="x.es_state == 1" type="button" style="width: 36px;height: 36px;position: absolute;top:45%;left:59%;background-color: red;border-radius: 50%;border: none;"></button>
+                                                                </div>
+
+                                                                <div ng-if="$index != 0" ng-repeat="x in HcData" class="tab-pane" id="tagIndexes{{$index}}" style="text-align: center;">
+                                                                    <img src="xhIcon/XHESM-Ⅰ电气安全.png" width="408"
+                                                                         height="252" style="margin-right: 40px;">
+                                                                    <input ng-value="x.rtu_channel" type="text" style="position: absolute;top:49%;left:45%;width:70px;height:17px;" readonly/>
+                                                                    <input ng-value="x.es_id" type="text" style="position: absolute;top:56%;left:45%;width:70px;height:17px;" readonly/>
+                                                                    <input type="text" style="position: absolute;top:63%;left:49%;width:70px;height:17px;" readonly/>
+                                                                    <input type="text" style="position: absolute;top:71%;left:49%;width:70px;height:17px;" readonly/>
+                                                                    <input type="text" style="position: absolute;top:79%;left:49%;width:70px;height:17px;" readonly/>
+                                                                    <input type="text" style="position: absolute;top:87%;left:49%;width:70px;height:17px;" readonly/>
+
+                                                                    <button ng-if="x.es_state == 0" type="button" style="width: 36px;height: 36px;position: absolute;top:45%;left:59%;background-color: #0000FF;border-radius: 50%;border: none;cursor: pointer;color:white;" title="查看该继电器的值" onclick="settime(this)" value="6" name="0"></button>
+                                                                    <button ng-if="x.es_state == 1" type="button" style="width: 36px;height: 36px;position: absolute;top:45%;left:59%;background-color: red;border-radius: 50%;border: none;"></button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="card" style="width:100%;">
+                                                        <div class="card-body" style="height:376px;">
+                                                            <h4 class="header-title">杂散电流</h4>
+                                                            <ul class="nav nav-tabs mb-3">
+                                                                <li class="nav-item" ng-repeat="x in StrayData">
+                                                                    <a ng-if="$index == 0" ng-href="#tagIndexes{{$index}}" data-toggle="tab" aria-expanded="true" class="nav-link active">
+                                                                        <i class="mdi mdi-home-variant d-lg-none d-block mr-1"></i>
+                                                                        <span class="d-none d-lg-block">{{$index+1}}</span>
+                                                                    </a>
+                                                                    <a ng-if="$index != 0" ng-href="#tagIndexes{{$index}}" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                                                        <i class="mdi mdi-home-variant d-lg-none d-block mr-1"></i>
+                                                                        <span class="d-none d-lg-block">{{$index+1}}</span>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+
+                                                            <div class="tab-content">
+                                                                <div ng-if="$index == 0" ng-repeat="x in StrayData" class="tab-pane show active" id="tagIndexes{{$index}}" style="text-align: center;">
+                                                                    <img src="xhIcon/XHSM-1杂散电流.png" width="350"
+                                                                         height="266" style="margin-right: 40px;">
+                                                                    <input ng-value="x.rtu_channel" type="text" style="position: absolute;top:49%;left:49%;width:62px;height:15px;" readonly/>
+                                                                    <input ng-value="x.stret_id" type="text" style="position: absolute;top:53%;left:49%;width:62px;height:15px;" readonly/>
+                                                                    <input type="text" style="position: absolute;top:58%;left:51%;width:56px;height:15px;" readonly/>
+                                                                    <input type="text" style="position: absolute;top:63%;left:51%;width:56px;height:15px;" readonly/>
+                                                                    <input type="text" style="position: absolute;top:68%;left:51%;width:56px;height:15px;" readonly/>
+                                                                    <input type="text" style="position: absolute;top:73%;left:51%;width:56px;height:15px;" readonly/>
+
+                                                                    <button ng-if="x.stret_state == 0" type="button" style="width: 36px;height: 36px;position: absolute;top:45%;left:59%;background-color: #0000FF;border-radius: 50%;border: none;cursor: pointer;color:white;" title="查看该继电器的值" onclick="settime(this)" value="7" name="0"></button>
+                                                                    <button ng-if="x.stret_state == 1" type="button" style="width: 36px;height: 36px;position: absolute;top:45%;left:59%;background-color: red;border-radius: 50%;border: none;"></button>
+                                                                </div>
+
+                                                                <div ng-if="$index != 0" ng-repeat="x in StrayData" class="tab-pane" id="tagIndexes{{$index}}" style="text-align: center;">
+                                                                    <img src="xhIcon/XHSM-1杂散电流.png" width="350"
+                                                                         height="266" style="margin-right: 40px;">
+                                                                    <input ng-value="x.rtu_channel" type="text" style="position: absolute;top:49%;left:49%;width:62px;height:15px;" readonly/>
+                                                                    <input ng-value="x.stret_id" type="text" style="position: absolute;top:53%;left:49%;width:62px;height:15px;" readonly/>
+                                                                    <input type="text" style="position: absolute;top:58%;left:51%;width:56px;height:15px;" readonly/>
+                                                                    <input type="text" style="position: absolute;top:63%;left:51%;width:56px;height:15px;" readonly/>
+                                                                    <input type="text" style="position: absolute;top:68%;left:51%;width:56px;height:15px;" readonly/>
+                                                                    <input type="text" style="position: absolute;top:73%;left:51%;width:56px;height:15px;" readonly/>
+
+                                                                    <button ng-if="x.stret_state == 0" type="button" style="width: 36px;height: 36px;position: absolute;top:45%;left:59%;background-color: #0000FF;border-radius: 50%;border: none;cursor: pointer;color:white;" title="查看该继电器的值" onclick="settime(this)" value="7" name="0"></button>
+                                                                    <button ng-if="x.stret_state == 1" type="button" style="width: 36px;height: 36px;position: absolute;top:45%;left:59%;background-color: red;border-radius: 50%;border: none;"></button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="card" style="width:100%;">
+                                                        <div class="card-body" style="height:376px;">
+                                                            <h4 class="header-title">阴极保护</h4>
+                                                            <ul class="nav nav-tabs mb-3">
+                                                                <li class="nav-item" ng-repeat="x in CatData">
+                                                                    <a ng-if="$index == 0" ng-href="#tagIndexes{{$index}}" data-toggle="tab" aria-expanded="true" class="nav-link active">
+                                                                        <i class="mdi mdi-home-variant d-lg-none d-block mr-1"></i>
+                                                                        <span class="d-none d-lg-block">{{$index+1}}</span>
+                                                                    </a>
+                                                                    <a ng-if="$index != 0" ng-href="#tagIndexes{{$index}}" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                                                        <i class="mdi mdi-home-variant d-lg-none d-block mr-1"></i>
+                                                                        <span class="d-none d-lg-block">{{$index+1}}</span>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+
+                                                            <div class="tab-content">
+                                                                <div ng-if="$index == 0" ng-repeat="x in CatData" class="tab-pane show active" id="tagIndexes{{$index}}" style="text-align: center;">
+                                                                    <img src="xhIcon/XHCVN-1阴极保护.png" width="350"
+                                                                         height="266" style="margin-right: 40px;">
+                                                                    <input ng-value="x.rtu_channel" type="text" style="position: absolute;top:51%;left:49%;width:60px;height:17px;" readonly/>
+                                                                    <input ng-value="x.cathode_id" type="text" style="position: absolute;top:59%;left:49%;width:60px;height:17px;" readonly/>
+                                                                    <input type="text" style="position: absolute;top:67%;left:51%;width:56px;height:17px;" readonly/>
+
+                                                                    <button ng-if="x.cathode_state == 0" type="button" style="width: 36px;height: 36px;position: absolute;top:45%;left:59%;background-color: #0000FF;border-radius: 50%;border: none;cursor: pointer;color:white;" title="查看该继电器的值" onclick="settime(this)" value="8" name="0"></button>
+                                                                    <button ng-if="x.cathode_state == 1" type="button" style="width: 36px;height: 36px;position: absolute;top:45%;left:59%;background-color: red;border-radius: 50%;border: none;"></button>
+                                                                </div>
+
+                                                                <div ng-if="$index != 0" ng-repeat="x in CatData" class="tab-pane" id="tagIndexes{{$index}}" style="text-align: center;">
+                                                                    <img src="xhIcon/XHCVN-1阴极保护.png" width="350"
+                                                                         height="266" style="margin-right: 40px;">
+                                                                    <input ng-value="x.rtu_channel" type="text" style="position: absolute;top:51%;left:49%;width:60px;height:17px;" readonly/>
+                                                                    <input ng-value="x.cathode_id" type="text" style="position: absolute;top:59%;left:49%;width:60px;height:17px;" readonly/>
+                                                                    <input type="text" style="position: absolute;top:67%;left:51%;width:56px;height:17px;" readonly/>
+
+                                                                    <button ng-if="x.cathode_state == 0" type="button" style="width: 36px;height: 36px;position: absolute;top:45%;left:59%;background-color: #0000FF;border-radius: 50%;border: none;cursor: pointer;color:white;" title="查看该继电器的值" onclick="settime(this)" value="8" name="0"></button>
+                                                                    <button ng-if="x.cathode_state == 1" type="button" style="width: 36px;height: 36px;position: absolute;top:45%;left:59%;background-color: red;border-radius: 50%;border: none;"></button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                    </div>
+                                    <!-- panel -->
+                                </div>
+                            </div>
+                            <!-- row---end -->
+
+                        </div>
+
+                </div>
+            </div>
+        </div>
+    </div> <!-- container -->
+
+</div>
+
+<!-- ============================================================== -->
+<!-- End Page content -->
+<!-- ============================================================== -->
+
+
+</div>
+<!-- END wrapper -->
+
+<!-- bundle -->
+<script src="./javascript/app.min.js"></script>
+<script src="angularjs/jquery-3.2.1.min.js"></script>
+<script src="angularjs/angular.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/echarts.min.js"></script>
+<script src="js/macarons.js"></script>
+<script src="angularjs/metisMenu.min.js"></script>
+<script src="js/sweet-alert.js"></script>
+<script src="js/toastr.min.js"></script>
+<script src="js/nowData.js"></script>
+<script src="js/paging.js"></script>
+<!--<script src="./javascript/demo.dashboard.js"></script>-->
+<script type="text/javascript">
+    xh.load();
+    $(document).ready(function() {
+        $('.splash').css('display', 'none');
+    });
+</script>
+</body>
+
+</html>

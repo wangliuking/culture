@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <title>信虹智慧服务平台</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description"/>
+    <meta content="Coderthemes" name="author"/>
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="./favicon.ico">
+    <!-- third party css -->
+    <!--<link href="./css/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />-->
+    <!-- third party css end -->
+    <!-- App css -->
+    <!-- build:css -->
+    <!--<script type="text/javascript"
+            src="Resources/css/xh.min.css"></script>-->
+    <link href="./css/app.min.css" rel="stylesheet" type="text/css"/>
+    <link href="./css/sweet-alert.css" rel="stylesheet" type="text/css" />
+    <link href="./css/toastr.min.css" rel="stylesheet" type="text/css" />
+    <link href="Resources/css/xhzh.min.css" rel="stylesheet" type="text/css"/>
+    <style>
+        /*下拉菜单样式*/
+        .selectForArea {
+            padding: .45rem .9rem;
+            font-size: .875rem;
+            line-height: 1.5;
+            color: #6c757d;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid black;
+            border-radius: 8px;
+        }
+        .selectForPage{
+            padding: .20rem .9rem;
+            font-size: .875rem;
+            line-height: 1.5;
+            color: #6c757d;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid black;
+            border-radius: 8px;
+        }
+        input{
+            border: 1px solid black!important;
+        }
+        .form-control{
+            color:black;
+        }
+    </style>
+
+</head>
+<body ng-app="app" ng-controller="xhcontroller" style="padding-right:0!important;background-color: #d8d4d4;color:black;">
+<!-- splash screen-->
+<div class="splash" style="position: fixed;z-index: 2001;background: white;color: gray;top: 0;bottom: 0;left: 0;right: 0;">
+    <div class="splash-title" style="text-align: center;max-width: 500px;margin: 15% auto;padding: 20px;">
+        <h1 style="font-size: 26px;color: #004894;">数据加载中，请耐心等待</h1>
+        <img src="xhIcon/loading.gif" width="100" height="100"/>
+    </div>
+</div>
+<!-- Begin page -->
+<div class="wrapper">
+    <!-- ============================================================== -->
+    <!-- Start Page Content here -->
+    <!-- ============================================================== -->
+
+    <div class="content-page" style="padding: 5px 5px 5px 0px;">
+        <!-- Start Content-->
+        <div class="container-fluid">
+
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box">
+                        <div class="page-title-left">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item">当前位置</li>
+                                <li class="breadcrumb-item"><a href="Views/menu/menu_device.html" target="_self">现场配置</a></li>
+                                <li class="breadcrumb-item"><a style="color: #0caff4">设备列表</a></li>
+                            </ol>
+                        </div>
+                        <div>
+                            <form id="searchForm" class="form-inline">
+                                <select class="selectForArea" id="siteName" ng-model="x" style="width:15%;" ng-change="changeRtuList()" >>
+                                    <option value="">全部名称</option>
+                                    <option ng-repeat="x in siteNames" ng-value="x.site_id">{{x.site_name}}</option>
+                                </select>
+                                <select class="selectForArea" id="rtuName" style="width:15%;">
+                                    <option value="">RTU-ID</option>
+                                    <option ng-repeat="x in rtuNames" ng-value="x.rtu_id" ng-selected="locationRTUID == x.rtu_id">{{x.rtu_name}}</option>
+                                </select>
+                                <select class="selectForArea" id="deviceName" style="width:15%;">
+                                    <option ng-repeat="x in deviceNames" ng-value="x.id">{{x.name}}</option>
+                                </select>
+                                <button type="button" class="btn btn-secondary btn-rounded pull-right" ng-click="showMod()">新增
+                                </button>
+                                <button type="button" class="btn btn-success btn-rounded pull-right" ng-click="refresh()">刷新
+                                </button>
+                            </form>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- end page title -->
+            <div class="row" style="margin-top: 20px;">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <!--<h4 class="header-title">设备列表</h4>-->
+                            <!--<p class="text-muted font-14 mb-4">
+                                The Buttons extension for DataTables provides a common set of options, API methods and
+                                styling to display buttons on a page
+                                that will interact with a DataTable. The core library provides the based framework upon
+                                which plug-ins can built.
+                            </p>-->
+
+                            <div class="spdShow" ng-if="changeDeviceTypeShow == 1">
+                                <table id="tb-info" class="xh-table table-hover">
+                                <thead>
+                                <tr class="tr-gray">
+                                    <th>序号</th>
+                                    <th>RTU-ID</th>
+                                    <th>SPD路数</th>
+                                    <th>名称</th>
+                                    <th>型号</th>
+                                    <th>安装位置</th>
+                                    <th>查询间隔</th>
+                                    <th>设备状态</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+
+
+                                <tbody>
+                                <tr ng-repeat="x in data" class="tr-gray">
+                                    <td>{{$index+1}}</td>
+                                    <td>{{x.rtu_id}}</td>
+                                    <td>{{x.spd_number}}</td>
+                                    <td>{{x.spd_name}}</td>
+                                    <td>{{x.spd_model}}</td>
+                                    <td>{{x.spd_location}}</td>
+                                    <td>{{x.spd_space}}</td>
+                                    <td ng-if="x.spd_state == 0 && x.rtu_state == 0"><span style="color: green;">正常</span></td>
+                                    <td ng-if="x.spd_state == 1 || x.rtu_state != 0"><span style="color: red;">离线</span></td>
+                                    <td ng-if="x.num == 0 && x.rtu_state == 0"></td>
+                                    <td>
+                                        <a href="#" ng-click="showEditSpd($index)">修改</a>
+                                        |
+                                        <a href="#" ng-click="delDevSpd(x.site_id,x.rtu_id,x.spd_number)">删除</a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            </div>
+
+                            <div class="etcrShow" ng-if="changeDeviceTypeShow == 2">
+                                <table id="" class="xh-table table-hover">
+                                    <thead>
+                                    <tr class="tr-gray">
+                                        <th>序号</th>
+                                        <th>RTU-ID</th>
+                                        <th>串口号</th>
+                                        <th>设备ID</th>
+                                        <th>名称</th>
+                                        <th>型号</th>
+                                        <th>安装位置</th>
+                                        <th>查询间隔</th>
+                                        <th>同串口查询间隔</th>
+                                        <th>设备状态</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+
+
+                                    <tbody>
+                                    <tr ng-repeat="x in data" class="tr-gray">
+                                        <td>{{$index+1}}</td>
+                                        <td>{{x.rtu_id}}</td>
+                                        <td>{{x.rtu_port}}</td>
+                                        <td>{{x.rst_id}}</td>
+                                        <td>{{x.rst_name}}</td>
+                                        <td>{{x.rst_model}}</td>
+                                        <td>{{x.rst_location}}</td>
+                                        <td>{{x.rst_space}}</td>
+                                        <td>{{x.rst_ospace}}</td>
+                                        <td ng-if="x.rst_state == 0 && x.alarm == 0 && x.rtu_state == 0"><span style="color: green;">正常</span></td>
+                                        <td ng-if="(x.rst_state > 0 && x.rst_state < x.num && x.rtu_state == 0) || (x.alarm > 0 && x.rst_state != x.num && x.rtu_state == 0)"><span style="color: #EEAD0E;">异常</span></td>
+                                        <td ng-if="x.rst_state == x.num || x.num == 0 || x.rtu_state != 0"><span style="color: red;">离线</span></td>
+                                        <td>
+                                            <a href="#" ng-click="showEditEtcr(x.rtu_id,x.rst_id,x.rtu_port)">修改</a>
+                                            |
+                                            <a href="#" ng-click="delDevEtcr(x.rtu_id,x.rst_id,x.rtu_port)">删除</a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="lightningShow" ng-if="changeDeviceTypeShow == 3">
+                                <table id="" class="xh-table table-hover">
+                                    <thead>
+                                    <tr class="tr-gray">
+                                        <th>序号</th>
+                                        <th>RTU-ID</th>
+                                        <th>串口号</th>
+                                        <th>设备ID</th>
+                                        <th>名称</th>
+                                        <th>型号</th>
+                                        <th>安装位置</th>
+                                        <th>查询间隔</th>
+                                        <th>同串口查询间隔</th>
+                                        <th>设备状态</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+
+
+                                    <tbody>
+                                    <tr ng-repeat="x in data" class="tr-gray">
+                                        <td>{{$index+1}}</td>
+                                        <td>{{x.rtu_id}}</td>
+                                        <td>{{x.rtu_port}}</td>
+                                        <td>{{x.ltn_id}}</td>
+                                        <td>{{x.ltn_name}}</td>
+                                        <td>{{x.ltn_model}}</td>
+                                        <td>{{x.ltn_location}}</td>
+                                        <td>{{x.ltn_space}}</td>
+                                        <td>{{x.ltn_ospace}}</td>
+
+                                        <td ng-if="x.ltn_state == 0 && x.alarm == 0 && x.rtu_state == 0"><span style="color: green;">正常</span></td>
+                                        <td ng-if="x.ltn_state == 0 && x.alarm > 0 && x.rtu_state == 0"><span style="color: #EEAD0E;">异常</span></td>
+                                        <td ng-if="x.ltn_state == 1 || x.num == 0 || x.rtu_state != 0"><span style="color: red;">离线</span></td>
+
+                                        <td>
+                                            <a href="#" ng-click="showEditLightning($index)">修改</a>
+                                            |
+                                            <a href="#" ng-click="delDevLightning(x.rtu_id,x.ltn_id,x.rtu_port)">删除</a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="staticShow" ng-if="changeDeviceTypeShow == 4">
+                                <table id="" class="xh-table table-hover">
+                                    <thead>
+                                    <tr class="tr-gray">
+                                        <th>序号</th>
+                                        <th>RTU-ID</th>
+                                        <th>串口号</th>
+                                        <th>设备ID</th>
+                                        <th>名称</th>
+                                        <th>型号</th>
+                                        <th>安装位置</th>
+                                        <th>查询间隔</th>
+                                        <th>同串口查询间隔</th>
+                                        <th>设备状态</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+
+
+                                    <tbody>
+                                    <tr ng-repeat="x in data" class="tr-gray">
+                                        <td>{{$index+1}}</td>
+                                        <td>{{x.rtu_id}}</td>
+                                        <td>{{x.rtu_port}}</td>
+                                        <td>{{x.staet_id}}</td>
+                                        <td>{{x.staet_name}}</td>
+                                        <td>{{x.staet_model}}</td>
+                                        <td>{{x.staet_location}}</td>
+                                        <td>{{x.staet_space}}</td>
+                                        <td>{{x.staet_ospace}}</td>
+                                        <td ng-if="x.staet_state == 0 && x.alarm == 0 && x.rtu_state == 0"><span style="color: green;">正常</span></td>
+                                        <td ng-if="x.staet_state == 0 && x.alarm > 0 && x.rtu_state == 0"><span style="color: #EEAD0E;">异常</span></td>
+                                        <td ng-if="x.staet_state == 1 || x.num == 0 || x.rtu_state != 0"><span style="color: red;">离线</span></td>
+                                        <td>
+                                            <a href="#" ng-click="showEditStatic($index)">修改</a>
+                                            |
+                                            <a href="#" ng-click="delDevStatic(x.rtu_id,x.staet_id,x.rtu_port)">删除</a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="rswsShow" ng-if="changeDeviceTypeShow == 5">
+                                <table id="" class="xh-table table-hover">
+                                    <thead>
+                                    <tr class="tr-gray">
+                                        <th>序号</th>
+                                        <th>RTU-ID</th>
+                                        <th>串口号</th>
+                                        <th>设备ID</th>
+                                        <th>名称</th>
+                                        <th>型号</th>
+                                        <th>安装位置</th>
+                                        <th>查询间隔</th>
+                                        <th>同串口查询间隔</th>
+                                        <th>设备状态</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+
+
+                                    <tbody>
+                                    <tr ng-repeat="x in data" class="tr-gray">
+                                        <td>{{$index+1}}</td>
+                                        <td>{{x.rtu_id}}</td>
+                                        <td>{{x.rtu_port}}</td>
+                                        <td>{{x.hmt_id}}</td>
+                                        <td>{{x.hmt_name}}</td>
+                                        <td>{{x.hmt_model}}</td>
+                                        <td>{{x.hmt_location}}</td>
+                                        <td>{{x.hmt_space}}</td>
+                                        <td>{{x.hmt_ospace}}</td>
+                                        <td ng-if="x.hmt_state == 0 && x.tempAlarm == 0 && x.humiAlarm == 0 && x.rtu_state == 0"><span style="color: green;">正常</span></td>
+                                        <td ng-if="x.hmt_state == 0 && (x.tempAlarm > 0 || x.humiAlarm > 0) && x.rtu_state == 0"><span style="color: #EEAD0E;">异常</span></td>
+                                        <td ng-if="x.hmt_state == 1 || x.num == 0 || x.rtu_state != 0"><span style="color: red;">离线</span></td>
+                                        <td>
+                                            <a href="#" ng-click="showEditRsws($index)">修改</a>
+                                            |
+                                            <a href="#" ng-click="delDevRsws(x.rtu_id,x.hmt_id,x.rtu_port)">删除</a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="svtShow" ng-if="changeDeviceTypeShow == 6">
+                                <table id="" class="xh-table table-hover">
+                                    <thead>
+                                    <tr class="tr-gray">
+                                        <th>序号</th>
+                                        <th>RTU-ID</th>
+                                        <th>串口号</th>
+                                        <th>设备ID</th>
+                                        <th>名称</th>
+                                        <th>型号</th>
+                                        <th>安装位置</th>
+                                        <th>查询间隔</th>
+                                        <th>同串口查询间隔</th>
+                                        <th>设备状态</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+
+
+                                    <tbody>
+                                    <tr ng-repeat="x in data" class="tr-gray">
+                                        <td>{{$index+1}}</td>
+                                        <td>{{x.rtu_id}}</td>
+                                        <td>{{x.rtu_port}}</td>
+                                        <td>{{x.tilt_id}}</td>
+                                        <td>{{x.tilt_name}}</td>
+                                        <td>{{x.tilt_model}}</td>
+                                        <td>{{x.tilt_location}}</td>
+                                        <td>{{x.tilt_space}}</td>
+                                        <td>{{x.tilt_ospace}}</td>
+                                        <td ng-if="x.tilt_state == 0 && x.alarm == 0 && x.rtu_state == 0"><span style="color: green;">正常</span></td>
+                                        <td ng-if="x.tilt_state == 0 && x.alarm > 0 && x.rtu_state == 0"><span style="color: #EEAD0E;">异常</span></td>
+                                        <td ng-if="x.tilt_state == 1 || x.num == 0 || x.rtu_state != 0"><span style="color: red;">离线</span></td>
+                                        <td>
+                                            <a href="#" ng-click="showEditSvt($index)">修改</a>
+                                            |
+                                            <a href="#" ng-click="delDevSvt(x.rtu_id,x.tilt_id,x.rtu_port)">删除</a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="hcShow" ng-if="changeDeviceTypeShow == 7">
+                                <table id="" class="xh-table table-hover">
+                                    <thead>
+                                    <tr class="tr-gray">
+                                        <th>序号</th>
+                                        <th>RTU-ID</th>
+                                        <th>串口号</th>
+                                        <th>设备ID</th>
+                                        <th>名称</th>
+                                        <th>型号</th>
+                                        <th>安装位置</th>
+                                        <th>查询间隔</th>
+                                        <th>同串口查询间隔</th>
+                                        <th>设备状态</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+
+
+                                    <tbody>
+                                    <tr ng-repeat="x in data" class="tr-gray">
+                                        <td>{{$index+1}}</td>
+                                        <td>{{x.rtu_id}}</td>
+                                        <td>{{x.rtu_port}}</td>
+                                        <td>{{x.es_id}}</td>
+                                        <td>{{x.es_name}}</td>
+                                        <td>{{x.es_model}}</td>
+                                        <td>{{x.es_location}}</td>
+                                        <td>{{x.es_space}}</td>
+                                        <td>{{x.es_ospace}}</td>
+                                        <td ng-if="x.es_state == 0 && x.alarm == 0 && x.rtu_state == 0"><span style="color: green;">正常</span></td>
+                                        <td ng-if="x.es_state == 0 && x.alarm > 0 && x.rtu_state == 0"><span style="color: #EEAD0E;">异常</span></td>
+                                        <td ng-if="x.es_state == 1 || x.num == 0 || x.rtu_state != 0"><span style="color: red;">离线</span></td>
+                                        <td>
+                                            <a href="#" ng-click="showEditHc($index)">修改</a>
+                                            |
+                                            <a href="#" ng-click="delDevHc(x.rtu_id,x.es_id,x.rtu_port)">删除</a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="strayShow" ng-if="changeDeviceTypeShow == 8">
+                                <table id="" class="xh-table table-hover">
+                                    <thead>
+                                    <tr class="tr-gray">
+                                        <th>序号</th>
+                                        <th>RTU-ID</th>
+                                        <th>串口号</th>
+                                        <th>设备ID</th>
+                                        <th>名称</th>
+                                        <th>型号</th>
+                                        <th>安装位置</th>
+                                        <th>查询间隔</th>
+                                        <th>同串口查询间隔</th>
+                                        <th>设备状态</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+
+
+                                    <tbody>
+                                    <tr ng-repeat="x in data" class="tr-gray">
+                                        <td>{{$index+1}}</td>
+                                        <td>{{x.rtu_id}}</td>
+                                        <td>{{x.rtu_port}}</td>
+                                        <td>{{x.stret_id}}</td>
+                                        <td>{{x.stret_name}}</td>
+                                        <td>{{x.stret_model}}</td>
+                                        <td>{{x.stret_location}}</td>
+                                        <td>{{x.stret_space}}</td>
+                                        <td>{{x.stret_ospace}}</td>
+                                        <td ng-if="x.stret_state == 0 && x.alarm == 0 && x.rtu_state == 0"><span style="color: green;">正常</span></td>
+                                        <td ng-if="(x.stret_state > 0 && x.stret_state < x.num && x.rtu_state == 0) || (x.alarm > 0 && x.stret_state != x.num && x.rtu_state == 0)"><span style="color: #EEAD0E;">异常</span></td>
+                                        <td ng-if="x.stret_state == x.num || x.num == 0 || x.rtu_state != 0"><span style="color: red;">离线</span></td>
+                                        <td>
+                                            <a href="#" ng-click="showEditStray(x.rtu_id,x.stret_id,x.rtu_port)">修改</a>
+                                            |
+                                            <a href="#" ng-click="delDevStray(x.rtu_id,x.stret_id,x.rtu_port)">删除</a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="catShow" ng-if="changeDeviceTypeShow == 9">
+                                <table id="" class="xh-table table-hover">
+                                    <thead>
+                                    <tr class="tr-gray">
+                                        <th>序号</th>
+                                        <th>RTU-ID</th>
+                                        <th>串口号</th>
+                                        <th>设备ID</th>
+                                        <th>名称</th>
+                                        <th>型号</th>
+                                        <th>安装位置</th>
+                                        <th>查询间隔</th>
+                                        <th>同串口查询间隔</th>
+                                        <th>设备状态</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+
+
+                                    <tbody>
+                                    <tr ng-repeat="x in data" class="tr-gray">
+                                        <td>{{$index+1}}</td>
+                                        <td>{{x.rtu_id}}</td>
+                                        <td>{{x.rtu_port}}</td>
+                                        <td>{{x.cathode_id}}</td>
+                                        <td>{{x.cathode_name}}</td>
+                                        <td>{{x.cathode_model}}</td>
+                                        <td>{{x.cathode_location}}</td>
+                                        <td>{{x.cathode_space}}</td>
+                                        <td>{{x.cathode_ospace}}</td>
+                                        <td ng-if="x.cathode_state == 0 && x.alarm == 0 && x.rtu_state == 0"><span style="color: green;">正常</span></td>
+                                        <td ng-if="x.cathode_state == 0 && x.alarm > 0 && x.rtu_state == 0"><span style="color: #EEAD0E;">异常</span></td>
+                                        <td ng-if="x.cathode_state == 1 || x.num == 0 || x.rtu_state != 0"><span style="color: red;">离线</span></td>
+                                        <td>
+                                            <a href="#" ng-click="showEditCat($index)">修改</a>
+                                            |
+                                            <a href="#" ng-click="delDevCat(x.rtu_id,x.cathode_id,x.rtu_port)">删除</a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div> <!-- end card body-->
+                    </div> <!-- end card -->
+                </div><!-- end col-->
+            </div>
+            <!-- end row-->
+
+            <!-- end row-->
+            <div class="page" style="float: left;margin-top: 36px;">
+                <div class="page-info">
+                    <span>每页显示</span><select id="page-limit" ng-change="refresh()" class="selectForPage"
+                                             ng-model="count">
+                    <option value="15">15</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                    <option value="40">40</option>
+                    <option value="50">50</option>
+                </select> <span>条,</span><span ng-model="index">显示{{start}}-</span><span
+                        ng-model="lastIndex">{{lastIndex}}条,</span> <span
+                        ng-model="totals">总计{{totals}}条</span>
+                    <i class="fa fa-refresh page-refresh" title="刷新数据" ng-click="refresh()"></i>
+                </div>
+            </div>
+            <div style="float: right;margin-top: 30px;">
+                <div class="page-paging"></div>
+            </div>
+        </div> <!-- container -->
+
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- End Page content -->
+    <!-- ============================================================== -->
+
+
+</div>
+<!-- END wrapper -->
+
+<!-- 添加模态框 -->
+<!-- 添加 -->
+<div ng-include="'deviceList-add.html'"></div>
+<!-- 修改 -->
+<div ng-include="'deviceList-editSpd.html'"></div>
+<div ng-include="'deviceList-editEtcr.html'"></div>
+<div ng-include="'deviceList-editLightning.html'"></div>
+<div ng-include="'deviceList-editStatic.html'"></div>
+<div ng-include="'deviceList-editRsws.html'"></div>
+<div ng-include="'deviceList-editSvt.html'"></div>
+<div ng-include="'deviceList-editHc.html'"></div>
+<div ng-include="'deviceList-editStray.html'"></div>
+<div ng-include="'deviceList-editCat.html'"></div>
+<!-- bundle -->
+<!--<script src="./javascript/app.min.js"></script>-->
+<script src="angularjs/jquery-3.2.1.min.js"></script>
+<script src="angularjs/angular.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="angularjs/metisMenu.min.js"></script>
+<script src="js/sweet-alert.js"></script>
+<script src="js/toastr.min.js"></script>
+<script src="js/device.js"></script>
+<script src="js/paging.js"></script>
+<script type="text/javascript">
+    xh.load();
+    $(document).ready(function() {
+        $('.splash').css('display', 'none');
+    });
+</script>
+</body>
+
+</html>

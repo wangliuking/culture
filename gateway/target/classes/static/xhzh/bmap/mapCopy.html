@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Hello, World</title>
+    <style type="text/css">
+        html, body {
+            margin: 0;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow-y: hidden;
+        }
+
+        #myModal {
+            z-index: 9999;
+        }
+
+        .modal-backdrop {
+            z-index: -1;
+        }
+
+        .esriLayerList {
+            height: auto;
+            width: 200px !important;
+            position: fixed;
+            right: 0%;
+            bottom: 0%;
+            z-index: 1;
+            border-radius: 4px;
+        }
+
+        #esri_dijit_OverviewMap_0-map_gc {
+            margin-top: 20px !important;
+        }
+
+        #side-menu li {
+            background: rgba(176, 196, 222, 0.7);
+        }
+
+        /* 隐藏左上角放大缩小 */
+        #mapDiv_zoom_slider {
+            display: none;
+        }
+
+        /* 右侧标签样式 */
+        .nav_right {
+            width: 20px;
+            height: 110px;
+            position: fixed;
+            top: 46%;
+            left: 0px;
+            background: rgba(176, 196, 222, 0.7);
+            text-align: center;
+            font-size: 16px;
+            color: black;
+            line-height: 55px;
+            display: block;
+            cursor: pointer;
+            z-index: 1000;
+            border-top-left-radius: 0em;
+            border-top-right-radius: 20em;
+            border-bottom-right-radius: 20em;
+            border-bottom-left-radius: 0em;
+        }
+
+        /* 圈选按钮样式 */
+        .dijitOffScreen {
+            position: absolute !important;
+            left: -10000px !important;
+            top: -10000px !important;
+        }
+
+        #dijit_form_Button_0 > span.dijitReset.dijitToggleButtonIconChar, #dijit_form_Button_1 > span.dijitReset.dijitToggleButtonIconChar {
+            display: none;
+        }
+
+        /*右上角工具栏*/
+        .info_right {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 65%;
+            z-index: 1000;
+        }
+
+        .info_right_temp {
+            position: fixed;
+            top: 0;
+            left: 90%;
+            z-index: 1000;
+        }
+
+        .dropdown-menu {
+            background: rgba(255, 255, 255, 0.7);
+        }
+
+        .chooseLevel {
+            color: red;
+        }
+
+        .tooltiptest {
+            position: absolute;
+            border: 1px solid #333;
+            border-radius: 8px;
+            box-shadow: 0 0 3px rgba(000, 000, 000, 0.8);
+            background: rgba(247, 245, 209, 0.8);
+            padding: 3px;
+            color: #333;
+            z-index: 9999;
+            display: none;
+        }
+
+        #testpro {
+            position: absolute;
+            top: 0;
+            right: 40%;
+            border: 1px solid #333;
+            border-radius: 8px;
+            box-shadow: 0 0 3px rgba(000, 000, 000, 0.8);
+            background: rgba(247, 245, 209, 0.7);
+            padding: 3px;
+            color: #333;
+            z-index: 9999;
+            font-size: 22px;
+            display: none;
+        }
+
+        /*下拉跟多级菜单效果*/
+        .dropdown-submenu {
+            position: relative;
+        }
+
+        .dropdown-submenu > .dropdown-menu {
+            top: 0;
+            left: 100%;
+            margin-top: -6px;
+            margin-left: -1px;
+            -webkit-border-radius: 0 6px 6px 6px;
+            -moz-border-radius: 0 6px 6px;
+            border-radius: 0 6px 6px 6px;
+        }
+
+        .dropdown-submenu:hover > .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-submenu > a:after {
+            display: block;
+            content: " ";
+            float: right;
+            width: 0;
+            height: 0;
+            border-color: transparent;
+            border-style: solid;
+            border-width: 5px 0 5px 5px;
+            border-left-color: #ccc;
+            margin-top: 5px;
+            margin-right: -10px;
+        }
+
+        .dropdown-submenu:hover > a:after {
+            border-left-color: #fff;
+        }
+
+        .dropdown-submenu.pull-left {
+            float: none;
+        }
+
+        .dropdown-submenu.pull-left > .dropdown-menu {
+            left: -100%;
+            margin-left: 10px;
+            -webkit-border-radius: 6px 0 6px 6px;
+            -moz-border-radius: 6px 0 6px 6px;
+            border-radius: 6px 0 6px 6px;
+        }
+
+        /*右侧搜索按钮*/
+        #search-button {
+            background-color: #428bca !important;
+            cursor: pointer;
+            border-radius: 0 2px 2px 0;
+        }
+
+        #search-button:hover {
+            background-color: #2e77e5;
+        }
+
+        .navform {
+            border: 1px solid blue;
+            position: fixed;
+            top: 32px;
+            left: 65%;
+            z-index: 900;
+            display: none;
+        }
+
+        #container {
+            height: 100%
+        }
+    </style>
+    <script src="../angularjs/jquery-3.2.1.min.js"></script>
+    <script src="../angularjs/angular.min.js"></script>
+    <script type="text/javascript" src="map_load.js"></script>
+    <script type="text/javascript" src="../js/echarts.min.js"></script>
+    <script type="text/javascript" src="../js/macarons.js"></script>
+</head>
+
+<body>
+<div id="container"></div>
+<!--<div style="width:360px;height:31%;position: fixed;top:0;right:1px;border:1px solid black;border-radius:8px;background: rgba(0, 0, 0, 0.5);">
+    <div id="leftsideOne" style="width:358px;height:100%;"></div>
+</div>
+<div style="width:360px;height:31%;position: fixed;top:33%;right:1px;border:1px solid black;border-radius:8px;background: rgba(0, 0, 0, 0.5);">
+    <div id="leftsideTwo" style="width:358px;height:100%;"></div>
+</div>
+<div style="width:360px;height:31%;position: fixed;top:66%;right:1px;border:1px solid black;border-radius:8px;background: rgba(0, 0, 0, 0.5);">
+    <div id="leftsideThree" style="width:358px;height:100%;"></div>
+</div>-->
+<script type="text/javascript">
+    var outputPath = 'tiles/';    //地图瓦片所在的文件夹
+    var fromat = ".jpg";    //格式
+    var arr;
+    var map;
+    var initStatus = true;
+    var markers = [];
+    var count = 0;
+
+    //判断是否登录start
+    $.ajax({
+        type: 'GET',
+        url: "../../connect/ensure",
+        async: false,
+        dataType: 'json',
+        success: function (response) {
+
+        },
+        error: function () {
+            alert("登录已失效，请重新登录！");
+            window.location.href = "../login.html";
+            window.parent.location.href = "../login.html";
+        }
+    });
+    //判断是否登录end
+
+    $(function () {
+        initMap();
+        setInterval(function () {
+            initMap();
+            count++;
+        }, 60000);
+    });
+
+    function initMap() {
+        var url = "../../connect/selectAllSite";
+        $.ajax({
+            type: 'GET',
+            url: url,
+            async: false,
+            data: "",
+            success: function (data) {
+                console.log(data.items);
+                arr = data.items;
+                if (!initStatus) {
+
+                }
+                if (initStatus) {
+                    start();
+                    initStatus = false;
+                }
+                $.ajax({
+                    type: 'GET',
+                    url: "../../total/selectSiteAllInfo",
+                    async: false,
+                    dataType: 'json',
+                    success: function (data) {
+                        console.log(data);
+                        var a = data.rtuNum - data.rtuOffNum - data.rtuWarningNum;
+                        var b = data.rtuWarningNum;
+                        var c = data.rtuOffNum;
+                        var x = data.spdNum + data.etcrNum + data.lightningNum + data.staticNum + data.rswsNum + data.svtNum + data.hcNum + data.strayNum + data.catNum - data.deviceWarningCount - data.deviceOffCount;
+                        var y = data.deviceWarningCount;
+                        var z = data.deviceOffCount;
+                        siteForBar(a, b, c);
+                        rtuForBar(a, b, c);
+                        deviceForBar(x, y, z);
+
+                    }
+                });
+
+            },
+            dataType: 'json'
+        });
+    }
+
+    function start() {
+        map = new BMap.Map("container")
+        var point = new BMap.Point(104.075493, 30.660545);  // 创建点坐标
+        map.centerAndZoom(point, 6);                 // 初始化地图，设置中心点坐标和地图级别
+        //添加地图类型控件
+        map.addControl(new BMap.MapTypeControl({
+            mapTypes: [
+                BMAP_NORMAL_MAP,
+                BMAP_HYBRID_MAP
+            ]
+        }));
+        //map.setCurrentCity("北京");          // 设置地图显示的城市 此项是必须设置的
+        map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+        addMarker();
+        //监听地图层级
+        map.addEventListener("zoomend", function (e) {
+            var ZoomNum = map.getZoom();
+            console.log("当前地图层级：" + ZoomNum);
+            /*var allOverlay = map.getOverlays();
+            for(var i = 0;i<allOverlay.length;i++) {
+                //删除指定经度的点
+                map.removeOverlay(allOverlay[i]);
+            }
+            addMarker();*/
+        });
+    }
+
+    function addMarker() {  // 创建图标对象
+        for (var i = 0; i < arr.length; i++) {
+            $.ajax({
+                type: 'GET',
+                url: "../../total/selectSiteAllStatus?site_id=" + arr[i].site_id,
+                async: false,
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data);
+                    var industry = arr[i].site_industry;
+                    var rtuWarningNum = data.rtuWarningNum;
+                    var rtuOffNum = data.rtuOffNum;
+                    var rtuNum = data.rtuNum;
+                    var iconImg;
+                    if ("医疗" == industry) {
+                        if (rtuNum == 0) {
+                            iconImg = "../iconfont/6-1.png";
+                        } else if (rtuOffNum > 0) {
+                            iconImg = "../iconfont/6-1.png";
+                        } else if (rtuWarningNum > 0) {
+                            iconImg = "../iconfont/6-2.png";
+                        } else {
+                            iconImg = "../iconfont/6-3.png";
+                        }
+                    } else if ("气象" == industry) {
+                        if (rtuNum == 0) {
+                            iconImg = "../iconfont/7-1.png";
+                        } else if (rtuOffNum > 0) {
+                            iconImg = "../iconfont/7-1.png";
+                        } else if (rtuWarningNum > 0) {
+                            iconImg = "../iconfont/7-2.png";
+                        } else {
+                            iconImg = "../iconfont/7-3.png";
+                        }
+                    } else if ("新能源" == industry) {
+                        if (rtuNum == 0) {
+                            iconImg = "../iconfont/3-1.png";
+                        } else if (rtuOffNum > 0) {
+                            iconImg = "../iconfont/3-1.png";
+                        } else if (rtuWarningNum > 0) {
+                            iconImg = "../iconfont/3-2.png";
+                        } else {
+                            iconImg = "../iconfont/3-3.png";
+                        }
+                    } else if ("轨道交通" == industry) {
+                        if (rtuNum == 0) {
+                            iconImg = "../iconfont/4-1.png";
+                        } else if (rtuOffNum > 0) {
+                            iconImg = "../iconfont/4-1.png";
+                        } else if (rtuWarningNum > 0) {
+                            iconImg = "../iconfont/4-2.png";
+                        } else {
+                            iconImg = "../iconfont/4-3.png";
+                        }
+                    } else if ("石油化工" == industry) {
+                        if (rtuNum == 0) {
+                            iconImg = "../iconfont/5-1.png";
+                        } else if (rtuOffNum > 0) {
+                            iconImg = "../iconfont/5-1.png";
+                        } else if (rtuWarningNum > 0) {
+                            iconImg = "../iconfont/5-2.png";
+                        } else {
+                            iconImg = "../iconfont/5-3.png";
+                        }
+                    } else if ("国防军工" == industry) {
+                        if (rtuNum == 0) {
+                            iconImg = "../iconfont/8-1.png";
+                        } else if (rtuOffNum > 0) {
+                            iconImg = "../iconfont/8-1.png";
+                        } else if (rtuWarningNum > 0) {
+                            iconImg = "../iconfont/8-2.png";
+                        } else {
+                            iconImg = "../iconfont/8-3.png";
+                        }
+                    } else if ("电力" == industry) {
+                        if (rtuNum == 0) {
+                            iconImg = "../iconfont/1-1.png";
+                        } else if (rtuOffNum > 0) {
+                            iconImg = "../iconfont/1-1.png";
+                        } else if (rtuWarningNum > 0) {
+                            iconImg = "../iconfont/1-2.png";
+                        } else {
+                            iconImg = "../iconfont/1-3.png";
+                        }
+                    } else if ("通讯" == industry) {
+                        if (rtuNum == 0) {
+                            iconImg = "../iconfont/2-1.png";
+                        } else if (rtuOffNum > 0) {
+                            iconImg = "../iconfont/2-1.png";
+                        } else if (rtuWarningNum > 0) {
+                            iconImg = "../iconfont/2-2.png";
+                        } else {
+                            iconImg = "../iconfont/2-3.png";
+                        }
+                    }
+                    var zoom = map.getZoom();
+                    var x;
+                    var y;
+                    if (zoom >= 5 && zoom <= 7) {
+                        x = 32;
+                        y = 40;
+                    } else if (zoom >= 8 && zoom <= 9) {
+                        x = 48;
+                        y = 56;
+                    }
+                    var myIcon = new BMap.Icon(iconImg, new BMap.Size(x, y), {
+                        // 指定定位位置。
+                        // 当标注显示在地图上时，其所指向的地理位置距离图标左上
+                        // 角各偏移10像素和25像素。您可以看到在本例中该位置即是
+                        // 图标中央下端的尖角位置。
+                        //anchor: new BMap.Size(10, 25)
+                        // 设置图片偏移。
+                        // 当您需要从一幅较大的图片中截取某部分作为标注图标时，您
+                        // 需要指定大图的偏移位置，此做法与css sprites技术类似。
+                        //imageOffset: new BMap.Size(0, 0 - index * 25)   // 设置图片偏移
+                        imageSize: new BMap.Size(x, y)
+                    });
+                    // 创建标注对象并添加到地图
+                    var point = new BMap.Point(arr[i].site_lng, arr[i].site_lat);
+                    var marker = new BMap.Marker(point, {icon: myIcon});
+                    var label = new BMap.Label(arr[i].site_name, {
+                        offset: new BMap.Size(15, -25)
+                    });
+                    var backgroundColor;
+                    if (rtuNum == 0) {
+                        backgroundColor = "#bfbfbf";
+                    } else if (rtuOffNum > 0) {
+                        backgroundColor = "#bfbfbf";
+                    } else if (rtuWarningNum > 0) {
+                        backgroundColor = "#EEAD0E";
+                    } else {
+                        backgroundColor = "green";
+                    }
+                    label.setStyle({
+                        width: "auto",
+                        color: '#fff',
+                        background: backgroundColor,
+                        border: '1px solid "#00CD66"',
+                        borderRadius: "5px",
+                        textAlign: "center",
+                        height: "24px",
+                        lineHeight: "24px",
+                        fontSize: "15px",
+                        fontWeight: "bold"
+                    });
+                    marker.setLabel(label); //为标注添加一个标签
+                    createInfoWindow(marker, i);
+                    map.addOverlay(marker);
+                }
+            });
+        }
+
+    }
+
+    function createInfoWindow(marker, i) {
+        marker.addEventListener("click", function () {
+            $.ajax({
+                type: 'GET',
+                url: "../../total/selectSiteAllInfo?site_id=" + arr[i].site_id,
+                async: false,
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data);
+                    var deviceNum = data.spdNum + data.etcrNum + data.lightningNum + data.staticNum + data.rswsNum + data.svtNum + data.hcNum + data.strayNum + data.catNum;
+                    var opts = {
+                        width: 285,     // 信息窗口宽度
+                        height: 215,     // 信息窗口高度
+                        border: '1px solid "#00CD66"',
+                        background: 'black'
+                        //title : arr[i].site_name  // 信息窗口标题
+                    }
+                    var html = '<div style="width:282px;height:213px;border:1px solid black;border-radius:8px;background: rgba(0, 0, 0, 0.5);">' +
+                        '<span style="color: white;padding-left:10px;">' + data.siteInfo[0].site_name + '</span>' +
+                        '<hr/>' +
+                        '<span style="color: white;padding-left:10px;">RTU数量 - 总数:' + data.rtuNum + ' / 离线:' + data.rtuOffNum + ' / 异常:' + data.rtuWarningNum + '</span>' +
+                        '<hr/>' +
+                        '<span style="color: white;padding-left:10px;">设备数量 - 总数:' + deviceNum + ' / 离线:' + data.deviceOffCount + ' / 异常:' + data.deviceWarningCount + '</span>' +
+                        '<hr/>' +
+                        '<span style="color: white;padding-left:10px;">创建时间 ： ' + getLocalTime(data.siteInfo[0].createTime) + '</span>' +
+                        '<hr/>' +
+                        '<span style="color: white;padding-left:10px;">刷新时间 ： ' + getNowTime() + '</span>' +
+                        '</div>';
+                    var infoWindow = new BMap.InfoWindow(html, opts);  // 创建信息窗口对象
+                    var point = new BMap.Point(arr[i].site_lng, arr[i].site_lat);
+                    map.openInfoWindow(infoWindow, point);      // 打开信息窗口
+                }
+            });
+
+        });
+    }
+
+    //站点统计图
+    /*function siteForBar(a,b,c) {
+        // 基于准备好的dom，初始化echarts实例 macarons
+        var myChart = echarts.init(document.getElementById('leftsideOne'));
+        myChart.showLoading();
+
+        var total = parseInt(a)+parseInt(b)+parseInt(c);
+        // 指定图表的配置项和数据
+        var option = {
+            color:['#00CD66', '#EEAD0E','#DCDCDC'],
+            title : {
+                text: '站点统计情况 \n 总数：'+total,
+                textStyle: {
+                    color : 'white'
+                },
+                //subtext: '总数：'+total,
+                x:'center'
+            },
+            tooltip : {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                textStyle : {
+                    color : 'white'
+                },
+                orient: 'vertical',
+                left: 'left',
+                data: ['站点正常','站点异常','站点离线']
+            },
+            series : [
+                {
+                    textStyle : {
+                        color : 'white'
+                    },
+                    name: '统计数量',
+                    type: 'pie',
+                    radius : '55%',
+                    center: ['50%', '60%'],
+                    data:[
+                        {value:a, name:'站点正常'},
+                        {value:b, name:'站点异常'},
+                        {value:c, name:'站点离线'}
+                    ],
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+
+        myChart.hideLoading();
+
+    }*/
+
+    //rtu统计图
+    /*function rtuForBar(a,b,c) {
+        // 基于准备好的dom，初始化echarts实例
+        $("#rtuForBar").width($("#siteStatus").width());
+        var myChart = echarts.init(document.getElementById('leftsideTwo'));
+
+        var total = parseInt(a)+parseInt(b)+parseInt(c);
+        // 指定图表的配置项和数据
+        var option = {
+            color:['#00CD66', '#EEAD0E','#DCDCDC'],
+            title : {
+                text: 'RTU统计情况 \n 总数：'+total,
+                textStyle: {
+                    color : 'white'
+                },
+                //subtext: '纯属虚构',
+                x:'center'
+            },
+            tooltip : {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                textStyle : {
+                    color : 'white'
+                },
+                orient: 'vertical',
+                left: 'left',
+                data: ['RTU正常','RTU异常','RTU离线']
+            },
+            series : [
+                {
+                    name: '统计数量',
+                    type: 'pie',
+                    radius : '55%',
+                    center: ['50%', '60%'],
+                    data:[
+                        {value:a, name:'RTU正常'},
+                        {value:b, name:'RTU异常'},
+                        {value:c, name:'RTU离线'}
+                    ],
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    }*/
+
+    //设备统计图
+    /*function deviceForBar(x,y,z) {
+        // 基于准备好的dom，初始化echarts实例
+        $("#deviceForBar").width($("#siteStatus").width());
+        var myChart = echarts.init(document.getElementById('leftsideThree'));
+
+        var total = parseInt(x)+parseInt(y)+parseInt(z);
+        // 指定图表的配置项和数据
+        var option = {
+            color:['#00CD66', '#EEAD0E','#DCDCDC'],
+            title : {
+                text: '设备统计情况 \n 总数：'+total,
+                textStyle: {
+                    color : 'white'
+                },
+                //subtext: '纯属虚构',
+                x:'center'
+            },
+            tooltip : {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                textStyle : {
+                    color : 'white'
+                },
+                orient: 'vertical',
+                left: 'left',
+                data: ['设备正常','设备异常','设备离线']
+            },
+            series : [
+                {
+                    name: '统计数量',
+                    type: 'pie',
+                    radius : '55%',
+                    center: ['50%', '60%'],
+                    data:[
+                        {value:x, name:'设备正常'},
+                        {value:y, name:'设备异常'},
+                        {value:z, name:'设备离线'}
+                    ],
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    }*/
+
+    //时间戳格式化
+    function getLocalTime(nS) {
+        var now = new Date(nS);
+        var year = now.getFullYear();
+        var month = now.getMonth() + 1;
+        var date = now.getDate();
+        var hour = now.getHours();
+        var minute = now.getMinutes();
+        var second = now.getSeconds();
+        return year + "-" + month + "-" + date + " " + hour + ":" + minute + ":" + second;
+    }
+
+    //当前时间
+    function getNowTime() {
+        var now = new Date();
+        var year = now.getFullYear();
+        var month = now.getMonth() + 1;
+        var date = now.getDate();
+        var hour = now.getHours();
+        var minute = now.getMinutes();
+        var second = now.getSeconds();
+        return year + "-" + month + "-" + date + " " + hour + ":" + minute + ":" + second;
+    }
+</script>
+</body>
+</html>

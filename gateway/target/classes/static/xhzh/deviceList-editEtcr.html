@@ -1,0 +1,234 @@
+<div class="modal fade" id="editEtcr" tabindex="-1" role="dialog"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="color-line"></div>
+            <div class="modal-header " style="text-align: center;margin:0px auto;">
+                <span style="font-weight: bold;font-size: 16px;">修改设备</span>
+            </div>
+            <div class="modal-body pad-0" style="margin: 2px; padding: 2px;">
+                <form action="#" id="editEtcrForm" onSubmit="return false">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group col-md-12">
+                                <label>设备类型</label>&nbsp;<span class="text-danger">[*]</span>
+                                <select class="selectForArea" id="deviceType" style="width:100%;">
+                                    <option value="">地阻在线检测模块</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group col-md-12">
+                                <label>站点名称</label>&nbsp;<span class="text-danger">[*]</span>
+                                <select class="selectForArea" id="siteNameEdit" style="width:100%;" name="site_id" ng-change="changeRtuListEdit()" ng-model="x">
+                                    <option ng-repeat="x in siteNamesEdit" ng-value="x.site_id" ng-selected="editData.site_id == x.site_id">{{x.site_name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group col-md-12">
+                                <label>RTU-ID</label>&nbsp;<span class="text-danger">[*]</span>
+                                <!--<select class="selectForArea" id="rtu_idEdit" style="width:100%;" name="rtu_id">
+                                    <option ng-repeat="x in rtuNamesEdit" ng-value="x.rtu_id" ng-selected="editData.rtu_id == x.rtu_id">{{x.rtu_id}}</option>
+                                </select>-->
+                                <input type="text" ng-value="editData.rtu_id" class="form-control" name="rtu_id" readonly="readonly">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group col-md-12">
+                                <label>设备ID</label>&nbsp;<span class="text-danger">[*]</span>
+                                <input type="text" ng-value="editData.rst_id" class="form-control" name="rst_id" readonly="readonly">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group col-md-12">
+                                <label>名称</label>&nbsp;<span class="text-danger">[*]</span>
+                                <input type="text" ng-value="editData.rst_name" class="form-control" name="rst_name" placeholder="请输入接地电阻的名称">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group col-md-12">
+                                <label>型号</label>&nbsp;<span class="text-danger">[*]</span>
+                                <input type="text" ng-value="editData.rst_model" class="form-control" name="rst_model" placeholder="请输入接地电阻的型号">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group col-md-12">
+                                <label>安装位置</label>&nbsp;<span class="text-danger">[*]</span>
+                                <input type="text" ng-value="editData.rst_location" class="form-control" name="rst_location" placeholder="请输入接地电阻的安装位置">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group col-md-12">
+                                <label>查询间隔</label>&nbsp;<span class="text-danger">[*]</span>
+                                <input type="text" ng-value="editData.rst_space" class="form-control" name="rst_space" placeholder="请输入">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group col-md-12">
+                                <label>同串口查询间隔</label>&nbsp;<span class="text-danger">[*]</span>
+                                <input type="text" ng-value="editData.rst_ospace" class="form-control" name="rst_ospace" placeholder="请输入">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group col-md-12">
+                                <label>端口号</label>&nbsp;<span class="text-danger">[*]</span>
+                                <input type="text" ng-value="editData.rtu_port" class="form-control" name="rtu_port" placeholder="请输入" readonly="readonly">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group col-md-12">
+                                <label>端口波特率</label>&nbsp;<span class="text-danger">[*]</span>
+                                <input type="text" ng-value="editData.rtu_baud_rate" class="form-control" name="rtu_baud_rate" placeholder="请输入">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group col-md-12">
+                                <label>预警阈值</label>&nbsp;<span class="text-danger">[*]</span>
+                                <input type="text" ng-value="editData.rst_threshold" class="form-control" name="rst_threshold" placeholder="请输入">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group col-md-12">
+                                <label>所属类型</label>&nbsp;<span class="text-danger">[*]</span>
+                                <select ng-if="editData.rst_type == 1" class="selectForArea" style="width:100%;" >
+                                    <option>地阻在线检测仪-J</option>
+                                </select>
+                                <select ng-if="editData.rst_type == 2" class="selectForArea" style="width:100%;" >
+                                    <option>地阻在线检测仪-F</option>
+                                </select>
+                                <input type="hidden" ng-value="editData.rst_type" name="rst_type">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="etcr-j" ng-if="editData.rst_type == 1">
+                        <div class="row">
+                            <div class="col-md-12">
+                                继电器接入：
+                            </div>
+                        </div>
+                        <div class="row" style="padding-left: 30px;">
+                            <div class="col-md-12 form-inline">
+                                <span>1</span>
+                                <input type="hidden" value="1" name="relayno1">
+                                <div class="form-group col-md-3">
+                                    <input type="text" ng-value="editData.relayno_name1" class="form-control" name="relayno_name1" placeholder="监测点名称">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <input type="text" ng-value="editData.rst_line_long1" class="form-control" name="rst_line_long1" placeholder="辅助线长度L">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <input type="text" ng-value="editData.rst_line_radius1" class="form-control" name="rst_line_radius1" placeholder="辅助线线径S">
+                                </div>
+                            </div>
+                            <div class="col-md-12 form-inline">
+                                <span>2</span>
+                                <input type="hidden" value="2" name="relayno2">
+                                <div class="form-group col-md-3">
+                                    <input type="text" ng-value="editData.relayno_name2" class="form-control" name="relayno_name2" placeholder="监测点名称">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <input type="text" ng-value="editData.rst_line_long2" class="form-control" name="rst_line_long2" placeholder="辅助线长度L">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <input type="text" ng-value="editData.rst_line_radius2" class="form-control" name="rst_line_radius2" placeholder="辅助线线径S">
+                                </div>
+                            </div>
+                            <div class="col-md-12 form-inline">
+                                <span>3</span>
+                                <input type="hidden" value="3" name="relayno3">
+                                <div class="form-group col-md-3">
+                                    <input type="text" ng-value="editData.relayno_name3" class="form-control" name="relayno_name3" placeholder="监测点名称">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <input type="text" ng-value="editData.rst_line_long3" class="form-control" name="rst_line_long3" placeholder="辅助线长度L">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <input type="text" ng-value="editData.rst_line_radius3" class="form-control" name="rst_line_radius3" placeholder="辅助线线径S">
+                                </div>
+                            </div>
+                            <div class="col-md-12 form-inline">
+                                <span>4</span>
+                                <input type="hidden" value="4" name="relayno4">
+                                <div class="form-group col-md-3">
+                                    <input type="text" ng-value="editData.relayno_name4" class="form-control" name="relayno_name4" placeholder="监测点名称">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <input type="text" ng-value="editData.rst_line_long4" class="form-control" name="rst_line_long4" placeholder="辅助线长度L">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <input type="text" ng-value="editData.rst_line_radius4" class="form-control" name="rst_line_radius4" placeholder="辅助线线径S">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="etcr-f" ng-if="editData.rst_type == 2">
+                        <div class="row">
+                            <div class="col-md-12">
+                                R1、RC参数：
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group col-md-12">
+                                    <label>R1参数</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" ng-value="editData.r1" class="form-control" name="r1" placeholder="请输入R1">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group col-md-12">
+                                    <label>R2参数</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" ng-value="editData.rc" class="form-control" name="rc" placeholder="请输入R2">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-danger btn-sm"
+                        data-dismiss="modal">
+                    <i class="fa fa-remove"></i>&nbsp;关闭
+                </button>
+                <button type="button" ng-disabled="form.$invalid"
+                        class="btn btn-success btn-sm" id="editEtcr_btn">
+                    <i class="fa fa-plus"></i>&nbsp;保存
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $("#editEtcr_btn").click(function() {
+        /*if($("#connectTypeAdd").val() == "全部模式"){
+            alert("请选择网络模式！")
+            return false;
+        }*/
+        $('#editEtcrForm').submit();
+        xh.editEtcr();
+    });
+</script>

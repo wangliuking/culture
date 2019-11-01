@@ -1,0 +1,194 @@
+.hpanel .panel-body {
+  background: #fff;
+  border: 1px solid #e4e5e7;
+  border-radius: 2px;
+  padding: 20px;
+  position: relative;
+  padding: 8px 5px 5px 5px!important;
+}
+.hpanel.panel-group .panel-body:first-child {
+  border-top: 1px solid #e4e5e7;
+}
+.hpanel.panel-group .panel-body {
+  border-top: none;
+}
+.panel-collapse .panel-body {
+  border: none;
+}
+.hpanel {
+  background-color: none;
+  border: none;
+  box-shadow: none;
+  margin-bottom: 25px;
+}
+.panel-tools {
+  display: inline-block;
+  float: right;
+  margin-top: 0;
+  padding: 0;
+  position: relative;
+}
+.hpanel .alert {
+  margin-bottom: 0;
+  border-radius: 0;
+  border: 1px solid #e4e5e7;
+  border-bottom: none;
+}
+.panel-tools a {
+  margin-left: 5px;
+  color: #9d9fa2;
+  cursor: pointer;
+}
+.hpanel.hgreen .panel-body {
+  border-top: 2px solid #62cb31;
+}
+.hpanel.hblue .panel-body {
+  border-top: 2px solid #3498db;
+}
+.hpanel.hyellow .panel-body {
+  border-top: 2px solid #ffb606;
+}
+.hpanel.hviolet .panel-body {
+  border-top: 2px solid #9b59b6;
+}
+.hpanel.horange .panel-body {
+  border-top: 2px solid #e67e22;
+}
+.hpanel.hred .panel-body {
+  border-top: 2px solid #e74c3c;
+}
+.hpanel.hreddeep .panel-body {
+  border-top: 2px solid #c0392b;
+}
+.hpanel.hnavyblue .panel-body {
+  border-top: 2px solid #34495e;
+}
+.hpanel.hbggreen .panel-body {
+  background: #62cb31;
+  color: #fff;
+  border: none;
+}
+.hpanel.hbgblue .panel-body {
+  background: #3498db;
+  color: #fff;
+  border: none;
+}
+.hpanel.hbgyellow .panel-body {
+  background: #ffb606;
+  color: #fff;
+  border: none;
+}
+.hpanel.hbgviolet .panel-body {
+  background: #9b59b6;
+  color: #fff;
+  border: none;
+}
+.hpanel.hbgorange .panel-body {
+  background: #e67e22;
+  color: #fff;
+  border: none;
+}
+.hpanel.hbgred .panel-body {
+  background: #e74c3c;
+  color: #fff;
+  border: none;
+}
+.hpanel.hbgreddeep .panel-body {
+  background: #c0392b;
+  color: #fff;
+  border: none;
+}
+.hpanel.hbgnavyblue .panel-body {
+  background: #34495e;
+  color: #fff;
+  border: none;
+}
+.panel-group .panel-heading {
+  background-color: #f7f9fa;
+}
+.small-header .hpanel {
+  margin-bottom: 0;
+}
+.small-header {
+  padding: 0 !important;
+}
+.small-header .panel-body {
+  padding: 15px 25px;
+  border-right: none;
+  border-left: none;
+  border-top: none;
+  border-radius: 0;
+}
+.panel-body h5,
+.panel-body h4 {
+  font-weight: 600;
+}
+.small-header .panel-body h2 {
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin: 0 0 0 0;
+}
+.small-header .panel-body small {
+  color: #838589;
+}
+ul.mailbox-list,
+ul.h-list {
+  list-style: none;
+  padding: 0;
+}
+ul.mailbox-list li a,
+ul.h-list li a {
+  padding: 10px 15px;
+  display: block;
+}
+ul.mailbox-list li a i,
+ul.h-list li a i {
+  margin-right: 6px;
+  display: inline-block;
+}
+ul.mailbox-list li.active a,
+ul.h-list li.active a {
+  background: #f7f9fa;
+  border: 1px solid #e4e5e7;
+  font-weight: 600;
+  border-radius: 1px;
+}
+ul.mailbox-list li:hover a,
+ul.h-list li:hover a {
+  font-weight: 600;
+}
+.table-mailbox .radio,
+.table-mailbox .checkbox {
+  margin: 0;
+}
+.table-mailbox .radio label,
+.table-mailbox .checkbox label {
+  cursor: default;
+}
+.table-mailbox tr.unread td a {
+  font-weight: 600;
+}
+.table-mailbox tr td span.label {
+  margin-left: 10px;
+}
+.table-mailbox tr:first-child td {
+  border-top: none;
+}
+.table-mailbox tr td:first-child {
+  width: 33px;
+  padding-right: 0;
+}
+.mailbox-pagination {
+  text-align: right;
+}
+@media (max-width: 768px) {
+  .mailbox-pagination {
+    text-align: left;
+  }
+}
+/* 自定义属性 */
+.mailbox-list a:hover{
+	text-decoration: none;
+}
+

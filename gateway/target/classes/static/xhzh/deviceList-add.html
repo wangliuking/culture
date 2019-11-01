@@ -1,0 +1,1360 @@
+<div class="modal fade" id="add" tabindex="-1" role="dialog"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="color-line"></div>
+            <div class="modal-header ">
+                <span>添加设备</span>
+            </div>
+            <div class="modal-body pad-0" style="margin: 2px; padding: 2px;">
+                <form action="#" id="addForm" onSubmit="return false">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group col-md-12">
+                                <label>设备类型</label>&nbsp;<span class="text-danger">[*]</span>
+                                <select class="selectForArea" id="deviceType" style="width:100%;" ng-change="changeDeviceTypeChoose(a)" ng-model="a">
+                                    <option value="">请选择</option>
+                                    <option ng-repeat="a in deviceNames" ng-value="a.id">{{a.name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group col-md-12">
+                                <label>站点名称</label>&nbsp;<span class="text-danger">[*]</span>{{locationSiteIDAdd}}
+                                <select class="selectForArea" id="siteNameAdd" style="width:100%;" name="site_id" ng-change="changeRtuListAdd()" ng-model="b">
+                                    <option value="">请选择</option>
+                                    <option ng-repeat="b in siteNamesAdd" ng-value="b.site_id" ng-selected="b.site_id == locationSiteIDAdd">{{b.site_name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group col-md-12">
+                                <label>RTU-ID</label>&nbsp;<span class="text-danger">[*]</span>
+                                <select class="selectForArea" id="rtu_id" style="width:100%;" name="rtu_id">
+                                    <option ng-repeat="x in rtuNamesAdd" ng-value="x.rtu_id" ng-selected="x.rtu_id == locationRTUIDAdd">{{x.rtu_id}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="spdConf" ng-if="deviceTypeChoose == 1">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group col-md-12">
+                                    <label>名称</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="spd_name"
+                                           placeholder="请输入SPD的名称">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group col-md-12">
+                                    <label>型号</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="spd_model"
+                                           placeholder="请输入SPD的型号">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group col-md-12">
+                                    <label>安装位置</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="spd_location"
+                                           placeholder="请输入SPD的安装位置">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group col-md-12">
+                                    <label>查询间隔</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="spd_space"
+                                           placeholder="请输入SPD的查询间隔(秒)">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group col-md-12">
+                                    <label>SPD路数</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="spd_number"
+                                           placeholder="请输入SPD的路数">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group col-md-12">
+                                    <label>防护等级</label>&nbsp;<span class="text-danger">[*]</span><br/>
+                                    <input type="radio" value="1" class="" name="spd_level">一级
+                                    <input type="radio" value="2" class="" name="spd_level">二级
+                                    <input type="radio" value="3" class="" name="spd_level">三级
+                                    <input type="radio" value="4" class="" name="spd_level">四级
+                                    <input type="radio" value="5" class="" name="spd_level">五级
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="etcrConf" ng-if="deviceTypeChoose == 2">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group col-md-12">
+                                    <label>设备ID</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="rst_id" placeholder="请输入接地电阻的ID">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group col-md-12">
+                                    <label>名称</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="rst_name" placeholder="请输入接地电阻的名称">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group col-md-12">
+                                    <label>型号</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="rst_model" placeholder="请输入接地电阻的型号">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group col-md-12">
+                                    <label>安装位置</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="rst_location" placeholder="请输入接地电阻的安装位置">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group col-md-12">
+                                    <label>查询间隔</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="rst_space" placeholder="请输入">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group col-md-12">
+                                    <label>同串口查询间隔</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="rst_ospace" placeholder="请输入">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group col-md-12">
+                                    <label>端口号</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="rtu_port" placeholder="请输入">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group col-md-12">
+                                    <label>端口波特率</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="rtu_baud_rate" placeholder="请输入">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group col-md-12">
+                                    <label>预警阈值</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="rst_threshold" placeholder="请输入">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group col-md-12">
+                                    <label>所属类型</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <select class="selectForArea" id="etcrType" style="width:100%;" ng-change="changeEtcr(c)" ng-model="c" name="rst_type">
+                                        <option value="">请选择</option>
+                                        <option ng-repeat="c in etcrs" ng-value="c.id">{{c.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="etcr-j" ng-if="changeEtcrType == 1">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    继电器接入：
+                                </div>
+                            </div>
+                            <div class="row" style="padding-left: 30px;">
+                                <div class="col-md-12 form-inline">
+                                    <span>1</span>
+                                    <input type="hidden" value="1" name="relayno1">
+                                    <div class="form-group col-md-3">
+                                        <input type="text" value="" class="form-control" name="relayno_name1" placeholder="监测点名称">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <input type="text" value="" class="form-control" name="rst_line_long1" placeholder="辅助线长度L">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <input type="text" value="" class="form-control" name="rst_line_radius1" placeholder="辅助线线径S">
+                                    </div>
+                                </div>
+                                <div class="col-md-12 form-inline">
+                                    <span>2</span>
+                                    <input type="hidden" value="2" name="relayno2">
+                                    <div class="form-group col-md-3">
+                                        <input type="text" value="" class="form-control" name="relayno_name2" placeholder="监测点名称">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <input type="text" value="" class="form-control" name="rst_line_long2" placeholder="辅助线长度L">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <input type="text" value="" class="form-control" name="rst_line_radius2" placeholder="辅助线线径S">
+                                    </div>
+                                </div>
+                                <div class="col-md-12 form-inline">
+                                    <span>3</span>
+                                    <input type="hidden" value="3" name="relayno3">
+                                    <div class="form-group col-md-3">
+                                        <input type="text" value="" class="form-control" name="relayno_name3" placeholder="监测点名称">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <input type="text" value="" class="form-control" name="rst_line_long3" placeholder="辅助线长度L">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <input type="text" value="" class="form-control" name="rst_line_radius3" placeholder="辅助线线径S">
+                                    </div>
+                                </div>
+                                <div class="col-md-12 form-inline">
+                                    <span>4</span>
+                                    <input type="hidden" value="4" name="relayno4">
+                                    <div class="form-group col-md-3">
+                                        <input type="text" value="" class="form-control" name="relayno_name4" placeholder="监测点名称">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <input type="text" value="" class="form-control" name="rst_line_long4" placeholder="辅助线长度L">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <input type="text" value="" class="form-control" name="rst_line_radius4" placeholder="辅助线线径S">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="etcr-f" ng-if="changeEtcrType == 2">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    R1、RC参数：
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group col-md-12">
+                                        <label>R1参数</label>&nbsp;<span class="text-danger">[*]</span>
+                                        <input type="text" value="" class="form-control" name="rst_threshold" placeholder="请输入R1">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group col-md-12">
+                                        <label>R2参数</label>&nbsp;<span class="text-danger">[*]</span>
+                                        <input type="text" value="" class="form-control" name="rst_threshold" placeholder="请输入R2">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lightningConf" ng-if="deviceTypeChoose == 3">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group col-md-12">
+                                    <label>设备ID</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="ltn_id"
+                                           placeholder="请输入设备ID">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group col-md-12">
+                                    <label>名称</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="ltn_name"
+                                           placeholder="请输入设备名称">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group col-md-12">
+                                    <label>型号</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="ltn_model"
+                                           placeholder="请输入设备型号">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group col-md-12">
+                                    <label>安装位置</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="ltn_location"
+                                           placeholder="请输入安装位置">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group col-md-12">
+                                    <label>查询间隔</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="ltn_space"
+                                           placeholder="请输入雷电流的查询间隔(秒)">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group col-md-12">
+                                    <label>同串口查询间隔</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="ltn_ospace"
+                                           placeholder="请输入同串口查询间隔(秒)">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group col-md-12">
+                                    <label>端口号</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="rtu_port"
+                                           placeholder="请输入端口号">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group col-md-12">
+                                    <label>端口波特率</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="rtu_baud_rate"
+                                           placeholder="请输入端口波特率">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group col-md-12">
+                                    <label>告警阈值上界</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="ltn_threshold1"
+                                           placeholder="请输入告警阈值上界(kA)">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group col-md-12">
+                                    <label>告警阈值下界</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="ltn_threshold2"
+                                           placeholder="请输入告警阈值下界(kA)">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group col-md-12">
+                                    <label>预警阈值次数</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="ltn_times"
+                                           placeholder="请输入预警阈值次数">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="staticConf" ng-if="deviceTypeChoose == 4">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group col-md-12">
+                                    <label>设备ID</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="staet_id"
+                                           placeholder="请输入设备ID">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group col-md-12">
+                                    <label>名称</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="staet_name"
+                                           placeholder="请输入设备名称">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group col-md-12">
+                                    <label>型号</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="staet_model"
+                                           placeholder="请输入设备型号">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group col-md-12">
+                                    <label>安装位置</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="staet_location"
+                                           placeholder="请输入安装位置">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group col-md-12">
+                                    <label>查询间隔</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="staet_space"
+                                           placeholder="请输入静电设备的查询间隔(秒)">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group col-md-12">
+                                    <label>同串口查询间隔</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="staet_ospace"
+                                           placeholder="请输入同串口查询间隔(秒)">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group col-md-12">
+                                    <label>端口号</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="rtu_port"
+                                           placeholder="请输入端口号">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group col-md-12">
+                                    <label>端口波特率</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="rtu_baud_rate"
+                                           placeholder="请输入端口波特率">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group col-md-12">
+                                    <label>告警阈值上界</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="staet_threshold1"
+                                           placeholder="请输入告警阈值上界(kV)">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group col-md-12">
+                                    <label>告警阈值下界</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="staet_threshold2"
+                                           placeholder="请输入告警阈值下界(kV)">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group col-md-12">
+                                    <label>标定灵敏度K</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="staet_k"
+                                           placeholder="请输入标定灵敏度">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group col-md-12">
+                                    <label>标定零点V0</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="staet_v0"
+                                           placeholder="请输入标定零点(kV)">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="rswsConf" ng-if="deviceTypeChoose == 5">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group col-md-12">
+                                    <label>设备ID</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="hmt_id"
+                                           placeholder="请输入设备ID">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group col-md-12">
+                                    <label>名称</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="hmt_name"
+                                           placeholder="请输入设备名称">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group col-md-12">
+                                    <label>型号</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="hmt_model"
+                                           placeholder="请输入设备型号">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group col-md-12">
+                                    <label>安装位置</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="hmt_location"
+                                           placeholder="请输入安装位置">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group col-md-12">
+                                    <label>查询间隔</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="hmt_space"
+                                           placeholder="请输入温湿度设备的查询间隔(秒)">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group col-md-12">
+                                    <label>同串口查询间隔</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="hmt_ospace"
+                                           placeholder="请输入同串口查询间隔(秒)">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group col-md-12">
+                                    <label>端口号</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="rtu_port"
+                                           placeholder="请输入端口号">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group col-md-12">
+                                    <label>端口波特率</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="rtu_baud_rate"
+                                           placeholder="请输入端口波特率">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group col-md-12">
+                                    <label>温度阈值上界</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="hmt_temp_threshold1"
+                                           placeholder="请输入温度阈值上界(℃)">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group col-md-12">
+                                    <label>温度阈值下界</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="hmt_temp_threshold2"
+                                           placeholder="请输入温度阈值下界(℃)">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group col-md-12">
+                                    <label>湿度预警阈值</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="hmt_hum_threshold"
+                                           placeholder="请输入湿度预警阈值">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="svtConf" ng-if="deviceTypeChoose == 6">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group col-md-12">
+                                    <label>设备ID</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="tilt_id"
+                                           placeholder="请输入设备ID">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group col-md-12">
+                                    <label>名称</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="tilt_name"
+                                           placeholder="请输入设备名称">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group col-md-12">
+                                    <label>型号</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="tilt_model"
+                                           placeholder="请输入设备型号">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group col-md-12">
+                                    <label>安装位置</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="tilt_location"
+                                           placeholder="请输入安装位置">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group col-md-12">
+                                    <label>查询间隔</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="tilt_space"
+                                           placeholder="请输入倾斜度设备的查询间隔(秒)">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group col-md-12">
+                                    <label>同串口查询间隔</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="tilt_ospace"
+                                           placeholder="请输入同串口查询间隔(秒)">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group col-md-12">
+                                    <label>端口号</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="rtu_port"
+                                           placeholder="请输入端口号">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group col-md-12">
+                                    <label>端口波特率</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="rtu_baud_rate"
+                                           placeholder="请输入端口波特率">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group col-md-12">
+                                    <label>倾斜度预警上界</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="tilt_threshold1"
+                                           placeholder="请输入倾斜度预警上界">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group col-md-12">
+                                    <label>倾斜度预警下界</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="tilt_threshold2"
+                                           placeholder="请输入倾斜度预警下界">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hcConf" ng-if="deviceTypeChoose == 7">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group col-md-12">
+                                    <label>设备ID</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="es_id"
+                                           placeholder="请输入设备ID">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group col-md-12">
+                                    <label>名称</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="es_name"
+                                           placeholder="请输入设备名称">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group col-md-12">
+                                    <label>型号</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="es_model"
+                                           placeholder="请输入设备型号">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group col-md-12">
+                                    <label>安装位置</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="es_location"
+                                           placeholder="请输入安装位置">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group col-md-12">
+                                    <label>查询间隔</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="es_space"
+                                           placeholder="请输入电器安全设备的查询间隔(秒)">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group col-md-12">
+                                    <label>同串口查询间隔</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="es_ospace"
+                                           placeholder="请输入同串口查询间隔(秒)">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group col-md-12">
+                                    <label>端口号</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="rtu_port"
+                                           placeholder="请输入端口号">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group col-md-12">
+                                    <label>端口波特率</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="rtu_baud_rate"
+                                           placeholder="请输入端口波特率">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group col-md-12">
+                                    <label>零地电压阈值</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="es_vol_threshold"
+                                           placeholder="请输入零线电压阈值">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group col-md-12">
+                                    <label>零线电流阈值</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="es_cur_threshold"
+                                           placeholder="请输入零线电流阈值">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group col-md-12">
+                                    <label>剩余电流预警阈值</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="es_i_threshold"
+                                           placeholder="请输入剩余预警阈值(mA)">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group col-md-12">
+                                    <label>线缆温度阈值</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="es_temp_threshold"
+                                           placeholder="请输入线缆温度阈值(℃)">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="strayConf" ng-if="deviceTypeChoose == 8">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group col-md-12">
+                                    <label>所属类型</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <select class="selectForArea" id="strayType" style="width:100%;" ng-change="changeStray(d)" ng-model="d" name="equipType">
+                                        <option value="">请选择</option>
+                                        <option ng-repeat="d in strays" ng-value="d.id">{{d.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="stray485" ng-if="changeStrayType == 1">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group col-md-12">
+                                        <label>设备ID</label>&nbsp;<span class="text-danger">[*]</span>
+                                        <input type="text" value="" class="form-control" name="stret_id" placeholder="请输入杂散电流的ID">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group col-md-12">
+                                        <label>名称</label>&nbsp;<span class="text-danger">[*]</span>
+                                        <input type="text" value="" class="form-control" name="stret_name" placeholder="请输入杂散电流的名称">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group col-md-12">
+                                        <label>型号</label>&nbsp;<span class="text-danger">[*]</span>
+                                        <input type="text" value="" class="form-control" name="stret_model" placeholder="请输入杂散电流的型号">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group col-md-12">
+                                        <label>安装位置</label>&nbsp;<span class="text-danger">[*]</span>
+                                        <input type="text" value="" class="form-control" name="stret_location" placeholder="请输入杂散电流的安装位置">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group col-md-12">
+                                        <label>查询间隔</label>&nbsp;<span class="text-danger">[*]</span>
+                                        <input type="text" value="" class="form-control" name="stret_space" placeholder="请输入">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group col-md-12">
+                                        <label>同串口查询间隔</label>&nbsp;<span class="text-danger">[*]</span>
+                                        <input type="text" value="" class="form-control" name="stret_ospace" placeholder="请输入">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group col-md-12">
+                                        <label>端口号</label>&nbsp;<span class="text-danger">[*]</span>
+                                        <input type="text" value="" class="form-control" name="rtu_port" placeholder="请输入">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group col-md-12">
+                                        <label>端口波特率</label>&nbsp;<span class="text-danger">[*]</span>
+                                        <input type="text" value="" class="form-control" name="rtu_baud_rate" placeholder="请输入">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12" style="color: black;">
+                                    端口1配置：
+                                </div>
+                                <hr/>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-3">
+                                    <label>设备名称</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="portName1" placeholder="杂散直流电压">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label>所属类型</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <select class="selectForArea" id="" style="width:100%;" name="computeType1">
+                                        <option value="1">Ⅰ型</option>
+                                        <option value="2">Ⅱ型</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label>系数</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <select class="selectForArea" id="" style="width:100%;" name="factor1">
+                                        <option value="1000">A</option>
+                                        <option value="250">B</option>
+                                        <option value="204.75">C</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-3">
+                                    <label>量程</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="fullscale1" placeholder="量程">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label>修正参数</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="calvalue1" placeholder="修正参数">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label>预警高值</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="stret_threshold1_1" placeholder="预警高值">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label>预警低值</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="stret_threshold2_1" placeholder="预警低值">
+                                </div>
+                            </div>
+                            <hr/>
+
+                            <div class="row">
+                                <div class="col-md-12" style="color: black;">
+                                    端口2配置：
+                                </div>
+                                <hr/>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-3">
+                                    <label>设备名称</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="portName2" placeholder="杂散交流电压">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label>所属类型</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <select class="selectForArea" id="" style="width:100%;" name="computeType2">
+                                        <option value="1">Ⅰ型</option>
+                                        <option value="2">Ⅱ型</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label>系数</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <select class="selectForArea" id="" style="width:100%;" name="factor2">
+                                        <option value="1000">A</option>
+                                        <option value="250">B</option>
+                                        <option value="204.75">C</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-3">
+                                    <label>量程</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="fullscale2" placeholder="量程">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label>修正参数</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="calvalue2" placeholder="修正参数">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label>预警高值</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="stret_threshold1_2" placeholder="预警高值">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label>预警低值</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="stret_threshold2_2" placeholder="预警低值">
+                                </div>
+                            </div>
+                            <hr/>
+
+                            <div class="row">
+                                <div class="col-md-12" style="color: black;">
+                                    端口3配置：
+                                </div>
+                                <hr/>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-3">
+                                    <label>设备名称</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="portName3" placeholder="杂散直流电流">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label>所属类型</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <select class="selectForArea" id="" style="width:100%;" name="computeType3">
+                                        <option value="1">Ⅰ型</option>
+                                        <option value="2">Ⅱ型</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label>系数</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <select class="selectForArea" id="" style="width:100%;" name="factor3">
+                                        <option value="1000">A</option>
+                                        <option value="250">B</option>
+                                        <option value="204.75">C</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-3">
+                                    <label>量程</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="fullscale3" placeholder="量程">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label>修正参数</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="calvalue3" placeholder="修正参数">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label>预警高值</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="stret_threshold1_3" placeholder="预警高值">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label>预警低值</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="stret_threshold2_3" placeholder="预警低值">
+                                </div>
+                            </div>
+                            <hr/>
+
+                            <div class="row">
+                                <div class="col-md-12" style="color: black;">
+                                    端口4配置：
+                                </div>
+                                <hr/>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-3">
+                                    <label>设备名称</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="portName4" placeholder="杂散交流电流">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label>所属类型</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <select class="selectForArea" id="" style="width:100%;" name="computeType4">
+                                        <option value="1">Ⅰ型</option>
+                                        <option value="2">Ⅱ型</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label>系数</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <select class="selectForArea" id="" style="width:100%;" name="factor4">
+                                        <option value="1000">A</option>
+                                        <option value="250">B</option>
+                                        <option value="204.75">C</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-3">
+                                    <label>量程</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="fullscale4" placeholder="量程">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label>修正参数</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="calvalue4" placeholder="修正参数">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label>预警高值</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="stret_threshold1_4" placeholder="预警高值">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label>预警低值</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <input type="text" value="" class="form-control" name="stret_threshold2_4" placeholder="预警低值">
+                                </div>
+                            </div>
+                            <hr/>
+
+                        </div>
+
+                        <div class="strayTest" ng-if="changeStrayType == 2">
+                            <input type="hidden" value="0" class="form-control" name="stret_id" placeholder="请输入杂散电流的ID">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group col-md-12">
+                                        <label>名称</label>&nbsp;<span class="text-danger">[*]</span>
+                                        <input type="text" value="" class="form-control" name="stret_name" placeholder="请输入杂散电流的名称">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group col-md-12">
+                                        <label>型号</label>&nbsp;<span class="text-danger">[*]</span>
+                                        <input type="text" value="" class="form-control" name="stret_model" placeholder="请输入杂散电流的型号">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group col-md-12">
+                                        <label>安装位置</label>&nbsp;<span class="text-danger">[*]</span>
+                                        <input type="text" value="" class="form-control" name="stret_location" placeholder="请输入杂散电流的安装位置">
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <div class="form-group col-md-12">
+                                        <label>端口号</label>&nbsp;<span class="text-danger">[*]</span>
+                                        <input type="text" value="" class="form-control" name="portId" placeholder="接入端口">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group col-md-12">
+                                        <label>查询间隔</label>&nbsp;<span class="text-danger">[*]</span>
+                                        <input type="text" value="" class="form-control" name="stret_space" placeholder="请输入">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group col-md-12">
+                                        <label>同串口查询间隔</label>&nbsp;<span class="text-danger">[*]</span>
+                                        <input type="text" value="" class="form-control" name="stret_ospace" placeholder="请输入">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group col-md-12">
+                                        <label>所属类型</label>&nbsp;<span class="text-danger">[*]</span>
+                                        <select class="selectForArea" id="" style="width:100%;" name="computeType">
+                                            <option value="1">Ⅰ型</option>
+                                            <option value="2">Ⅱ型</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group col-md-12">
+                                        <label>系数</label>&nbsp;<span class="text-danger">[*]</span>
+                                        <select class="selectForArea" id="" style="width:100%;" name="factor">
+                                            <option value="1">A</option>
+                                            <option value="2">B</option>
+                                            <option value="3">C</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group col-md-12">
+                                        <label>量程</label>&nbsp;<span class="text-danger">[*]</span>
+                                        <input type="text" value="" class="form-control" name="fullscale" placeholder="量程">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group col-md-12">
+                                        <label>修正参数</label>&nbsp;<span class="text-danger">[*]</span>
+                                        <input type="text" value="" class="form-control" name="calvalue" placeholder="修正参数">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group col-md-12">
+                                        <label>预警高值</label>&nbsp;<span class="text-danger">[*]</span>
+                                        <input type="text" value="" class="form-control" name="stret_threshold1" placeholder="预警高值">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group col-md-12">
+                                        <label>预警低值</label>&nbsp;<span class="text-danger">[*]</span>
+                                        <input type="text" value="" class="form-control" name="stret_threshold2" placeholder="预警低值">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="catConf" ng-if="deviceTypeChoose == 9">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group col-md-12">
+                                    <label>所属类型</label>&nbsp;<span class="text-danger">[*]</span>
+                                    <select class="selectForArea" id="strayType" style="width:100%;" ng-change="changeCat(e)" ng-model="e" name="">
+                                        <option value="">请选择</option>
+                                        <option ng-repeat="e in cats" ng-value="e.id">{{e.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="cat485" ng-if="changeCatType == 1">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group col-md-12">
+                                        <label>设备ID</label>&nbsp;<span class="text-danger">[*]</span>
+                                        <input type="text" value="" class="form-control" name="cathode_id" placeholder="请输入阴极保护的ID">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group col-md-12">
+                                        <label>名称</label>&nbsp;<span class="text-danger">[*]</span>
+                                        <input type="text" value="" class="form-control" name="cathode_name" placeholder="请输入阴极保护的名称">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group col-md-12">
+                                        <label>型号</label>&nbsp;<span class="text-danger">[*]</span>
+                                        <input type="text" value="" class="form-control" name="cathode_model" placeholder="请输入阴极保护的型号">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group col-md-12">
+                                        <label>安装位置</label>&nbsp;<span class="text-danger">[*]</span>
+                                        <input type="text" value="" class="form-control" name="cathode_location" placeholder="请输入阴极保护的安装位置">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group col-md-12">
+                                        <label>查询间隔</label>&nbsp;<span class="text-danger">[*]</span>
+                                        <input type="text" value="" class="form-control" name="cathode_space" placeholder="请输入">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group col-md-12">
+                                        <label>同串口查询间隔</label>&nbsp;<span class="text-danger">[*]</span>
+                                        <input type="text" value="" class="form-control" name="cathode_ospace" placeholder="请输入">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group col-md-12">
+                                        <label>端口号</label>&nbsp;<span class="text-danger">[*]</span>
+                                        <input type="text" value="" class="form-control" name="rtu_port" placeholder="请输入">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group col-md-12">
+                                        <label>端口波特率</label>&nbsp;<span class="text-danger">[*]</span>
+                                        <input type="text" value="" class="form-control" name="rtu_baud_rate" placeholder="请输入">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <div class="form-group col-md-12">
+                                        <label>所属类型</label>&nbsp;<span class="text-danger">[*]</span>
+                                        <select class="selectForArea" id="" style="width:100%;" name="computeType">
+                                            <option value="1">Ⅰ型</option>
+                                            <option value="2">Ⅱ型</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <div class="form-group col-md-12">
+                                        <label>系数</label>&nbsp;<span class="text-danger">[*]</span>
+                                        <select class="selectForArea" id="" style="width:100%;" name="factor">
+                                            <option value="1000">A</option>
+                                            <option value="250">B</option>
+                                            <option value="204.75">C</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <div class="form-group col-md-12">
+                                        <label>量程</label>&nbsp;<span class="text-danger">[*]</span>
+                                        <input type="text" value="" class="form-control" name="fullscale" placeholder="量程">
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <div class="form-group col-md-12">
+                                        <label>修正参数</label>&nbsp;<span class="text-danger">[*]</span>
+                                        <input type="text" value="" class="form-control" name="calvalue" placeholder="修正参数">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <div class="form-group col-md-12">
+                                        <label>预警高值</label>&nbsp;<span class="text-danger">[*]</span>
+                                        <input type="text" value="" class="form-control" name="cathode_threshold1" placeholder="预警高值">
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <div class="form-group col-md-12">
+                                        <label>预警低值</label>&nbsp;<span class="text-danger">[*]</span>
+                                        <input type="text" value="" class="form-control" name="cathode_threshold2" placeholder="预警低值">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="catTest" ng-if="changeCatType == 2">
+                            <input type="hidden" value="0" class="form-control" name="cathode_id" placeholder="">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group col-md-12">
+                                        <label>名称</label>&nbsp;<span class="text-danger">[*]</span>
+                                        <input type="text" value="" class="form-control" name="cathode_name" placeholder="请输入阴极保护的名称">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group col-md-12">
+                                        <label>型号</label>&nbsp;<span class="text-danger">[*]</span>
+                                        <input type="text" value="" class="form-control" name="cathode_model" placeholder="请输入阴极保护的型号">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group col-md-12">
+                                        <label>安装位置</label>&nbsp;<span class="text-danger">[*]</span>
+                                        <input type="text" value="" class="form-control" name="cathode_location" placeholder="请输入阴极保护的安装位置">
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <div class="form-group col-md-12">
+                                        <label>端口号</label>&nbsp;<span class="text-danger">[*]</span>
+                                        <input type="text" value="" class="form-control" name="rtu_port" placeholder="接入端口">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group col-md-12">
+                                        <label>查询间隔</label>&nbsp;<span class="text-danger">[*]</span>
+                                        <input type="text" value="" class="form-control" name="cathode_space" placeholder="请输入">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group col-md-12">
+                                        <label>所属类型</label>&nbsp;<span class="text-danger">[*]</span>
+                                        <select class="selectForArea" id="" style="width:100%;" name="computeType">
+                                            <option value="1">Ⅰ型</option>
+                                            <option value="2">Ⅱ型</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group col-md-12">
+                                        <label>系数</label>&nbsp;<span class="text-danger">[*]</span>
+                                        <select class="selectForArea" id="" style="width:100%;" name="factor">
+                                            <option value="1">A</option>
+                                            <option value="2">B</option>
+                                            <option value="3">C</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group col-md-12">
+                                        <label>量程</label>&nbsp;<span class="text-danger">[*]</span>
+                                        <input type="text" value="" class="form-control" name="fullscale" placeholder="量程">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group col-md-12">
+                                        <label>修正参数</label>&nbsp;<span class="text-danger">[*]</span>
+                                        <input type="text" value="" class="form-control" name="calvalue" placeholder="修正参数">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group col-md-12">
+                                        <label>预警高值</label>&nbsp;<span class="text-danger">[*]</span>
+                                        <input type="text" value="" class="form-control" name="cathode_threshold1" placeholder="预警高值">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group col-md-12">
+                                        <label>预警低值</label>&nbsp;<span class="text-danger">[*]</span>
+                                        <input type="text" value="" class="form-control" name="cathode_threshold2" placeholder="预警低值">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-danger btn-sm"
+                        data-dismiss="modal">
+                    <i class="fa fa-remove"></i>&nbsp;关闭
+                </button>
+                <button type="button" ng-disabled="form.$invalid"
+                        class="btn btn-success btn-sm" id="add_btn">
+                    <i class="fa fa-plus"></i>&nbsp;新增
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $("#add_btn").click(function() {
+        /*if($("#connectTypeAdd").val() == "全部模式"){
+            alert("请选择网络模式！")
+            return false;
+        }*/
+        $('#addForm').submit();
+        xh.add();
+    });
+</script>

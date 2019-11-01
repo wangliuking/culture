@@ -1,0 +1,130 @@
+
+<div class="modal fade" id="edit" tabindex="-1" role="dialog"
+	aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="color-line"></div>
+			<div class="modal-header ">
+				<!-- <button type="button" class="close" data-dismiss="modal"
+					aria-hidden="true">&times;</button>
+				<small class="font-bold"></small> -->
+			</div>
+			<div class="modal-body pad-0" style="margin: 2px; padding: 2px;">
+				<form action="#" id="editForm" onSubmit="return false">
+					<div class="row">
+						<input type="hidden" ng-value="editData.site_id" name="site_id"/>
+						<div class="col-md-4">
+							<div class="form-group col-md-12">
+								<label>站点名称</label>&nbsp;<span class="text-danger">[*]</span> <input
+									type="text" ng-value="editData.site_name" class="form-control" name="site_name" style="border: 1px solid black;">
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group col-md-12">
+								<label>站点所属行业</label>&nbsp;<span class="text-danger">[*]</span>
+								<select class="selectForArea" id="testIndustrys" style="width:100%;" name="site_industry">
+									<option ng-repeat="x in industrys" ng-value="x" ng-selected="x == editData.site_industry">{{x}}</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group col-md-12">
+								<label>机构组织名称</label>&nbsp;<span class="text-danger">[*]</span>
+								<select class="selectForArea" id="structure" style="width:100%;" name="site_company">
+									<option ng-repeat="y in structureList" ng-value="y.id" ng-selected="editData.site_company == y.id">{{y.name}}</option>
+								</select>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group col-md-12">
+								<label>站点所属区域</label>&nbsp;<span class="text-danger">[*]</span><br/>
+								<select class="selectForArea" id="editProvince" name="site_province" style="width:30%;" ng-value="editData.site_province"></select>
+								<select class="selectForArea" id="editCity" name="site_city" style="width:30%;" ng-value="editData.site_city"></select>
+								<select class="selectForArea" id="editArea" name="site_county" style="width:30%;" ng-value="editData.site_county"></select>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group col-md-12">
+								<label>站点位置</label>&nbsp;<span class="text-danger">[*]</span>
+								<div class="form-group form-inline">
+									<input type="text" ng-value="editData.site_lng" class="form-control" name="site_lng" id="site_lngEdit" placeholder="经度" style="border: 1px solid black;">
+									<input type="text" ng-value="editData.site_lat" class="form-control" name="site_lat" id="site_latEdit" placeholder="纬度" style="border: 1px solid black;">
+									<button class="btn btn-success" id="mapSelectEdit">坐标选择</button>
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-12">
+						<div id="allmapEdit" style="width: 100%; height: 0px;"></div>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+
+				<button type="button" class="btn btn-danger btn-sm"
+					data-dismiss="modal">
+					<i class="fa fa-remove"></i>&nbsp;关闭
+				</button>
+				<button type="button" ng-disabled="form.$invalid"
+					class="btn btn-success btn-sm" id="edit_btn">
+					<i class="fa fa-plus"></i>&nbsp;保存
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+    addressInit('editProvince', 'editCity', 'editArea');
+</script>
+
+<script type="text/javascript">
+	$("#mapSelectEdit").click(function () {
+	    $("#allmapEdit").height(300);
+        // 百度地图API功能
+        var map = new BMap.Map("allmapEdit");    // 创建Map实例
+        //判断是否有中心点
+        if($("#site_latEdit").val() == "" && $("#site_lngEdit").val() == ""){
+            var point = new BMap.Point(103.997046, 30.75143156);
+        }else{
+            var point = new BMap.Point($("#site_lngEdit").val(), $("#site_latEdit").val());
+		}
+
+        map.centerAndZoom(point, 11);  // 初始化地图,设置中心点坐标和地图级别
+        //添加地图类型控件
+        map.addControl(new BMap.MapTypeControl({
+            mapTypes:[
+                BMAP_NORMAL_MAP,
+                BMAP_HYBRID_MAP
+            ]}));
+
+        map.setCurrentCity("成都");          // 设置地图显示的城市 此项是必须设置的
+        map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+
+
+		var marker = new BMap.Marker(point);
+		map.addOverlay(marker);
+		marker.enableDragging();
+
+		map.addEventListener("mousemove",function(){
+            //console.log(marker.point.lat,marker.point.lng);
+            $("#site_latEdit").val(marker.point.lat);
+            $("#site_lngEdit").val(marker.point.lng);
+		});
+    });
+
+	$("#edit_btn").click(function() {
+		$('#editForm').submit();
+        xh.edit();
+	});
+
+</script>

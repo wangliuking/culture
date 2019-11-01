@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <title>信虹智慧服务平台</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description"/>
+    <meta content="Coderthemes" name="author"/>
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="./favicon.ico">
+    <!-- third party css -->
+    <!--<link href="./css/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />-->
+    <!-- third party css end -->
+    <!-- App css -->
+    <!-- build:css -->
+    <link href="./css/app.min.css" rel="stylesheet" type="text/css"/>
+    <link href="./css/sweet-alert.css" rel="stylesheet" type="text/css"/>
+    <link href="./css/toastr.min.css" rel="stylesheet" type="text/css"/>
+    <style>
+        /*下拉菜单样式*/
+        .selectForArea {
+            padding: .45rem .9rem;
+            font-size: .875rem;
+            line-height: 1.5;
+            color: #6c757d;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body ng-app="app" ng-controller="xhcontroller" style="padding-right:0!important;background-color: #d8d4d4;color:black;">
+<!-- splash screen-->
+<div class="splash" style="position: fixed;z-index: 2001;background: white;color: gray;top: 0;bottom: 0;left: 0;right: 0;">
+    <div class="splash-title" style="text-align: center;max-width: 500px;margin: 15% auto;padding: 20px;">
+        <h1 style="font-size: 26px;color: #004894;">数据加载中，请耐心等待</h1>
+        <img src="xhIcon/loading.gif" width="100" height="100"/>
+    </div>
+</div>
+<!-- Begin page -->
+<div class="wrapper">
+    <div class="content-page" style="padding: 5px 5px 5px 0px;">
+        <!-- Start Content-->
+        <div class="container-fluid">
+
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box">
+                        <div class="page-title-left">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item">当前位置</li>
+                                <li class="breadcrumb-item"><a href="dataStatistics.html" target="_self" style="color: #0caff4">数据统计</a></li>
+                            </ol>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- end page title -->
+
+            <div class="row">
+                <div class="col-6">
+                    <div class="card" id="card1">
+                        <div class="card-body">
+                            <ul class="nav nav-tabs mb-3">
+                                <li class="nav-item">
+                                    <a href="#siteStatus" data-toggle="tab" aria-expanded="true" class="nav-link active">
+                                        <i class="mdi mdi-home-variant d-lg-none d-block mr-1"></i>
+                                        <span class="d-none d-lg-block">站点</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#rtuStatus" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                        <i class="mdi mdi-account-circle d-lg-none d-block mr-1"></i>
+                                        <span class="d-none d-lg-block">RTU</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#deviceStatus" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                        <i class="mdi mdi-settings-outline d-lg-none d-block mr-1"></i>
+                                        <span class="d-none d-lg-block">设备</span>
+                                    </a>
+                                </li>
+                            </ul>
+
+                            <div class="tab-content">
+                                <div class="tab-pane show active" id="siteStatus">
+                                    <div id="siteForBar" style="width: 100%;height:330px;"></div>
+                                </div>
+                                <div class="tab-pane" id="rtuStatus">
+                                    <div id="rtuForBar" style="width: 100%;height:330px;"></div>
+                                </div>
+                                <div class="tab-pane" id="deviceStatus">
+                                    <div id="deviceForBar" style="width: 100%;height:330px;"></div>
+                                </div>
+                            </div>
+
+                        </div> <!-- end card-body-->
+
+                    </div> <!-- end card -->
+
+                </div>
+
+                <div class="col-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="header-title">设备分类统计</h4>
+                            <hr/>
+                            <div id="deviceForType" style="height:345px;width: 100%;"></div>
+                        </div> <!-- end card-body-->
+
+                    </div> <!-- end card -->
+
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body" >
+                            <div id="deviceForNum" style="height:360px;width: 100%;"></div>
+                        </div> <!-- end card body-->
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div id="deviceForMonth" style="height:360px;width: 100%;"></div>
+                        </div> <!-- end card-body-->
+                    </div> <!-- end card -->
+
+                </div>
+            </div>
+
+
+        </div> <!-- container -->
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- End Page content -->
+    <!-- ============================================================== -->
+
+
+</div>
+<!-- END wrapper -->
+
+<!-- bundle -->
+<script src="angularjs/jquery-3.2.1.min.js"></script>
+<script src="angularjs/angular.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/echarts.min.js"></script>
+<script src="js/macarons.js"></script>
+<script src="angularjs/metisMenu.min.js"></script>
+<script src="js/sweet-alert.js"></script>
+<script src="js/toastr.min.js"></script>
+<script src="js/dataStatistics.js"></script>
+<!--<script src="./javascript/demo.dashboard.js"></script>-->
+<script type="text/javascript">
+    xh.load();
+    $(document).ready(function() {
+        $('.splash').css('display', 'none');
+    });
+</script>
+</body>
+
+</html>

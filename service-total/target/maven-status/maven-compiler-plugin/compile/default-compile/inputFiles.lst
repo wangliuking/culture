@@ -1,0 +1,12 @@
+/home/wlk/project/culture/culture/service-total/src/main/java/run/mapper/TotalMapper.java
+/home/wlk/project/culture/culture/service-total/src/main/java/run/feign/FeignConf.java
+/home/wlk/project/culture/culture/service-total/src/main/java/run/controller/ScheduledService.java
+/home/wlk/project/culture/culture/service-total/src/main/java/run/controller/MyApplicationRunner.java
+/home/wlk/project/culture/culture/service-total/src/main/java/run/TotalApplication.java
+/home/wlk/project/culture/culture/service-total/src/main/java/run/controller/AsyncConfig.java
+/home/wlk/project/culture/culture/service-total/src/main/java/run/controller/TotalController.java
+/home/wlk/project/culture/culture/service-total/src/main/java/run/service/TotalService.java
+/home/wlk/project/culture/culture/service-total/src/main/java/run/controller/FeignForStructure.java
+/home/wlk/project/culture/culture/service-total/src/main/java/run/SecurityConfiguration.java
+/home/wlk/project/culture/culture/service-total/src/main/java/run/bean/Site.java
+/home/wlk/project/culture/culture/service-total/src/main/java/run/bean/RTU.java

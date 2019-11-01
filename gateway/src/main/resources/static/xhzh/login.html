@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>信虹智慧服务平台</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            height: 100%;
+        }
+
+        body {
+            height: 100%;
+            background: #fff url(images/background.jpg) 50% 50% no-repeat;
+            background-size: cover;
+        }
+
+        .home{
+            position: fixed;
+            width:auto;
+            height:auto;
+            left: 0px;
+            right: 0px;
+            bottom: 0px;
+            top: 6%;
+        }
+
+        .foot{
+            width:100%;
+            /*position: absolute;
+            bottom: 0;*/
+            color:white;
+            margin:auto;
+            text-align: center;
+        }
+
+
+
+        .dowebok {
+            /*position: fixed;*/
+            width: 730px;
+            height: 380px;
+            margin: auto;
+            border: 1px solid #fff;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .titlefont {
+            width: auto;
+            height: auto;
+
+            text-align: center;
+        }
+
+        .logo {
+            width: 240px;
+            height: 240px;
+            margin: 50px auto 60px;
+        }
+
+        .form-item {
+            position: relative;
+            width: 360px;
+            margin: 0 auto;
+            padding-bottom: 30px;
+        }
+
+        .form-item input {
+            width: 288px;
+            height: 48px;
+            padding-left: 70px;
+            border: 1px solid #fff;
+            border-radius: 25px;
+            font-size: 18px;
+            color: #fff;
+            background-color: transparent;
+            outline: none;
+        }
+
+        .form-item button {
+            width: 360px;
+            height: 50px;
+            border: 0;
+            border-radius: 25px;
+            font-size: 18px;
+            color: #fff;
+            outline: none;
+            cursor: pointer;
+            background-color: rgba(41, 178, 255,1);
+        }
+        .form-item button:hover {
+            background-color: rgb(40, 190, 255);
+        }
+
+        #username {
+            background: url(images/user.png) 18px 8px no-repeat;
+        }
+
+        #password {
+            background: url(images/password.png) 23px 11px no-repeat;
+        }
+
+        #auth {
+            width: 178px;
+            height: 48px;
+            background: url(images/auth.png) 19px 9px no-repeat;
+        }
+
+        .tipUser {
+            display: none;
+            position: absolute;
+            left: 20px;
+            top: 52px;
+            font-size: 14px;
+            color: #f50;
+        }
+
+        .tipPass {
+            display: none;
+            position: absolute;
+            left: 20px;
+            top: 52px;
+            font-size: 14px;
+            color: #f50;
+        }
+
+        .tipAuth {
+            display: none;
+            position: absolute;
+            left: 20px;
+            top: 52px;
+            font-size: 14px;
+            color: #f50;
+        }
+
+        .reg-bar {
+            width: 360px;
+            margin: 20px auto 0;
+            font-size: 14px;
+            overflow: hidden;
+        }
+
+        .reg-bar a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .reg-bar a:hover {
+            text-decoration: underline;
+        }
+
+        .reg-bar .reg {
+            float: left;
+        }
+
+        .reg-bar .forget {
+            float: right;
+        }
+
+        .dowebok ::-webkit-input-placeholder {
+            font-size: 18px;
+            line-height: 1.4;
+            color: #fff;
+        }
+
+        .dowebok :-moz-placeholder {
+            font-size: 18px;
+            line-height: 1.4;
+            color: #fff;
+        }
+
+        .dowebok ::-moz-placeholder {
+            font-size: 18px;
+            line-height: 1.4;
+            color: #fff;
+        }
+
+        .dowebok :-ms-input-placeholder {
+            font-size: 18px;
+            line-height: 1.4;
+            color: #fff;
+        }
+
+        @media screen and (max-width: 500px) {
+            * {
+                box-sizing: border-box;
+            }
+
+            .dowebok {
+                position: static;
+                width: auto;
+                height: auto;
+                margin: 0 30px;
+                border: 0;
+                border-radius: 0;
+            }
+
+            .logo {
+                margin: 50px auto;
+            }
+
+            .form-item {
+                width: auto;
+            }
+
+            .form-item input, .form-item button, .reg-bar {
+                width: 100%;
+            }
+        }
+
+        ::-moz-placeholder {
+            line-height: 50px;
+        }
+    </style>
+</head>
+<body ng-app="login" ng-controller="loginController" class="fixed-iframe">
+    <div class="home">
+        <div class="titlefont"><img src="images/防雷防静电智能在线监测与管理服务平台.png" width="62%"></div>
+        <div class="dowebok">
+    <div class="logo" style="float: right;"><img src="images/盾形防护图标.png" width="240" height="240" /></div>
+    <div style="float: left;line-height: 35px;padding: 30px 0 0 30px;">
+        <form id="loginForm">
+        <div class="form-item">
+            <input id="username" type="text" placeholder="用户名" name="username">
+            <p class="tipUser">用户名不合法</p>
+        </div>
+        <div class="form-item">
+            <input id="password" type="password" placeholder="密码" name="password">
+            <p class="tipPass">密码不合法</p>
+        </div>
+        <div class="form-item">
+            <input id="auth" type="text" placeholder="验证码">
+            <canvas id="canvas" width="110px" height="46px" style="float: right;"></canvas>
+            <p class="tipAuth">验证码不正确</p>
+        </div>
+        <div class="form-item">
+            <!--<button type="button" class="btn btn-info">信息</button>-->
+            <button id="submit" type="button" ng-click="login()">登 录</button>
+        </div>
+        </form>
+        <!--<div class="reg-bar">
+            <a class="reg" href="javascript:">立即注册</a>
+            <a class="forget" href="javascript:">忘记密码</a>
+        </div>-->
+    </div>
+
+</div>
+        <div class="foot">
+            新疆维吾尔自治区雷电防护技术开发中心监制<br/>
+            版本v2.0 powered by 中航信虹
+        </div>
+    </div>
+
+<script src="images/jquery.min.js"></script>
+<script src="images/angular.min.js"></script>
+<!--<script src="images/jquery.min.js"></script>-->
+<!-- js for auth and login token -->
+<script>
+    //验证码数字
+    var auth;
+
+    //生成随机数
+    function randomNum(min, max) {
+        return Math.floor(Math.random() * (max - min) + min);
+    }
+
+    //生成随机颜色RGB分量
+    function randomColor(min, max) {
+        if (min == 0 && max == 0) {
+            return "rgb(0,191,255)";
+        } else {
+            var _r = randomNum(min, max);
+            var _g = randomNum(min, max);
+            var _b = randomNum(min, max);
+            return "rgb(" + _r + "," + _g + "," + _b + ")";
+        }
+
+    }
+
+    //先阻止画布默认点击发生的行为再执行drawPic()方法
+    document.getElementById("canvas").onclick = function (e) {
+        e.preventDefault();
+        drawPic();
+    };
+
+    function drawPic() {
+        //获取到元素canvas
+        var $canvas = document.getElementById("canvas");
+        var _str = "0123456789";//设置随机数库
+        var _picTxt = "";//随机数
+        var _num = 4;//4个随机数字
+        var _width = $canvas.width;
+        var _height = $canvas.height;
+        var ctx = $canvas.getContext("2d");//获取 context 对象
+        ctx.textBaseline = "bottom";//文字上下对齐方式--底部对齐
+        ctx.fillStyle = randomColor(0, 0);//填充画布颜色
+        ctx.fillRect(0, 0, _width, _height);//填充矩形--画画
+        for (var i = 0; i < _num; i++) {
+            var x = (_width - 10) / _num * i + 10;
+            var y = randomNum(_height / 2, _height);
+            var deg = randomNum(-45, 45);
+            var txt = _str[randomNum(0, _str.length)];
+            _picTxt += txt;//获取一个随机数
+            ctx.fillStyle = randomColor(10, 100);//填充随机颜色
+            ctx.font = randomNum(16, 40) + "px SimHei";//设置随机数大小，字体为SimHei
+            ctx.translate(x, y);//将当前xy坐标作为原始坐标
+            ctx.rotate(deg * Math.PI / 180);//旋转随机角度
+            ctx.fillText(txt, 0, 0);//绘制填色的文本
+            ctx.rotate(-deg * Math.PI / 180);
+            ctx.translate(-x, -y);
+        }
+        for (var i = 0; i < _num; i++) {
+            //定义笔触颜色
+            ctx.strokeStyle = randomColor(90, 180);
+            ctx.beginPath();
+            //随机划线--4条路径
+            ctx.moveTo(randomNum(0, _width), randomNum(0, _height));
+            ctx.lineTo(randomNum(0, _width), randomNum(0, _height));
+            ctx.stroke();
+        }
+        for (var i = 0; i < _num * 10; i++) {
+            ctx.fillStyle = randomColor(0, 255);
+            ctx.beginPath();
+            //随机画原，填充颜色
+            ctx.arc(randomNum(0, _width), randomNum(0, _height), 1, 0, 2 * Math.PI);
+            ctx.fill();
+        }
+        auth = _picTxt;
+        return _picTxt;//返回随机数字符串
+    }
+
+    drawPic();
+</script>
+<script>
+    //console.log(localStorage);
+    var app = angular.module("login", []);
+    app.controller("loginController", function($scope, $http) {
+        /* 显示model */
+        $scope.login = function() {
+            $(".tipUser").hide();
+            $(".tipPass").hide();
+            $(".tipAuth").hide();
+            var username = $("#username").val();
+            var password = $("#password").val();
+            var au = $("#auth").val();
+            if (username == ''){
+                $("#username").val('');
+                $(".tipUser").show();
+                return false;
+            } else if(password == '') {
+                $("#password").val('');
+                $(".tipPass").show();
+                return false;
+            } else if(au != auth) {
+                $("#auth").val('');
+                $(".tipAuth").show();
+                return false;
+            }
+
+            var fields = $("#loginForm").serializeArray();
+            var f = {};//声明一个对象
+            $.each(fields,function(index,field){
+                f[field.name] = field.value;//通过变量，将属性值，属性一起放到对象中
+            });
+            var str = JSON.stringify(f);
+            $.ajax({
+                url : '../../loginWeb',
+                contentType : "application/json;charset=utf-8",
+                type : 'POST',
+                dataType : "json",
+                async : true,
+                data : str,
+                success : function(data) {
+                    console.log(data);
+                    if(data.result == "登录成功"){
+                        window.location.href = "screen.html";
+                    }else{
+                        alert("账户或密码错误！");
+                    }
+                },
+                error : function() {
+
+                }
+            });
+
+        };
+
+    });
+</script>
+
+</body>
+</html>

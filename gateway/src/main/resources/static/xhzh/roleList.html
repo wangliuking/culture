@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <title>信虹智慧服务平台</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description"/>
+    <meta content="Coderthemes" name="author"/>
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="./favicon.ico">
+    <!-- third party css -->
+    <!--<link href="./css/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />-->
+    <!-- third party css end -->
+    <!-- App css -->
+    <!-- build:css -->
+    <link href="./css/app.min.css" rel="stylesheet" type="text/css"/>
+    <!--<link href="./css/bootstrap.min.css" rel="stylesheet" type="text/css"/>-->
+    <link href="./css/sweet-alert.css" rel="stylesheet" type="text/css"/>
+    <link href="./css/toastr.min.css" rel="stylesheet" type="text/css"/>
+    <style>
+        /*下拉菜单样式*/
+        .selectForArea {
+            padding: .45rem .9rem;
+            font-size: .875rem;
+            line-height: 1.5;
+            color: #6c757d;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid black;
+            border-radius: 8px;
+        }
+        .selectForPage{
+            padding: .20rem .9rem;
+            font-size: .875rem;
+            line-height: 1.5;
+            color: #6c757d;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid black;
+            border-radius: 8px;
+        }
+        input{
+            border: 1px solid black!important;
+        }
+    </style>
+</head>
+<body ng-app="app" ng-controller="xhcontroller" style="padding-right:0!important;background-color: #d8d4d4;color:black;">
+<!-- splash screen-->
+<div class="splash" style="position: fixed;z-index: 2001;background: white;color: gray;top: 0;bottom: 0;left: 0;right: 0;">
+    <div class="splash-title" style="text-align: center;max-width: 500px;margin: 15% auto;padding: 20px;">
+        <h1 style="font-size: 26px;color: #004894;">数据加载中，请耐心等待</h1>
+        <img src="xhIcon/loading.gif" width="100" height="100"/>
+    </div>
+</div>
+<!-- Begin page -->
+<div class="wrapper">
+    <!-- ============================================================== -->
+    <!-- Start Page Content here -->
+    <!-- ============================================================== -->
+
+    <div class="content-page" style="padding: 5px 5px 5px 0px;">
+        <!-- Start Content-->
+        <div class="container-fluid">
+
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box">
+                        <div class="page-title-left">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item">当前位置</li>
+                                <li class="breadcrumb-item"><a href="" target="_self">平台管理</a></li>
+                                <li class="breadcrumb-item"><a style="color: #0caff4">角色管理</a></li>
+                            </ol>
+                        </div>
+                        <div>
+                            <form id="searchForm" class="form-inline">
+                                <input id="searchUser" class="form-control" type="text" placeholder="请输入用户昵称或用户名"/>
+                                <button type="button" class="btn btn-success btn-rounded pull-right"
+                                        ng-click="refresh()">查询
+                                </button>
+                                <button type="button" class="btn btn-secondary btn-rounded pull-right"
+                                        ng-click="showMod()">新增
+                                </button>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- end page title -->
+            <div class="row" style="margin-top: 20px;">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <!--<h4 class="header-title">设备列表</h4>-->
+                            <!--<p class="text-muted font-14 mb-4">
+                                The Buttons extension for DataTables provides a common set of options, API methods and
+                                styling to display buttons on a page
+                                that will interact with a DataTable. The core library provides the based framework upon
+                                which plug-ins can built.
+                            </p>-->
+                            <table id="" class="table table-striped dt-responsive nowrap">
+                                <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>角色ID</th>
+                                    <th>角色名称</th>
+                                    <th>组织结构</th>
+                                    <th>创建时间</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+
+
+                                <tbody>
+                                <tr ng-repeat="x in data">
+                                    <td>{{$index+1}}</td>
+                                    <td>{{x.id}}</td>
+                                    <td>{{x.name}}</td>
+                                    <td>{{x.structureName}}</td>
+                                    <td>{{x.createTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                                    <td>
+                                        <a href="#" ng-click="showEdit($index)">修改</a>
+                                        |
+                                        <a href="#" ng-click="delBs(x.id)">删除</a>
+                                        |
+                                        <a href="#" ng-click="goPower(x.id,x.name)">菜单权限</a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                        </div> <!-- end card body-->
+                    </div> <!-- end card -->
+                </div><!-- end col-->
+            </div>
+            <!-- end row-->
+
+            <!-- end row-->
+            <div class="page" style="float: left;margin-top: 36px;">
+                <div class="page-info">
+                    <span>每页显示</span><select id="page-limit" ng-change="refresh()" class="selectForPage"
+                                             ng-model="count">
+                    <option value="15">15</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                    <option value="40">40</option>
+                    <option value="50">50</option>
+                </select> <span>条,</span><span ng-model="index">显示{{start}}-</span><span
+                        ng-model="lastIndex">{{lastIndex}}条,</span> <span
+                        ng-model="totals">总计{{totals}}条</span>
+                    <i class="fa fa-refresh page-refresh" title="刷新数据" ng-click="refresh()"></i>
+                </div>
+            </div>
+            <div style="float: right;margin-top: 30px;">
+                <div class="page-paging"></div>
+            </div>
+        </div> <!-- container -->
+
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- End Page content -->
+    <!-- ============================================================== -->
+
+
+</div>
+<!-- END wrapper -->
+
+<!-- 添加模态框 -->
+<!-- 添加 -->
+<div ng-include="'roleList-add.html'"></div>
+<!-- 修改 -->
+<div ng-include="'roleList-edit.html'"></div>
+<!-- bundle -->
+<script src="angularjs/jquery-3.2.1.min.js"></script>
+<!--<script src="./javascript/app.min.js"></script>-->
+
+<script src="angularjs/angular.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="angularjs/metisMenu.min.js"></script>
+<script src="js/sweet-alert.js"></script>
+<script src="js/toastr.min.js"></script>
+<script src="js/roleList.js"></script>
+<script src="js/paging.js"></script>
+<!--<script src="./javascript/demo.dashboard.js"></script>-->
+<script type="text/javascript">
+    xh.load();
+    $(document).ready(function() {
+        $('.splash').css('display', 'none');
+    });
+</script>
+</body>
+
+</html>

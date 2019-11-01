@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>核减流程</title>
+<meta name="keywords" content="keyword1,keyword2,keyword3">
+<meta name="description" content="this is my page">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="X-UA-Compatible" content="IE=9" />
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="-1">
+<script type="text/javascript"
+	src="../../Resources/js/xhbootstrap-css.js"></script>
+</head>
+<body ng-app="app" ng-controller="xhcontroller" class="fixed-iframe">
+	<!-- splash screen-->
+	<div class="splash">
+		<div class="color-line"></div>
+		<div class="splash-title">
+			<h1>系统正在努力加载中，请耐心等待</h1>
+			<div class="spinner">
+				<div class="rect1"></div>
+				<div class="rect2"></div>
+				<div class="rect3"></div>
+				<div class="rect4"></div>
+				<div class="rect5"></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- 中间内容体 -->
+	<div id="wrapper">
+		<div class="small-header transition animated fadeIn">
+			<div class="title-panel">
+				<div class="panel-body">
+					<div id="hbreadcrumb" class="pull-left">
+						<ol class="hbreadcrumb breadcrumb">
+							<li><span>当前位置：</span></li>
+							<li><span>运维管理</span></li>
+							<li><a href="../menu/menu_operations.html" target="_self"><span>服务监管</span></a></li>
+							<li class="active"><span>核减流程</span></li>
+						</ol>
+					</div>
+					<div class="btn-group pull-right">
+						<button class="btn btn-primary btn-sm"
+							onclick="javascript:history.back(-1);">
+							<i class="fa fa-mail-reply-all"></i>&nbsp;&nbsp;返回上一级
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="content animate-panel">
+			
+			<!-- row -->
+			<div class="row">
+				<div class="col-md-12">
+					<div class="hpanel">
+					<div class="panel-heading hbuilt">
+
+							<i class="fa fa-indent text-danger"></i>&nbsp;核减列表
+						</div>
+						<div class="panel-body">
+						<div class="btn-group" ng-model="loginUserRoleId">
+							
+									<button class="btn btn-success btn-sm" data-toggle="modal" data-target="#add"  ng-if="up.o_check_cut=='on'">
+										<i class="fa fa-plus-circle"></i>&nbsp;核减
+									</button>			
+									
+								</div>
+							<table id="tb-info" class="xh-table table-hover"
+								ng-model="loginUser">
+								<thead>
+									<tr class="tr-gray">
+										<th width="180px">联系单位</th>
+										<th>联系人</th>
+										<th>请求内容</th>
+										<!-- <th></th> -->
+										<th width="180px">申请时间</th>
+										<th>状态</th>
+										<th>操作详情</th>
+									</tr>
+								</thead>
+								<tbody ng-model="loginUserRoleId">
+									<tr ng-if="totals==0">
+										<td colspan="6" class="text-center">没有记录！</td>
+									</tr>
+									<tr ng-repeat="x in data">
+										<td>{{x.unit1}}</td>
+										<td>{{x.userUnit}}</td>
+										<td>基站核减</td>
+										<td>{{x.requestTime}}</td>
+										<td ng-if="x.checked==-2" class="td-danger">核减申请不通过</td>
+										<td ng-if="x.checked==0" class="td-warning">已发起核减申请</td>
+										<td ng-if="x.checked==1" class="td-warning">运维负责人核减审核通过</td>
+										<td ng-if="x.checked==2" class="td-warning">管理方核减审核通过</td>
+										<td ng-if="x.checked==3" class="td-warning">已向管理方提交相关报告</td>
+										<td ng-if="x.checked==4" class="td-success">核减完成</td>
+										<td style="text-align:center">
+
+										<a href="#"
+											ng-click="toProgress($index)"><i
+												class="fa fa-file-text-o text-success"> </i>&nbsp;申请资料及进度
+										</a>
+
+										<a ng-if="up.o_check_cut=='on' && x.checked==-2"
+											   href="#" ng-click="checkWin($index)"><i
+													class="fa fa-hand-o-down text-danger"></i>| &nbsp;重新发起核减申请</a>
+
+										<a ng-if="up.o_check_cut=='on' && x.checked==0"
+											   href="#" ng-click="checkWin($index)"><i
+													class="fa fa-hand-o-down text-danger"></i>| &nbsp;运维负责人审核核减申请</a>
+
+										<a ng-if="up.o_check_cut=='on' && x.checked==1"
+											href="#" ng-click="checkWin($index)"><i
+												class="fa fa-hand-o-down text-danger"></i>| &nbsp;管理方审核核减申请</a>
+												
+									    <a ng-if="up.o_check_cut=='on' && x.checked==2"
+											href="#" ng-click="checkWin($index)"><i
+												class="fa fa-hand-o-down text-danger"></i>| &nbsp;向管理方提交资料</a>
+										
+										<a ng-if="up.o_check_cut=='on' && x.checked==3"
+											href="#" ng-click="checkWin($index)"><i
+												class="fa fa-hand-o-down text-danger"></i>| &nbsp;结束核减</a>
+
+										<a ng-if="up.o_check_cut=='on'"
+											   href="#" ng-click="sheetShow($index)"><i
+													class="fa fa-hand-o-down text-danger"></i>| &nbsp;查看表格</a>
+
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							<div class="page">
+								<div class="page-info">
+									<span>每页显示</span><select id="page-limit" ng-change="refresh()"
+										ng-model="count">
+										<option value="15">15</option>
+										<option value="20">20</option>
+										<option value="30">30</option>
+										<option value="40">40</option>
+										<option value="50">50</option>
+									</select> <span>条,</span><span ng-model="index">显示{{start}}-</span><span
+										ng-model="lastIndex">{{lastIndex}}条,</span> <span
+										ng-model="totals">总计{{totals}}条</span>
+										<i class="fa fa-refresh page-refresh" title="刷新数据" ng-click="refresh()"></i>
+								</div>
+								<div class="page-paging"></div>
+							</div>
+							<!-- row -->
+							<div class="row">
+								<div class="col-md-12"></div>
+							</div>
+							<!-- row -->
+						</div>
+						<!-- panel-body--end -->
+						
+						<!-- hpanel --end-->
+					</div>
+					<!-- col-md-12--end -->
+				</div>
+				<!-- row/ -->
+			</div>
+		</div>
+	</div>
+	<!-- 中间内容体 /-->
+
+	<div class="scroll-top text-info animated fadeIn scroll-top-hide">
+		<i class="fa fa-chevron-circle-up fa-3x"></i>
+	</div>
+	<!-- 添加 -->
+	<div ng-include="'checkCut-add.html'"></div>
+	<!-- 进度-->
+	<div ng-include="'checkCut-progress.html'"></div>
+	<!-- 审核-->
+	<div ng-include="'checkCut-check.html'"></div>
+	<!-- 表格-->
+	<div ng-include="'checkCut-sheet.html'"></div>
+	<script type="text/javascript"
+		src="../../Resources/js/xhbootstrap-js.js"></script>
+	<script type="text/javascript"
+		src="../../lib/metisMenu/dist/metisMenu.min.js"></script>
+	<script type="text/javascript"
+		src="../../Resources/js/ajaxfileupload.js"></script>
+	<script type="text/javascript" src="../../Controllers/business/checkCut.js"></script>
+	<script type="text/javascript"
+		src="../../lib/layer-master/src/layer.js"></script>
+	<script type="text/javascript">
+		xh.load();
+	</script>
+</body>
+</html>

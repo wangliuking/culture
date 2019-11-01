@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="eureka-server" />
+        <module name="gateway" />
+        <module name="jdk8Test" />
+        <module name="service-auth" />
+        <module name="service-cat" />
+        <module name="service-connection" />
+        <module name="service-etcr" />
+        <module name="service-hc" />
+        <module name="service-lightning" />
+        <module name="service-MQ" />
+        <module name="service-rsws" />
+        <module name="service-spd" />
+        <module name="service-static" />
+        <module name="service-stray" />
+        <module name="service-svt" />
+        <module name="service-total" />
+        <module name="wechat" />
+      </profile>
+    </annotationProcessing>
+  </component>
+</project>

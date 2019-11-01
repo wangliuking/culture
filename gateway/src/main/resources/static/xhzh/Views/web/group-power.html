@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>组权限分配</title>
+<meta name="keywords" content="keyword1,keyword2,keyword3">
+<meta name="description" content="this is my page">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="-1">
+<script type="text/javascript"
+	src="../../Resources/js/xhbootstrap-css.js"></script>
+<!--[if lte IE 9]>
+<script src="../../Resources/js/jquery-1.8.3.min.js"></script>
+<script src="../../Resources/js/respond.min.js"></script>
+<script src="../../Resources/js/html5shiv.js"></script>
+<![endif]-->
+</head>
+<body ng-app="app" ng-controller="power" class="fixed-iframe">
+	<!-- splash screen-->
+	<div class="splash">
+		<div class="splash-title">
+			<h1>系统正在努力加载中，请耐心等待</h1>
+			<div class="spinner">
+				<div class="rect1"></div>
+				<div class="rect2"></div>
+				<div class="rect3"></div>
+				<div class="rect4"></div>
+				<div class="rect5"></div>
+			</div>
+		</div>
+	</div>
+	<!-- 中间内容体 -->
+	<div id="wrapper">
+		<div class="small-header transition animated fadeIn">
+			<div class="title-panel">
+				<div class="panel-body">
+					<div id="hbreadcrumb" class="pull-left">
+						<ol class="hbreadcrumb breadcrumb">
+							<li><span>当前位置：</span></li>
+							<li><span>平台管理</span></li>
+							<li><a href="role.html" target="_self"><span>角色管理</span></a></li>
+							<li class="active"><span>权限分配</span></li>
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="content animate-panel">
+			<div class="alert alert-success">
+				<i class="fa fa-close text-white pull-right" id="alert-close"></i>
+				角色：{{user}} 权限分配
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="btn-group" style="padding-bottom:2px;">
+						<button class="btn btn-success btn-sm" id="selectAll">全选
+						</button>
+						<button class="btn btn-info btn-sm" id="selectNo">全不选
+						</button>
+						<button class="btn btn-danger btn-sm" id="selectOther">反选
+						</button>
+						<button class="btn btn-warning btn-sm" ng-click="save()">保存权限</button>
+					</div>
+				</div>
+			</div>
+			<!-- <div class="row">
+				<div class="col-md-12">
+					<div class="form-group col-md-1">
+
+						<input id="selectAll" class="magic-checkbox" type="checkbox"
+							name="selectAll" value="1"> <label for="selectAll"><span>全选</span></label>
+					</div>
+					<div class="form-group col-md-1">
+
+						<input id="selectOther" class="magic-checkbox" type="checkbox"
+							name="selectOther" value="1"> <label for="selectOther"><span>反选</span></label>
+					</div>
+				</div>
+			</div> -->
+			<form action="#" id="form" onSubmit="return false">
+				<div class="row" ng-show="false">
+					<input type="text" name="roleId" value="" ng-model="roleId" />
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="hpanel">
+							<div class="panel-heading hbuilt">
+								<!-- <div class="panel-tools">
+									<a class="showhide"><i class="fa fa-chevron-up"></i></a> <a
+										class="closebox"><i class="fa fa-times"></i></a>
+								</div> -->
+								运维管理模块权限
+							</div>
+							<div class="panel-body">
+								<div class="form-group col-md-3">
+									<div class="list-group-item">
+										<div class="pull-right">
+											<input id="r_order" class="toggle-switch"
+												type="checkbox" ng-checked="data.r_order=='on'"
+												name="r_order"> <label for="r_order"></label>
+										</div>
+										派单
+									</div>
+								</div>
+								<!-- col-md-3 -->
+								<div class="form-group col-md-3">
+									<div class="list-group-item">
+										<div class="pull-right">
+											<input id="recv_work_contact" class="toggle-switch"
+												type="checkbox" ng-checked="data.recv_work_contact=='on'"
+												name="recv_work_contact"> <label for="recv_work_contact"></label>
+										</div>
+										接收工作联系单
+									</div>
+								</div>
+								<!-- col-md-3 -->
+								<div class="form-group col-md-3">
+									<div class="list-group-item">
+										<div class="pull-right">
+											<input id="r_cut" class="toggle-switch"
+												type="checkbox" ng-checked="data.r_cut=='on'"
+												name="r_cut"> <label for="r_cut"></label>
+										</div>
+										发起核减
+									</div>
+								</div>
+										<!-- col-md-3 -->
+								<div class="form-group col-md-3">
+									<div class="list-group-item">
+										<div class="pull-right">
+											<input id="r_system_up" class="toggle-switch"
+												type="checkbox" ng-checked="data.r_system_up=='on'"
+												name="r_system_up"> <label for="r_system_up"></label>
+										</div>
+										系统升级
+									</div>
+								</div>
+								<!-- col-md-3 -->
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--  row----end -->
+				
+				<!-- row -->
+
+			</form>
+			
+		</div>
+	</div>
+	<!-- 中间内容体 /-->
+	<div class="scroll-top text-info animated fadeIn scroll-top-hide">
+		<i class="fa fa-chevron-circle-up fa-3x"></i>
+	</div>
+	<script type="text/javascript"
+		src="../../Resources/js/xhbootstrap-js.js"></script>
+	<script type="text/javascript"
+		src="../../Controllers/web/group-power.js"></script>
+	<script type="text/javascript">
+		xh.load();
+	</script>
+</body>
+</html>

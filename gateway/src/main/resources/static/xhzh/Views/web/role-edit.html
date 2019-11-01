@@ -1,0 +1,98 @@
+<!--添加用户-->
+<div class="modal fade" id="edit" tabindex="-1" role="dialog"
+	aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header ">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-hidden="true">&times;</button>
+				<small class="font-bold">修改角色</small>
+			</div>
+			<div class="modal-body pad-0" style="margin:2px;padding:2px;">
+				<form  action="#" id="editForm" onSubmit="return false">
+				<div class="row" ng-show="type==0">
+						<div class="col-md-6">
+							<div class="form-group col-md-12">
+								<label>角色类型</label>
+								<div>
+									<select name="roleType" class="form-control" ng-model="editData.roleType">
+									    <option value="0">超级管理员</option>
+									    <option value="1">主管部门</option>
+									    <option value="2">管理部门</option>
+										<option value="3" selected="selected">800M运维</option>
+										<option value="4">公安交管普通用户</option>
+										<option value="5">运营商（电信、移动、铁塔)</option>
+										<option value="6">其他用户</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+					    <div class="col-md-6">
+							<div class="form-group col-md-12">
+								<label>角色ID</label>&nbsp;<span class="text-danger">[*]</span> 
+								<input type="text" value="" class="form-control" name="roleId"
+									required="required" readonly="readonly" hidden="hidden" ng-model="editData.roleId">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group col-md-12">
+								<label>角色名称</label>&nbsp;<span class="text-danger">[*]</span> 
+								<input type="text" value="" class="form-control" name="role"
+									required="required" ng-model="editData.role">
+							</div>
+						</div>
+						<div class="col-md-6" ng-show="false">
+							<div class="form-group col-md-12">
+								<label>parentId</label>&nbsp;<span class="text-danger">[*]</span> 
+								<input type="text" value="" class="form-control" name="parentId"
+									required="required" ng-model="editData.parentId">
+							</div>
+						</div>
+						
+					</div>
+					
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-danger btn-sm"
+					data-dismiss="modal">
+					<i class="fa fa-remove"></i>&nbsp;关闭
+				</button>
+				<button type="button" ng-disabled="form.$invalid" class="btn btn-success btn-sm" id="save_btn">
+					<i class="fa fa-plus"></i>&nbsp;保存
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	$("#save_btn").click(function() {
+		$('#editForm').submit();
+	});
+	var faIcon = {
+		valid : 'fa fa-check-circle fa-lg text-success',
+		invalid : 'fa fa-times-circle fa-lg',
+		validating : 'fa fa-refresh'
+	};
+	$('#editForm').bootstrapValidator({
+		excluded : [ ':disabled' ],
+		/* feedbackIcons: faIcon, */
+		fields : {
+	       role : {
+		      validators : {
+			      notEmpty : {
+				    message : '角色不能为空'
+			}
+		}
+	}
+	
+
+		}
+	}).on('success.form.bv', function(e, data) {
+		e.preventDefault();
+		xh.update();
+	});
+</script>
+<!-- 编辑用户---end -->

@@ -1,0 +1,12 @@
+run/controller/ScheduledService.class
+run/feign/FeignConf.class
+run/mapper/TotalMapper.class
+run/controller/TotalController.class
+run/bean/Site.class
+run/controller/FeignForStructure.class
+run/controller/MyApplicationRunner.class
+run/SecurityConfiguration.class
+run/controller/AsyncConfig.class
+run/TotalApplication.class
+run/service/TotalService.class
+run/bean/RTU.class

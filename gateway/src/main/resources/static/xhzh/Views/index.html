@@ -1,0 +1,253 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="-1">
+<title>综合应用与管理平台</title>
+<link rel="stylesheet" href="../lib/metisMenu/dist/metisMenu.min.css" />
+<link rel="stylesheet" type="text/css"
+	href="../lib/bootstrap-3.3.6/css/bootstrap.min.css">
+<link href="../Resources/css/xh.min.css" rel="stylesheet" type="text/css" />
+<!-- <link rel="stylesheet" href= "http://10.190.230.168:2560/arcgis_js_api/library/3.15/3.15/dijit/themes/claro/claro.css"> -->
+<script type="text/javascript"
+	src="../Resources/js/xhbootstrap-css.js"></script>
+<link rel="stylesheet"
+	href="http://125.70.9.194:801/3.15/esri/css/esri.css">
+<style type="text/css">
+html,body {	margin: 0;
+	height: 100%;
+}
+
+#myModal {
+	z-index: 9999;
+}
+
+.modal-backdrop {
+	z-index: -1;
+}
+
+.esriLayerList {
+	height: auto;
+	width: 200px !important;
+	position: fixed;
+	right: 0%;
+	bottom: 0%;
+	z-index: 1;
+	border-radius: 4px;
+}
+
+#test ul li {
+	background: rgba(0, 0, 0, 0.8);
+	color: white;
+}
+#esri_dijit_OverviewMap_0-map_gc{
+	margin-top:20px!important;
+}
+</style>
+</head>
+
+<body class="tundra" ng-app="app" ng-controller="map"
+	class="fixed-navbar">
+	<!-- 头部文件 -->
+	<div ng-include="'index-top.html'"></div>
+
+	<!-- <div id="head" data-dojo-props="region:'top'">
+      <button data-dojo-type="dijit/form/Button">Ellipse</button>
+    </div> -->
+	<div id="mapDiv" style="height:100%;"></div>
+	<!-- 模态框（Modal） start-->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<div class="message_move">当前基站信息</div>
+				</div>
+				<div class="modal-body">
+					<ul id="myTab" class="nav nav-tabs">
+						<li class="active"><a href="#manage" data-toggle="tab">
+								基本</a></li>
+						<li><a href="#param" data-toggle="tab">参数</a></li>
+						<li><a href="#moveController" data-toggle="tab">动环</a></li>
+						<li><a href="#movie" data-toggle="tab">视频</a></li>
+					</ul>
+					<div class="tab-content">
+						<div class="tab-pane fade in active" id="manage">
+							<div>
+								<table width="100%" border="0" class="userCon_2">
+									<tr>
+										<th width="40%">基站ID：</th>
+										<td width="60%"><input value="" type="text" name="bsId"
+											class="form-control" style="border-radius:3px; width:220px;"
+											id="bsId" required="" aria-required="true" disabled></td>
+									</tr>
+									<tr>
+										<th>基站名称：</th>
+										<td><input value="" type="text" name="bsName"
+											class="form-control" style="border-radius:3px; width:220px;"
+											id="bsName" required="" aria-required="true" disabled></td>
+									</tr>
+									<tr>
+										<th>基站纬度：</th>
+										<td><input value="" type="text" name="lat"
+											class="form-control" style="border-radius:3px; width:220px;"
+											id="lat" required="" aria-required="true" disabled /></td>
+									</tr>
+									<tr>
+										<th>基站经度：</th>
+										<td><input value="" type="text" name="lng"
+											class="form-control" style="border-radius:3px; width:220px;"
+											id="lng" required="" aria-required="true" disabled /></td>
+									</tr>
+									<tr>
+										<th>基站地址：</th>
+										<td><input value="" type="text" name="address"
+											class="form-control" style="border-radius:3px; width:220px;"
+											id="address" required="" aria-required="true" disabled /></td>
+									</tr>
+									<tr>
+										<th>基站IP：</th>
+										<td><input value="" type="text" name="ip"
+											class="form-control" style="border-radius:3px; width:220px;"
+											id="ip" required="" aria-required="true" disabled /></td>
+									</tr>
+									<tr>
+										<th>联系人和电话：</th>
+										<td><input value="" type="text" name="contact"
+											class="form-control" style="border-radius:3px; width:220px;"
+											id="contact" required="" aria-required="true" disabled />
+									</tr>
+								</table>
+							</div>
+						</div>
+						<div class="tab-pane fade" id="param">
+							<div>
+								<table width="100%" border="0" class="userCon_2">
+									<trheight:"10%">
+										<th width="40%">载波数：</th>
+										<td width="60%"><input type="text" name="chnumber"
+											class="form-control" style="border-radius:3px; width:220px;"
+											id="chnumber" value="" required="" aria-required="true"
+											disabled></td>
+										</tr>
+										<tr>
+											<th>gps天线数：</th>
+											<td><input type="text" name="gpsLineNum"
+												class="form-control" style="border-radius:3px; width:220px;"
+												id="gpsLineNum" value="" required="" aria-required="true"
+												disabled></td>
+										</tr>
+
+										<tr>
+											<th>额定功率：</th>
+											<td><input type="text" name="power" class="form-control"
+												style="border-radius:3px; width:220px;" id="power" value=""
+												required="" aria-required="true" disabled /></td>
+										</tr>
+										<tr>
+											<th>运营商：</th>
+											<td><input type="text" name="carrier"
+												class="form-control" style="border-radius:3px; width:220px;"
+												id="carrier" value="" required="" aria-required="true"
+												disabled /></td>
+										</tr>
+										<tr>
+											<th>机房海拔：</th>
+											<td><input type="text" name="height"
+												class="form-control" style="border-radius:3px; width:220px;"
+												id="height" value="" required="" aria-required="true"
+												disabled /></td>
+										</tr>
+										<tr>
+											<th>天线高度：</th>
+											<td><input type="text" name="lineHeight"
+												class="form-control" style="border-radius:3px; width:220px;"
+												id="lineHeight" value="" required="" aria-required="true"
+												disabled /></td>
+										</tr>
+										<tr>
+											<th>状态：</th>
+											<td><input type="text" name="status"
+												class="form-control" style="border-radius:3px; width:220px;"
+												id="status" value="" required="" aria-required="true"
+												disabled /></td>
+										</tr>
+								</table>
+							</div>
+						</div>
+						<div class="tab-pane fade" id="moveController">
+							<div id="" style="height:60px;width:568px;">
+								<table width="100%" border="0">
+									<tr border="0">
+										<th width="10%" border="0">漏水：</th>
+										<td width="10%" border="0"><input id="temp_0" value=""
+											style="width:100%;" disabled /></td>
+										<th width="10%" border="0">门磁：</th>
+										<td width="10%" border="0"><input id="temp_1" value=""
+											style="width:100%;" disabled /></td>
+										<th width="10%" border="0">消防：</th>
+										<td width="10%" border="0"><input id="temp_2" value=""
+											style="width:100%;" disabled /></td>
+										<th width="10%" border="0">烟感：</th>
+										<td width="10%" border="0"><input id="temp_3" value=""
+											style="width:100%;" disabled /></td>
+									</tr>
+								</table>
+							</div>
+							<div id="" style="height:260px;width:568px;">
+								<div id="temperature"
+									style="height:260px;width:283px;float:left;"></div>
+								<div id="humidity" style="height:260px;width:283px;float:right;"></div>
+							</div>
+							<div id="Current_voltage" style="height:180px;width:568px;"></div>
+						</div>
+						<div class="tab-pane fade" id="movie">
+							<video src="movie.ogg" controls="controls"></video>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default btn-sm"
+						data-dismiss="modal">关闭</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal -->
+	</div>
+	<!-- 模态框（Modal）end -->
+
+	<script>
+		var dojoConfig = {
+			parseOnLoad : true,
+			packages : [ {
+				"name" : "src",
+				"location" : location.pathname.replace(/\/[^/]+$/, '')
+			} ]
+		};
+	</script>
+
+   	<script type="text/javascript"
+		src="../Resources/js/xhbootstrap-js.js"></script>
+	<script src="../lib/metisMenu/dist/metisMenu.min.js"></script>
+	<script type="text/javascript" src="echarts.source.js"></script>
+	<script type="text/javascript"
+		src="../lib/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+	<script src="http://125.70.9.194:801/3.15/init.js"></script>
+	<script type="text/javascript" src="../Resources/js/mapInit.js"></script>
+	<!-- highcharts -->
+	<script type="text/javascript" src="../lib/highcharts/highcharts.js"></script>
+	<script type="text/javascript" src="../lib/highcharts/highcharts-more.js"></script>
+	<script type="text/javascript"
+		src="../lib/highcharts/modules/exporting.js"></script>
+	<script type="text/javascript"
+		src="../lib/highcharts/themes/grid-light.js"></script>
+	<script type="text/javascript" src="../Resources/js/HighCharts.js"></script>
+
+</body>
+
+</html>

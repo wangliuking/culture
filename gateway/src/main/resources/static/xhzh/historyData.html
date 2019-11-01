@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <title>信虹智慧服务平台</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description"/>
+    <meta content="Coderthemes" name="author"/>
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="./favicon.ico">
+    <!-- third party css -->
+    <!--<link href="./css/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />-->
+    <!-- third party css end -->
+    <!-- App css -->
+    <!-- build:css -->
+    <link href="./css/app.min.css" rel="stylesheet" type="text/css"/>
+    <link href="./css/sweet-alert.css" rel="stylesheet" type="text/css"/>
+    <link href="./css/toastr.min.css" rel="stylesheet" type="text/css"/>
+    <style>
+        /*下拉菜单样式*/
+        .selectForArea {
+            padding: .45rem .9rem;
+            font-size: .875rem;
+            line-height: 1.5;
+            color: #6c757d;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid black;
+            border-radius: 8px;
+        }
+        .selectForPage{
+            padding: .20rem .9rem;
+            font-size: .875rem;
+            line-height: 1.5;
+            color: #6c757d;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid black;
+            border-radius: 8px;
+        }
+        input{
+            border: 1px solid black!important;
+        }
+    </style>
+</head>
+<body ng-app="app" ng-controller="xhcontroller" style="padding-right:0!important;background-color: #d8d4d4;color:black;">
+<!-- splash screen-->
+<div class="splash" style="position: fixed;z-index: 2001;background: white;color: gray;top: 0;bottom: 0;left: 0;right: 0;">
+    <div class="splash-title" style="text-align: center;max-width: 500px;margin: 15% auto;padding: 20px;">
+        <h1 style="font-size: 26px;color: #004894;">数据加载中，请耐心等待</h1>
+        <img src="xhIcon/loading.gif" width="100" height="100"/>
+    </div>
+</div>
+<!-- Begin page -->
+<div class="wrapper">
+    <div class="content-page" style="padding: 5px 5px 5px 0px;">
+        <!-- Start Content-->
+        <div class="container-fluid">
+
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box">
+                        <div class="page-title-left">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item">当前位置</li>
+                                <li class="breadcrumb-item"><a href="Views/menu/menu_search.html" target="_self">数据查询</a></li>
+                                <li class="breadcrumb-item"><a style="color: #0caff4">历史数据</a></li>
+                            </ol>
+                        </div>
+                        <div>
+                            <form id="searchForm" class="form-inline">
+                                <select class="selectForArea" id="siteName" style="width:15%;">>
+                                    <option ng-repeat="x in siteNames" ng-value="x.site_id" ng-selected="goSiteId == x.site_id">{{x.site_name}}</option>
+                                </select>
+                                <select class="selectForArea" id="rtuName" style="width:12%;">
+                                    <option value="">RTU-ID</option>
+                                    <option ng-repeat="x in rtuNames" ng-value="x.rtu_id">{{x.rtu_name}}</option>
+                                </select>
+                                <select class="selectForArea" id="deviceName" style="width:12%;">
+                                    <option ng-repeat="x in deviceNames" ng-value="x.id">{{x.name}}</option>
+                                </select>
+
+                                <input type="text" class="form-control" id="location" placeholder="设备安装位置"
+                                       style="width:12%;">
+                                <input type="text" class="form-control" id="deviceId" placeholder="设备ID"
+                                       style="width:12%;">
+                                <input type="text" style="width:12%;" class="form-control" id="startTime" autocomplete="off"
+                                       onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',skin:'twoer'})"
+                                       placeholder="起始时间">
+                                <input type="text" style="width:12%;" class="form-control" id="endTime" autocomplete="off"
+                                       onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',skin:'twoer'})"
+                                       placeholder="结束时间">
+                                <button type="button" class="btn btn-success btn-rounded" ng-click="refresh()">查询</button>
+                                <button type="button" class="btn btn-info btn-rounded" ng-click="test()">导出</button>
+                            </form>
+
+                        </div>
+
+                        <div class="row" style="margin-top: 20px;">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+
+                                        <!--<h4 class="header-title">设备列表</h4>-->
+                                        <!--<p class="text-muted font-14 mb-4">
+                                            The Buttons extension for DataTables provides a common set of options, API methods and
+                                            styling to display buttons on a page
+                                            that will interact with a DataTable. The core library provides the based framework upon
+                                            which plug-ins can built.
+                                        </p>-->
+
+                                        <div class="spdShow" ng-if="changeDeviceTypeShow == 1">
+                                            <table class="table table-striped dt-responsive nowrap">
+                                                <thead>
+                                                <tr style="text-align: center;">
+                                                    <th>行政区域</th>
+                                                    <th>机构名称</th>
+                                                    <th>站点名称</th>
+                                                    <th>RTU-ID</th>
+                                                    <th>SPD路数</th>
+                                                    <th>型号</th>
+                                                    <th>名称</th>
+                                                    <th>安装位置</th>
+                                                    <th>状态</th>
+                                                    <th>记录时间</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody style="font-size: 13px;">
+                                                <tr style="text-align: center;" ng-repeat="x in data">
+                                                    <td>{{x.site_province}} {{x.site_city}} {{x.site_county}}</td>
+                                                    <td>{{x.structureName}}</td>
+                                                    <td>{{x.site_name}}</td>
+                                                    <td>{{x.rtu_id}}</td>
+                                                    <td>{{x.spd_number}}</td>
+                                                    <td>{{x.spd_model}}</td>
+                                                    <td>{{x.spd_name}}</td>
+                                                    <td>{{x.spd_location}}</td>
+                                                    <td style="color: green;" ng-if="x.spd_state == 0">正常</td>
+                                                    <td style="color: red;" ng-if="x.spd_state == 1">异常</td>
+                                                    <td>{{x.write_time | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                                                </tr>
+                                                </tbody>
+
+                                            </table>
+                                        </div>
+
+                                        <div class="etcrShow" ng-if="changeDeviceTypeShow == 2">
+                                            <table class="table table-striped dt-responsive nowrap">
+                                                <thead>
+                                                <tr style="text-align: center;">
+                                                    <th>行政区域</th>
+                                                    <th>机构名称</th>
+                                                    <th>站点名称</th>
+                                                    <th>RTU-ID</th>
+                                                    <th>串口号</th>
+                                                    <th>监测仪ID</th>
+                                                    <th>型号</th>
+                                                    <th>名称</th>
+                                                    <th>安装位置</th>
+                                                    <th>监测点</th>
+                                                    <th>记录值</th>
+                                                    <th>记录时间</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody style="font-size: 13px;">
+                                                <tr style="text-align: center;" ng-repeat="x in data">
+                                                    <td>{{x.site_province}} {{x.site_city}} {{x.site_county}}</td>
+                                                    <td>{{x.structureName}}</td>
+                                                    <td>{{x.site_name}}</td>
+                                                    <td>{{x.rtu_id}}</td>
+                                                    <td>{{x.rtu_channel}}</td>
+                                                    <td>{{x.rst_id}}</td>
+                                                    <td>{{x.rst_model}}</td>
+                                                    <td>{{x.rst_name}}</td>
+                                                    <td>{{x.rst_location}}</td>
+                                                    <td>{{x.relayno}}</td>
+                                                    <td ng-if="x.alarm == 0" style="color: green;">{{x.rst_value | changeValueTwo}}Ω</td>
+                                                    <td ng-if="x.alarm != 0" style="color: red;">{{x.rst_value | changeValueTwo}}Ω</td>
+                                                    <td>{{x.write_time | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                        <div class="lightningShow" ng-if="changeDeviceTypeShow == 3">
+                                            <table class="table table-striped dt-responsive nowrap">
+                                                <thead>
+                                                <tr style="text-align: center;">
+                                                    <th>行政区域</th>
+                                                    <th>机构名称</th>
+                                                    <th>站点名称</th>
+                                                    <th>RTU-ID</th>
+                                                    <th>串口号</th>
+                                                    <th>监测仪ID</th>
+                                                    <th>型号</th>
+                                                    <th>名称</th>
+                                                    <th>安装位置</th>
+                                                    <th>记录值</th>
+                                                    <th>记录时间</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody style="font-size: 13px;">
+                                                <tr style="text-align: center;" ng-repeat="x in data">
+                                                    <td>{{x.site_province}} {{x.site_city}} {{x.site_county}}</td>
+                                                    <td>{{x.structureName}}</td>
+                                                    <td>{{x.site_name}}</td>
+                                                    <td>{{x.rtu_id}}</td>
+                                                    <td>{{x.rtu_channel}}</td>
+                                                    <td>{{x.ltn_id}}</td>
+                                                    <td>{{x.ltn_model}}</td>
+                                                    <td>{{x.ltn_name}}</td>
+                                                    <td>{{x.ltn_location}}</td>
+                                                    <td ng-if="x.alarm == 0" style="color: green;">{{x.ltn_value | changeValueTwo}}kA</td>
+                                                    <td ng-if="x.alarm != 0" style="color: red;">{{x.ltn_value | changeValueTwo}}kA</td>
+                                                    <td>{{x.record_time | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                        <div class="staticShow" ng-if="changeDeviceTypeShow == 4">
+                                            <table class="table table-striped dt-responsive nowrap">
+                                                <thead>
+                                                <tr style="text-align: center;">
+                                                    <th>行政区域</th>
+                                                    <th>机构名称</th>
+                                                    <th>站点名称</th>
+                                                    <th>RTU-ID</th>
+                                                    <th>串口号</th>
+                                                    <th>监测仪ID</th>
+                                                    <th>型号</th>
+                                                    <th>名称</th>
+                                                    <th>安装位置</th>
+                                                    <th>记录值</th>
+                                                    <th>记录时间</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody style="font-size: 13px;">
+                                                <tr style="text-align: center;" ng-repeat="x in data">
+                                                    <td>{{x.site_province}} {{x.site_city}} {{x.site_county}}</td>
+                                                    <td>{{x.structureName}}</td>
+                                                    <td>{{x.site_name}}</td>
+                                                    <td>{{x.rtu_id}}</td>
+                                                    <td>{{x.rtu_channel}}</td>
+                                                    <td>{{x.staet_id}}</td>
+                                                    <td>{{x.staet_model}}</td>
+                                                    <td>{{x.staet_name}}</td>
+                                                    <td>{{x.staet_location}}</td>
+                                                    <td ng-if="x.alarm == 0" style="color: green;">{{x.staet_value/1000 | changeValueTwo}}kV</td>
+                                                    <td ng-if="x.alarm != 0" style="color: red;">{{x.staet_value/1000 | changeValueTwo}}kV</td>
+                                                    <td>{{x.write_time | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                        <div class="rswsShow" ng-if="changeDeviceTypeShow == 5">
+                                            <table class="table table-striped dt-responsive nowrap">
+                                                <thead>
+                                                <tr style="text-align: center;">
+                                                    <th>行政区域</th>
+                                                    <th>机构名称</th>
+                                                    <th>站点名称</th>
+                                                    <th>RTU-ID</th>
+                                                    <th>串口号</th>
+                                                    <th>监测仪ID</th>
+                                                    <th>型号</th>
+                                                    <th>名称</th>
+                                                    <th>安装位置</th>
+                                                    <th>温度记录值</th>
+                                                    <th>湿度记录值</th>
+                                                    <th>记录时间</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody style="font-size: 13px;">
+                                                <tr style="text-align: center;" ng-repeat="x in data">
+                                                    <td>{{x.site_province}} {{x.site_city}} {{x.site_county}}</td>
+                                                    <td>{{x.structureName}}</td>
+                                                    <td>{{x.site_name}}</td>
+                                                    <td>{{x.rtu_id}}</td>
+                                                    <td>{{x.rtu_channel}}</td>
+                                                    <td>{{x.hmt_id}}</td>
+                                                    <td>{{x.hmt_model}}</td>
+                                                    <td>{{x.hmt_name}}</td>
+                                                    <td>{{x.hmt_location}}</td>
+                                                    <td ng-if="x.tempAlarm == 0" style="color: green;">{{x.hmt_temp | changeValueTwo}}℃</td>
+                                                    <td ng-if="x.tempAlarm != 0" style="color: red;">{{x.hmt_temp | changeValueTwo}}℃</td>
+                                                    <td ng-if="x.humiAlarm == 0" style="color: green;">{{x.hmt_hm | changeValueTwo}}%</td>
+                                                    <td ng-if="x.humiAlarm != 0" style="color: red;">{{x.hmt_hm | changeValueTwo}}%</td>
+                                                    <td>{{x.write_time | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                        <div class="svtShow" ng-if="changeDeviceTypeShow == 6">
+                                            <table class="table table-striped dt-responsive nowrap">
+                                                <thead>
+                                                <tr style="text-align: center;">
+                                                    <th>行政区域</th>
+                                                    <th>机构名称</th>
+                                                    <th>站点名称</th>
+                                                    <th>RTU-ID</th>
+                                                    <th>串口号</th>
+                                                    <th>监测仪ID</th>
+                                                    <th>型号</th>
+                                                    <th>名称</th>
+                                                    <th>安装位置</th>
+                                                    <th>顺线倾斜角</th>
+                                                    <th>横向倾斜角</th>
+                                                    <th>顺线倾斜度</th>
+                                                    <th>横向倾斜度</th>
+                                                    <th>综合倾斜度</th>
+                                                    <th>记录时间</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody style="font-size: 13px;">
+                                                <tr style="text-align: center;" ng-repeat="x in data">
+                                                    <td>{{x.site_province}} {{x.site_city}} {{x.site_county}}</td>
+                                                    <td>{{x.structureName}}</td>
+                                                    <td>{{x.site_name}}</td>
+                                                    <td>{{x.rtu_id}}</td>
+                                                    <td>{{x.rtu_channel}}</td>
+                                                    <td>{{x.tilt_id}}</td>
+                                                    <td>{{x.tilt_model}}</td>
+                                                    <td>{{x.tilt_name}}</td>
+                                                    <td>{{x.tilt_location}}</td>
+                                                    <td ng-if="x.alarm == 0" style="color: green;">{{x.tilt_value1}}°</td>
+                                                    <td ng-if="x.alarm == 1" style="color: red;">{{x.tilt_value1}}°</td>
+                                                    <td ng-if="x.alarm == 0" style="color: green;">{{x.tilt_value2}}°</td>
+                                                    <td ng-if="x.alarm == 1" style="color: red;">{{x.tilt_value2}}°</td>
+                                                    <td ng-if="x.alarm == 0" style="color: green;">{{x.tilt_gx | changeValueTwo}}</td>
+                                                    <td ng-if="x.alarm == 1" style="color: red;">{{x.tilt_gx | changeValueTwo}}</td>
+                                                    <td ng-if="x.alarm == 0" style="color: green;">{{x.tilt_gy | changeValueTwo}}</td>
+                                                    <td ng-if="x.alarm == 1" style="color: red;">{{x.tilt_gy | changeValueTwo}}</td>
+                                                    <td ng-if="x.alarm == 0" style="color: green;">{{x.tilt_gs | changeValueTwo}}</td>
+                                                    <td ng-if="x.alarm == 1" style="color: red;">{{x.tilt_gs | changeValueTwo}}</td>
+                                                    <td>{{x.write_time | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                        <div class="hcShow" ng-if="changeDeviceTypeShow == 7">
+                                            <table class="table table-striped dt-responsive nowrap">
+                                                <thead>
+                                                <tr style="text-align: center;">
+                                                    <th>行政区域</th>
+                                                    <th>机构名称</th>
+                                                    <th>站点名称</th>
+                                                    <th>RTU-ID</th>
+                                                    <th>串口号</th>
+                                                    <th>监测仪ID</th>
+                                                    <th>型号</th>
+                                                    <th>名称</th>
+                                                    <th>安装位置</th>
+                                                    <th>零地电压</th>
+                                                    <th>零线电流</th>
+                                                    <th>剩余电流</th>
+                                                    <th>线缆温度</th>
+                                                    <th>记录时间</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody style="font-size: 13px;">
+                                                <tr style="text-align: center;" ng-repeat="x in data">
+                                                    <td>{{x.site_province}} {{x.site_city}} {{x.site_county}}</td>
+                                                    <td>{{x.structureName}}</td>
+                                                    <td>{{x.site_name}}</td>
+                                                    <td>{{x.rtu_id}}</td>
+                                                    <td>{{x.rtu_channel}}</td>
+                                                    <td>{{x.es_id}}</td>
+                                                    <td>{{x.es_model}}</td>
+                                                    <td>{{x.es_name}}</td>
+                                                    <td>{{x.es_location}}</td>
+                                                    <td ng-if="x.alarm == 0" style="color: green;">{{x.es_vol_value | changeValueTwo}}V</td>
+                                                    <td ng-if="x.alarm == 1" style="color: red;">{{x.es_vol_value | changeValueTwo}}V</td>
+                                                    <td ng-if="x.alarm == 0" style="color: green;">{{x.es_cur_value | changeValueTwo}}A</td>
+                                                    <td ng-if="x.alarm == 1" style="color: red;">{{x.es_cur_value | changeValueTwo}}A</td>
+                                                    <td ng-if="x.alarm == 0" style="color: green;">{{x.es_i_value | changeValueTwo}}mA</td>
+                                                    <td ng-if="x.alarm == 1" style="color: red;">{{x.es_i_value | changeValueTwo}}mA</td>
+                                                    <td ng-if="x.alarm == 0" style="color: green;">{{x.es_temp_value | changeValueTwo}}℃</td>
+                                                    <td ng-if="x.alarm == 1" style="color: red;">{{x.es_temp_value | changeValueTwo}}℃</td>
+                                                    <td>{{x.write_time | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                        <div class="strayShow" ng-if="changeDeviceTypeShow == 8">
+                                            <table class="table table-striped dt-responsive nowrap">
+                                                <thead>
+                                                <tr style="text-align: center;">
+                                                    <th>行政区域</th>
+                                                    <th>机构名称</th>
+                                                    <th>站点名称</th>
+                                                    <th>RTU-ID</th>
+                                                    <th>串口号</th>
+                                                    <th>监测仪ID</th>
+                                                    <th>型号</th>
+                                                    <th>名称</th>
+                                                    <th>端口号</th>
+                                                    <th>传感器名称</th>
+                                                    <th>安装位置</th>
+                                                    <th>记录值</th>
+                                                    <th>记录时间</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody style="font-size: 13px;">
+                                                <tr style="text-align: center;" ng-repeat="x in data">
+                                                    <td>{{x.site_province}} {{x.site_city}} {{x.site_county}}</td>
+                                                    <td>{{x.structureName}}</td>
+                                                    <td>{{x.site_name}}</td>
+                                                    <td>{{x.rtu_id}}</td>
+                                                    <td>{{x.rtu_channel}}</td>
+                                                    <td>{{x.stret_id}}</td>
+                                                    <td>{{x.stret_model}}</td>
+                                                    <td>{{x.stret_name}}</td>
+                                                    <td>{{x.portId}}</td>
+                                                    <td>{{x.portName}}</td>
+                                                    <td>{{x.stret_location}}</td>
+                                                    <td ng-if="x.alarm == 0" style="color: green;">{{x.stret_value | changeValueTwo}}<span ng-if="x.portId == 1 || x.portId == 2">V</span></span><span ng-if="x.portId == 3 || x.portId == 4">A</span></span></td>
+                                                    <td ng-if="x.alarm == 1" style="color: red;">{{x.stret_value | changeValueTwo}}<span ng-if="x.portId == 1 || x.portId == 2">V</span></span><span ng-if="x.portId == 3 || x.portId == 4">A</span></span></td>
+                                                    <td>{{x.write_time | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                        <div class="catShow" ng-if="changeDeviceTypeShow == 9">
+                                            <table class="table table-striped dt-responsive nowrap">
+                                                <thead>
+                                                <tr style="text-align: center;">
+                                                    <th>行政区域</th>
+                                                    <th>机构名称</th>
+                                                    <th>站点名称</th>
+                                                    <th>RTU-ID</th>
+                                                    <th>串口号</th>
+                                                    <th>监测仪ID</th>
+                                                    <th>型号</th>
+                                                    <th>名称</th>
+                                                    <th>安装位置</th>
+                                                    <th>记录值</th>
+                                                    <th>记录时间</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody style="font-size: 13px;">
+                                                <tr style="text-align: center;" ng-repeat="x in data">
+                                                    <td>{{x.site_province}} {{x.site_city}} {{x.site_county}}</td>
+                                                    <td>{{x.structureName}}</td>
+                                                    <td>{{x.site_name}}</td>
+                                                    <td>{{x.rtu_id}}</td>
+                                                    <td>{{x.rtu_channel}}</td>
+                                                    <td>{{x.cathode_id}}</td>
+                                                    <td>{{x.cathode_model}}</td>
+                                                    <td>{{x.cathode_name}}</td>
+                                                    <td>{{x.cathode_location}}</td>
+                                                    <td ng-if="x.alarm == 0" style="color: green;">{{x.cathode_value | changeValueThree}}V</td>
+                                                    <td ng-if="x.alarm == 1" style="color: red;">{{x.cathode_value | changeValueThree}}V</td>
+                                                    <td>{{x.write_time | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div> <!-- end card body-->
+                                </div> <!-- end card -->
+                            </div><!-- end col-->
+                        </div>
+                        <!-- end row-->
+
+                </div>
+            </div>
+        </div>
+
+        <!-- end page title -->
+
+            <!-- end row-->
+            <div class="page" style="float: left;margin-top: 36px;">
+                <div class="page-info">
+                    <span>每页显示</span><select id="page-limit" ng-change="refresh()" class="selectForPage"
+                                             ng-model="count">
+                    <option value="15">15</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                    <option value="40">40</option>
+                    <option value="50">50</option>
+                </select> <span>条,</span><span ng-model="index">显示{{start}}-</span><span
+                        ng-model="lastIndex">{{lastIndex}}条,</span> <span
+                        ng-model="totals">总计{{totals}}条</span>
+                    <i class="fa fa-refresh page-refresh" title="刷新数据" ng-click="refresh()"></i>
+                </div>
+            </div>
+            <div style="float: right;margin-top: 30px;">
+                <div class="page-paging"></div>
+            </div>
+    </div> <!-- container -->
+</div>
+
+<!-- ============================================================== -->
+<!-- End Page content -->
+<!-- ============================================================== -->
+
+
+</div>
+<!-- END wrapper -->
+
+<!-- bundle -->
+<script src="./javascript/app.min.js"></script>
+<script src="angularjs/jquery-3.2.1.min.js"></script>
+<script src="angularjs/angular.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="angularjs/metisMenu.min.js"></script>
+<script src="js/sweet-alert.js"></script>
+<script src="js/toastr.min.js"></script>
+<script src="js/historyData.js"></script>
+<script src="js/paging.js"></script>
+<script src="js/xh.js"></script>
+<script src="js/My97DatePicker/WdatePicker.js"></script>
+<!--<script src="./javascript/demo.dashboard.js"></script>-->
+<script type="text/javascript">
+    xh.load();
+    $(document).ready(function() {
+        $('.splash').css('display', 'none');
+    });
+</script>
+</body>
+
+</html>

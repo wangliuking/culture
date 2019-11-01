@@ -1,0 +1,16 @@
+run/service/WeChatService.class
+run/controller/ScheduledService.class
+run/feign/FeignConf.class
+run/controller/HttpsUtil.class
+run/entity/OutMsgEntity.class
+run/controller/FeignForStructure.class
+run/controller/MyX509TrustManager.class
+run/controller/MyApplicationRunner.class
+run/SecurityConfiguration.class
+run/controller/AsyncConfig.class
+run/controller/WeChatUtil.class
+run/controller/WeChatController.class
+run/mapper/WeChatMapper.class
+run/WeChatApplication.class
+run/controller/SecurityUtil.class
+run/entity/InMsgEntity.class

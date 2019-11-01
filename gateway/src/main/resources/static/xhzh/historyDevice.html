@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <title>信虹智慧服务平台</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description"/>
+    <meta content="Coderthemes" name="author"/>
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="./favicon.ico">
+    <!-- third party css -->
+    <!--<link href="./css/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />-->
+    <!-- third party css end -->
+    <!-- App css -->
+    <!-- build:css -->
+    <link href="./css/app.min.css" rel="stylesheet" type="text/css"/>
+    <link href="./css/sweet-alert.css" rel="stylesheet" type="text/css"/>
+    <link href="./css/toastr.min.css" rel="stylesheet" type="text/css"/>
+    <style>
+        /*下拉菜单样式*/
+        .selectForArea {
+            padding: .45rem .9rem;
+            font-size: .875rem;
+            line-height: 1.5;
+            color: #6c757d;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid black;
+            border-radius: 8px;
+        }
+        input{
+            border: 1px solid black!important;
+        }
+    </style>
+</head>
+<body ng-app="app" ng-controller="xhcontroller" style="padding-right:0!important;background-color: #d8d4d4;color:black;">
+<!-- splash screen-->
+<div class="splash" style="position: fixed;z-index: 2001;background: white;color: gray;top: 0;bottom: 0;left: 0;right: 0;">
+    <div class="splash-title" style="text-align: center;max-width: 500px;margin: 15% auto;padding: 20px;">
+        <h1 style="font-size: 26px;color: #004894;">数据加载中，请耐心等待</h1>
+        <img src="xhIcon/loading.gif" width="100" height="100"/>
+    </div>
+</div>
+<!-- Begin page -->
+<div class="wrapper">
+    <div class="content-page" style="padding: 5px 5px 5px 0px;">
+        <!-- Start Content-->
+        <div class="container-fluid">
+
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box">
+                        <div class="page-title-left">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item">当前位置</li>
+                                <li class="breadcrumb-item"><a href="Views/menu/menu_search.html" target="_self">数据查询</a></li>
+                                <li class="breadcrumb-item"><a style="color: #0caff4">历史图表</a></li>
+                            </ol>
+                        </div>
+                        <div>
+                            <form id="searchForm" class="form-inline">
+                                <select class="selectForArea" id="siteName" ng-model="x" ng-change="changeSiteName(x)" style="width:18%;">
+                                    <option value="">请选择站点</option>
+                                    <option ng-repeat="x in siteNames" ng-value="x.site_id" ng-selected="goSiteId == x.site_id">{{x.site_name}}</option>
+                                </select>
+                                <select class="selectForArea" id="rtuName" ng-model="y" ng-change="changeRtuName(y)" style="width:18%;">
+                                    <option value="">请选择RTU-ID</option>
+                                    <option ng-repeat="y in rtuNames" ng-value="y.rtu_id" >{{y.rtu_name}}</option>
+                                </select>
+                                <select class="selectForArea" id="deviceName" ng-model="z" ng-change="changeDeviceName(z)" style="width:18%;">
+                                    <option value="">请选择设备类型</option>
+                                    <option ng-repeat="z in deviceNames" ng-value="z.id">{{z.name}}</option>
+                                </select>
+                                <select class="selectForArea" id="deviceId" style="width:18%;">
+                                    <option value="">请选择设备ID</option>
+                                    <option ng-repeat="a in deviceIds" ng-value="a.id">{{a.id}}</option>
+                                </select>
+                                <!--<input type="text" class="form-control" id="deviceId" placeholder="请输入设备的ID"
+                                       style="width:12%;">-->
+                                <button type="button" class="btn btn-success btn-rounded" ng-click="refresh()">查询</button>
+                            </form>
+
+                        </div>
+
+                        <div class="row" style="margin-top: 20px;">
+                            <div class="col-12">
+                                <div id="deviceHistory" style="width:100%;height: 500px;"></div>
+                            </div>
+                        </div>
+                        <!-- end row-->
+
+                </div>
+            </div>
+        </div>
+
+        <!-- end page title -->
+    </div> <!-- container -->
+</div>
+
+<!-- ============================================================== -->
+<!-- End Page content -->
+<!-- ============================================================== -->
+
+
+</div>
+<!-- END wrapper -->
+
+<!-- bundle -->
+<script src="./javascript/app.min.js"></script>
+<script src="angularjs/jquery-3.2.1.min.js"></script>
+<script src="angularjs/angular.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/echarts.min.js"></script>
+<script src="js/macarons.js"></script>
+<script src="angularjs/metisMenu.min.js"></script>
+<script src="js/sweet-alert.js"></script>
+<script src="js/toastr.min.js"></script>
+<script src="js/historyDevice.js"></script>
+<script src="js/paging.js"></script>
+<!--<script src="js/xh.js"></script>-->
+<script src="js/My97DatePicker/WdatePicker.js"></script>
+<!--<script src="./javascript/demo.dashboard.js"></script>-->
+<script type="text/javascript">
+    xh.load();
+    $(document).ready(function() {
+        $('.splash').css('display', 'none');
+    });
+</script>
+</body>
+
+</html>

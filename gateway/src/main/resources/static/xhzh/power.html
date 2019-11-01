@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>用户权限分配</title>
+    <meta name="keywords" content="keyword1,keyword2,keyword3">
+    <meta name="description" content="this is my page">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Expires" content="-1">
+    <script type="text/javascript" src="Resources/js/xhbootstrap-css.js"></script>
+    <!--[if lte IE 9]>
+    <script src="Resources/js/jquery-1.8.3.min.js"></script>
+    <script src="Resources/js/respond.min.js"></script>
+    <script src="Resources/js/html5shiv.js"></script>
+    <![endif]-->
+    <style>
+        .content{
+            margin:0;
+        }
+    </style>
+</head>
+<body ng-app="app" ng-controller="power" class="fixed-iframe">
+<!-- splash screen-->
+<div class="splash" style="position: fixed;z-index: 2001;background: white;color: gray;top: 0;bottom: 0;left: 0;right: 0;">
+    <div class="splash-title" style="text-align: center;max-width: 500px;margin: 15% auto;padding: 20px;">
+        <h1 style="font-size: 26px;color: #004894;">数据加载中，请耐心等待</h1>
+        <img src="xhIcon/loading.gif" width="100" height="100"/>
+    </div>
+</div>
+<!-- 中间内容体 -->
+<div id="wrapper">
+    <div class="content animate-panel">
+        <div class="alert alert-info">
+            <i class="fa fa-close text-white pull-right" id="alert-close"></i>
+            角色： {{name}}
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="btn-group" style="padding-bottom:2px;">
+                    <button class="btn btn-success btn-sm" id="selectAll">全选
+                    </button>
+                    <button class="btn btn-info btn-sm" id="selectNo">全不选
+                    </button>
+                    <button class="btn btn-danger btn-sm" id="selectOther">反选
+                    </button>
+                    <button class="btn btn-warning btn-sm" ng-click="save()">保存</button>
+                </div>
+            </div>
+        </div>
+        <form action="#" id="form" onSubmit="return false">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="hpanel">
+                        <div class="panel-heading hbuilt">
+                            <!-- <div class="panel-tools">
+                                <a class="showhide"><i class="fa fa-chevron-up"></i></a> <a
+                                    class="closebox"><i class="fa fa-times"></i></a>
+                            </div> -->
+                            智能防护模块
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group col-md-3">
+                                <div class="list-group-item">
+                                    <div class="pull-right">
+                                        <input id="menu_protect" class="toggle-switch"
+                                               type="checkbox" ng-checked="data.menu_protect==1"
+                                               name="menu_protect"> <label for="menu_protect"></label>
+                                    </div>
+                                    主菜单
+                                </div>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <div class="list-group-item">
+                                    <div class="pull-right">
+                                        <input id="menu_protect_conf" class="toggle-switch"
+                                               type="checkbox" ng-checked="data.menu_protect_conf==1"
+                                               name="menu_protect_conf"> <label for="menu_protect_conf"></label>
+                                    </div>
+                                    现场配置(二级菜单)
+                                </div>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <div class="list-group-item">
+                                    <div class="pull-right">
+                                        <input id="menu_protect_search" class="toggle-switch"
+                                               type="checkbox" ng-checked="data.menu_protect_search==1"
+                                               name="menu_protect_search"> <label for="menu_protect_search"></label>
+                                    </div>
+                                    数据查询(二级菜单)
+                                </div>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <div class="list-group-item">
+                                    <div class="pull-right">
+                                        <input id="menu_protect_count" class="toggle-switch"
+                                               type="checkbox" ng-checked="data.menu_protect_count==1"
+                                               name="menu_protect_count"> <label for="menu_protect_count"></label>
+                                    </div>
+                                    数据统计(二级菜单)
+                                </div>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <div class="list-group-item">
+                                    <div class="pull-right">
+                                        <input id="menu_protect_alarm" class="toggle-switch"
+                                               type="checkbox" ng-checked="data.menu_protect_alarm==1"
+                                               name="menu_protect_alarm"> <label for="menu_protect_alarm"></label>
+                                    </div>
+                                    系统报警(二级菜单)
+                                </div>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <div class="list-group-item">
+                                    <div class="pull-right">
+                                        <input id="menu_protect_maintain" class="toggle-switch"
+                                               type="checkbox" ng-checked="data.menu_protect_maintain==1"
+                                               name="menu_protect_maintain"> <label for="menu_protect_maintain"></label>
+                                    </div>
+                                    设备维护记录(二级菜单)
+                                </div>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <div class="list-group-item">
+                                    <div class="pull-right">
+                                        <input id="menu_protect_conf_site" class="toggle-switch"
+                                               type="checkbox" ng-checked="data.menu_protect_conf_site==1"
+                                               name="menu_protect_conf_site"> <label for="menu_protect_conf_site"></label>
+                                    </div>
+                                    站点列表(三级菜单)
+                                </div>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <div class="list-group-item">
+                                    <div class="pull-right">
+                                        <input id="menu_protect_conf_rtu" class="toggle-switch"
+                                               type="checkbox" ng-checked="data.menu_protect_conf_rtu==1"
+                                               name="menu_protect_conf_rtu"> <label for="menu_protect_conf_rtu"></label>
+                                    </div>
+                                    RTU列表(三级菜单)
+                                </div>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <div class="list-group-item">
+                                    <div class="pull-right">
+                                        <input id="menu_protect_conf_device" class="toggle-switch"
+                                               type="checkbox" ng-checked="data.menu_protect_conf_device==1"
+                                               name="menu_protect_conf_device"> <label for="menu_protect_conf_device"></label>
+                                    </div>
+                                    设备列表(三级菜单)
+                                </div>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <div class="list-group-item">
+                                    <div class="pull-right">
+                                        <input id="menu_protect_search_now" class="toggle-switch"
+                                               type="checkbox" ng-checked="data.menu_protect_search_now==1"
+                                               name="menu_protect_search_now"> <label for="menu_protect_search_now"></label>
+                                    </div>
+                                    实时数据(三级菜单)
+                                </div>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <div class="list-group-item">
+                                    <div class="pull-right">
+                                        <input id="menu_protect_search_history" class="toggle-switch"
+                                               type="checkbox" ng-checked="data.menu_protect_search_history==1"
+                                               name="menu_protect_search_history"> <label for="menu_protect_search_history"></label>
+                                    </div>
+                                    历史数据(三级菜单)
+                                </div>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <div class="list-group-item">
+                                    <div class="pull-right">
+                                        <input id="menu_protect_search_chart" class="toggle-switch"
+                                               type="checkbox" ng-checked="data.menu_protect_search_chart==1"
+                                               name="menu_protect_search_chart"> <label for="menu_protect_search_chart"></label>
+                                    </div>
+                                    历史图表(三级菜单)
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--  row----end -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="hpanel">
+                        <div class="panel-heading hbuilt">
+                            <!-- <div class="panel-tools">
+                                <a class="showhide"><i class="fa fa-chevron-up"></i></a> <a
+                                    class="closebox"><i class="fa fa-times"></i></a>
+                            </div> -->
+                            智能安防模块
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group col-md-3">
+                                <div class="list-group-item">
+                                    <div class="pull-right">
+                                        <input id="menu_security" class="toggle-switch"
+                                               type="checkbox" ng-checked="data.menu_security==1"
+                                               name="menu_security"> <label for="menu_security"></label>
+                                    </div>
+                                    主菜单
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--  row----end -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="hpanel">
+                        <div class="panel-heading hbuilt">
+                            <!-- <div class="panel-tools">
+                                <a class="showhide"><i class="fa fa-chevron-up"></i></a> <a
+                                    class="closebox"><i class="fa fa-times"></i></a>
+                            </div> -->
+                            智能消防模块
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group col-md-3">
+                                <div class="list-group-item">
+                                    <div class="pull-right">
+                                        <input id="menu_fire" class="toggle-switch"
+                                               type="checkbox" ng-checked="data.menu_fire==1"
+                                               name="menu_fire"> <label for="menu_fire"></label>
+                                    </div>
+                                    主菜单
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--  row----end -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="hpanel">
+                        <div class="panel-heading hbuilt">
+                            <!-- <div class="panel-tools">
+                                <a class="showhide"><i class="fa fa-chevron-up"></i></a> <a
+                                    class="closebox"><i class="fa fa-times"></i></a>
+                            </div> -->
+                            智能气象模块
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group col-md-3">
+                                <div class="list-group-item">
+                                    <div class="pull-right">
+                                        <input id="menu_weather" class="toggle-switch"
+                                               type="checkbox" ng-checked="data.menu_weather==1"
+                                               name="menu_weather"> <label for="menu_weather"></label>
+                                    </div>
+                                    主菜单
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--  row----end -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="hpanel">
+                        <div class="panel-heading hbuilt">
+                            <!-- <div class="panel-tools">
+                                <a class="showhide"><i class="fa fa-chevron-up"></i></a> <a
+                                    class="closebox"><i class="fa fa-times"></i></a>
+                            </div> -->
+                            智能文博模块
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group col-md-3">
+                                <div class="list-group-item">
+                                    <div class="pull-right">
+                                        <input id="menu_culture" class="toggle-switch"
+                                               type="checkbox" ng-checked="data.menu_culture==1"
+                                               name="menu_culture"> <label for="menu_culture"></label>
+                                    </div>
+                                    主菜单
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--  row----end -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="hpanel">
+                        <div class="panel-heading hbuilt">
+                            <!-- <div class="panel-tools">
+                                <a class="showhide"><i class="fa fa-chevron-up"></i></a> <a
+                                    class="closebox"><i class="fa fa-times"></i></a>
+                            </div> -->
+                            平台管理模块
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group col-md-3">
+                                <div class="list-group-item">
+                                    <div class="pull-right">
+                                        <input id="menu_manage" class="toggle-switch"
+                                               type="checkbox" ng-checked="data.menu_manage==1"
+                                               name="menu_manage"> <label for="menu_manage"></label>
+                                    </div>
+                                    主菜单
+                                </div>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <div class="list-group-item">
+                                    <div class="pull-right">
+                                        <input id="menu_manage_structure" class="toggle-switch"
+                                               type="checkbox" ng-checked="data.menu_manage_structure==1"
+                                               name="menu_manage_structure"> <label for="menu_manage_structure"></label>
+                                    </div>
+                                    组织结构(二级菜单)
+                                </div>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <div class="list-group-item">
+                                    <div class="pull-right">
+                                        <input id="menu_manage_user" class="toggle-switch"
+                                               type="checkbox" ng-checked="data.menu_manage_user==1"
+                                               name="menu_manage_user"> <label for="menu_manage_user"></label>
+                                    </div>
+                                    用户管理(二级菜单)
+                                </div>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <div class="list-group-item">
+                                    <div class="pull-right">
+                                        <input id="menu_manage_group" class="toggle-switch"
+                                               type="checkbox" ng-checked="data.menu_manage_group==1"
+                                               name="menu_manage_group"> <label for="menu_manage_group"></label>
+                                    </div>
+                                    用户组管理(二级菜单)
+                                </div>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <div class="list-group-item">
+                                    <div class="pull-right">
+                                        <input id="menu_manage_role" class="toggle-switch"
+                                               type="checkbox" ng-checked="data.menu_manage_role==1"
+                                               name="menu_manage_role"> <label for="menu_manage_role"></label>
+                                    </div>
+                                    角色管理(二级菜单)
+                                </div>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <div class="list-group-item">
+                                    <div class="pull-right">
+                                        <input id="menu_manage_log" class="toggle-switch"
+                                               type="checkbox" ng-checked="data.menu_manage_log==1"
+                                               name="menu_manage_log"> <label for="menu_manage_log"></label>
+                                    </div>
+                                    日志查询(二级菜单)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--  row----end -->
+        </form>
+
+    </div>
+</div>
+<!-- 中间内容体 /-->
+<div class="scroll-top text-info animated fadeIn scroll-top-hide">
+    <i class="fa fa-chevron-circle-up fa-3x"></i>
+</div>
+<script type="text/javascript" src="Resources/js/xhbootstrap-js.js"></script>
+<script src="angularjs/metisMenu.min.js"></script>
+<script type="text/javascript" src="js/power.js"></script>
+<script type="text/javascript">
+    xh.load();
+    $(document).ready(function() {
+        $('.splash').css('display', 'none');
+    });
+</script>
+</body>
+</html>

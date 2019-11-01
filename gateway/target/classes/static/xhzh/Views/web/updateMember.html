@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>修改个人资料</title>
+<meta name="keywords" content="keyword1,keyword2,keyword3">
+<meta name="description" content="this is my page">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="-1">
+<script type="text/javascript"
+	src="../../Resources/js/xhbootstrap-css.js"></script>
+<!--[if lte IE 9]>
+<script src="../../Resources/js/jquery-1.8.3.min.js"></script>
+<script src="../../Resources/js/respond.min.js"></script>
+<script src="../../Resources/js/html5shiv.js"></script>
+<![endif]-->
+<style type="text/css">
+
+</style>
+</head>
+<body ng-app="app" ng-controller="user" class="fixed-iframe">
+	<!-- splash screen-->
+	<div class="splash">
+		<div class="splash-title">
+			<h1>系统正在努力加载中，请耐心等待</h1>
+			<div class="spinner">
+				<div class="rect1"></div>
+				<div class="rect2"></div>
+				<div class="rect3"></div>
+				<div class="rect4"></div>
+				<div class="rect5"></div>
+			</div>
+		</div>
+	</div>
+	<!-- 中间内容体 -->
+	<div id="wrapper">
+		<div class="small-header transition animated fadeIn">
+			<div class="title-panel">
+				<div class="panel-body">
+					<div id="hbreadcrumb" class="pull-left">
+						<ol class="hbreadcrumb breadcrumb">
+							<li><span>当前位置：</span></li>
+							<li><span>个人中心</span></li>
+							<li class="active"><span>修改个人资料</span></li>
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="content animate-panel">
+			<!-- row -->
+			<div class="row">
+			<div class="col-md-3"></div>
+				<div class="col-md-6">
+					<div class="hpanel">
+						<div class="panel-body">
+							<form action="#" id="editForm" onSubmit="return false">
+								<div class="row">
+									<div class="col-md-4">
+										<div class="form-group col-md-12">
+											<label>用户名</label>&nbsp;<span class="text-danger">[*]</span>
+											<input type="text" value="" class="form-control" name="user"
+												required="required" readonly="readonly"
+												ng-model="editData.user">
+										</div>
+									</div>
+									<div class="col-md-4">
+										<div class="form-group col-md-12">
+											<label>密码</label> <input type="text" value=""
+												class="form-control" name="userPass" placeholder="不修改就为空">
+										</div>
+									</div>
+
+									<div class="col-md-4">
+										<div class="form-group col-md-12">
+											<label>角色</label>&nbsp;<span class="text-danger">[*]</span> <select
+												class="form-control" name="roleId" ng-model="roleId"
+												readonly="readonly" disabled="disabled" id="roleId">
+												<option ng-repeat="x in role" value="{{x.roleId}}">{{x.role}}</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group col-md-12">
+											<label>姓名</label> <input type="text" value=""
+												class="form-control" name="userName"
+												ng-model="editData.userName">
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group col-md-12">
+											<label>性别</label> <select class="form-control" name="sex"
+												ng-model="editData.sex">
+												<option value="男" selected="selected">男</option>
+												<option value="女">女</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group col-md-12">
+											<label>用户单位</label>&nbsp;<span class="text-danger">[*]</span>
+											<input type="text" value="" class="form-control" name="unit"
+												required="required" ng-model="editData.unit">
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group col-md-12">
+											<label>单位性质</label>&nbsp;<span class="text-danger">[*]</span>
+											<select name="unitType" class="form-control"
+												ng-model="editData.unitType">
+												<option value="党政部门" selected="selected">党政部门</option>
+												<option value="事业单位">事业单位</option>
+												<option value="企业">企业</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group col-md-12">
+											<label>用户类型</label>&nbsp;<span class="text-danger">[*]</span>
+											<select name="userType" class="form-control"
+												ng-model="editData.userType">
+												<option value="协议入网用户">协议入网用户</option>
+												<option value="临时用户" selected="selected">临时用户</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group col-md-12">
+											<label>联系电话</label> <input type="text" value=""
+												class="form-control" name="tel" ng-model="editData.tel">
+										</div>
+									</div>
+									<input type="text" class="form-control" name="vpnId" ng-model="editData.vpnId" ng-show="false">
+
+								</div>
+							</form>
+
+							<button type="button" class="btn btn-success btn-sm"
+								id="save_btn" style="margin-left:50%;">
+								<i class="fa fa-plus"></i>&nbsp;保存
+							</button>
+						</div>
+					</div>
+				</div>
+			<div class="col-md-3"></div>
+			</div>
+		</div>
+		<!-- row/ -->
+	</div>
+	<!-- 中间内容体 /-->
+	<div class="scroll-top text-info animated fadeIn scroll-top-hide">
+		<i class="fa fa-chevron-circle-up fa-3x"></i>
+	</div>
+	<script type="text/javascript"
+		src="../../Resources/js/xhbootstrap-js.js"></script>
+	<script type="text/javascript"
+		src="../../lib/metisMenu/dist/metisMenu.min.js"></script>
+	<script type="text/javascript"
+		src="../../Controllers/web/updateMember.js"></script>
+	<script type="text/javascript">
+		xh.load();
+	</script>
+	<script type="text/javascript">
+		$("#save_btn").click(function() {
+			$('#editForm').submit();
+		});
+		var faIcon = {
+			valid : 'fa fa-check-circle fa-lg text-success',
+			invalid : 'fa fa-times-circle fa-lg',
+			validating : 'fa fa-refresh'
+		};
+		$('#editForm').bootstrapValidator({
+			excluded : [ ':disabled' ],
+			/* feedbackIcons: faIcon, */
+			fields : {
+				user : {
+					validators : {
+						notEmpty : {
+							message : '用户名不能为空'
+						}
+					}
+				},
+				roleId : {
+					validators : {
+						notEmpty : {
+							message : '角色不能为空'
+						}
+					}
+				}
+
+			}
+		}).on('success.form.bv', function(e, data) {
+			e.preventDefault();
+			$("#roleId").attr("disabled", false);
+			xh.update();
+			$("#roleId").attr("disabled", true);
+		});
+	</script>
+</body>
+</html>

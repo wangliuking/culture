@@ -22,7 +22,7 @@ code.google.com/p/crypto-js/wiki/License
          *
          * @return {string} The Base64 string.
          *
-         * @static
+         * @templates
          *
          * @example
          *
@@ -69,7 +69,7 @@ code.google.com/p/crypto-js/wiki/License
          *
          * @return {WordArray} The word array.
          *
-         * @static
+         * @templates
          *
          * @example
          *

@@ -2286,7 +2286,7 @@
 	
 	
 	/**
-	 * Take the column definitions and static columns arrays and calculate how
+	 * Take the column definitions and templates columns arrays and calculate how
 	 * they relate to column indexes. The callback function will then apply the
 	 * definition found for a column to a suitable configuration object.
 	 *  @param {object} oSettings dataTables settings object
@@ -7166,7 +7166,7 @@
 	
 	_Api.extend = function ( scope, obj, ext )
 	{
-		// Only extend API instances and static properties of the API
+		// Only extend API instances and templates properties of the API
 		if ( ! ext.length || ! obj || ( ! (obj instanceof _Api) && ! obj.__dt_wrapper ) ) {
 			return;
 		}
@@ -9081,7 +9081,7 @@
 	 *  @returns {boolean} true if this version of DataTables is greater or equal to
 	 *    the required version, or false if this version of DataTales is not
 	 *    suitable
-	 *  @static
+	 *  @templates
 	 *  @dtopt API-Static
 	 *
 	 *  @example
@@ -9117,7 +9117,7 @@
 	 *      selector for the table to test. Note that if more than more than one
 	 *      table is passed on, only the first will be checked
 	 *  @returns {boolean} true the table given is a DataTable, or false otherwise
-	 *  @static
+	 *  @templates
 	 *  @dtopt API-Static
 	 *
 	 *  @example
@@ -9155,7 +9155,7 @@
 	 *    or visible tables only.
 	 *  @returns {array} Array of `table` nodes (not DataTable instances) which are
 	 *    DataTables
-	 *  @static
+	 *  @templates
 	 *  @dtopt API-Static
 	 *
 	 *  @example
@@ -11193,7 +11193,7 @@
 		/**
 		 * Classes that DataTables assigns to the various components and features
 		 * that it adds to the HTML table. This allows classes to be configured
-		 * during initialisation in addition to through the static
+		 * during initialisation in addition to through the templates
 		 * {@link DataTable.ext.oStdClasses} object).
 		 *  @namespace
 		 *  @name DataTable.defaults.classes
@@ -14076,7 +14076,7 @@
 		 * 
 		 * This type of ordering is useful if you want to do ordering based on data
 		 * live from the DOM (for example the contents of an 'input' element) rather
-		 * than just the static string that DataTables knows of.
+		 * than just the templates string that DataTables knows of.
 		 * 
 		 * The way these plug-ins work is that you create an array of the values you
 		 * wish to be ordering for the column in question and then return that

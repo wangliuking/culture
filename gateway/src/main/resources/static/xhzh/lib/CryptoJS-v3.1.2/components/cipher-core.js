@@ -44,7 +44,7 @@ CryptoJS.lib.Cipher || (function (undefined) {
          *
          * @return {Cipher} A cipher instance.
          *
-         * @static
+         * @templates
          *
          * @example
          *
@@ -62,7 +62,7 @@ CryptoJS.lib.Cipher || (function (undefined) {
          *
          * @return {Cipher} A cipher instance.
          *
-         * @static
+         * @templates
          *
          * @example
          *
@@ -171,7 +171,7 @@ CryptoJS.lib.Cipher || (function (undefined) {
          *
          * @return {Object} An object with encrypt and decrypt shortcut functions.
          *
-         * @static
+         * @templates
          *
          * @example
          *
@@ -231,7 +231,7 @@ CryptoJS.lib.Cipher || (function (undefined) {
          * @param {Cipher} cipher A block cipher instance.
          * @param {Array} iv The IV words.
          *
-         * @static
+         * @templates
          *
          * @example
          *
@@ -247,7 +247,7 @@ CryptoJS.lib.Cipher || (function (undefined) {
          * @param {Cipher} cipher A block cipher instance.
          * @param {Array} iv The IV words.
          *
-         * @static
+         * @templates
          *
          * @example
          *
@@ -379,7 +379,7 @@ CryptoJS.lib.Cipher || (function (undefined) {
          * @param {WordArray} data The data to pad.
          * @param {number} blockSize The multiple that the data should be padded to.
          *
-         * @static
+         * @templates
          *
          * @example
          *
@@ -411,7 +411,7 @@ CryptoJS.lib.Cipher || (function (undefined) {
          *
          * @param {WordArray} data The data to unpad.
          *
-         * @static
+         * @templates
          *
          * @example
          *
@@ -566,7 +566,7 @@ CryptoJS.lib.Cipher || (function (undefined) {
          *
          * @return {string} The OpenSSL-compatible string.
          *
-         * @static
+         * @templates
          *
          * @example
          *
@@ -594,7 +594,7 @@ CryptoJS.lib.Cipher || (function (undefined) {
          *
          * @return {CipherParams} The cipher params object.
          *
-         * @static
+         * @templates
          *
          * @example
          *
@@ -644,7 +644,7 @@ CryptoJS.lib.Cipher || (function (undefined) {
          *
          * @return {CipherParams} A cipher params object.
          *
-         * @static
+         * @templates
          *
          * @example
          *
@@ -686,7 +686,7 @@ CryptoJS.lib.Cipher || (function (undefined) {
          *
          * @return {WordArray} The plaintext.
          *
-         * @static
+         * @templates
          *
          * @example
          *
@@ -715,7 +715,7 @@ CryptoJS.lib.Cipher || (function (undefined) {
          *
          * @return {CipherParams} The unserialized ciphertext.
          *
-         * @static
+         * @templates
          *
          * @example
          *
@@ -749,7 +749,7 @@ CryptoJS.lib.Cipher || (function (undefined) {
          *
          * @return {CipherParams} A cipher params object with the key, IV, and salt.
          *
-         * @static
+         * @templates
          *
          * @example
          *
@@ -798,7 +798,7 @@ CryptoJS.lib.Cipher || (function (undefined) {
          *
          * @return {CipherParams} A cipher params object.
          *
-         * @static
+         * @templates
          *
          * @example
          *
@@ -834,7 +834,7 @@ CryptoJS.lib.Cipher || (function (undefined) {
          *
          * @return {WordArray} The plaintext.
          *
-         * @static
+         * @templates
          *
          * @example
          *

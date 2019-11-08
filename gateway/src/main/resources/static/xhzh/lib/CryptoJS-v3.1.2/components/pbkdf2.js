@@ -117,7 +117,7 @@ code.google.com/p/crypto-js/wiki/License
      *
      * @return {WordArray} The derived key.
      *
-     * @static
+     * @templates
      *
      * @example
      *

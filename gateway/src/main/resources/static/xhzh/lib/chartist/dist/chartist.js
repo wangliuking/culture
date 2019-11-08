@@ -20,7 +20,7 @@
  * http://www.wtfpl.net/
  */
 /**
- * The core module of Chartist that is mainly providing static functions and higher level functions for chart modules.
+ * The core module of Chartist that is mainly providing templates functions and higher level functions for chart modules.
  *
  * @module Chartist.Core
  */
@@ -2608,7 +2608,7 @@ var Chartist = {
   }
 
   /**
-   * This static function on `Chartist.Svg.Path` is joining multiple paths together into one paths.
+   * This templates function on `Chartist.Svg.Path` is joining multiple paths together into one paths.
    *
    * @memberof Chartist.Svg.Path
    * @param {Array<Chartist.Svg.Path>} paths A list of paths to be joined together. The order is important.
@@ -3245,7 +3245,7 @@ var Chartist = {
    *   ]
    * };
    *
-   * // As options we currently only set a static size of 300x200 px
+   * // As options we currently only set a templates size of 300x200 px
    * var options = {
    *   width: '300px',
    *   height: '200px'

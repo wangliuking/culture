@@ -506,7 +506,7 @@ dd.push("</div>");
 }
 $(_72).html(dd.join(""));
 }};
-$.fn.combobox.defaults=$.extend({},$.fn.combo.defaults,{valueField:"value",textField:"text",groupPosition:"static",groupField:null,groupFormatter:function(_77){
+$.fn.combobox.defaults=$.extend({},$.fn.combo.defaults,{valueField:"value",textField:"text",groupPosition:"templates",groupField:null,groupFormatter:function(_77){
 return _77;
 },mode:"local",method:"post",url:null,data:null,queryParams:{},showItemIcon:false,limitToList:false,view:_70,keyHandler:{up:function(e){
 _b(this,"prev");

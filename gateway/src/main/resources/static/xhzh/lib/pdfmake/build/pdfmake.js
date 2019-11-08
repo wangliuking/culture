@@ -3064,7 +3064,7 @@
 	  /**
 	   * Create a new pristine `lodash` function using the given `context` object.
 	   *
-	   * @static
+	   * @templates
 	   * @memberOf _
 	   * @category Utility
 	   * @param {Object} [context=root] The context object.
@@ -3326,7 +3326,7 @@
 	    /**
 	     * An object environment feature flags.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @type Object
 	     */
@@ -3337,7 +3337,7 @@
 	     * embedded Ruby (ERB). Change the following template settings to use
 	     * alternative delimiters.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @type Object
 	     */
@@ -3513,7 +3513,7 @@
 	     * Creates a cache object to store key/value pairs.
 	     *
 	     * @private
-	     * @static
+	     * @templates
 	     * @name Cache
 	     * @memberOf _.memoize
 	     */
@@ -6853,7 +6853,7 @@
 	     * If `collection` can't be split evenly, the final chunk will be the remaining
 	     * elements.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Array
 	     * @param {Array} array The array to process.
@@ -6889,7 +6889,7 @@
 	     * Creates an array with all falsey values removed. The values `false`, `null`,
 	     * `0`, `""`, `undefined`, and `NaN` are falsey.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Array
 	     * @param {Array} array The array to compact.
@@ -6919,7 +6919,7 @@
 	     * provided arrays using [`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
 	     * for equality comparisons.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Array
 	     * @param {Array} array The array to inspect.
@@ -6939,7 +6939,7 @@
 	    /**
 	     * Creates a slice of `array` with `n` elements dropped from the beginning.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Array
 	     * @param {Array} array The array to query.
@@ -6974,7 +6974,7 @@
 	    /**
 	     * Creates a slice of `array` with `n` elements dropped from the end.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Array
 	     * @param {Array} array The array to query.
@@ -7023,7 +7023,7 @@
 	     * callback returns `true` for elements that match the properties of the given
 	     * object, else `false`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Array
 	     * @param {Array} array The array to query.
@@ -7078,7 +7078,7 @@
 	     * callback returns `true` for elements that have the properties of the given
 	     * object, else `false`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Array
 	     * @param {Array} array The array to query.
@@ -7123,7 +7123,7 @@
 	     *
 	     * **Note:** This method mutates `array`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Array
 	     * @param {Array} array The array to fill.
@@ -7172,7 +7172,7 @@
 	     * callback returns `true` for elements that have the properties of the given
 	     * object, else `false`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Array
 	     * @param {Array} array The array to search.
@@ -7222,7 +7222,7 @@
 	     * callback returns `true` for elements that have the properties of the given
 	     * object, else `false`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Array
 	     * @param {Array} array The array to search.
@@ -7260,7 +7260,7 @@
 	    /**
 	     * Gets the first element of `array`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @alias head
 	     * @category Array
@@ -7282,7 +7282,7 @@
 	     * Flattens a nested array. If `isDeep` is `true` the array is recursively
 	     * flattened, otherwise it is only flattened a single level.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Array
 	     * @param {Array} array The array to flatten.
@@ -7309,7 +7309,7 @@
 	    /**
 	     * Recursively flattens a nested array.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Array
 	     * @param {Array} array The array to recursively flatten.
@@ -7331,7 +7331,7 @@
 	     * from the end of `array`. If `array` is sorted providing `true` for `fromIndex`
 	     * performs a faster binary search.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Array
 	     * @param {Array} array The array to search.
@@ -7373,7 +7373,7 @@
 	    /**
 	     * Gets all but the last element of `array`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Array
 	     * @param {Array} array The array to query.
@@ -7392,7 +7392,7 @@
 	     * arrays using [`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
 	     * for equality comparisons.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Array
 	     * @param {...Array} [arrays] The arrays to inspect.
@@ -7441,7 +7441,7 @@
 	    /**
 	     * Gets the last element of `array`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Array
 	     * @param {Array} array The array to query.
@@ -7460,7 +7460,7 @@
 	     * This method is like `_.indexOf` except that it iterates over elements of
 	     * `array` from right to left.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Array
 	     * @param {Array} array The array to search.
@@ -7515,7 +7515,7 @@
 	     *
 	     * **Note:** Unlike `_.without`, this method mutates `array`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Array
 	     * @param {Array} array The array to modify.
@@ -7558,7 +7558,7 @@
 	     *
 	     * **Note:** Unlike `_.at`, this method mutates `array`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Array
 	     * @param {Array} array The array to modify.
@@ -7602,7 +7602,7 @@
 	     *
 	     * **Note:** Unlike `_.filter`, this method mutates `array`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Array
 	     * @param {Array} array The array to modify.
@@ -7647,7 +7647,7 @@
 	    /**
 	     * Gets all but the first element of `array`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @alias tail
 	     * @category Array
@@ -7668,7 +7668,7 @@
 	     * **Note:** This method is used instead of `Array#slice` to support node
 	     * lists in IE < 9 and to ensure dense arrays are returned.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Array
 	     * @param {Array} array The array to slice.
@@ -7706,7 +7706,7 @@
 	     * callback returns `true` for elements that have the properties of the given
 	     * object, else `false`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Array
 	     * @param {Array} array The sorted array to inspect.
@@ -7743,7 +7743,7 @@
 	     * index at which `value` should be inserted into `array` in order to
 	     * maintain its sort order.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Array
 	     * @param {Array} array The sorted array to inspect.
@@ -7763,7 +7763,7 @@
 	    /**
 	     * Creates a slice of `array` with `n` elements taken from the beginning.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Array
 	     * @param {Array} array The array to query.
@@ -7798,7 +7798,7 @@
 	    /**
 	     * Creates a slice of `array` with `n` elements taken from the end.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Array
 	     * @param {Array} array The array to query.
@@ -7847,7 +7847,7 @@
 	     * callback returns `true` for elements that have the properties of the given
 	     * object, else `false`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Array
 	     * @param {Array} array The array to query.
@@ -7902,7 +7902,7 @@
 	     * callback returns `true` for elements that have the properties of the given
 	     * object, else `false`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Array
 	     * @param {Array} array The array to query.
@@ -7946,7 +7946,7 @@
 	     * using [`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
 	     * for equality comparisons.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Array
 	     * @param {...Array} [arrays] The arrays to inspect.
@@ -7981,7 +7981,7 @@
 	     * callback returns `true` for elements that have the properties of the given
 	     * object, else `false`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @alias unique
 	     * @category Array
@@ -8033,7 +8033,7 @@
 	     * elements and creates an array regrouping the elements to their pre-zip
 	     * configuration.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Array
 	     * @param {Array} array The array of grouped elements to process.
@@ -8071,7 +8071,7 @@
 	     * how regrouped values should be combined. The `iteratee` is bound to `thisArg`
 	     * and invoked with four arguments: (accumulator, value, index, group).
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Array
 	     * @param {Array} array The array of grouped elements to process.
@@ -8106,7 +8106,7 @@
 	     * [`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
 	     * for equality comparisons.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Array
 	     * @param {Array} array The array to filter.
@@ -8127,7 +8127,7 @@
 	     * Creates an array of unique values that is the [symmetric difference](https://en.wikipedia.org/wiki/Symmetric_difference)
 	     * of the provided arrays.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Array
 	     * @param {...Array} [arrays] The arrays to inspect.
@@ -8157,7 +8157,7 @@
 	     * elements of the given arrays, the second of which contains the second elements
 	     * of the given arrays, and so on.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Array
 	     * @param {...Array} [arrays] The arrays to process.
@@ -8175,7 +8175,7 @@
 	     * e.g. `[[key1, value1], [key2, value2]]` or two arrays, one of property names
 	     * and one of corresponding values.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @alias object
 	     * @category Array
@@ -8214,7 +8214,7 @@
 	     * how grouped values should be combined. The `iteratee` is bound to `thisArg`
 	     * and invoked with four arguments: (accumulator, value, index, group).
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Array
 	     * @param {...Array} [arrays] The arrays to process.
@@ -8247,7 +8247,7 @@
 	     * Creates a `lodash` object that wraps `value` with explicit method
 	     * chaining enabled.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Chain
 	     * @param {*} value The value to wrap.
@@ -8281,7 +8281,7 @@
 	     * this method is to "tap into" a method chain in order to perform operations
 	     * on intermediate results within the chain.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Chain
 	     * @param {*} value The value to provide to `interceptor`.
@@ -8306,7 +8306,7 @@
 	    /**
 	     * This method is like `_.tap` except that it returns the result of `interceptor`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Chain
 	     * @param {*} value The value to provide to `interceptor`.
@@ -8532,7 +8532,7 @@
 	     * of `collection`. Keys may be specified as individual arguments or as arrays
 	     * of keys.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Collection
 	     * @param {Array|Object|string} collection The collection to iterate over.
@@ -8569,7 +8569,7 @@
 	     * callback returns `true` for elements that have the properties of the given
 	     * object, else `false`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Collection
 	     * @param {Array|Object|string} collection The collection to iterate over.
@@ -8612,7 +8612,7 @@
 	     * callback returns `true` for elements that have the properties of the given
 	     * object, else `false`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @alias all
 	     * @category Collection
@@ -8671,7 +8671,7 @@
 	     * callback returns `true` for elements that have the properties of the given
 	     * object, else `false`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @alias select
 	     * @category Collection
@@ -8726,7 +8726,7 @@
 	     * callback returns `true` for elements that have the properties of the given
 	     * object, else `false`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @alias detect
 	     * @category Collection
@@ -8766,7 +8766,7 @@
 	     * This method is like `_.find` except that it iterates over elements of
 	     * `collection` from right to left.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Collection
 	     * @param {Array|Object|string} collection The collection to search.
@@ -8793,7 +8793,7 @@
 	     * their own, not inherited, enumerable properties. For comparing a single
 	     * own or inherited property value see `_.matchesProperty`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Collection
 	     * @param {Array|Object|string} collection The collection to search.
@@ -8826,7 +8826,7 @@
 	     * are iterated like arrays. To avoid this behavior `_.forIn` or `_.forOwn`
 	     * may be used for object iteration.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @alias each
 	     * @category Collection
@@ -8852,7 +8852,7 @@
 	     * This method is like `_.forEach` except that it iterates over elements of
 	     * `collection` from right to left.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @alias eachRight
 	     * @category Collection
@@ -8887,7 +8887,7 @@
 	     * callback returns `true` for elements that have the properties of the given
 	     * object, else `false`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Collection
 	     * @param {Array|Object|string} collection The collection to iterate over.
@@ -8925,7 +8925,7 @@
 	     * for equality comparisons. If `fromIndex` is negative, it is used as the offset
 	     * from the end of `collection`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @alias contains, include
 	     * @category Collection
@@ -8982,7 +8982,7 @@
 	     * callback returns `true` for elements that have the properties of the given
 	     * object, else `false`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Collection
 	     * @param {Array|Object|string} collection The collection to iterate over.
@@ -9020,7 +9020,7 @@
 	     * are provided to each invoked method. If `methodName` is a function it is
 	     * invoked for, and `this` bound to, each element in `collection`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Collection
 	     * @param {Array|Object|string} collection The collection to iterate over.
@@ -9075,7 +9075,7 @@
 	     * `trimLeft`, `trimRight`, `trunc`, `random`, `range`, `sample`, `some`,
 	     * `sum`, `uniq`, and `words`
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @alias collect
 	     * @category Collection
@@ -9128,7 +9128,7 @@
 	     * callback returns `true` for elements that have the properties of the given
 	     * object, else `false`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Collection
 	     * @param {Array|Object|string} collection The collection to iterate over.
@@ -9177,7 +9177,7 @@
 	    /**
 	     * Gets the property value of `path` from all elements in `collection`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Collection
 	     * @param {Array|Object|string} collection The collection to iterate over.
@@ -9216,7 +9216,7 @@
 	     * `assign`, `defaults`, `defaultsDeep`, `includes`, `merge`, `sortByAll`,
 	     * and `sortByOrder`
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @alias foldl, inject
 	     * @category Collection
@@ -9244,7 +9244,7 @@
 	     * This method is like `_.reduce` except that it iterates over elements of
 	     * `collection` from right to left.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @alias foldr
 	     * @category Collection
@@ -9268,7 +9268,7 @@
 	     * The opposite of `_.filter`; this method returns the elements of `collection`
 	     * that `predicate` does **not** return truthy for.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Collection
 	     * @param {Array|Object|string} collection The collection to iterate over.
@@ -9311,7 +9311,7 @@
 	    /**
 	     * Gets a random element or `n` random elements from a collection.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Collection
 	     * @param {Array|Object|string} collection The collection to sample.
@@ -9353,7 +9353,7 @@
 	     * Creates an array of shuffled values, using a version of the
 	     * [Fisher-Yates shuffle](https://en.wikipedia.org/wiki/Fisher-Yates_shuffle).
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Collection
 	     * @param {Array|Object|string} collection The collection to shuffle.
@@ -9371,7 +9371,7 @@
 	     * Gets the size of `collection` by returning its length for array-like
 	     * values or the number of own enumerable properties for objects.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Collection
 	     * @param {Array|Object|string} collection The collection to inspect.
@@ -9409,7 +9409,7 @@
 	     * callback returns `true` for elements that have the properties of the given
 	     * object, else `false`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @alias any
 	     * @category Collection
@@ -9470,7 +9470,7 @@
 	     * callback returns `true` for elements that have the properties of the given
 	     * object, else `false`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Collection
 	     * @param {Array|Object|string} collection The collection to iterate over.
@@ -9527,7 +9527,7 @@
 	     * callback returns `true` for elements that have the properties of the given
 	     * object, else `false`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Collection
 	     * @param {Array|Object|string} collection The collection to iterate over.
@@ -9575,7 +9575,7 @@
 	     * callback returns `true` for elements that have the properties of the given
 	     * object, else `false`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Collection
 	     * @param {Array|Object|string} collection The collection to iterate over.
@@ -9622,7 +9622,7 @@
 	     * their own, not inherited, enumerable properties. For comparing a single
 	     * own or inherited property value see `_.matchesProperty`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Collection
 	     * @param {Array|Object|string} collection The collection to search.
@@ -9651,7 +9651,7 @@
 	     * Gets the number of milliseconds that have elapsed since the Unix epoch
 	     * (1 January 1970 00:00:00 UTC).
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Date
 	     * @example
@@ -9671,7 +9671,7 @@
 	     * The opposite of `_.before`; this method creates a function that invokes
 	     * `func` once it is called `n` or more times.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Function
 	     * @param {number} n The number of calls before `func` is invoked.
@@ -9712,7 +9712,7 @@
 	     * Creates a function that accepts up to `n` arguments ignoring any
 	     * additional arguments.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Function
 	     * @param {Function} func The function to cap arguments for.
@@ -9737,7 +9737,7 @@
 	     * of the created function, while it is called less than `n` times. Subsequent
 	     * calls to the created function return the result of the last `func` invocation.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Function
 	     * @param {number} n The number of calls at which `func` is no longer invoked.
@@ -9781,7 +9781,7 @@
 	     * **Note:** Unlike native `Function#bind` this method does not set the "length"
 	     * property of bound functions.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Function
 	     * @param {Function} func The function to bind.
@@ -9822,7 +9822,7 @@
 	     *
 	     * **Note:** This method does not set the "length" property of bound functions.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Function
 	     * @param {Object} object The object to bind and assign the bound methods to.
@@ -9867,7 +9867,7 @@
 	     * The `_.bindKey.placeholder` value, which defaults to `_` in monolithic
 	     * builds, may be used as a placeholder for partially applied arguments.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Function
 	     * @param {Object} object The object the method belongs to.
@@ -9920,7 +9920,7 @@
 	     *
 	     * **Note:** This method does not set the "length" property of curried functions.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Function
 	     * @param {Function} func The function to curry.
@@ -9959,7 +9959,7 @@
 	     *
 	     * **Note:** This method does not set the "length" property of curried functions.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Function
 	     * @param {Function} func The function to curry.
@@ -10005,7 +10005,7 @@
 	     * See [David Corbacho's article](http://drupalmotion.com/article/debounce-and-throttle-visual-explanation)
 	     * for details over the differences between `_.debounce` and `_.throttle`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Function
 	     * @param {Function} func The function to debounce.
@@ -10164,7 +10164,7 @@
 	     * Defers invoking the `func` until the current call stack has cleared. Any
 	     * additional arguments are provided to `func` when it is invoked.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Function
 	     * @param {Function} func The function to defer.
@@ -10185,7 +10185,7 @@
 	     * Invokes `func` after `wait` milliseconds. Any additional arguments are
 	     * provided to `func` when it is invoked.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Function
 	     * @param {Function} func The function to delay.
@@ -10208,7 +10208,7 @@
 	     * functions with the `this` binding of the created function, where each
 	     * successive invocation is supplied the return value of the previous.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Function
 	     * @param {...Function} [funcs] Functions to invoke.
@@ -10229,7 +10229,7 @@
 	     * This method is like `_.flow` except that it creates a function that
 	     * invokes the provided functions from right to left.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @alias backflow, compose
 	     * @category Function
@@ -10260,7 +10260,7 @@
 	     * constructor with one whose instances implement the [`Map`](http://ecma-international.org/ecma-262/6.0/#sec-properties-of-the-map-prototype-object)
 	     * method interface of `get`, `has`, and `set`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Function
 	     * @param {Function} func The function to have its output memoized.
@@ -10322,7 +10322,7 @@
 	     * Creates a function that runs each argument through a corresponding
 	     * transform function.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Function
 	     * @param {Function} func The function to wrap.
@@ -10369,7 +10369,7 @@
 	     * `func` predicate is invoked with the `this` binding and arguments of the
 	     * created function.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Function
 	     * @param {Function} predicate The predicate to negate.
@@ -10397,7 +10397,7 @@
 	     * to the function return the value of the first call. The `func` is invoked
 	     * with the `this` binding and arguments of the created function.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Function
 	     * @param {Function} func The function to restrict.
@@ -10424,7 +10424,7 @@
 	     * **Note:** This method does not set the "length" property of partially
 	     * applied functions.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Function
 	     * @param {Function} func The function to partially apply arguments to.
@@ -10457,7 +10457,7 @@
 	     * **Note:** This method does not set the "length" property of partially
 	     * applied functions.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Function
 	     * @param {Function} func The function to partially apply arguments to.
@@ -10486,7 +10486,7 @@
 	     * provided as the first argument, the argument value at the second index is
 	     * provided as the second argument, and so on.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Function
 	     * @param {Function} func The function to rearrange arguments for.
@@ -10518,7 +10518,7 @@
 	     *
 	     * **Note:** This method is based on the [rest parameter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters).
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Function
 	     * @param {Function} func The function to apply a rest parameter to.
@@ -10569,7 +10569,7 @@
 	     *
 	     * **Note:** This method is based on the [spread operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator).
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Function
 	     * @param {Function} func The function to spread arguments over.
@@ -10618,7 +10618,7 @@
 	     * See [David Corbacho's article](http://drupalmotion.com/article/debounce-and-throttle-visual-explanation)
 	     * for details over the differences between `_.throttle` and `_.debounce`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Function
 	     * @param {Function} func The function to throttle.
@@ -10664,7 +10664,7 @@
 	     * appended to those provided to the wrapper function. The wrapper is invoked
 	     * with the `this` binding of the created function.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Function
 	     * @param {*} value The value to wrap.
@@ -10700,7 +10700,7 @@
 	     * empty object is returned for uncloneable values such as functions, DOM nodes,
 	     * Maps, Sets, and WeakMaps.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Lang
 	     * @param {*} value The value to clone.
@@ -10764,7 +10764,7 @@
 	     * empty object is returned for uncloneable values such as functions, DOM nodes,
 	     * Maps, Sets, and WeakMaps.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Lang
 	     * @param {*} value The value to deep clone.
@@ -10805,7 +10805,7 @@
 	    /**
 	     * Checks if `value` is greater than `other`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Lang
 	     * @param {*} value The value to compare.
@@ -10829,7 +10829,7 @@
 	    /**
 	     * Checks if `value` is greater than or equal to `other`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Lang
 	     * @param {*} value The value to compare.
@@ -10853,7 +10853,7 @@
 	    /**
 	     * Checks if `value` is classified as an `arguments` object.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Lang
 	     * @param {*} value The value to check.
@@ -10874,7 +10874,7 @@
 	    /**
 	     * Checks if `value` is classified as an `Array` object.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Lang
 	     * @param {*} value The value to check.
@@ -10894,7 +10894,7 @@
 	    /**
 	     * Checks if `value` is classified as a boolean primitive or object.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Lang
 	     * @param {*} value The value to check.
@@ -10914,7 +10914,7 @@
 	    /**
 	     * Checks if `value` is classified as a `Date` object.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Lang
 	     * @param {*} value The value to check.
@@ -10934,7 +10934,7 @@
 	    /**
 	     * Checks if `value` is a DOM element.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Lang
 	     * @param {*} value The value to check.
@@ -10956,7 +10956,7 @@
 	     * `arguments` object, array, string, or jQuery-like collection with a length
 	     * greater than `0` or an object with own enumerable properties.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Lang
 	     * @param {Array|Object|string} value The value to inspect.
@@ -11002,7 +11002,7 @@
 	     * are **not** supported. Provide a customizer function to extend support
 	     * for comparing other values.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @alias eq
 	     * @category Lang
@@ -11043,7 +11043,7 @@
 	     * Checks if `value` is an `Error`, `EvalError`, `RangeError`, `ReferenceError`,
 	     * `SyntaxError`, `TypeError`, or `URIError` object.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Lang
 	     * @param {*} value The value to check.
@@ -11065,7 +11065,7 @@
 	     *
 	     * **Note:** This method is based on [`Number.isFinite`](http://ecma-international.org/ecma-262/6.0/#sec-number.isfinite).
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Lang
 	     * @param {*} value The value to check.
@@ -11094,7 +11094,7 @@
 	    /**
 	     * Checks if `value` is classified as a `Function` object.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Lang
 	     * @param {*} value The value to check.
@@ -11118,7 +11118,7 @@
 	     * Checks if `value` is the [language type](https://es5.github.io/#x8) of `Object`.
 	     * (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Lang
 	     * @param {*} value The value to check.
@@ -11153,7 +11153,7 @@
 	     * and DOM nodes are **not** supported. Provide a customizer function to extend
 	     * support for comparing other values.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Lang
 	     * @param {Object} object The object to inspect.
@@ -11191,7 +11191,7 @@
 	     * **Note:** This method is not the same as [`isNaN`](https://es5.github.io/#x15.1.2.4)
 	     * which returns `true` for `undefined` and other non-numeric values.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Lang
 	     * @param {*} value The value to check.
@@ -11219,7 +11219,7 @@
 	    /**
 	     * Checks if `value` is a native function.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Lang
 	     * @param {*} value The value to check.
@@ -11245,7 +11245,7 @@
 	    /**
 	     * Checks if `value` is `null`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Lang
 	     * @param {*} value The value to check.
@@ -11268,7 +11268,7 @@
 	     * **Note:** To exclude `Infinity`, `-Infinity`, and `NaN`, which are classified
 	     * as numbers, use the `_.isFinite` method.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Lang
 	     * @param {*} value The value to check.
@@ -11295,7 +11295,7 @@
 	     * **Note:** This method assumes objects created by the `Object` constructor
 	     * have no inherited enumerable properties.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Lang
 	     * @param {*} value The value to check.
@@ -11342,7 +11342,7 @@
 	    /**
 	     * Checks if `value` is classified as a `RegExp` object.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Lang
 	     * @param {*} value The value to check.
@@ -11362,7 +11362,7 @@
 	    /**
 	     * Checks if `value` is classified as a `String` primitive or object.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Lang
 	     * @param {*} value The value to check.
@@ -11382,7 +11382,7 @@
 	    /**
 	     * Checks if `value` is classified as a typed array.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Lang
 	     * @param {*} value The value to check.
@@ -11402,7 +11402,7 @@
 	    /**
 	     * Checks if `value` is `undefined`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Lang
 	     * @param {*} value The value to check.
@@ -11422,7 +11422,7 @@
 	    /**
 	     * Checks if `value` is less than `other`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Lang
 	     * @param {*} value The value to compare.
@@ -11446,7 +11446,7 @@
 	    /**
 	     * Checks if `value` is less than or equal to `other`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Lang
 	     * @param {*} value The value to compare.
@@ -11470,7 +11470,7 @@
 	    /**
 	     * Converts `value` to an array.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Lang
 	     * @param {*} value The value to convert.
@@ -11497,7 +11497,7 @@
 	     * Converts `value` to a plain object flattening inherited enumerable
 	     * properties of `value` to own properties of the plain object.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Lang
 	     * @param {*} value The value to convert.
@@ -11531,7 +11531,7 @@
 	     * by the method instead. The `customizer` is bound to `thisArg` and invoked
 	     * with five arguments: (objectValue, sourceValue, key, object, source).
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Object
 	     * @param {Object} object The destination object.
@@ -11582,7 +11582,7 @@
 	     * **Note:** This method mutates `object` and is based on
 	     * [`Object.assign`](http://ecma-international.org/ecma-262/6.0/#sec-object.assign).
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @alias extend
 	     * @category Object
@@ -11615,7 +11615,7 @@
 	     * `properties` object is provided its own enumerable properties are assigned
 	     * to the created object.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Object
 	     * @param {Object} prototype The object to inherit from.
@@ -11659,7 +11659,7 @@
 	     *
 	     * **Note:** This method mutates `object`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Object
 	     * @param {Object} object The destination object.
@@ -11678,7 +11678,7 @@
 	     *
 	     * **Note:** This method mutates `object`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Object
 	     * @param {Object} object The destination object.
@@ -11707,7 +11707,7 @@
 	     * callback returns `true` for elements that have the properties of the given
 	     * object, else `false`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Object
 	     * @param {Object} object The object to search.
@@ -11757,7 +11757,7 @@
 	     * callback returns `true` for elements that have the properties of the given
 	     * object, else `false`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Object
 	     * @param {Object} object The object to search.
@@ -11798,7 +11798,7 @@
 	     * with three arguments: (value, key, object). Iteratee functions may exit
 	     * iteration early by explicitly returning `false`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Object
 	     * @param {Object} object The object to iterate over.
@@ -11825,7 +11825,7 @@
 	     * This method is like `_.forIn` except that it iterates over properties of
 	     * `object` in the opposite order.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Object
 	     * @param {Object} object The object to iterate over.
@@ -11854,7 +11854,7 @@
 	     * three arguments: (value, key, object). Iteratee functions may exit iteration
 	     * early by explicitly returning `false`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Object
 	     * @param {Object} object The object to iterate over.
@@ -11881,7 +11881,7 @@
 	     * This method is like `_.forOwn` except that it iterates over properties of
 	     * `object` in the opposite order.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Object
 	     * @param {Object} object The object to iterate over.
@@ -11908,7 +11908,7 @@
 	     * Creates an array of function property names from all enumerable properties,
 	     * own and inherited, of `object`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @alias methods
 	     * @category Object
@@ -11927,7 +11927,7 @@
 	     * Gets the property value at `path` of `object`. If the resolved value is
 	     * `undefined` the `defaultValue` is used in its place.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Object
 	     * @param {Object} object The object to query.
@@ -11955,7 +11955,7 @@
 	    /**
 	     * Checks if `path` is a direct property.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Object
 	     * @param {Object} object The object to query.
@@ -11997,7 +11997,7 @@
 	     * If `object` contains duplicate values, subsequent values overwrite property
 	     * assignments of previous values unless `multiValue` is `true`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Object
 	     * @param {Object} object The object to invert.
@@ -12049,7 +12049,7 @@
 	     * [ES spec](http://ecma-international.org/ecma-262/6.0/#sec-object.keys)
 	     * for more details.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Object
 	     * @param {Object} object The object to query.
@@ -12083,7 +12083,7 @@
 	     *
 	     * **Note:** Non-object values are coerced to objects.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Object
 	     * @param {Object} object The object to query.
@@ -12134,7 +12134,7 @@
 	     * same values as `object` and keys generated by running each own enumerable
 	     * property of `object` through `iteratee`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Object
 	     * @param {Object} object The object to iterate over.
@@ -12168,7 +12168,7 @@
 	     * callback returns `true` for elements that have the properties of the given
 	     * object, else `false`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Object
 	     * @param {Object} object The object to iterate over.
@@ -12198,7 +12198,7 @@
 	     * The opposite of `_.pick`; this method creates an object composed of the
 	     * own and inherited enumerable properties of `object` that are not omitted.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Object
 	     * @param {Object} object The source object.
@@ -12235,7 +12235,7 @@
 	     * Creates a two dimensional array of the key-value pairs for `object`,
 	     * e.g. `[[key1, value1], [key2, value2]]`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Object
 	     * @param {Object} object The object to query.
@@ -12267,7 +12267,7 @@
 	     * picking the properties `predicate` returns truthy for. The predicate is
 	     * bound to `thisArg` and invoked with three arguments: (value, key, object).
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Object
 	     * @param {Object} object The source object.
@@ -12300,7 +12300,7 @@
 	     * it is invoked with the `this` binding of its parent object and its result
 	     * is returned.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Object
 	     * @param {Object} object The object to query.
@@ -12340,7 +12340,7 @@
 	     * Sets the property value of `path` on `object`. If a portion of `path`
 	     * does not exist it is created.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Object
 	     * @param {Object} object The object to augment.
@@ -12393,7 +12393,7 @@
 	     * with four arguments: (accumulator, value, key, object). Iteratee functions
 	     * may exit iteration early by explicitly returning `false`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Object
 	     * @param {Array|Object} object The object to iterate over.
@@ -12441,7 +12441,7 @@
 	     *
 	     * **Note:** Non-object values are coerced to objects.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Object
 	     * @param {Object} object The object to query.
@@ -12471,7 +12471,7 @@
 	     *
 	     * **Note:** Non-object values are coerced to objects.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Object
 	     * @param {Object} object The object to query.
@@ -12498,7 +12498,7 @@
 	     * Checks if `n` is between `start` and up to but not including, `end`. If
 	     * `end` is not specified it is set to `start` with `start` then set to `0`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Number
 	     * @param {number} n The number to check.
@@ -12542,7 +12542,7 @@
 	     * If `floating` is `true`, or either `min` or `max` are floats, a floating-point
 	     * number is returned instead of an integer.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Number
 	     * @param {number} [min=0] The minimum possible value.
@@ -12603,7 +12603,7 @@
 	    /**
 	     * Converts `string` to [camel case](https://en.wikipedia.org/wiki/CamelCase).
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category String
 	     * @param {string} [string=''] The string to convert.
@@ -12627,7 +12627,7 @@
 	    /**
 	     * Capitalizes the first character of `string`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category String
 	     * @param {string} [string=''] The string to capitalize.
@@ -12646,7 +12646,7 @@
 	     * Deburrs `string` by converting [latin-1 supplementary letters](https://en.wikipedia.org/wiki/Latin-1_Supplement_(Unicode_block)#Character_table)
 	     * to basic latin letters and removing [combining diacritical marks](https://en.wikipedia.org/wiki/Combining_Diacritical_Marks).
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category String
 	     * @param {string} [string=''] The string to deburr.
@@ -12664,7 +12664,7 @@
 	    /**
 	     * Checks if `string` ends with the given target string.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category String
 	     * @param {string} [string=''] The string to search.
@@ -12717,7 +12717,7 @@
 	     * When working with HTML you should always [quote attribute values](http://wonko.com/post/html-escaping)
 	     * to reduce XSS vectors.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category String
 	     * @param {string} [string=''] The string to escape.
@@ -12739,7 +12739,7 @@
 	     * Escapes the `RegExp` special characters "\", "/", "^", "$", ".", "|", "?",
 	     * "*", "+", "(", ")", "[", "]", "{" and "}" in `string`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category String
 	     * @param {string} [string=''] The string to escape.
@@ -12759,7 +12759,7 @@
 	    /**
 	     * Converts `string` to [kebab case](https://en.wikipedia.org/wiki/Letter_case#Special_case_styles).
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category String
 	     * @param {string} [string=''] The string to convert.
@@ -12783,7 +12783,7 @@
 	     * Pads `string` on the left and right sides if it's shorter than `length`.
 	     * Padding characters are truncated if they can't be evenly divided by `length`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category String
 	     * @param {string} [string=''] The string to pad.
@@ -12821,7 +12821,7 @@
 	     * Pads `string` on the left side if it's shorter than `length`. Padding
 	     * characters are truncated if they exceed `length`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category String
 	     * @param {string} [string=''] The string to pad.
@@ -12845,7 +12845,7 @@
 	     * Pads `string` on the right side if it's shorter than `length`. Padding
 	     * characters are truncated if they exceed `length`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category String
 	     * @param {string} [string=''] The string to pad.
@@ -12873,7 +12873,7 @@
 	     * **Note:** This method aligns with the [ES5 implementation](https://es5.github.io/#E)
 	     * of `parseInt`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category String
 	     * @param {string} string The string to convert.
@@ -12904,7 +12904,7 @@
 	    /**
 	     * Repeats the given string `n` times.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category String
 	     * @param {string} [string=''] The string to repeat.
@@ -12944,7 +12944,7 @@
 	    /**
 	     * Converts `string` to [snake case](https://en.wikipedia.org/wiki/Snake_case).
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category String
 	     * @param {string} [string=''] The string to convert.
@@ -12967,7 +12967,7 @@
 	    /**
 	     * Converts `string` to [start case](https://en.wikipedia.org/wiki/Letter_case#Stylistic_or_specialised_usage).
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category String
 	     * @param {string} [string=''] The string to convert.
@@ -12990,7 +12990,7 @@
 	    /**
 	     * Checks if `string` starts with the given target string.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category String
 	     * @param {string} [string=''] The string to search.
@@ -13034,7 +13034,7 @@
 	     * For more information on Chrome extension sandboxes see
 	     * [Chrome's extensions documentation](https://developer.chrome.com/extensions/sandboxingEval).
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category String
 	     * @param {string} [string=''] The template string.
@@ -13222,7 +13222,7 @@
 	    /**
 	     * Removes leading and trailing whitespace or specified characters from `string`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category String
 	     * @param {string} [string=''] The string to trim.
@@ -13256,7 +13256,7 @@
 	    /**
 	     * Removes leading whitespace or specified characters from `string`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category String
 	     * @param {string} [string=''] The string to trim.
@@ -13286,7 +13286,7 @@
 	    /**
 	     * Removes trailing whitespace or specified characters from `string`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category String
 	     * @param {string} [string=''] The string to trim.
@@ -13318,7 +13318,7 @@
 	     * The last characters of the truncated string are replaced with the omission
 	     * string which defaults to "...".
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category String
 	     * @param {string} [string=''] The string to truncate.
@@ -13413,7 +13413,7 @@
 	     * **Note:** No other HTML entities are unescaped. To unescape additional HTML
 	     * entities use a third-party library like [_he_](https://mths.be/he).
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category String
 	     * @param {string} [string=''] The string to unescape.
@@ -13433,7 +13433,7 @@
 	    /**
 	     * Splits `string` into an array of its words.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category String
 	     * @param {string} [string=''] The string to inspect.
@@ -13462,7 +13462,7 @@
 	     * Attempts to invoke `func`, returning either the result or the caught error
 	     * object. Any additional arguments are provided to `func` when it is invoked.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Utility
 	     * @param {Function} func The function to attempt.
@@ -13493,7 +13493,7 @@
 	     * is an object the created callback returns `true` for elements that contain
 	     * the equivalent object properties, otherwise it returns `false`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @alias iteratee
 	     * @category Utility
@@ -13536,7 +13536,7 @@
 	    /**
 	     * Creates a function that returns `value`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Utility
 	     * @param {*} value The value to return from the new function.
@@ -13558,7 +13558,7 @@
 	    /**
 	     * This method returns the first argument provided to it.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Utility
 	     * @param {*} value Any value.
@@ -13584,7 +13584,7 @@
 	     * their own, not inherited, enumerable properties. For comparing a single
 	     * own or inherited property value see `_.matchesProperty`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Utility
 	     * @param {Object} source The object of property values to match.
@@ -13611,7 +13611,7 @@
 	     * numbers, `Object` objects, regexes, and strings. Objects are compared by
 	     * their own, not inherited, enumerable properties.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Utility
 	     * @param {Array|string} path The path of the property to get.
@@ -13635,7 +13635,7 @@
 	     * Creates a function that invokes the method at `path` on a given object.
 	     * Any additional arguments are provided to the invoked method.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Utility
 	     * @param {Array|string} path The path of the method to invoke.
@@ -13665,7 +13665,7 @@
 	     * the method at a given path on `object`. Any additional arguments are
 	     * provided to the invoked method.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Utility
 	     * @param {Object} object The object to query.
@@ -13696,7 +13696,7 @@
 	     * **Note:** Use `_.runInContext` to create a pristine `lodash` function to
 	     * avoid conflicts caused by modifying the original.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Utility
 	     * @param {Function|Object} [object=lodash] The destination object.
@@ -13779,7 +13779,7 @@
 	     * Reverts the `_` variable to its previous value and returns a reference to
 	     * the `lodash` function.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Utility
 	     * @returns {Function} Returns the `lodash` function.
@@ -13796,7 +13796,7 @@
 	     * A no-operation function that returns `undefined` regardless of the
 	     * arguments it receives.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Utility
 	     * @example
@@ -13814,7 +13814,7 @@
 	     * Creates a function that returns the property value at `path` on a
 	     * given object.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Utility
 	     * @param {Array|string} path The path of the property to get.
@@ -13840,7 +13840,7 @@
 	     * The opposite of `_.property`; this method creates a function that returns
 	     * the property value at a given path on `object`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Utility
 	     * @param {Object} object The object to query.
@@ -13868,7 +13868,7 @@
 	     * set to `start` with `start` then set to `0`. If `end` is less than `start`
 	     * a zero-length range is created unless a negative `step` is specified.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Utility
 	     * @param {number} [start=0] The start of the range.
@@ -13926,7 +13926,7 @@
 	     * of each invocation. The `iteratee` is bound to `thisArg` and invoked with
 	     * one argument; (index).
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Utility
 	     * @param {number} n The number of times to invoke `iteratee`.
@@ -13973,7 +13973,7 @@
 	    /**
 	     * Generates a unique ID. If `prefix` is provided the ID is appended to it.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Utility
 	     * @param {string} [prefix] The value to prefix the ID with.
@@ -13996,7 +13996,7 @@
 	    /**
 	     * Adds two numbers.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Math
 	     * @param {number} augend The first number to add.
@@ -14014,7 +14014,7 @@
 	    /**
 	     * Calculates `n` rounded up to `precision`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Math
 	     * @param {number} n The number to round up.
@@ -14036,7 +14036,7 @@
 	    /**
 	     * Calculates `n` rounded down to `precision`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Math
 	     * @param {number} n The number to round down.
@@ -14073,7 +14073,7 @@
 	     * callback returns `true` for elements that have the properties of the given
 	     * object, else `false`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Math
 	     * @param {Array|Object|string} collection The collection to iterate over.
@@ -14122,7 +14122,7 @@
 	     * callback returns `true` for elements that have the properties of the given
 	     * object, else `false`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Math
 	     * @param {Array|Object|string} collection The collection to iterate over.
@@ -14156,7 +14156,7 @@
 	    /**
 	     * Calculates `n` rounded to `precision`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Math
 	     * @param {number} n The number to round.
@@ -14178,7 +14178,7 @@
 	    /**
 	     * Gets the sum of the values in `collection`.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @category Math
 	     * @param {Array|Object|string} collection The collection to iterate over.
@@ -14500,7 +14500,7 @@
 	    /**
 	     * The semantic version number.
 	     *
-	     * @static
+	     * @templates
 	     * @memberOf _
 	     * @type string
 	     */
@@ -24071,7 +24071,7 @@
 	   */
 
 	  this.opt_len = 0;       /* bit length of current block with optimal trees */
-	  this.static_len = 0;    /* bit length of current block with static trees */
+	  this.static_len = 0;    /* bit length of current block with templates trees */
 	  this.matches = 0;       /* number of string matches in current block */
 	  this.insert = 0;        /* bytes at end of window left to insert */
 
@@ -24827,7 +24827,7 @@
 	// !!!! Use flat array insdead of structure, Freq = i*2, Len = i*2+1
 	var static_ltree  = new Array((L_CODES+2) * 2);
 	zero(static_ltree);
-	/* The static literal tree. Since the bit lengths are imposed, there is no
+	/* The templates literal tree. Since the bit lengths are imposed, there is no
 	 * need for the L_CODES extra codes used during heap construction. However
 	 * The codes 286 and 287 are needed to build a canonical tree (see _tr_init
 	 * below).
@@ -24835,7 +24835,7 @@
 
 	var static_dtree  = new Array(D_CODES * 2);
 	zero(static_dtree);
-	/* The static distance tree. (Actually a trivial tree since all codes use
+	/* The templates distance tree. (Actually a trivial tree since all codes use
 	 * 5 bits.)
 	 */
 
@@ -24861,7 +24861,7 @@
 
 	var StaticTreeDesc = function (static_tree, extra_bits, extra_base, elems, max_length) {
 
-	  this.static_tree  = static_tree;  /* static tree or NULL */
+	  this.static_tree  = static_tree;  /* templates tree or NULL */
 	  this.extra_bits   = extra_bits;   /* extra bits for each code or NULL */
 	  this.extra_base   = extra_base;   /* base index for extra_bits */
 	  this.elems        = elems;        /* max number of elements in the tree */
@@ -24880,7 +24880,7 @@
 	var TreeDesc = function(dyn_tree, stat_desc) {
 	  this.dyn_tree = dyn_tree;     /* the dynamic tree */
 	  this.max_code = 0;            /* largest code with non zero frequency */
-	  this.stat_desc = stat_desc;   /* the corresponding static tree */
+	  this.stat_desc = stat_desc;   /* the corresponding templates tree */
 	};
 
 
@@ -25156,7 +25156,7 @@
 	  }
 	  //Assert (dist == 256, "tr_static_init: 256+dist != 512");
 
-	  /* Construct the codes of the static literal tree */
+	  /* Construct the codes of the templates literal tree */
 	  for (bits = 0; bits <= MAX_BITS; bits++) {
 	    bl_count[bits] = 0;
 	  }
@@ -25188,13 +25188,13 @@
 	   */
 	  gen_codes(static_ltree, L_CODES+1, bl_count);
 
-	  /* The static distance tree is trivial: */
+	  /* The templates distance tree is trivial: */
 	  for (n = 0; n < D_CODES; n++) {
 	    static_dtree[n*2 + 1]/*.Len*/ = 5;
 	    static_dtree[n*2]/*.Code*/ = bi_reverse(n, 5);
 	  }
 
-	  // Now data ready and we can init static trees
+	  // Now data ready and we can init templates trees
 	  static_l_desc = new StaticTreeDesc(static_ltree, extra_lbits, LITERALS+1, L_CODES, MAX_BITS);
 	  static_d_desc = new StaticTreeDesc(static_dtree, extra_dbits, 0,          D_CODES, MAX_BITS);
 	  static_bl_desc =new StaticTreeDesc(new Array(0), extra_blbits, 0,         BL_CODES, MAX_BL_BITS);
@@ -25750,7 +25750,7 @@
 
 
 	/* ===========================================================================
-	 * Send one empty static block to give enough lookahead for inflate.
+	 * Send one empty templates block to give enough lookahead for inflate.
 	 * This takes 10 bits, of which 7 may remain in the bit buffer.
 	 */
 	function _tr_align(s) {
@@ -25761,7 +25761,7 @@
 
 
 	/* ===========================================================================
-	 * Determine the best encoding for the current block: dynamic trees, static
+	 * Determine the best encoding for the current block: dynamic trees, templates
 	 * trees or store, and output the encoded block to the zip file.
 	 */
 	function _tr_flush_block(s, buf, stored_len, last)

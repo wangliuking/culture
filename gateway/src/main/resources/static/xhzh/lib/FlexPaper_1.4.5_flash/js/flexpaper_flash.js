@@ -223,7 +223,7 @@ function onDocumentPrinted(){
 		return new Flash(root, extend(extend({}, GLOBAL_OPTS), opts), conf); 
 	};	
 	
-	// flashembed "static" API
+	// flashembed "templates" API
 	var f = extend(window.flashembed, {
 		
 		conf: GLOBAL_OPTS,

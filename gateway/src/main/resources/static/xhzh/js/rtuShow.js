@@ -415,7 +415,7 @@ xh.load = function() {
                 });
             }else if(type == 4){
                 //静电
-                $http.get("../../static/selectStaticByRTU?rtu_id="+rtu_id).
+                $http.get("../../templates/selectStaticByRTU?rtu_id="+rtu_id).
                 success(function(response){
                     var finalData = $scope.filterRSData(response,"staet_id",channel,test485);
                     //console.log(response);

@@ -1,19 +1,27 @@
 spring:
+  thymeleaf:
+    prefix: classpath:/static/
+    check-template-location: true
+    cache: false
+    suffix: .html
+    encoding: UTF-8
+    content-type: text/html
+    mode: HTML5
   application:
     name: wechat
   datasource:
-    url: jdbc:mysql://localhost:3306/lightingdetection?useSSL=false&useUnicode=true&characterEncoding=utf8
+    url: jdbc:mysql://localhost:3306/wechat?useSSL=false&useUnicode=true&characterEncoding=utf8
     username: root
     password: XinHong12345
     driver-class-name: com.mysql.jdbc.Driver
 server:
-  port: 443
-  ssl:
-    key-store: server.keystore
-    key-alias: tomcat
-    enabled: true
-    key-store-password: 123456
-    key-store-type: JKS
+  port: 80
+  #ssl:
+    #key-store: server.keystore
+    #key-alias: tomcat
+    #enabled: true
+    #key-store-password: 123456
+    #key-store-type: JKS
 mybatis:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
@@ -22,4 +30,4 @@ logging:
   #格式化，只能输出日期和内容
   #console: "%d - %msg%n"
   path: /usr/logs
-  file: /usr/logs/total.log
+  file: /usr/logs/wechat.log

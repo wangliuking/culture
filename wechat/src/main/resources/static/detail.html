@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta content="text/html;charset=UTF-8"/>
+    <title>详情</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0"/>
+    <link rel="stylesheet" href="css/weui.css"/>
+    <link rel="stylesheet" href="css/weuix.css"/>
+    <link rel="stylesheet" href="css/APlayer.min.css"/>
+
+    <script src="js/zepto.min.js"></script>
+    <script src="js/swipe.js"></script>
+    <script src="js/echo.min.js"></script>
+    <script>
+        $(function(){
+            $("img.lazy").attr('src','img/loading.gif');//此处可改为具体懒加载图片
+
+            $('#slide1').swipeSlide({
+                autoSwipe:true,//自动切换默认是
+                speed:3000,//速度默认4000
+                continuousScroll:true,//默认否
+                transitionType:'cubic-bezier(0.22, 0.69, 0.72, 0.88)',//过渡动画linear/ease/ease-in/ease-out/ease-in-out/cubic-bezier
+                lazyLoad:true,//懒加载默认否
+                firstCallback : function(i,sum,me){
+                    me.find('.dot').children().first().addClass('cur');
+                },
+                callback : function(i,sum,me){
+                    me.find('.dot').children().eq(i).addClass('cur').siblings().removeClass('cur');
+                }
+            });
+        })
+
+        echo.init({
+            offset: 100,
+            throttle: 250
+        });
+    </script>
+    <style>
+        #slide1{height:300px;}
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <div class="page-hd" style="padding: 10px 20px 10px 20px;">
+        <h6 class="page-hd-title" th:text="${map.title}"></h6>
+    </div>
+    <div class="slide" id="slide1">
+        <ul>
+            <li th:each="c : ${map.list}">
+                <a href="javascript:;">
+                    <img th:attr="data-echo=${c.imgUrl}" height="240" alt=""/>
+                </a>
+                <div class="slide-desc" th:text="${c.imgDesc}"></div>
+            </li>
+        </ul>
+        <div class="dot">
+            <span th:each="d : ${map.list}"></span>
+        </div>
+    </div>
+    <div class="page-hd">
+        <p class="page-hd-desc" th:text="${map.content}"></p>
+    </div>
+    <br/>
+    <br/>
+    <div class="weui-footer weui-footer_fixed-bottom" style="bottom:0;">
+        <!--<p class="weui-footer__links">
+            <a href="../index.html" class="weui-footer__link">WeUI首页</a>
+        </p>
+        <p class="weui-footer__text">Copyright &copy; Yoby</p>-->
+        <div id="aplayer" style="padding: 0;margin: 0;"></div>
+    </div>
+</div>
+<script src="js/APlayer.min.js"></script>
+<script type="text/javascript" th:inline="javascript">
+    var name = [[${map.musicName}]];
+    var artist = [[${map.musicArtist}]];
+    var url = [[${map.musicUrl}]];
+    var cover = [[${map.musicImg}]];
+    var ap = new APlayer({
+        container: document.getElementById('aplayer'),
+        mini: false,
+        audio: [{
+            name: name,
+            artist: artist,
+            url: url,
+            cover: cover
+        }]
+    });
+</script>
+</body>
+</html>

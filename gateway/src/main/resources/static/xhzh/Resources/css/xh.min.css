@@ -3471,7 +3471,7 @@ a.cd-read-more:hover{text-decoration:none; background-color: #424242;  }
   .card-filter{
     background-color:#000000;
     filter:Alpha(opacity=50);
-    position:static; IE6、7、8只能设置position:static(默认属性) ，否则会导致子元素继承Alpha值
+    position:templates; IE6、7、8只能设置position:templates(默认属性) ，否则会导致子元素继承Alpha值
     *zoom:1; 激活IE6、7的haslayout属性，让它读懂Alpha
   }
   .card-filter span{

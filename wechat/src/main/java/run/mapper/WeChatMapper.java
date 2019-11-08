@@ -1,5 +1,6 @@
 package run.mapper;
 
+import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -15,5 +16,26 @@ public interface WeChatMapper {
             "group by a.rtu_id"+
             "</script>")
     List<Map<String,Object>> selectRTUOff(Map<String, Object> param);*/
+
+    @Select("<script>" +
+            "select * from table_list where 1=1 "+
+            "<if test=\"title != null and title != ''\">" +
+            "and title like concat('%',#{title},'%')"+
+            "</if>"+
+            "</script>")
+    List<Map<String,Object>> selectAllList(Map<String, Object> param);
+
+    @Select("<script>" +
+            "select * from table_detail where 1=1 "+
+            "<if test=\"id != null and id != ''\">" +
+            "and id = #{id}"+
+            "</if>"+
+            "</script>")
+    Map<String,Object> searchDetail(Map<String, Object> param);
+
+    @Select("<script>" +
+            "select * from table_news order by time desc limit 4 "+
+            "</script>")
+    List<Map<String,Object>> searchCurrentNews();
 
 }

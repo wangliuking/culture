@@ -360,7 +360,7 @@
         // START OF WEBGL ABSTRACTIONS
 
         /* 
-         * A static shader mimicing axis translation functions found in parts/Axis
+         * A templates shader mimicing axis translation functions found in parts/Axis
          * @param gl {WebGLContext} - the context in which the shader is active
          */
         function GLShader(gl) {

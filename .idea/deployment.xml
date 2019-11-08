@@ -2,10 +2,32 @@
 <project version="4">
   <component name="PublishConfigData" serverName="微信公众号测试服务器">
     <serverData>
+      <paths name="192.168.8.134">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/usr/culture" local="$PROJECT_DIR$/eureka-server/target" />
+            <mapping deploy="/usr/culture" local="$PROJECT_DIR$/gateway/target" />
+            <mapping deploy="/usr/culture" local="$PROJECT_DIR$/service-cat/target" />
+            <mapping deploy="/usr/culture" local="$PROJECT_DIR$/service-connection/target" />
+            <mapping deploy="/usr/culture" local="$PROJECT_DIR$/service-etcr/target" />
+            <mapping deploy="/usr/culture" local="$PROJECT_DIR$/service-hc/target" />
+            <mapping deploy="/usr/culture" local="$PROJECT_DIR$/service-lightning/target" />
+            <mapping deploy="/usr/culture" local="$PROJECT_DIR$/service-MQ/target" />
+            <mapping deploy="/usr/culture" local="$PROJECT_DIR$/service-rsws/target" />
+            <mapping deploy="/usr/culture" local="$PROJECT_DIR$/service-spd/target" />
+            <mapping deploy="/usr/culture" local="$PROJECT_DIR$/service-static/target" web="" />
+            <mapping deploy="/usr/culture" local="$PROJECT_DIR$/service-stray/target" />
+            <mapping deploy="/usr/culture" local="$PROJECT_DIR$/service-svt/target" />
+            <mapping deploy="/usr/culture" local="$PROJECT_DIR$/service-total/target" />
+          </mappings>
+        </serverdata>
+      </paths>
       <paths name="微信公众号测试服务器">
         <serverdata>
           <mappings>
             <mapping deploy="/usr/wechat" local="$PROJECT_DIR$/wechat/target" web="/" />
+            <mapping deploy="/usr/wechat/config" local="$PROJECT_DIR$/wechat/target/config" />
           </mappings>
         </serverdata>
       </paths>

@@ -61,6 +61,10 @@
             <version>4.5.10</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
 
     </dependencies>
 
@@ -72,9 +76,87 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <mainClass>run.WeChatApplication</mainClass>
+                <configuration> <!--重写包含依赖，包含不存在的依赖，jar里没有pom里的依赖-->
+                    <includes>
+                        <include>
+                            <groupId>null</groupId>
+                            <artifactId>null</artifactId>
+                        </include>
+                    </includes>
+                    <layout>ZIP</layout> <!--使用外部配置文件，jar包里没有资源文件-->
+                    <addResources>true</addResources>
+                    <outputDirectory>${project.build.directory}</outputDirectory>
                 </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                        <configuration> <!--<classifier>run</classifier>--> </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>*.yml</exclude>
+                        <exclude>*.properties</exclude>
+                    </excludes>
+                    <archive> <!--这里配置MANIFEST.MF文件，添加正确的依赖，Mainclass-->
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
+                            <useUniqueVersions>false</useUniqueVersions>
+                            <mainClass>run.WeChatApplication</mainClass>
+                        </manifest>
+                        <manifestEntries> <!--MANIFEST.MF 中 Class-Path 加入资源文件目录-->
+                            <Class-Path>./config/</Class-Path>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration> <!--这里是配置依赖jar包输出目录-->
+                            <outputDirectory>${project.build.directory}/lib/</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <resources> <!--这里是相关配置文件的输出目录，当然你可以过滤一些文件-->
+                                <resource>
+                                    <directory>src/main/resources</directory> <!--这里是忽略的文件（类型）--> <!--<excludes>
+                                    <exclude>**/*.xml</exclude>
+                                </excludes>--> <!--这里是需要导出的文件（类型）--> <!--<includes>
+                                    <include>*.properties</include>
+                                    <include>*.yml</include>
+                                </includes>-->
+                                </resource>
+                            </resources> <!--输出目录-->
+                            <outputDirectory>${project.build.directory}/config</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

@@ -1403,7 +1403,7 @@
 
 			// Build the current yLabels so we have an idea of what size they'll be to start
 			/*
-			 *	This sets what is returned from calculateScaleRange as static properties of this class:
+			 *	This sets what is returned from calculateScaleRange as templates properties of this class:
 			 *
 				this.steps;
 				this.stepValue;

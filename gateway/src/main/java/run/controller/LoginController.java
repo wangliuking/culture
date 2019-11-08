@@ -157,7 +157,7 @@ public class LoginController {
         Base64.Encoder encoder = Base64.getEncoder();
         System.out.println(encoder.encode(data));
 
-        /*String filename = "static/xhzh/JSsignature_pad/" + "text.txt";
+        /*String filename = "templates/xhzh/JSsignature_pad/" + "text.txt";
         try {
             File imageFile = new File(filename);
             imageFile.createNewFile();

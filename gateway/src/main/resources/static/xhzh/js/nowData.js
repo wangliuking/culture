@@ -131,7 +131,7 @@ xh.load = function() {
                     $scope.LightningData = response;
                 });
                 //静电
-                $http.get("../../static/selectStaticByRTU?rtu_id="+rtu_id).
+                $http.get("../../templates/selectStaticByRTU?rtu_id="+rtu_id).
                 success(function(response){
                     console.log(response);
                     $scope.StaticData = response;

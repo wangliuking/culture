@@ -2386,7 +2386,7 @@ window.BMAP_AUTHENTIC_KEY = "";
         void function(a, b, c) {
             var i = "18_3";
             H() && (i = "18_4");
-            var k = "http://static.tieba.baidu.com";
+            var k = "http://templates.tieba.baidu.com";
             "https:" === a.location.protocol && (k = "https://gsp0.baidu.com/5aAHeD3nKhI2p27j8IqW0jdnxx1xbK");
             var m = Math.random
               , k = k + "/tb/pms/img/st.gif"

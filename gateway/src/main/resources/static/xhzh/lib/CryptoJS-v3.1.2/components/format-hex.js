@@ -21,7 +21,7 @@ code.google.com/p/crypto-js/wiki/License
          *
          * @return {string} The hexadecimally encoded string.
          *
-         * @static
+         * @templates
          *
          * @example
          *
@@ -38,7 +38,7 @@ code.google.com/p/crypto-js/wiki/License
          *
          * @return {CipherParams} The cipher params object.
          *
-         * @static
+         * @templates
          *
          * @example
          *

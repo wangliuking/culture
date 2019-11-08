@@ -6,7 +6,7 @@ import feign.RequestLine;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import run.feign.FeignConf;
 
-@FeignClient(name="service-static",configuration= FeignConf.class)
+@FeignClient(name="service-templates",configuration= FeignConf.class)
 public interface FeignForStatic {
     @RequestLine("GET /deleteStatic?rtu_id={rtu_id}&staet_id={staet_id}&rtu_port={rtu_port}")
     @Headers("Content-Type: application/json")

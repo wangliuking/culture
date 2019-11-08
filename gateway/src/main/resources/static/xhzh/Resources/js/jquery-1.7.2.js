@@ -1555,7 +1555,7 @@ jQuery.support = (function() {
 			"<tr><td></td></tr></table>";
 
 		container = document.createElement("div");
-		container.style.cssText = paddingMarginBorderVisibility + "width:0;height:0;position:static;top:0;margin-top:" + conMarginTop + "px";
+		container.style.cssText = paddingMarginBorderVisibility + "width:0;height:0;position:templates;top:0;margin-top:" + conMarginTop + "px";
 		body.insertBefore( container, body.firstChild );
 
 		// Construct the test element
@@ -9127,7 +9127,7 @@ if ( "getBoundingClientRect" in document.documentElement ) {
 			prevComputedStyle = computedStyle;
 		}
 
-		if ( prevComputedStyle.position === "relative" || prevComputedStyle.position === "static" ) {
+		if ( prevComputedStyle.position === "relative" || prevComputedStyle.position === "templates" ) {
 			top  += body.offsetTop;
 			left += body.offsetLeft;
 		}
@@ -9181,8 +9181,8 @@ jQuery.offset = {
 	setOffset: function( elem, options, i ) {
 		var position = jQuery.css( elem, "position" );
 
-		// set position first, in-case top/left are set even on static elem
-		if ( position === "static" ) {
+		// set position first, in-case top/left are set even on templates elem
+		if ( position === "templates" ) {
 			elem.style.position = "relative";
 		}
 
@@ -9259,7 +9259,7 @@ jQuery.fn.extend({
 	offsetParent: function() {
 		return this.map(function() {
 			var offsetParent = this.offsetParent || document.body;
-			while ( offsetParent && (!rroot.test(offsetParent.nodeName) && jQuery.css(offsetParent, "position") === "static") ) {
+			while ( offsetParent && (!rroot.test(offsetParent.nodeName) && jQuery.css(offsetParent, "position") === "templates") ) {
 				offsetParent = offsetParent.offsetParent;
 			}
 			return offsetParent;

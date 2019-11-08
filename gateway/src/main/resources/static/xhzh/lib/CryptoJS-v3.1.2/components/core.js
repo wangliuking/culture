@@ -32,7 +32,7 @@ var CryptoJS = CryptoJS || (function (Math, undefined) {
              *
              * @return {Object} The new object.
              *
-             * @static
+             * @templates
              *
              * @example
              *
@@ -75,7 +75,7 @@ var CryptoJS = CryptoJS || (function (Math, undefined) {
              *
              * @return {Object} The new object.
              *
-             * @static
+             * @templates
              *
              * @example
              *
@@ -271,7 +271,7 @@ var CryptoJS = CryptoJS || (function (Math, undefined) {
          *
          * @return {WordArray} The random word array.
          *
-         * @static
+         * @templates
          *
          * @example
          *
@@ -303,7 +303,7 @@ var CryptoJS = CryptoJS || (function (Math, undefined) {
          *
          * @return {string} The hex string.
          *
-         * @static
+         * @templates
          *
          * @example
          *
@@ -332,7 +332,7 @@ var CryptoJS = CryptoJS || (function (Math, undefined) {
          *
          * @return {WordArray} The word array.
          *
-         * @static
+         * @templates
          *
          * @example
          *
@@ -363,7 +363,7 @@ var CryptoJS = CryptoJS || (function (Math, undefined) {
          *
          * @return {string} The Latin1 string.
          *
-         * @static
+         * @templates
          *
          * @example
          *
@@ -391,7 +391,7 @@ var CryptoJS = CryptoJS || (function (Math, undefined) {
          *
          * @return {WordArray} The word array.
          *
-         * @static
+         * @templates
          *
          * @example
          *
@@ -422,7 +422,7 @@ var CryptoJS = CryptoJS || (function (Math, undefined) {
          *
          * @return {string} The UTF-8 string.
          *
-         * @static
+         * @templates
          *
          * @example
          *
@@ -443,7 +443,7 @@ var CryptoJS = CryptoJS || (function (Math, undefined) {
          *
          * @return {WordArray} The word array.
          *
-         * @static
+         * @templates
          *
          * @example
          *
@@ -671,7 +671,7 @@ var CryptoJS = CryptoJS || (function (Math, undefined) {
          *
          * @return {Function} The shortcut function.
          *
-         * @static
+         * @templates
          *
          * @example
          *
@@ -690,7 +690,7 @@ var CryptoJS = CryptoJS || (function (Math, undefined) {
          *
          * @return {Function} The shortcut function.
          *
-         * @static
+         * @templates
          *
          * @example
          *

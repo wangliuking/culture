@@ -22,7 +22,7 @@ code.google.com/p/crypto-js/wiki/License
          *
          * @return {string} The UTF-16 BE string.
          *
-         * @static
+         * @templates
          *
          * @example
          *
@@ -50,7 +50,7 @@ code.google.com/p/crypto-js/wiki/License
          *
          * @return {WordArray} The word array.
          *
-         * @static
+         * @templates
          *
          * @example
          *
@@ -81,7 +81,7 @@ code.google.com/p/crypto-js/wiki/License
          *
          * @return {string} The UTF-16 LE string.
          *
-         * @static
+         * @templates
          *
          * @example
          *
@@ -109,7 +109,7 @@ code.google.com/p/crypto-js/wiki/License
          *
          * @return {WordArray} The word array.
          *
-         * @static
+         * @templates
          *
          * @example
          *

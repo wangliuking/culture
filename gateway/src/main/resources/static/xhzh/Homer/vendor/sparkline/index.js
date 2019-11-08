@@ -823,7 +823,7 @@
 
 
     Tooltip = createClass({
-        sizeStyle: 'position: static !important;' +
+        sizeStyle: 'position: templates !important;' +
             'display: block !important;' +
             'visibility: hidden !important;' +
             'float: left !important;',

@@ -226,7 +226,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
      *
      * @return {WordArray} The hash.
      *
-     * @static
+     * @templates
      *
      * @example
      *
@@ -243,7 +243,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
      *
      * @return {WordArray} The HMAC.
      *
-     * @static
+     * @templates
      *
      * @example
      *

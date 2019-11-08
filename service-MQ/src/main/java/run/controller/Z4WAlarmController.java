@@ -169,7 +169,7 @@ public class Z4WAlarmController {
         });
         threadLightning.start();
         //lightning
-        //static
+        //templates
         Thread threadStatic = new Thread(()->{
             System.out.println("StaticAlarm Running");
             try {
@@ -179,7 +179,7 @@ public class Z4WAlarmController {
             }
         });
         threadStatic.start();
-        //static
+        //templates
         //rsws
         Thread threadRsws = new Thread(()->{
             System.out.println("RswsAlarm Running");

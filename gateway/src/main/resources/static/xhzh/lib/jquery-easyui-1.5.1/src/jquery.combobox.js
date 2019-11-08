@@ -599,7 +599,7 @@
 	$.fn.combobox.defaults = $.extend({}, $.fn.combo.defaults, {
 		valueField: 'value',
 		textField: 'text',
-		groupPosition: 'static',	// or 'sticky'
+		groupPosition: 'templates',	// or 'sticky'
 		groupField: null,
 		groupFormatter: function(group){return group;},
 		mode: 'local',	// or 'remote'

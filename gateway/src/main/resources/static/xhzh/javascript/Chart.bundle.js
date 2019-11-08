@@ -12553,7 +12553,7 @@ module.exports = function(Chart) {
 var helpers = require(45);
 
 /**
- * Namespace to hold static tick generation functions
+ * Namespace to hold templates tick generation functions
  * @namespace Chart.Ticks
  */
 module.exports = {

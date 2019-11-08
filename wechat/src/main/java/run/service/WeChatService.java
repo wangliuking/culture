@@ -12,6 +12,15 @@ public class WeChatService {
     @Autowired
     WeChatMapper weChatMapper;
 
+    public List<Map<String,Object>> selectAllList(Map<String,Object> param){
+        return weChatMapper.selectAllList(param);
+    }
 
+    public Map<String,Object> searchDetail(Map<String,Object> param){
+        return weChatMapper.searchDetail(param);
+    }
 
+    public List<Map<String,Object>> searchCurrentNews(){
+        return weChatMapper.searchCurrentNews();
+    }
 }

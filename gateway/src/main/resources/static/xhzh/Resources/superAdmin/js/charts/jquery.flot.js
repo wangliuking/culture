@@ -1277,7 +1277,7 @@ Licensed under the MIT license.
                     return !$(this).hasClass("flot-overlay") && !$(this).hasClass('flot-base');
                 }).remove();
 
-            if (placeholder.css("position") == 'static')
+            if (placeholder.css("position") == 'templates')
                 placeholder.css("position", "relative"); // for positioning labels and overlay
 
             surface = new Canvas("flot-base", placeholder);

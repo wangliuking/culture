@@ -91,7 +91,7 @@ Layer.prototype.view = function(){
   if(config.skin === 'msg') config.shade = false;
   
   layerbox.innerHTML = (config.shade ? '<div '+ (typeof config.shade === 'string' ? 'style="'+ config.shade +'"' : '') +' class="layui-m-layershade"></div>' : '')
-  +'<div class="layui-m-layermain" '+ (!config.fixed ? 'style="position:static;"' : '') +'>'
+  +'<div class="layui-m-layermain" '+ (!config.fixed ? 'style="position:templates;"' : '') +'>'
     +'<div class="layui-m-layersection">'
       +'<div class="layui-m-layerchild '+ (config.skin ? 'layui-m-layer-' + config.skin + ' ' : '') + (config.className ? config.className : '') + ' ' + (config.anim ? 'layui-m-anim-' + config.anim : '') +'" ' + ( config.style ? 'style="'+config.style+'"' : '' ) +'>'
         + title

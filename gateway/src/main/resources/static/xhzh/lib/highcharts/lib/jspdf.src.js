@@ -3000,7 +3000,7 @@ var jsPDF = (function(global) {
 	 * jsPDF.API.events['initialized'] = function(){ 'this' is API object }
 	 * jsPDF.API.events['addFont'] = function(added_font_object){ 'this' is API object }
 	 *
-	 * @static
+	 * @templates
 	 * @public
 	 * @memberOf jsPDF
 	 * @name API

@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta content="text/html;charset=UTF-8"/>
+    <title>列表</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0"/>
+    <link rel="stylesheet" href="css/weui.css"/>
+    <link rel="stylesheet" href="css/weuix.css"/>
+
+    <script src="js/zepto.min.js"></script>
+    <script src="js/echo.min.js"></script>
+    <script>
+        $(function(){
+            $("img.lazy").attr('src','img/loading.gif');//此处可改为具体懒加载图片
+        });
+
+
+        echo.init({
+            offset: 100,
+            throttle: 250
+        });
+
+    </script>
+</head>
+
+<body>
+<div class="page-hd">
+    <h1 class="page-hd-title">
+        泸顺起义陈列馆
+    </h1>
+    <p class="page-hd-desc">让我们一起追忆曾经的峥嵘岁月</p>
+</div>
+
+<div class="weui-panel weui-panel_access">
+    <div class="weui-panel__hd">图文展览</div>
+    <div class="weui-panel__bd">
+        <a th:each="c : ${list}" th:attr="href=${c.id}" class="weui-media-box weui-media-box_appmsg">
+            <div class="weui-media-box__hd">
+                <img class="weui-media-box__thumb lazy" th:attr="data-echo=${c.img}" width="60" height="60" alt=""/>
+            </div>
+            <div class="weui-media-box__bd">
+                <h4 class="weui-media-box__title" th:text="${c.title}"></h4>
+                <p class="weui-media-box__desc" th:text="${c.content}"></p>
+            </div>
+        </a>
+    </div>
+    <div class="weui-panel__ft">
+        <a href="javascript:void(0);" class="weui-cell weui-cell_access weui-cell_link">
+            <div class="weui-cell__bd">查看更多</div>
+            <span class="weui-cell__ft"></span>
+        </a>
+    </div>
+</div>
+
+<br/>
+<br/>
+<div class="weui-footer weui-footer_fixed-bottom">
+    <p class="weui-footer__links">
+        <a href="../index.html" class="weui-footer__link">中航信虹</a>
+    </p>
+    <p class="weui-footer__text">Copyright &copy; 2019</p>
+</div>
+</body>
+</html>

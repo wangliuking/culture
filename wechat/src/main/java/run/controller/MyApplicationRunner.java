@@ -7,10 +7,7 @@ import org.springframework.stereotype.Component;
 import run.service.WeChatService;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 开机启动类及定时任务

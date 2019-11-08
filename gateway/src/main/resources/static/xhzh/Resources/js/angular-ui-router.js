@@ -4539,7 +4539,7 @@ var UrlMatcher = (function () {
             if (find(_this._params, propEq('id', id)))
                 throw new Error("Duplicate parameter name '" + id + "' in pattern '" + pattern$$1 + "'");
         };
-        // Split into static segments separated by path parameter placeholders.
+        // Split into templates segments separated by path parameter placeholders.
         // The number of segments is always 1 more than the number of parameters.
         var matchDetails = function (m, isSearch) {
             // IE[78] returns '' for unmatched groups instead of null
@@ -4761,7 +4761,7 @@ var UrlMatcher = (function () {
         if (values$$1 === void 0) { values$$1 = {}; }
         // Build the full path of UrlMatchers (including all parent UrlMatchers)
         var urlMatchers = this._cache.path;
-        // Extract all the static segments and Params (processed as ParamDetails)
+        // Extract all the templates segments and Params (processed as ParamDetails)
         // into an ordered array
         var pathSegmentsAndParams = urlMatchers.map(UrlMatcher.pathSegmentsAndParams)
             .reduce(unnestR, [])
@@ -4788,9 +4788,9 @@ var UrlMatcher = (function () {
             var encoded = param.type.encode(value);
             return { param: param, value: value, isValid: isValid, isDefaultValue: isDefaultValue, squash: squash, encoded: encoded };
         }
-        // Build up the path-portion from the list of static segments and parameters
+        // Build up the path-portion from the list of templates segments and parameters
         var pathString = pathSegmentsAndParams.reduce(function (acc, x) {
-            // The element is a static segment (a raw string); just append it
+            // The element is a templates segment (a raw string); just append it
             if (isString(x))
                 return acc + x;
             // Otherwise, it's a ParamDetails.
@@ -4850,11 +4850,11 @@ var UrlMatcher = (function () {
     /**
      * Compare two UrlMatchers
      *
-     * This comparison function converts a UrlMatcher into static and dynamic path segments.
-     * Each static path segment is a static string between a path separator (slash character).
+     * This comparison function converts a UrlMatcher into templates and dynamic path segments.
+     * Each templates path segment is a templates string between a path separator (slash character).
      * Each dynamic segment is a path parameter.
      *
-     * The comparison function sorts static segments before dynamic ones.
+     * The comparison function sorts templates segments before dynamic ones.
      */
     UrlMatcher.compare = function (a, b) {
         /**
@@ -4883,7 +4883,7 @@ var UrlMatcher = (function () {
         var weights = function (matcher) {
             return matcher._cache.weights = matcher._cache.weights ||
                 segments(matcher).map(function (segment) {
-                    // Sort slashes first, then static strings, the Params
+                    // Sort slashes first, then templates strings, the Params
                     if (segment === '/')
                         return 1;
                     if (isString(segment))

@@ -179,7 +179,7 @@ xh.load = function() {
                     $scope.deviceIds = deviceIdArr;
                 });
             }else if(deviceName == 4){
-                $http.get("../../static/selectAllStatic?rtu_id="+rtu_id+"&structure="+structure).
+                $http.get("../../templates/selectAllStatic?rtu_id="+rtu_id+"&structure="+structure).
                 success(function(response){
                     console.log(response);
                     var tempArr = response.items;

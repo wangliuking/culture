@@ -442,7 +442,7 @@ xh.load = function() {
             }, function(isConfirm) {
                 if (isConfirm) {
                     $.ajax({
-                        url : '../../static/deleteStatic?rtu_id='+rtu_id+"&staet_id="+staet_id+"&rtu_port="+rtu_port,
+                        url : '../../templates/deleteStatic?rtu_id='+rtu_id+"&staet_id="+staet_id+"&rtu_port="+rtu_port,
                         type : 'get',
                         dataType : "json",
                         async : false,
@@ -733,7 +733,7 @@ xh.load = function() {
                     xh.pagging(page, parseInt($scope.totals), $scope);
                 });
             }else if($scope.changeDeviceTypeShow == 4){
-                $http.get("../../static/selectAllStatic?start=0&limit=" + limit+"&site_id="+site_id+"&rtu_id="+rtu_id+"&status="+status+"&structure="+structure).
+                $http.get("../../templates/selectAllStatic?start=0&limit=" + limit+"&site_id="+site_id+"&rtu_id="+rtu_id+"&status="+status+"&structure="+structure).
                 success(function(response){
                     console.log(response);
                     $scope.data = response.items;
@@ -863,7 +863,7 @@ xh.load = function() {
                     $scope.totals = response.totals;
                 });
             }else if($scope.changeDeviceTypeShow == 4){
-                $http.get("../../static/selectAllStatic?start="+start+"&limit=" + limit+"&site_id="+site_id+"&rtu_id="+rtu_id+"&status="+status+"&structure="+structure).
+                $http.get("../../templates/selectAllStatic?start="+start+"&limit=" + limit+"&site_id="+site_id+"&rtu_id="+rtu_id+"&status="+status+"&structure="+structure).
                 success(function(response){
                     /*xh.maskHide();*/
                     $scope.start = (page - 1) * pageSize + 1;
@@ -1097,7 +1097,7 @@ xh.add = function() {
         str = JSON.stringify(f);
         console.log(str);
         $.ajax({
-            url : '../../static/insertStatic',
+            url : '../../templates/insertStatic',
             contentType : "application/json;charset=utf-8",
             type : 'POST',
             dataType : "json",
@@ -1457,7 +1457,7 @@ xh.editStatic = function() {
     f["staet_v0"] = staet_v0*1000;
     var str = JSON.stringify(f);
     $.ajax({
-        url : '../../static/updateStatic',
+        url : '../../templates/updateStatic',
         contentType : "application/json;charset=utf-8",
         type : 'POST',
         dataType : "json",

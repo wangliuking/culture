@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta content="text/html;charset=UTF-8"/>
+    <title>WeUI</title>
+    <link rel="stylesheet" href="css/weui.css"/>
+    <link rel="stylesheet" href="css/example.css"/>
+</head>
+<style>
+    .weui-cell{
+        font-size: 24px;
+    }
+</style>
+<body>
+<div class="weui-cells mt5">
+    <div class="weui-cell ">
+        <div class="weui-cell__bd">
+            昵称
+        </div>
+        <div class="weui-cell__price" th:text="${nickname}"></div>
+    </div>
+    <div class="weui-cell ">
+        <div class="weui-cell__bd">
+            性别
+        </div>
+        <div class="weui-cell__price" th:if="${sex} eq 1">男</div>
+        <div class="weui-cell__price" th:if="${sex} eq 2">女</div>
+    </div>
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            国家
+        </div>
+        <div class="weui-cell__price" th:text="${country}"></div>
+    </div>
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            省份
+        </div>
+        <div class="weui-cell__price" th:text="${province}"></div>
+    </div>
+</div>
+</body>
+<script src="js/jquery-2.2.3.min.js"></script>
+<script src="js/weui.js"></script>
+</html>

@@ -109,7 +109,7 @@ code.google.com/p/crypto-js/wiki/License
      *
      * @return {WordArray} The hash.
      *
-     * @static
+     * @templates
      *
      * @example
      *
@@ -126,7 +126,7 @@ code.google.com/p/crypto-js/wiki/License
      *
      * @return {WordArray} The HMAC.
      *
-     * @static
+     * @templates
      *
      * @example
      *

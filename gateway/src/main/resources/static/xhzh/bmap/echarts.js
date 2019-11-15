@@ -1649,7 +1649,7 @@ function clientToLocal(el, e, out, calculate) {
         defaultGetZrXY(el, e, out);
     }
     // Caution: In FireFox, layerX/layerY Mouse position relative to the closest positioned
-    // ancestor element, so we should make sure el is positioned (e.g., not position:templates).
+    // ancestor element, so we should make sure el is positioned (e.g., not position:static).
     // BTW1, Webkit don't return the same results as FF in non-simple cases (like add
     // zoom-factor, overflow / opacity layers, transforms ...)
     // BTW2, (ev.offsetY || ev.pageY - $(ev.target).offset().top) is not correct in preserve-3d.
@@ -2727,7 +2727,7 @@ transformableProto.transformCoordToGlobal = function (x, y) {
 };
 
 /**
- * @templates
+ * @static
  * @param {Object} target
  * @param {Array.<number>} target.origin
  * @param {number} target.rotation
@@ -13507,7 +13507,7 @@ PathProxy.prototype = {
 
     /**
      * 转成静态的 Float32Array 减少堆内存占用
-     * Convert dynamic array to templates Float32Array
+     * Convert dynamic array to static Float32Array
      */
     toStatic: function () {
         var data = this.data;
@@ -15402,7 +15402,7 @@ var fixClipWithShadow = function (orignalBrush) {
                         || (type === 'rect' && (!shape.width || !shape.height))
                     )) {
                         for (var j = 0; j < shadowTemp.length; j++) {
-                            // It is save to put shadowTemp templates, because shadowTemp
+                            // It is save to put shadowTemp static, because shadowTemp
                             // will be all modified each item brush called.
                             shadowTemp[j][2] = style[shadowTemp[j][0]];
                             style[shadowTemp[j][0]] = shadowTemp[j][1];
@@ -35783,7 +35783,7 @@ var symbolProto = SymbolClz$1.prototype;
 
 /**
  * @public
- * @templates
+ * @static
  * @param {module:echarts/data/List} data
  * @param {number} dataIndex
  * @return {Array.<number>} [width, height]
@@ -36074,7 +36074,7 @@ symbolProto._updateCommon = function (data, idx, symbolSize, seriesScope) {
     symbolPath.__symbolOriginalScale = getScale(symbolSize);
 
     if (hoverAnimation && seriesModel.isAnimationEnabled()) {
-        // Note: consider `off`, should use templates function here.
+        // Note: consider `off`, should use static function here.
         symbolPath.on('mouseover', onMouseOver)
             .on('mouseout', onMouseOut)
             .on('emphasis', onEmphasis)
@@ -39948,7 +39948,7 @@ var builders = {
 
 /**
  * @public
- * @templates
+ * @static
  * @param {Object} opt
  * @param {number} axisRotation in radian
  * @param {number} textRotation in radian
@@ -48394,7 +48394,7 @@ Tree.prototype = {
  *     ]
  * }
  *
- * @templates
+ * @static
  * @param {Object} dataRoot Root node.
  * @param {module:echarts/model/Model} hostModel
  * @param {Object} treeOptions

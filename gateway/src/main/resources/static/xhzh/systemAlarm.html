@@ -156,8 +156,9 @@
                                     <td ng-if="x.deviceType == 6">电气安全</td>
                                     <td ng-if="x.deviceType == 7">杂散电流</td>
                                     <td ng-if="x.deviceType == 8">阴极保护</td>
+                                    <td ng-if="x.deviceType == 255">SPD</td>
                                     <td ng-if="x.type == 2">RTU</td>
-                                    <td ng-if="x.deviceType > 8 && x.deviceType != 0">其他</td>
+                                    <td ng-if="x.deviceType > 8 && x.deviceType < 255">其他</td>
                                     <td ng-if="x.type == 1">设备离线</td>
                                     <td ng-if="x.type == 2">RTU离线</td>
                                     <td ng-if="x.type == 3">设备异常</td>

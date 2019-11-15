@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <title>信虹智慧服务平台</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description"/>
+    <meta content="Coderthemes" name="author"/>
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="./favicon.ico">
+    <!-- third party css -->
+    <!--<link href="./css/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />-->
+    <!-- third party css end -->
+    <!-- App css -->
+    <!-- build:css -->
+    <link href="./css/app.min.css" rel="stylesheet" type="text/css"/>
+    <link href="./css/sweet-alert.css" rel="stylesheet" type="text/css"/>
+    <link href="./css/toastr.min.css" rel="stylesheet" type="text/css"/>
+    <style>
+        /*下拉菜单样式*/
+        .selectForArea {
+            padding: .45rem .9rem;
+            font-size: .875rem;
+            line-height: 1.5;
+            color: #6c757d;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid black;
+            border-radius: 8px;
+        }
+        .selectForPage{
+            padding: .20rem .9rem;
+            font-size: .875rem;
+            line-height: 1.5;
+            color: #6c757d;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid black;
+            border-radius: 8px;
+        }
+        input{
+            border: 1px solid black!important;
+        }
+    </style>
+</head>
+<body ng-app="app" ng-controller="xhcontroller" style="padding-right:0!important;background-color: #d8d4d4;color:black;">
+<!-- splash screen-->
+<div class="splash" style="position: fixed;z-index: 2001;background: white;color: gray;top: 0;bottom: 0;left: 0;right: 0;">
+    <div class="splash-title" style="text-align: center;max-width: 500px;margin: 15% auto;padding: 20px;">
+        <h1 style="font-size: 26px;color: #004894;">数据加载中，请耐心等待</h1>
+        <img src="xhIcon/loading.gif" width="100" height="100"/>
+    </div>
+</div>
+<!-- Begin page -->
+<div class="wrapper">
+    <div class="content-page" style="padding: 5px 5px 5px 0px;">
+        <!-- Start Content-->
+        <div class="container-fluid">
+
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box">
+                        <div class="page-title-left">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item">当前位置</li>
+                                <li class="breadcrumb-item"><a href="Views/menu/menu_alarm.html" target="_self">系统报警</a></li>
+                                <li class="breadcrumb-item"><a style="color: #0caff4">推送告警</a></li>
+                            </ol>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- end page title -->
+
+            <div class="row">
+                <div class="col-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="header-title">弹窗配置</h4>
+                            <hr/>
+                            <div id="alarmWindow" style="height:345px;width: 100%;">
+                                <form id="windowForm">
+                                    <ul>
+                                        <li><input type="checkbox" id="windowType1" name="windowType1" ng-click="checkBoxClick($event)" ng-checked="windowMap.windowType1 == 1" ng-value="windowMap.windowType1" style="margin-bottom: 10px;">设备离线</li>
+                                        <li><input type="checkbox" id="windowType2" name="windowType2" ng-click="checkBoxClick($event)" ng-checked="windowMap.windowType2 == 1" ng-value="windowMap.windowType2" style="margin-bottom: 10px;">RTU离线</li>
+                                        <li><input type="checkbox" id="windowType3" name="windowType3" ng-click="checkBoxClick($event)" ng-checked="windowMap.windowType3 == 1" ng-value="windowMap.windowType3" style="margin-bottom: 10px;">设备异常</li>
+                                    </ul>
+                                </form>
+                            </div>
+
+                            <button type="button" class="btn btn-success btn-sm" ng-click="save(1)">
+                                <i class="fa fa-plus"></i>&nbsp;保存
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="header-title">声音配置</h4>
+                            <hr/>
+                            <div id="alarmVoice" style="height:345px;width: 100%;">
+                                <form id="voiceForm">
+                                    <ul>
+                                        <li><input type="checkbox" id="voiceType1" name="voiceType1" ng-click="checkBoxClick($event)" ng-checked="voiceMap.voiceType1 == 1" ng-value="voiceMap.voiceType1" style="margin-bottom: 10px;">设备离线</li>
+                                        <li><input type="checkbox" id="voiceType2" name="voiceType2" ng-click="checkBoxClick($event)" ng-checked="voiceMap.voiceType2 == 1" ng-value="voiceMap.voiceType2" style="margin-bottom: 10px;">RTU离线</li>
+                                        <li><input type="checkbox" id="voiceType3" name="voiceType3" ng-click="checkBoxClick($event)" ng-checked="voiceMap.voiceType3 == 1" ng-value="voiceMap.voiceType3" style="margin-bottom: 10px;">设备异常</li>
+                                    </ul>
+                                </form>
+                            </div>
+
+                            <button type="button" class="btn btn-success btn-sm" ng-click="save(2)">
+                                <i class="fa fa-plus"></i>&nbsp;保存
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="header-title">短信配置</h4>
+                            <hr/>
+                            <div id="alarmSms" style="height:345px;width: 100%;">
+                                <form id="smsForm">
+                                    <ul>
+                                        <li><input type="checkbox" id="smsType1" name="smsType1" ng-click="checkBoxClick($event)" ng-checked="smsMap.smsType1 == 1" ng-value="smsMap.smsType1" style="margin-bottom: 10px;">设备离线</li>
+                                        <li><input type="checkbox" id="smsType2" name="smsType2" ng-click="checkBoxClick($event)" ng-checked="smsMap.smsType2 == 1" ng-value="smsMap.smsType2" style="margin-bottom: 10px;">RTU离线</li>
+                                        <li><input type="checkbox" id="smsType3" name="smsType3" ng-click="checkBoxClick($event)" ng-checked="smsMap.smsType3 == 1" ng-value="smsMap.smsType3" style="margin-bottom: 10px;">设备异常</li>
+                                    </ul>
+                                </form>
+                            </div>
+
+                            <button type="button" class="btn btn-success btn-sm" ng-click="save(3)">
+                                <i class="fa fa-plus"></i>&nbsp;保存
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="header-title">号码配置</h4>
+                            <hr/>
+                            <div style="height:345px;width: 100%;">
+                                <form id="phoneForm">
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <label>短信网关IP：</label>
+                                            <input type="text" value="" name="ip" id="ip" />
+                                        </div>
+                                        <div class="col-4">
+                                            <label>短信网关端口：</label>
+                                            <input type="text" value="" name="port" id="port" />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <label>短信发送号码：</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-3" ng-repeat="x in phoneList">
+                                            {{x}}
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                            <input type="text" value="" name="phone" id="phone" placeholder="请输入需要发送的号码"/>
+                            <button class="btn btn-info btn-sm" ng-click="saveSmsConf(0)">新增</button>
+                            <button class="btn btn-danger btn-sm" ng-click="saveSmsConf(1)">删除</button>
+                            <button class="btn btn-success btn-sm" ng-click="saveSmsConf(2)">保存</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div> <!-- container -->
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- End Page content -->
+    <!-- ============================================================== -->
+
+
+</div>
+<!-- END wrapper -->
+
+<!-- bundle -->
+<script src="angularjs/jquery-3.2.1.min.js"></script>
+<script src="angularjs/angular.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/echarts.min.js"></script>
+<script src="js/macarons.js"></script>
+<script src="angularjs/metisMenu.min.js"></script>
+<script src="js/sweet-alert.js"></script>
+<script src="js/toastr.min.js"></script>
+<script src="js/systemPush.js"></script>
+<script src="js/paging.js"></script>
+<script src="js/My97DatePicker/WdatePicker.js"></script>
+<!--<script src="./javascript/demo.dashboard.js"></script>-->
+<script type="text/javascript">
+    xh.load();
+    $(document).ready(function() {
+        $('.splash').css('display', 'none');
+    });
+</script>
+</body>
+
+</html>

@@ -75,5 +75,24 @@ public class RedisTest {
         jedis.close();
     }
 
+    //查询公告栏
+    public static String searchMarquee(){
+        Jedis jedis = new Jedis(ip,6379);
+        jedis.auth("XinHong12345");
+        jedis.select(3);
+        String res = jedis.get("marquee");
+        jedis.close();
+        return res;
+    }
+
+    //修改公告栏
+    public static void updateMarquee(String marquee){
+        Jedis jedis = new Jedis(ip,6379);
+        jedis.auth("XinHong12345");
+        jedis.select(3);
+        jedis.del("marquee");
+        jedis.set("marquee",marquee);
+        jedis.close();
+    }
 
 }

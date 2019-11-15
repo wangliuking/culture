@@ -38,6 +38,8 @@ public class WeChatUtil {
     public static final String SEND_Articles_URL = "https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=ACCESS_TOKEN";
     //获取所有图文素材
     public static final String GET_ALL_NEWS = "https://api.weixin.qq.com/cgi-bin/material/batchget_material?access_token=ACCESS_TOKEN";
+    //获取所有关注用户
+    public static final String GET_ALL_USER = "https://api.weixin.qq.com/cgi-bin/user/get?access_token=ACCESS_TOKEN";
     //缓存的access_token
     private static String accessToken;
     //access_token的失效时间
@@ -74,6 +76,18 @@ public class WeChatUtil {
         System.out.println(url);
         JSONObject jsonObject = HttpsUtil.httpRequest(url,"GET",null);
         System.out.println("返回结果如下 ： ");
+        System.out.println(jsonObject);
+        return jsonObject;
+    }
+
+    /**
+     * 获取用户列表
+     *
+     */
+    public static JSONObject getUserList(){
+        String url = GET_ALL_USER.replace("ACCESS_TOKEN", getAccessToken());
+        JSONObject jsonObject = HttpsUtil.httpRequest(url,"GET",null);
+        System.out.println("返回的用户列表为 ： ");
         System.out.println(jsonObject);
         return jsonObject;
     }

@@ -187,13 +187,6 @@ xh.load = function() {
 
 };
 
-// 刷新数据
-xh.refresh = function() {
-	var $scope = angular.element(appElement).scope();
-	// 调用$scope中的方法
-	$scope.refresh();
-};
-
 //设备一月状态统计
 function deviceForMonth() {
     // 基于准备好的dom，初始化echarts实例 macarons

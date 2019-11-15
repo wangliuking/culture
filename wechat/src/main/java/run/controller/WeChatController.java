@@ -19,6 +19,15 @@ import java.util.*;
 public class WeChatController {
     @Autowired
     private WeChatService weChatService;
+    /**
+     * 获取所有关注用户
+     */
+    @RequestMapping(value="/getUserList",method = RequestMethod.GET)
+    @ResponseBody
+    public Object getUserList(){
+       JSONObject jsonObject = WeChatUtil.getUserList();
+       return jsonObject;
+    }
 
     /**
      * 发送新闻
@@ -54,28 +63,27 @@ public class WeChatController {
      */
     @RequestMapping(value="/getNews",method= RequestMethod.GET)
     @ResponseBody
-    public Object getNews(){
+    public Object getNewsWeb(){
        JSONObject jsonObject = WeChatUtil.getNews();
        JSONArray jsonArray = jsonObject.getJSONArray("item");
+       Map<String,Object> resultMap = new HashMap<>();
        for(int i=0;i<jsonArray.size();i++){
            JSONObject js = jsonArray.getJSONObject(i);
            String media_id = js.getString("media_id");
-           if(media_id.equals("w-4TGEDAtnu7oYKICmt1rNGx22ibXV2ZTSrPTOHvTZ0")){
-               List<Map<String,String>> list = new LinkedList<>();
-               JSONArray itemArray = js.getJSONObject("content").getJSONArray("news_item");
-               for(int j=0;j<itemArray.size();j++){
-                   Map<String,String> map = new HashMap<>();
-                   JSONObject item = itemArray.getJSONObject(j);
-                   map.put("thumb_url",item.getString("thumb_url"));
-                   map.put("title",item.getString("title"));
-                   map.put("digest",item.getString("digest"));
-                   map.put("url",item.getString("url"));
-                   list.add(map);
-               }
-               return list;
+           List<Map<String,String>> list = new LinkedList<>();
+           JSONArray itemArray = js.getJSONObject("content").getJSONArray("news_item");
+           for(int j=0;j<itemArray.size();j++){
+               Map<String,String> map = new HashMap<>();
+               JSONObject item = itemArray.getJSONObject(j);
+               map.put("thumb_url",item.getString("thumb_url"));
+               map.put("title",item.getString("title"));
+               map.put("digest",item.getString("digest"));
+               map.put("url",item.getString("url"));
+               list.add(map);
            }
+           resultMap.put(media_id,list);
        }
-       return "";
+       return resultMap;
     }
 
     /**
@@ -157,7 +165,29 @@ public class WeChatController {
             }else if("CLICK".equals(msg.getEvent())){
                 //获取菜单的key值
                 String key = msg.getEventKey();
-                if("base".equals(key)){
+                switch (key){
+                    case "base":
+                        return getNews(msg,"w-4TGEDAtnu7oYKICmt1rJFFnbvI35vTiSfqbBMlIyc");
+                    case "show":
+                        return getNews(msg,"w-4TGEDAtnu7oYKICmt1rLTRANZ9-6hYm4GrbqJBCuw");
+                    case "word":
+                        return getNews(msg,"w-4TGEDAtnu7oYKICmt1rOE2ke2VC4GOHea9gPU1KNg");
+                    case "work":
+                        return getNews(msg,"w-4TGEDAtnu7oYKICmt1rJDaAtVM1snxgTicxDtlzC0");
+                    case "teach":
+                        return getNews(msg,"w-4TGEDAtnu7oYKICmt1rF-ivi9jEd7Wt-LZMrCUcKI");
+                    case "watch":
+                        return getNews(msg,"w-4TGEDAtnu7oYKICmt1rNIsqDl54fl9pmT1oVQ6Uow");
+                    case "info":
+                        return getNews(msg,"w-4TGEDAtnu7oYKICmt1rNGyJUwN6aE7e-qIZijlGBk");
+                    case "news":
+                        return getNews(msg,"w-4TGEDAtnu7oYKICmt1rEIfBdjdyvtP3nZZc43Wm1M");
+                    case "activity":
+                        return getNews(msg,"w-4TGEDAtnu7oYKICmt1rCFtbFu6VGiu0YbxfWR4Q7M");
+                    case "rpc":
+                        return getNews(msg,"w-4TGEDAtnu7oYKICmt1rGUZLzHcVF-aaqw0D1s4_Jk");
+                }
+                /*if("base".equals(key)){
                     //发送模板消息
                     WeChatUtil weChatUtil = new WeChatUtil();
                     weChatUtil.sendTemplate(msg.getFromUserName());
@@ -165,34 +195,8 @@ public class WeChatController {
                     return "";
                 }else if("new".equals(key)){
                     //发送图文消息
-                    return "<xml>\n" +
-                            "  <ToUserName>"+msg.getFromUserName()+"</ToUserName>" +
-                            "  <FromUserName>"+msg.getToUserName()+"</FromUserName>" +
-                            "  <CreateTime>"+new Date().getTime()+"</CreateTime>" +
-                            "  <MsgType>news</MsgType>" +
-                            "  <ArticleCount>3</ArticleCount>" +
-                            "  <Articles>" +
-                            "    <item>" +
-                            "      <Title>图文信息1</Title>" +
-                            "      <Description>假如没有热情世界上任何伟大的事业都不会成功那么给我们一个支点用热情去撼动无限的未来吧</Description>" +
-                            "      <PicUrl>http://mmbiz.qpic.cn/mmbiz_jpg/RffFvrVAGucsuWdJPibt5QpmGLicZ6O8XAHdD2zH6TX4vmM8fbWkg6ToFoeaNDibwBdv93uLQDGyFpopb3ZTWsnvQ/0?wx_fmt=jpeg</PicUrl>" +
-                            "      <Url><![CDATA[http://mp.weixin.qq.com/s?__biz=MzA3NjQzMjQxNw==&mid=100000014&idx=1&sn=06f79f3e8d11288509b25d1b6010d6ed&chksm=1f60144028179d561aac9d13536125f2407ddd7b5ccb456f27d1fb570a783a54388ab62c594d#rd]]></Url>" +
-                            "    </item>" +
-                            "    <item>" +
-                            "      <Title>图文信息2</Title>" +
-                            "      <Description>假如没有热情世界上任何伟大的事业都不会成功那么给我们一个支点用热情去撼动无限的未来吧</Description>" +
-                            "      <PicUrl>http://mmbiz.qpic.cn/mmbiz_jpg/RffFvrVAGucsuWdJPibt5QpmGLicZ6O8XAXMhNSu2eYMW6qvqpIwQHynz0anONTmo2gPjUmUwhXhlWt5OFgt8Xcw/0?wx_fmt=jpeg</PicUrl>" +
-                            "      <Url><![CDATA[http://mp.weixin.qq.com/s?__biz=MzA3NjQzMjQxNw==&mid=100000014&idx=2&sn=b01fa4728445817c8e4c860a82724f46&chksm=1f60144028179d569a61e3c1d886e83cf6a8d0cebe1d1fe19fa12d1083acc002971f3741b569#rd]]></Url>" +
-                            "    </item>" +
-                            "    <item>" +
-                            "      <Title>图文信息3</Title>" +
-                            "      <Description>假如没有热情世界上任何伟大的事业都不会成功那么给我们一个支点用热情去撼动无限的未来吧</Description>" +
-                            "      <PicUrl>http://mmbiz.qpic.cn/mmbiz_jpg/RffFvrVAGucsuWdJPibt5QpmGLicZ6O8XA5o6B92hI6Q5mIOibUWgIFIsISheHBvIDaBypkhmGbwry1AArOlj95kw/0?wx_fmt=jpeg</PicUrl>" +
-                            "      <Url><![CDATA[http://mp.weixin.qq.com/s?__biz=MzA3NjQzMjQxNw==&mid=100000014&idx=3&sn=69500224fda99cdd0c2d9f2c4887e518&chksm=1f60144028179d56f1fe5380d0f977794237a373fe8afdc3c24e72ec9c2463a703d54d254ca4#rd]]></Url>" +
-                            "    </item>" +
-                            "  </Articles>" +
-                            "</xml>";
-                }
+
+                }*/
                 //设置消息的响应类型
                 out.setMsgType("text");
                 out.setContent(outContent);
@@ -201,6 +205,49 @@ public class WeChatController {
         System.out.println(out);
         System.out.println("==============================================================");
         return out;
+    }
+
+    public String getNews(InMsgEntity msg,String str){
+        JSONObject jsonObject = WeChatUtil.getNews();
+        JSONArray jsonArray = jsonObject.getJSONArray("item");
+        for(int i=0;i<jsonArray.size();i++){
+            JSONObject js = jsonArray.getJSONObject(i);
+            String media_id = js.getString("media_id");
+            if(media_id.equals(str)){
+                JSONArray itemArray = js.getJSONObject("content").getJSONArray("news_item");
+
+                String itemStr = "";
+                for(int j=0;j<itemArray.size();j++){
+                    JSONObject item = itemArray.getJSONObject(j);
+                    itemStr += "<item>" +
+                    "<Title>"+item.getString("title")+"</Title>" +
+                    "<Description>"+item.getString("digest")+"</Description>" +
+                    "<PicUrl><![CDATA["+item.getString("thumb_url")+"]]></PicUrl>" +
+                    "<Url><![CDATA["+item.getString("url")+"]]></Url>" +
+                    "</item>";
+                }
+
+                int size = itemArray.size();
+                return "<xml>\n" +
+                        "<ToUserName>"+msg.getFromUserName()+"</ToUserName>" +
+                        "<FromUserName>"+msg.getToUserName()+"</FromUserName>" +
+                        "<CreateTime>"+new Date().getTime()+"</CreateTime>" +
+                        "<MsgType>news</MsgType>" +
+                        "<ArticleCount>"+size+"</ArticleCount>" +
+                        "<Articles>" + itemStr +
+
+                        /*"<item>" +
+                        "<Title></Title>" +
+                        "<Description></Description>" +
+                        "<PicUrl></PicUrl>" +
+                        "<Url></Url>" +
+                        "</item>" +*/
+
+                        "</Articles>" +
+                        "</xml>";
+            }
+        }
+        return null;
     }
 
     public static void main(String[] args) {

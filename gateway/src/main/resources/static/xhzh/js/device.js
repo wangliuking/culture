@@ -442,7 +442,7 @@ xh.load = function() {
             }, function(isConfirm) {
                 if (isConfirm) {
                     $.ajax({
-                        url : '../../templates/deleteStatic?rtu_id='+rtu_id+"&staet_id="+staet_id+"&rtu_port="+rtu_port,
+                        url : '../../static/deleteStatic?rtu_id='+rtu_id+"&staet_id="+staet_id+"&rtu_port="+rtu_port,
                         type : 'get',
                         dataType : "json",
                         async : false,
@@ -733,7 +733,7 @@ xh.load = function() {
                     xh.pagging(page, parseInt($scope.totals), $scope);
                 });
             }else if($scope.changeDeviceTypeShow == 4){
-                $http.get("../../templates/selectAllStatic?start=0&limit=" + limit+"&site_id="+site_id+"&rtu_id="+rtu_id+"&status="+status+"&structure="+structure).
+                $http.get("../../static/selectAllStatic?start=0&limit=" + limit+"&site_id="+site_id+"&rtu_id="+rtu_id+"&status="+status+"&structure="+structure).
                 success(function(response){
                     console.log(response);
                     $scope.data = response.items;
@@ -863,7 +863,7 @@ xh.load = function() {
                     $scope.totals = response.totals;
                 });
             }else if($scope.changeDeviceTypeShow == 4){
-                $http.get("../../templates/selectAllStatic?start="+start+"&limit=" + limit+"&site_id="+site_id+"&rtu_id="+rtu_id+"&status="+status+"&structure="+structure).
+                $http.get("../../static/selectAllStatic?start="+start+"&limit=" + limit+"&site_id="+site_id+"&rtu_id="+rtu_id+"&status="+status+"&structure="+structure).
                 success(function(response){
                     /*xh.maskHide();*/
                     $scope.start = (page - 1) * pageSize + 1;
@@ -972,6 +972,7 @@ xh.load = function() {
 };
 
 xh.add = function() {
+    $('#test2').css('display', 'block');
     var $scope = angular.element(appElement).scope();
 
     var fields = $("#addForm").serializeArray();
@@ -990,6 +991,7 @@ xh.add = function() {
             async : true,
             data : str,
             success : function(data) {
+                $('#test2').css('display', 'none');
                 $("#add_btn").button('reset');
                 if (data.success) {
                     $('#add').modal('hide');
@@ -1013,6 +1015,7 @@ xh.add = function() {
                 }
             },
             error : function() {
+                $('#test2').css('display', 'none');
                 $("#add_btn").button('reset');
             }
         });
@@ -1025,6 +1028,7 @@ xh.add = function() {
             async : true,
             data : str,
             success : function(data) {
+                $('#test2').css('display', 'none');
                 $("#add_btn").button('reset');
                 if (data.success) {
                     $('#add').modal('hide');
@@ -1048,6 +1052,7 @@ xh.add = function() {
                 }
             },
             error : function() {
+                $('#test2').css('display', 'none');
                 $("#add_btn").button('reset');
             }
         });
@@ -1061,6 +1066,7 @@ xh.add = function() {
             async : true,
             data : str,
             success : function(data) {
+                $('#test2').css('display', 'none');
                 $("#add_btn").button('reset');
                 if (data.success) {
                     $('#add').modal('hide');
@@ -1097,13 +1103,14 @@ xh.add = function() {
         str = JSON.stringify(f);
         console.log(str);
         $.ajax({
-            url : '../../templates/insertStatic',
+            url : '../../static/insertStatic',
             contentType : "application/json;charset=utf-8",
             type : 'POST',
             dataType : "json",
             async : true,
             data : str,
             success : function(data) {
+                $('#test2').css('display', 'none');
                 $("#add_btn").button('reset');
                 if (data.success) {
                     $('#add').modal('hide');
@@ -1140,6 +1147,7 @@ xh.add = function() {
             async : true,
             data : str,
             success : function(data) {
+                $('#test2').css('display', 'none');
                 $("#add_btn").button('reset');
                 if (data.success) {
                     $('#add').modal('hide');
@@ -1176,6 +1184,7 @@ xh.add = function() {
             async : true,
             data : str,
             success : function(data) {
+                $('#test2').css('display', 'none');
                 $("#add_btn").button('reset');
                 if (data.success) {
                     $('#add').modal('hide');
@@ -1212,6 +1221,7 @@ xh.add = function() {
             async : true,
             data : str,
             success : function(data) {
+                $('#test2').css('display', 'none');
                 $("#add_btn").button('reset');
                 if (data.success) {
                     $('#add').modal('hide');
@@ -1248,6 +1258,7 @@ xh.add = function() {
             async : true,
             data : str,
             success : function(data) {
+                $('#test2').css('display', 'none');
                 $("#add_btn").button('reset');
                 if (data.success) {
                     $('#add').modal('hide');
@@ -1284,6 +1295,7 @@ xh.add = function() {
             async : true,
             data : str,
             success : function(data) {
+                $('#test2').css('display', 'none');
                 $("#add_btn").button('reset');
                 if (data.success) {
                     $('#add').modal('hide');
@@ -1315,6 +1327,7 @@ xh.add = function() {
 };
 
 xh.editSpd = function() {
+    $('#test2').css('display', 'block');
     var fields = $("#editSpdForm").serializeArray();
     var f = {};//声明一个对象
     $.each(fields,function(index,field){
@@ -1329,6 +1342,7 @@ xh.editSpd = function() {
         async : true,
         data : str,
         success : function(data) {
+            $('#test2').css('display', 'none');
             $("#editSpd_btn").button('reset');
             if (data.success) {
                 $('#editSpd').modal('hide');
@@ -1352,12 +1366,14 @@ xh.editSpd = function() {
             }
         },
         error : function() {
+            $('#test2').css('display', 'none');
             $("#editSpd_btn").button('reset');
         }
     });
 };
 
 xh.editEtcr = function() {
+    $('#test2').css('display', 'block');
     var fields = $("#editEtcrForm").serializeArray();
     var f = {};//声明一个对象
     $.each(fields,function(index,field){
@@ -1372,6 +1388,7 @@ xh.editEtcr = function() {
         async : true,
         data : str,
         success : function(data) {
+            $('#test2').css('display', 'none');
             $("#editEtcr_btn").button('reset');
             if (data.success) {
                 $('#editEtcr').modal('hide');
@@ -1395,12 +1412,14 @@ xh.editEtcr = function() {
             }
         },
         error : function() {
+            $('#test2').css('display', 'none');
             $("#editEtcr_btn").button('reset');
         }
     });
 };
 
 xh.editLightning = function() {
+    $('#test2').css('display', 'block');
     var fields = $("#editLightningForm").serializeArray();
     var f = {};//声明一个对象
     $.each(fields,function(index,field){
@@ -1415,6 +1434,7 @@ xh.editLightning = function() {
         async : true,
         data : str,
         success : function(data) {
+            $('#test2').css('display', 'none');
             $("#editLightning_btn").button('reset');
             if (data.success) {
                 $('#editLightning').modal('hide');
@@ -1438,12 +1458,14 @@ xh.editLightning = function() {
             }
         },
         error : function() {
+            $('#test2').css('display', 'none');
             $("#editLightning_btn").button('reset');
         }
     });
 };
 
 xh.editStatic = function() {
+    $('#test2').css('display', 'block');
     var fields = $("#editStaticForm").serializeArray();
     var f = {};//声明一个对象
     $.each(fields,function(index,field){
@@ -1457,13 +1479,14 @@ xh.editStatic = function() {
     f["staet_v0"] = staet_v0*1000;
     var str = JSON.stringify(f);
     $.ajax({
-        url : '../../templates/updateStatic',
+        url : '../../static/updateStatic',
         contentType : "application/json;charset=utf-8",
         type : 'POST',
         dataType : "json",
         async : true,
         data : str,
         success : function(data) {
+            $('#test2').css('display', 'none');
             $("#editStatic_btn").button('reset');
             if (data.success) {
                 $('#editStatic').modal('hide');
@@ -1493,6 +1516,7 @@ xh.editStatic = function() {
 };
 
 xh.editRsws = function() {
+    $('#test2').css('display', 'block');
     var fields = $("#editRswsForm").serializeArray();
     var f = {};//声明一个对象
     $.each(fields,function(index,field){
@@ -1507,6 +1531,7 @@ xh.editRsws = function() {
         async : true,
         data : str,
         success : function(data) {
+            $('#test2').css('display', 'none');
             $("#editRsws_btn").button('reset');
             if (data.success) {
                 $('#editRsws').modal('hide');
@@ -1536,6 +1561,7 @@ xh.editRsws = function() {
 };
 
 xh.editSvt = function() {
+    $('#test2').css('display', 'block');
     var fields = $("#editSvtForm").serializeArray();
     var f = {};//声明一个对象
     $.each(fields,function(index,field){
@@ -1550,6 +1576,7 @@ xh.editSvt = function() {
         async : true,
         data : str,
         success : function(data) {
+            $('#test2').css('display', 'none');
             $("#editSvt_btn").button('reset');
             if (data.success) {
                 $('#editSvt').modal('hide');
@@ -1579,6 +1606,7 @@ xh.editSvt = function() {
 };
 
 xh.editHc = function() {
+    $('#test2').css('display', 'block');
     var fields = $("#editHcForm").serializeArray();
     var f = {};//声明一个对象
     $.each(fields,function(index,field){
@@ -1593,6 +1621,7 @@ xh.editHc = function() {
         async : true,
         data : str,
         success : function(data) {
+            $('#test2').css('display', 'none');
             $("#editHc_btn").button('reset');
             if (data.success) {
                 $('#editHc').modal('hide');
@@ -1622,6 +1651,7 @@ xh.editHc = function() {
 };
 
 xh.editStray = function() {
+    $('#test2').css('display', 'block');
     var fields = $("#editStrayForm").serializeArray();
     var f = {};//声明一个对象
     $.each(fields,function(index,field){
@@ -1636,6 +1666,7 @@ xh.editStray = function() {
         async : true,
         data : str,
         success : function(data) {
+            $('#test2').css('display', 'none');
             $("#editStray_btn").button('reset');
             if (data.success) {
                 $('#editStray').modal('hide');
@@ -1665,6 +1696,7 @@ xh.editStray = function() {
 };
 
 xh.editCat = function() {
+    $('#test2').css('display', 'block');
     var fields = $("#editCatForm").serializeArray();
     var f = {};//声明一个对象
     $.each(fields,function(index,field){
@@ -1679,6 +1711,7 @@ xh.editCat = function() {
         async : true,
         data : str,
         success : function(data) {
+            $('#test2').css('display', 'none');
             $("#editCat_btn").button('reset');
             if (data.success) {
                 $('#editCat').modal('hide');
@@ -1750,3 +1783,16 @@ xh.pagging = function(currentPage, totals, $scope) {
 		});
 	}
 };
+
+/* 显示网页遮罩层 */
+xh.maskShow = function() {
+    var html = "<div class='xh-mask text-white'><div class='color-line'></div>";
+    html += "<i class=''>请等待...</i>";
+    html += "</div>";
+    $("body").append(html);
+};
+
+/* 关闭网页遮罩层 */
+xh.maskHide = function() {
+    $(".xh-mask").fadeOut(300);
+}

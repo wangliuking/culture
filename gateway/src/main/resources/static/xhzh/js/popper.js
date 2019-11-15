@@ -206,7 +206,7 @@
 
         // .offsetParent will return the closest TH, TD or TABLE in case
         // no offsetParent is present, I hate this job...
-        if (['TH', 'TD', 'TABLE'].indexOf(offsetParent.nodeName) !== -1 && getStyleComputedProperty(offsetParent, 'position') === 'templates') {
+        if (['TH', 'TD', 'TABLE'].indexOf(offsetParent.nodeName) !== -1 && getStyleComputedProperty(offsetParent, 'position') === 'static') {
             return getOffsetParent(offsetParent);
         }
 
@@ -1510,7 +1510,7 @@
      * - `bottom` (on bottom, centered)
      * - `auto-end` (on the side with more space available, alignment depends by placement)
      *
-     * @templates
+     * @static
      * @type {Array}
      * @enum {String}
      * @readonly
@@ -2363,7 +2363,7 @@
      * })
      * ```
      * @type {Object}
-     * @templates
+     * @static
      * @memberof Popper
      */
     var Defaults = {
@@ -2546,7 +2546,7 @@
              * and will be removed in v2! Use the PopperUtils module directly instead.
              * Due to the high instability of the methods contained in Utils, we can't
              * guarantee them to follow semver. Use them at your own risk!
-             * @templates
+             * @static
              * @private
              * @type {Object}
              * @deprecated since version 1.8

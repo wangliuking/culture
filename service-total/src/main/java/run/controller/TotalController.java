@@ -611,41 +611,6 @@ public class TotalController {
         return resultMap;
     }
 
-    @RequestMapping(value = "/deviceTotalByProvinceTest",method = RequestMethod.GET)
-    public List<Map<String,Object>> deviceTotalByProvinceTest(HttpServletRequest req){
-        List<Map<String,Object>> resultList = new LinkedList<>();
-        Map<String,Object> paramMap = new HashMap<>();
-        paramMap.put("rtu_id","");
-        paramMap.put("site_id","");
-
-        String structure = req.getParameter("structure");
-        List<Integer> strList = feignForStructure.foreachIdAndPId(structure);
-        System.out.println("strList : ++++++++++++"+strList);
-        paramMap.put("strList","strList");
-
-        List<Map<String,Object>> siteInfoList = totalService.selectSiteById(paramMap);
-        for(int i=0;i<siteInfoList.size();i++){
-            int site_id = Integer.parseInt(siteInfoList.get(i).get("site_id")+"");
-            Map<String,Object> param = new HashMap<>();
-            param.put("rtu_id","");
-            param.put("site_id",site_id);
-            param.put("strList",strList);
-            Map<String,Object> resultMap = new HashMap<>();
-            resultMap.put("province",siteInfoList.get(i).get("site_province"));
-            resultMap.put("spdNum",totalService.selectSPDCount(param).size());
-            resultMap.put("etcrNum",totalService.selectETCRCount(param).size());
-            resultMap.put("lightningNum",totalService.selectLightningCount(param).size());
-            resultMap.put("staticNum",totalService.selectStaticCount(param).size());
-            resultMap.put("rswsNum",totalService.selectRswsCount(param).size());
-            resultMap.put("svtNum",totalService.selectSvtCount(param).size());
-            resultMap.put("hcNum",totalService.selectHcCount(param).size());
-            resultMap.put("strayNum",totalService.selectStrayCount(param).size());
-            resultMap.put("catNum",totalService.selectCatCount(param).size());
-            resultList.add(resultMap);
-        }
-        return resultList;
-    }
-
     @RequestMapping(value = "/deviceTotalByProvince",method = RequestMethod.GET)
     public List<Map<String,Object>> deviceTotalByProvince(HttpServletRequest req){
         List<Map<String,Object>> resultList = new LinkedList<>();
@@ -683,7 +648,14 @@ public class TotalController {
 
         List<Map<String,Object>> finalList = new LinkedList<>();
 
-        List<String> provinceList = Arrays.asList("北京", "广东", "上海", "天津", "重庆", "辽宁", "江苏", "湖北", "四川", "陕西", "河北", "山西", "河南", "吉林", "黑龙江", "内蒙古", "山东", "安徽", "浙江", "福建", "湖南", "广西", "江西", "贵州", "云南", "西藏", "海南", "甘肃", "宁夏", "青海", "新疆", "香港", "澳门", "台湾");
+        List<String> provinceList = Arrays.asList("北京市","天津市","河北省",
+                "山西省","内蒙古自治区","辽宁省","吉林省",
+                "黑龙江省","上海市","江苏省","浙江省",
+                "安徽省","福建省","江西省","山东省","河南省",
+                "湖北省","湖南省","广东省","广西壮族自治区",
+                "海南省","重庆市","四川省","贵州省","云南省",
+                "西藏自治区","陕西省","甘肃省","青海省",
+                "宁夏回族自治区","新疆维吾尔自治区","台湾省","香港特别行政区","澳门特别行政区");
         for(int i=0;i<provinceList.size();i++){
             Map<String,Object> finalMap = new HashMap<>();
             finalMap.put("province",provinceList.get(i));
@@ -732,5 +704,6 @@ public class TotalController {
         }
         return finalList;
     }
+
 
 }

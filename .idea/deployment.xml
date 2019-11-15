@@ -7,7 +7,7 @@
           <mappings>
             <mapping local="$PROJECT_DIR$" web="/" />
             <mapping deploy="/usr/culture" local="$PROJECT_DIR$/eureka-server/target" />
-            <mapping deploy="/usr/culture" local="$PROJECT_DIR$/gateway/target" />
+            <mapping deploy="/usr/culture/web" local="$PROJECT_DIR$/gateway/target" />
             <mapping deploy="/usr/culture" local="$PROJECT_DIR$/service-cat/target" />
             <mapping deploy="/usr/culture" local="$PROJECT_DIR$/service-connection/target" />
             <mapping deploy="/usr/culture" local="$PROJECT_DIR$/service-etcr/target" />
@@ -20,6 +20,7 @@
             <mapping deploy="/usr/culture" local="$PROJECT_DIR$/service-stray/target" />
             <mapping deploy="/usr/culture" local="$PROJECT_DIR$/service-svt/target" />
             <mapping deploy="/usr/culture" local="$PROJECT_DIR$/service-total/target" />
+            <mapping deploy="/usr/culture/web/config/static" local="$PROJECT_DIR$/gateway/target/config/static" />
           </mappings>
         </serverdata>
       </paths>

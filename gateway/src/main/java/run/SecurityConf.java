@@ -44,6 +44,8 @@ public class SecurityConf extends WebSecurityConfigurerAdapter {
             .antMatchers("/feign/**").permitAll()
             .antMatchers("/connect/**").permitAll()
             .antMatchers("/loginOut").permitAll()
+            .antMatchers("/selectMarquee").permitAll()
+            .antMatchers("/updateMarquee").permitAll()
             .antMatchers("/getLoginUser").permitAll()
             .antMatchers("/selectLogList").permitAll()
             .antMatchers("/insertLog").permitAll()
@@ -71,6 +73,7 @@ public class SecurityConf extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         //解决静态资源被拦截的问题
-        web.ignoring().antMatchers("/xhzh/**");
+        web.ignoring().antMatchers("/xhzh/**")
+                      .antMatchers("/tiles/**");
     }
 }

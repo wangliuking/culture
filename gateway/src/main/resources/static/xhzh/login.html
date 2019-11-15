@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>信虹智慧服务平台</title>
+    <title>智慧综合信息管理平台</title>
     <style>
         * {
             margin: 0;
@@ -43,8 +43,8 @@
 
         .dowebok {
             /*position: fixed;*/
-            width: 730px;
-            height: 380px;
+            width: 650px;
+            height: 360px;
             margin: auto;
             border: 1px solid #fff;
             border-radius: 20px;
@@ -56,6 +56,7 @@
             height: auto;
 
             text-align: center;
+            margin-bottom: 20px;
         }
 
         .logo {
@@ -66,13 +67,13 @@
 
         .form-item {
             position: relative;
-            width: 360px;
+            width: 530px;
             margin: 0 auto;
             padding-bottom: 30px;
         }
 
         .form-item input {
-            width: 288px;
+            width: 458px;
             height: 48px;
             padding-left: 70px;
             border: 1px solid #fff;
@@ -84,7 +85,7 @@
         }
 
         .form-item button {
-            width: 360px;
+            width: 400px;
             height: 50px;
             border: 0;
             border-radius: 25px;
@@ -107,7 +108,7 @@
         }
 
         #auth {
-            width: 178px;
+            width: 308px;
             height: 48px;
             background: url(images/auth.png) 19px 9px no-repeat;
         }
@@ -221,10 +222,10 @@
 </head>
 <body ng-app="login" ng-controller="loginController" class="fixed-iframe">
     <div class="home">
-        <div class="titlefont"><img src="images/防雷防静电智能在线监测与管理服务平台.png" width="62%"></div>
+        <div class="titlefont"><img src="images/智慧综合信息管理平台-72.png" width="48%" height="80%"></div>
         <div class="dowebok">
-    <div class="logo" style="float: right;"><img src="images/盾形防护图标.png" width="240" height="240" /></div>
-    <div style="float: left;line-height: 35px;padding: 30px 0 0 30px;">
+    <!--<div class="logo" style="float: right;"><img src="images/盾形防护图标.png" width="240" height="240" /></div>-->
+    <div style="float: left;line-height: 35px;padding: 30px 0 0 55px;">
         <form id="loginForm">
         <div class="form-item">
             <input id="username" type="text" placeholder="用户名" name="username">
@@ -236,10 +237,10 @@
         </div>
         <div class="form-item">
             <input id="auth" type="text" placeholder="验证码">
-            <canvas id="canvas" width="110px" height="46px" style="float: right;"></canvas>
+            <canvas id="canvas" width="130px" height="46px" style="float: right;"></canvas>
             <p class="tipAuth">验证码不正确</p>
         </div>
-        <div class="form-item">
+        <div class="form-item" style="text-align: center;padding-bottom: 20px;">
             <!--<button type="button" class="btn btn-info">信息</button>-->
             <button id="submit" type="button" ng-click="login()">登 录</button>
         </div>
@@ -252,8 +253,7 @@
 
 </div>
         <div class="foot">
-            新疆维吾尔自治区雷电防护技术开发中心监制<br/>
-            版本v2.0 powered by 中航信虹
+            XHIMPS 版本 V1.0 powered by 中航信虹
         </div>
     </div>
 

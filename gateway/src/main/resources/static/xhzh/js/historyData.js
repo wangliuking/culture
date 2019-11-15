@@ -192,7 +192,7 @@ xh.load = function() {
             }else if(deviceName == 4){
                 $.ajax({
                     type: 'GET',
-                    url: "../../templates/selectAllStaticHistory?start=0&limit="+15+"&site_id="+site_id+"&rtu_id="+rtu_id+"&staet_id="+deviceId+"&location="+location+"&startTime="+startTime+"&endTime="+endTime+"&structure="+structure,
+                    url: "../../static/selectAllStaticHistory?start=0&limit="+15+"&site_id="+site_id+"&rtu_id="+rtu_id+"&staet_id="+deviceId+"&location="+location+"&startTime="+startTime+"&endTime="+endTime+"&structure="+structure,
                     async: false,
                     dataType: 'json',
                     success: function(response){
@@ -200,7 +200,7 @@ xh.load = function() {
                         if(dataCount > 50000){
                             alert("查询数据量过多，请调整查询条件");
                         }else{
-                            window.location.href = "../../templates/exportAllStaticHistory?site_id="+site_id+"&rtu_id="+rtu_id+"&staet_id="+deviceId+"&location="+location+"&startTime="+startTime+"&endTime="+endTime+"&structure="+structure;
+                            window.location.href = "../../static/exportAllStaticHistory?site_id="+site_id+"&rtu_id="+rtu_id+"&staet_id="+deviceId+"&location="+location+"&startTime="+startTime+"&endTime="+endTime+"&structure="+structure;
                         }
                     }
                 });
@@ -338,7 +338,7 @@ xh.load = function() {
                     xh.pagging(page, parseInt($scope.totals), $scope);
                 });
             }else if(deviceName == 4){
-                $http.get("../../templates/selectAllStaticHistory?start=0&limit="+limit+"&site_id="+site_id+"&rtu_id="+rtu_id+"&staet_id="+deviceId+"&location="+location+"&startTime="+startTime+"&endTime="+endTime+"&structure="+structure).
+                $http.get("../../static/selectAllStaticHistory?start=0&limit="+limit+"&site_id="+site_id+"&rtu_id="+rtu_id+"&staet_id="+deviceId+"&location="+location+"&startTime="+startTime+"&endTime="+endTime+"&structure="+structure).
                 success(function(response){
                     console.log(response);
                     $scope.data = response.items;
@@ -462,7 +462,7 @@ xh.load = function() {
                     $scope.totals = response.totals;
                 });
             }else if(deviceName == 4){
-                $http.get("../../templates/selectAllStaticHistory?start="+start+"&limit=" + limit+"&site_id="+site_id+"&rtu_id="+rtu_id+"&staet_id="+deviceId+"&location="+location+"&startTime="+startTime+"&endTime="+endTime+"&structure="+structure).
+                $http.get("../../static/selectAllStaticHistory?start="+start+"&limit=" + limit+"&site_id="+site_id+"&rtu_id="+rtu_id+"&staet_id="+deviceId+"&location="+location+"&startTime="+startTime+"&endTime="+endTime+"&structure="+structure).
                 success(function(response){
                     //xh.maskHide();
                     $scope.start = (page - 1) * pageSize + 1;

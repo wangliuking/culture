@@ -135,6 +135,19 @@ public class LoginController {
         return ip;
     }
 
+    @RequestMapping(value = "/selectMarquee",method = RequestMethod.GET)
+    public Map<String,Object> selectMarquee(HttpServletRequest req) {
+        Map<String,Object> param = new HashMap<>();
+        param.put("data",RedisTest.searchMarquee());
+        return param;
+    }
+
+    @RequestMapping(value = "/updateMarquee",method = RequestMethod.GET)
+    public void updateMarquee(HttpServletRequest req) {
+        String marquee = req.getParameter("marquee");
+        RedisTest.updateMarquee(marquee);
+    }
+
     public static void main(String[] args) {
         LoginController loginController = new LoginController();
         String path = loginController.getClass().getResource("/").getPath();

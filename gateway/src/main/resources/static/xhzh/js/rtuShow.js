@@ -415,7 +415,7 @@ xh.load = function() {
                 });
             }else if(type == 4){
                 //静电
-                $http.get("../../templates/selectStaticByRTU?rtu_id="+rtu_id).
+                $http.get("../../static/selectStaticByRTU?rtu_id="+rtu_id).
                 success(function(response){
                     var finalData = $scope.filterRSData(response,"staet_id",channel,test485);
                     //console.log(response);
@@ -479,8 +479,9 @@ xh.load = function() {
                 }
                 for(var i=0;i<data.length;i++){
                     var devId = data[i][deviceId];
+                    var rtu_channel = data[i]["rtu_channel"];
                     for(var j=0;j<ids.length;j++){
-                        if(devId == ids[j]){
+                        if(rtu_channel == channel && devId == ids[j]){
                             finalData.push(data[i]);
                         }
                     }

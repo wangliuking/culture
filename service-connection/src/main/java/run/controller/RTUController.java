@@ -49,13 +49,13 @@ public class RTUController {
         List<Integer> strList = structureController.foreachIdAndPIdForConnection(Integer.parseInt(structure));
         System.out.println("strList : ++++++++++++"+strList);
         int start;
-        if (req.getParameter("start") != null) {
+        if (req.getParameter("start") != null && !"".equals(req.getParameter("start"))) {
             start = Integer.parseInt(req.getParameter("start"));
         } else {
             start = -1;
         }
         int limit;
-        if (req.getParameter("limit") != null) {
+        if (req.getParameter("limit") != null && !"".equals(req.getParameter("limit"))) {
             limit = Integer.parseInt(req.getParameter("limit"));
         } else {
             limit = -1;

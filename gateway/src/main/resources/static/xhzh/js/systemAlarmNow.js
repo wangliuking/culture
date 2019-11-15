@@ -182,13 +182,6 @@ xh.load = function() {
 
 // 刷新数据
 xh.refresh = function() {
-	var $scope = angular.element(appElement).scope();
-	// 调用$scope中的方法
-	$scope.refresh();
-};
-
-// 刷新数据
-xh.refresh = function() {
     var $scope = angular.element(appElement).scope();
     // 调用$scope中的方法
     $scope.refresh();

@@ -21,6 +21,49 @@
     <link href="./css/toastr.min.css" rel="stylesheet" type="text/css" />
     <link href="Resources/css/xhzh.min.css" rel="stylesheet" type="text/css"/>
     <style>
+        /* 彩带 */
+        .color-line {
+            background: #f7f9fa;
+            height: 3px;
+            background-image: -webkit-linear-gradient(left, #34495e, #34495e 25%, #9b59b6 25%, #9b59b6
+            35%, #3498db 35%, #3498db 45%, #62cb31 45%, #62cb31 55%, #ffb606 55%,
+            #ffb606 65%, #e67e22 65%, #e67e22 75%, #e74c3c 85%, #e74c3c 85%,
+            #c0392b 85%, #c0392b 100%);
+            background-image: -moz-linear-gradient(left, #34495e, #34495e 25%, #9b59b6 25%, #9b59b6
+            35%, #3498db 35%, #3498db 45%, #62cb31 45%, #62cb31 55%, #ffb606 55%,
+            #ffb606 65%, #e67e22 65%, #e67e22 75%, #e74c3c 85%, #e74c3c 85%,
+            #c0392b 85%, #c0392b 100%);
+            background-image: -ms-linear-gradient(left, #34495e, #34495e 25%, #9b59b6 25%, #9b59b6 35%
+            , #3498db 35%, #3498db 45%, #62cb31 45%, #62cb31 55%, #ffb606 55%,
+            #ffb606 65%, #e67e22 65%, #e67e22 75%, #e74c3c 85%, #e74c3c 85%,
+            #c0392b 85%, #c0392b 100%);
+            background-image: linear-gradient(to right, #34495e, #34495e 25%, #9b59b6 25%, #9b59b6 35%
+            , #3498db 35%, #3498db 45%, #62cb31 45%, #62cb31 55%, #ffb606 55%,
+            #ffb606 65%, #e67e22 65%, #e67e22 75%, #e74c3c 85%, #e74c3c 85%,
+            #c0392b 85%, #c0392b 100%);
+            background-size: 100% 6px;
+            background-position: 50% 100%;
+            background-repeat: no-repeat;
+        }
+        .xh-mask {
+            /* opacity: 0.6; */
+            background: rgba(0, 0, 0, 0.8);
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, .4);
+            text-align: center;
+            position: absolute;
+            height: 60px;
+            padding:10px;
+            line-height: 40px;
+            overflow: hidden;
+            min-width: 200px;
+            z-index: 2000;
+            top: 50%;
+            left: 50%;
+            /* border: 1px solid rgba(0, 0, 0, .35); */
+            text-transform: inherit;
+            text-shadow: purple;
+            border-radius: 5px;
+        }
         /*下拉菜单样式*/
         .selectForArea {
             padding: .45rem .9rem;
@@ -53,9 +96,15 @@
 </head>
 <body ng-app="app" ng-controller="xhcontroller" style="padding-right:0!important;background-color: #d8d4d4;color:black;">
 <!-- splash screen-->
-<div class="splash" style="position: fixed;z-index: 2001;background: white;color: gray;top: 0;bottom: 0;left: 0;right: 0;">
+<div id="test1" class="splash" style="position: fixed;z-index: 2001;background: white;color: gray;top: 0;bottom: 0;left: 0;right: 0;">
     <div class="splash-title" style="text-align: center;max-width: 500px;margin: 15% auto;padding: 20px;">
         <h1 style="font-size: 26px;color: #004894;">数据加载中，请耐心等待</h1>
+        <img src="xhIcon/loading.gif" width="100" height="100"/>
+    </div>
+</div>
+<div id="test2" class="splash" style="position: fixed;z-index: 2001;background: rgba(255,255,255,0.4);top: 0;bottom: 0;left: 0;right: 0;display: none;">
+    <div class="splash-title" style="text-align: center;max-width: 500px;margin: 15% auto;padding: 20px;">
+        <h1 style="font-size: 26px;color: #004894;">配置中</h1>
         <img src="xhIcon/loading.gif" width="100" height="100"/>
     </div>
 </div>
@@ -146,7 +195,7 @@
                                     <td>{{x.spd_location}}</td>
                                     <td>{{x.spd_space}}</td>
                                     <td ng-if="x.spd_state == 0 && x.rtu_state == 0"><span style="color: green;">正常</span></td>
-                                    <td ng-if="x.spd_state == 1 || x.rtu_state != 0"><span style="color: red;">离线</span></td>
+                                    <td ng-if="x.spd_state == 1 || x.rtu_state != 0"><span style="color: red;">异常</span></td>
                                     <td ng-if="x.num == 0 && x.rtu_state == 0"></td>
                                     <td>
                                         <a href="#" ng-click="showEditSpd($index)">修改</a>
@@ -566,7 +615,7 @@
 <script type="text/javascript">
     xh.load();
     $(document).ready(function() {
-        $('.splash').css('display', 'none');
+        $('#test1').css('display', 'none');
     });
 </script>
 </body>

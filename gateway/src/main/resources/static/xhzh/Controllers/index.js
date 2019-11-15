@@ -34,6 +34,29 @@ xh.load = function() {
             }
         });
         //判断是否登录end
+
+        //查询公告信息
+        $scope.getMarquee = function () {
+            $http.get("../../selectMarquee").
+            success(function(response){
+                console.log(response);
+                $("#marqueeInfo").val(response.data)
+                $("#marqueeShow").text(response.data);
+            });
+        }
+        $scope.getMarquee();
+
+        //修改公告信息
+        $scope.updateMarquee = function () {
+            var marquee = $("#marqueeInfo").val();
+            $http.get("../../updateMarquee?marquee="+marquee).
+            success(function(response){
+                $("#marqueeShow").text(marquee);
+                $("#marqueeInfo").css("display","none");
+                $("#marqueeShow").css("display","block");
+            });
+        }
+
 	});
 };
 /* 获取cookie */
@@ -47,4 +70,9 @@ xh.getcookie = function(name) {
 	}
 	return "";
 };
+
+xh.showMarqueeEdit = function () {
+    $("#marqueeInfo").css("display","block");
+    $("#marqueeShow").css("display","none");
+}
 

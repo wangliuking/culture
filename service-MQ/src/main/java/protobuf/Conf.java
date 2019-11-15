@@ -20,7 +20,7 @@ public class Conf {
     public static String z2w_EtcrB_alarm = "z2w-EtcrB-alarm";
     public static String z2w_Lct_alarm = "z2w-Lct-alarm";
     public static String z2w_Mems_alarm = "z2w-Mems-alarm";
-    public static String z2w_rsws_alarm = "z2w-rsws-alarm";
+    public static String z2w_rsws_alarm = "z2w-Rsws-alarm";
     public static String z2w_Svt_alarm = "z2w-Svt-alarm";
     public static String z2w_Hc_alarm = "z2w-Hc-alarm";
     public static String z2w_Stray_alarm = "z2w-Stray-alarm";

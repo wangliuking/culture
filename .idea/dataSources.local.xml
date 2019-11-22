@@ -9,7 +9,7 @@
       <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact" />
       <secret-storage>master_key</secret-storage>
       <user-name>root</user-name>
-      <introspection-schemas>*:lightingdetection,wechat</introspection-schemas>
+      <introspection-schemas>*:lightingdetection,wechat,xhzh</introspection-schemas>
     </data-source>
     <data-source name="192.168.8.133" uuid="b9d7ba9d-8b82-49e4-a010-712d10aaf1ea">
       <database-info product="MySQL" version="5.7.28" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.47 ( Revision: fe1903b1ecb4a96a917f7ed3190d80c049b1de29 )" family="MYSQL" exact-version="5.7.28">
@@ -19,7 +19,17 @@
       <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact" />
       <secret-storage>master_key</secret-storage>
       <user-name>root</user-name>
-      <introspection-schemas>*:lightingdetection,xhzh</introspection-schemas>
+      <introspection-schemas>*:lightingdetection,wechat,xhzh</introspection-schemas>
+    </data-source>
+    <data-source name="管道云服务" uuid="a635dd22-41eb-45e7-b300-3dc98d05f6d9">
+      <database-info product="MySQL" version="5.7.24" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.47 ( Revision: fe1903b1ecb4a96a917f7ed3190d80c049b1de29 )" family="MYSQL" exact-version="5.7.24">
+        <extra-name-characters>#@</extra-name-characters>
+        <identifier-quote-string>`</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>root</user-name>
+      <introspection-schemas>*:lightingdetection,wechat,xhzh</introspection-schemas>
     </data-source>
   </component>
 </project>

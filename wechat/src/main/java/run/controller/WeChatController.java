@@ -19,14 +19,34 @@ import java.util.*;
 public class WeChatController {
     @Autowired
     private WeChatService weChatService;
+    @Autowired
+    private FeignForMQ feignForMQ;
     /**
      * 获取所有关注用户
      */
     @RequestMapping(value="/getUserList",method = RequestMethod.GET)
     @ResponseBody
-    public Object getUserList(){
+    public Map<String,Object> getUserList(){
        JSONObject jsonObject = WeChatUtil.getUserList();
-       return jsonObject;
+        System.out.println(jsonObject);
+        Map<String,Object> resultMap = new HashMap<>();
+        resultMap.put("user",jsonObject.getString("total"));
+        return resultMap;
+    }
+
+    /**
+     * 获取当日点击次数
+     */
+    @RequestMapping(value="/dayClickNum",method = RequestMethod.GET)
+    @ResponseBody
+    public Map<String,Object> dayClickNum(){
+        String time = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+        Map<String,Object> param = new HashMap<>();
+        param.put("startTime",time+" 00:00:00");
+        param.put("endTime",time+" 23:59:59");
+        Map<String,Object> resultMap = new HashMap<>();
+        resultMap.put("click",weChatService.searchClickNum(param).size());
+        return resultMap;
     }
 
     /**
@@ -159,12 +179,26 @@ public class WeChatController {
         }else if("event".equals(msgType)){
             //判断关注事件
             if("subscribe".equals(msg.getEvent())){
+                //广播页面
+                feignForMQ.broadcast();
                 out.setContent("欢迎关注![愉快]");
+                //设置消息的响应类型
+                out.setMsgType("text");
+            }else if("unsubscribe".equals(msg.getEvent())){
+                //广播页面
+                feignForMQ.broadcast();
+                out.setContent("取消关注!");
                 //设置消息的响应类型
                 out.setMsgType("text");
             }else if("CLICK".equals(msg.getEvent())){
                 //获取菜单的key值
                 String key = msg.getEventKey();
+                Map<String,Object> param = new HashMap<>();
+                param.put("openId",msg.getFromUserName());
+                param.put("type",key);
+                weChatService.insertClickNum(param);
+                //广播页面
+                feignForMQ.broadcast();
                 switch (key){
                     case "base":
                         return getNews(msg,"w-4TGEDAtnu7oYKICmt1rJFFnbvI35vTiSfqbBMlIyc");
@@ -208,8 +242,7 @@ public class WeChatController {
     }
 
     public String getNews(InMsgEntity msg,String str){
-        JSONObject jsonObject = WeChatUtil.getNews();
-        JSONArray jsonArray = jsonObject.getJSONArray("item");
+        JSONArray jsonArray = MyApplicationRunner.jsonObject.getJSONArray("item");
         for(int i=0;i<jsonArray.size();i++){
             JSONObject js = jsonArray.getJSONObject(i);
             String media_id = js.getString("media_id");

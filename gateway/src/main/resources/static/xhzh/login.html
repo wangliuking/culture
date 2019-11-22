@@ -337,62 +337,62 @@
 
     drawPic();
 </script>
-<script>
-    //console.log(localStorage);
-    var app = angular.module("login", []);
-    app.controller("loginController", function($scope, $http) {
-        /* 显示model */
-        $scope.login = function() {
-            $(".tipUser").hide();
-            $(".tipPass").hide();
-            $(".tipAuth").hide();
-            var username = $("#username").val();
-            var password = $("#password").val();
-            var au = $("#auth").val();
-            if (username == ''){
-                $("#username").val('');
-                $(".tipUser").show();
-                return false;
-            } else if(password == '') {
-                $("#password").val('');
-                $(".tipPass").show();
-                return false;
-            } else if(au != auth) {
-                $("#auth").val('');
-                $(".tipAuth").show();
-                return false;
-            }
-
-            var fields = $("#loginForm").serializeArray();
-            var f = {};//声明一个对象
-            $.each(fields,function(index,field){
-                f[field.name] = field.value;//通过变量，将属性值，属性一起放到对象中
-            });
-            var str = JSON.stringify(f);
-            $.ajax({
-                url : '../../loginWeb',
-                contentType : "application/json;charset=utf-8",
-                type : 'POST',
-                dataType : "json",
-                async : true,
-                data : str,
-                success : function(data) {
-                    console.log(data);
-                    if(data.result == "登录成功"){
-                        window.location.href = "screen.html";
-                    }else{
-                        alert("账户或密码错误！");
-                    }
-                },
-                error : function() {
-
+    <script>
+        //console.log(localStorage);
+        var app = angular.module("login", []);
+        app.controller("loginController", function($scope, $http) {
+            /* 显示model */
+            $scope.login = function() {
+                $(".tipUser").hide();
+                $(".tipPass").hide();
+                $(".tipAuth").hide();
+                var username = $("#username").val();
+                var password = $("#password").val();
+                var au = $("#auth").val();
+                if (username == ''){
+                    $("#username").val('');
+                    $(".tipUser").show();
+                    return false;
+                } else if(password == '') {
+                    $("#password").val('');
+                    $(".tipPass").show();
+                    return false;
+                } else if(au != auth) {
+                    $("#auth").val('');
+                    $(".tipAuth").show();
+                    return false;
                 }
-            });
 
-        };
+                var fields = $("#loginForm").serializeArray();
+                var f = {};//声明一个对象
+                $.each(fields,function(index,field){
+                    f[field.name] = field.value;//通过变量，将属性值，属性一起放到对象中
+                });
+                var str = JSON.stringify(f);
+                $.ajax({
+                    url : '../../loginWeb',
+                    contentType : "application/json;charset=utf-8",
+                    type : 'POST',
+                    dataType : "json",
+                    async : true,
+                    data : str,
+                    success : function(data) {
+                        console.log(data);
+                        if(data.result == "登录成功"){
+                            window.location.href = "screen.html";
+                        }else{
+                            alert("账户或密码错误！");
+                        }
+                    },
+                    error : function() {
 
-    });
-</script>
+                    }
+                });
+
+            };
+
+        });
+    </script>
 
 </body>
 </html>

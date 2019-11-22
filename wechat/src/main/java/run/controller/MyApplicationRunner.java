@@ -1,5 +1,6 @@
 package run.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -17,6 +18,8 @@ public class MyApplicationRunner implements ApplicationRunner {
     @Autowired
     private WeChatService weChatService;
 
+    public static JSONObject jsonObject;
+
     @Override
     public void run(ApplicationArguments var1) throws Exception{
         System.out.println("MyApplicationRunner class will be execute when the project was started!");
@@ -24,7 +27,7 @@ public class MyApplicationRunner implements ApplicationRunner {
     }
 
     public void scheduledInit() {
-
+        jsonObject = WeChatUtil.getNews();
     }
 
 }

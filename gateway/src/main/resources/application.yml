@@ -109,6 +109,8 @@ eureka:
       defaultZone: http://test:test@localhost:8081/eureka/
 server:
   port: 8080
+  session:
+    timeout: 0
 security:
   user:
     name: test

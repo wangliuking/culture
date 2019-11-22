@@ -114,7 +114,7 @@ public class WeChatUtil {
         String news = readJsonFile("/usr/wechat/news.json");
         String url = GET_ALL_NEWS.replace("ACCESS_TOKEN", getAccessToken());
         JSONObject jsonObject = HttpsUtil.httpRequest(url,"GET",news);
-        System.out.println(jsonObject);
+        //System.out.println(jsonObject);
         return jsonObject;
     }
 

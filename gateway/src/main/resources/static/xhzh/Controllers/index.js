@@ -3,6 +3,8 @@ if (!("xh" in window)) {
 	window.xh = {};
 };
 var appElement = document.querySelector('[ng-controller=index]');
+var loginUser;
+var structure;
 xh.load = function() {
 	var app = angular.module("app", []);
 	app.controller("index", function($scope, $http) {
@@ -26,6 +28,9 @@ xh.load = function() {
                 console.log(response);
                 console.log("======");
                 $scope.power = response;
+                structure = response.structure;
+                loginUser = response.username;
+                connectWebSocket();
             } ,
             error: function () {
                 alert("登录已失效，请重新登录！");

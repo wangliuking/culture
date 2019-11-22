@@ -21,6 +21,7 @@
             <mapping deploy="/usr/culture" local="$PROJECT_DIR$/service-svt/target" />
             <mapping deploy="/usr/culture" local="$PROJECT_DIR$/service-total/target" />
             <mapping deploy="/usr/culture/web/config/static" local="$PROJECT_DIR$/gateway/target/config/static" />
+            <mapping deploy="/usr/wechat" local="$PROJECT_DIR$/wechat/target" />
           </mappings>
         </serverdata>
       </paths>
@@ -28,7 +29,12 @@
         <serverdata>
           <mappings>
             <mapping deploy="/usr/wechat" local="$PROJECT_DIR$/wechat/target" web="/" />
-            <mapping deploy="/usr/wechat/config" local="$PROJECT_DIR$/wechat/target/config" />
+            <mapping deploy="/usr/wechat/config/static" local="$PROJECT_DIR$/wechat/target/config/static" />
+            <mapping deploy="/usr/culture" local="$PROJECT_DIR$/eureka-server/target" />
+            <mapping deploy="/usr/culture" local="$PROJECT_DIR$/service-MQ/target" />
+            <mapping deploy="/usr/culture/web" local="$PROJECT_DIR$/gateway/target" />
+            <mapping deploy="/usr/culture" local="$PROJECT_DIR$/service-connection/target" />
+            <mapping deploy="/usr/wechat" local="$PROJECT_DIR$/service-total/target" />
           </mappings>
         </serverdata>
       </paths>

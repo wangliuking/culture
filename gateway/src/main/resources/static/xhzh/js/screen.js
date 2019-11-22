@@ -12,6 +12,7 @@ require.config({
 var alarmbs=true;
 var alarmji=true;
 var appElement = document.querySelector('[ng-controller=screen]');
+var loginUser;
 var structure;
 xh.load = function() {
 	var app = angular.module("app", []);
@@ -23,7 +24,13 @@ xh.load = function() {
             async: false,
             dataType: 'json',
             success: function(response){
+                console.log("======");
+                console.log(response);
+                console.log("======");
+                $scope.power = response;
                 structure = response.structure;
+                loginUser = response.username;
+                connectWebSocket();
             } ,
             error: function () {
                 alert("登录已失效，请重新登录！");
@@ -64,8 +71,7 @@ xh.initTotal = function(){
             xh.deviceWarningTop5(siteWarningTop5);
             xh.deviceOffTop5(siteDeviceOffTop5);
             xh.call(data);
-            xh.waterstatus(1,0);
-            xh.waterstatus(2,0);
+            xh.wechat();
 
             $.ajax({
                 url : '../../connect/selectAllRTU?start=&limit=&structure='+structure,
@@ -76,6 +82,8 @@ xh.initTotal = function(){
                     xh.map(response.items);
                 }
             });
+
+
         }
     });
 }
@@ -578,10 +586,10 @@ xh.waterstatus=function(id,totals){
 	var tColor;
 	if(id==1){
 		vaterColor="#28beff";
-		tColor="#fff";
+		tColor="yellow";
 	}else if(id==2){
 		vaterColor="#28beff";
-        tColor="#fff";
+        tColor="yellow";
 	}else if(id==3){
 		vaterColor="#28beff";
         tColor="yellow";
@@ -620,6 +628,19 @@ xh.getOneDay=function() {
     var strYesterday=strYear+"-"+strMonth+"-"+strDay;   
     return  strYesterday;
 }
+xh.wechat=function(){
+    $.ajax({
+        url : '../../total/getWeChatInfo',
+        type : 'GET',
+        dataType : "json",
+        async : false,
+        success : function(response) {
+            console.log(response)
+            xh.waterstatus(1,response.click);
+            xh.waterstatus(2,response.user);
+        }
+    });
+}
 
 xh.formatNum=function(text){
     var str="";
@@ -629,4 +650,46 @@ xh.formatNum=function(text){
     }
     return str;
 
+}
+
+function connectWebSocket(){
+    var sid = loginUser;
+    var socket;
+    if (typeof(WebSocket) == "undefined") {
+        console.log("您的浏览器不支持WebSocket");
+    } else {
+        console.log("您的浏览器支持WebSocket");
+        var domain = window.location.host;
+        console.log("当前域名 ： "+domain.split(":",1));
+        console.log("当前sid : "+sid);
+        //实现化WebSocket对象，指定要连接的服务器地址与端口  建立连接
+        // 等同于socket = new WebSocket("ws://localhost:8083/checkcentersys/websocket/20");
+        socket = new WebSocket("ws://"+domain.split(":",1)+":8082/websocket/"+sid);
+        //打开事件
+        socket.onopen = function () {
+            console.log("Socket 已打开");
+            //socket.send("这是来自客户端的消息" + location.href + new Date());  };
+            // 获得消息事件
+            socket.onmessage = function (msg) {
+                console.log(msg);
+                if(msg.data == "existUser"){
+                    alert("已有其他人登录，返回登录界面");
+                    window.location.href = "login.html";
+                    window.parent.location.href = "login.html";
+                } else if(msg.data == "refresh"){
+                    console.log("收到广播，准备刷新")
+                    xh.wechat();
+                }
+            };
+            //关闭事件
+            socket.onclose = function () {
+                console.log("Socket已关闭");e
+            };
+            //发生了错误事件
+            socket.onerror = function () {
+                alert("Socket发生了错误");
+                //此时可以尝试刷新页面
+            }
+        }
+    }
 }

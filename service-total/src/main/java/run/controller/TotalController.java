@@ -1,5 +1,7 @@
 package run.controller;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +21,8 @@ public class TotalController {
     private TotalService totalService;
     @Autowired
     private FeignForStructure feignForStructure;
+    @Autowired
+    private FeignForWeChat feignForWeChat;
 
     @RequestMapping(value = "/selectSiteAllStatus",method = RequestMethod.GET)
     public Map<String,Object> selectSiteAllStatus(HttpServletRequest req){
@@ -608,6 +612,14 @@ public class TotalController {
         resultMap.put("deviceTotalNum",deviceTotalNum);
         resultMap.put("rtuWarningNum",rtuWarningNum.size());
         resultMap.put("num",ScheduledService.getNowDataList());
+        return resultMap;
+    }
+
+    @RequestMapping(value = "/getWeChatInfo",method = RequestMethod.GET)
+    public Map<String,Object> getWeChatInfo(){
+        Map<String,Object> resultMap = new HashMap<>();
+        resultMap.put("click",feignForWeChat.dayClickNum().get("click"));
+        resultMap.put("user",feignForWeChat.getUserList().get("user"));
         return resultMap;
     }
 

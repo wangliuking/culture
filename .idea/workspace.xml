@@ -2,48 +2,31 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1d5896f5-636a-4bba-9ef9-277779bc57c0" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/028873a1-b373-44fb-9509-41925c61e181.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/028873a1-b373-44fb-9509-41925c61e181.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/b9d7ba9d-8b82-49e4-a010-712d10aaf1ea.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/b9d7ba9d-8b82-49e4-a010-712d10aaf1ea.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/main/java/run/SecurityConf.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/java/run/SecurityConf.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway/src/main/java/run/GatewayApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/java/run/GatewayApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gateway/src/main/java/run/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/java/run/controller/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gateway/src/main/java/run/redis/RedisTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/java/run/redis/RedisTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/Controllers/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/Controllers/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/Resources/css/layout.css" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/Resources/css/layout.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/bmap/bmap_offline_api_v3.0_min.js" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/bmap/bmap_offline_api_v3.0_min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/bmap/echarts.js" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/bmap/echarts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/bmap/map.html" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/bmap/map.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/bmap/mapInit.js" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/bmap/mapInit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/bmap/map_load.js" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/bmap/map_load.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/dataStatistic.html" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/dataStatistic.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/deviceList.html" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/deviceList.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/images/jquery.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/images/jquery.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/js/areaSelect.js" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/js/areaSelect.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/js/dataStatistics.js" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/js/dataStatistics.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/js/device.js" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/js/device.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/js/historyData.js" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/js/historyData.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/js/historyDevice.js" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/js/historyDevice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/js/nowData.js" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/js/nowData.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/js/popper.js" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/js/popper.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/js/rtuShow.js" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/js/rtuShow.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/js/screen.js" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/js/screen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/js/systemAlarm.js" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/js/systemAlarm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/js/systemAlarmNow.js" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/js/systemAlarmNow.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/lib/echarts/util/mapData/params/510100.json" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/lib/echarts/util/mapData/params/510100.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/main.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/screen.html" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/screen.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/systemAlarm.html" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/systemAlarm.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/systemAlarmNow.html" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/systemAlarmNow.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-MQ/src/main/java/protobuf/Conf.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-MQ/src/main/java/protobuf/Conf.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-MQ/src/main/java/protobuf/Z4WMQ.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-MQ/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/service-MQ/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service-MQ/src/main/java/run/ServiceMQApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-MQ/src/main/java/run/ServiceMQApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-MQ/src/main/java/run/controller/Z4WAlarmController.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-MQ/src/main/java/run/controller/Z4WAlarmController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-connection/src/main/java/run/controller/RTUController.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-connection/src/main/java/run/controller/RTUController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-total/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/service-total/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service-total/src/main/java/run/controller/TotalController.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-total/src/main/java/run/controller/TotalController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wechat/src/main/java/run/WeChatApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/wechat/src/main/java/run/WeChatApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wechat/src/main/java/run/controller/MyApplicationRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/wechat/src/main/java/run/controller/MyApplicationRunner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wechat/src/main/java/run/controller/WeChatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/wechat/src/main/java/run/controller/WeChatController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wechat/src/main/java/run/controller/WeChatUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/wechat/src/main/java/run/controller/WeChatUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wechat/src/main/java/run/mapper/WeChatMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/wechat/src/main/java/run/mapper/WeChatMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wechat/src/main/java/run/service/WeChatService.java" beforeDir="false" afterPath="$PROJECT_DIR$/wechat/src/main/java/run/service/WeChatService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wechat/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/wechat/src/main/resources/application.yml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/jdk8Test/target/" />
     <ignored path="$PROJECT_DIR$/service-lightning/target/" />
@@ -87,54 +70,59 @@
     <session id="508361458">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="22" />
+          <entry key="project.closed" value="30" />
           <entry key="project.open.time.0" value="4" />
-          <entry key="project.open.time.1" value="4" />
-          <entry key="project.open.time.10" value="5" />
-          <entry key="project.open.time.11" value="5" />
+          <entry key="project.open.time.1" value="9" />
+          <entry key="project.open.time.10" value="6" />
+          <entry key="project.open.time.11" value="6" />
           <entry key="project.open.time.12" value="2" />
+          <entry key="project.open.time.13" value="1" />
           <entry key="project.open.time.2" value="2" />
           <entry key="project.open.time.3" value="1" />
-          <entry key="project.opened" value="23" />
+          <entry key="project.opened" value="31" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="cathode_config" value="4" />
+          <entry key="click_person" value="1" />
           <entry key="css" value="8" />
-          <entry key="html" value="24" />
+          <entry key="html" value="33" />
           <entry key="humiture_now_data" value="1" />
           <entry key="humiture_old_data" value="1" />
-          <entry key="java" value="114" />
+          <entry key="java" value="194" />
           <entry key="jpg" value="2" />
-          <entry key="js" value="28" />
+          <entry key="js" value="36" />
           <entry key="json" value="9" />
           <entry key="png" value="1" />
+          <entry key="role" value="5" />
           <entry key="rtu_alarm_history" value="1" />
           <entry key="spd_config" value="2" />
           <entry key="spd_now_data" value="3" />
           <entry key="spd_old_data" value="3" />
-          <entry key="sql" value="9" />
-          <entry key="structure" value="2" />
+          <entry key="sql" value="22" />
+          <entry key="structure" value="4" />
           <entry key="table_detail" value="4" />
           <entry key="table_list" value="6" />
-          <entry key="user" value="1" />
-          <entry key="xml" value="32" />
-          <entry key="yml" value="45" />
+          <entry key="user" value="5" />
+          <entry key="user_authority" value="2" />
+          <entry key="user_group" value="1" />
+          <entry key="xml" value="36" />
+          <entry key="yml" value="94" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CSS" value="8" />
-          <entry key="Database Element" value="28" />
-          <entry key="HTML" value="24" />
+          <entry key="Database Element" value="43" />
+          <entry key="HTML" value="33" />
           <entry key="Image" value="3" />
-          <entry key="JAVA" value="114" />
+          <entry key="JAVA" value="194" />
           <entry key="JSON" value="9" />
-          <entry key="JavaScript" value="28" />
-          <entry key="Scratch" value="9" />
-          <entry key="XML" value="32" />
-          <entry key="YAML" value="45" />
+          <entry key="JavaScript" value="36" />
+          <entry key="Scratch" value="22" />
+          <entry key="XML" value="36" />
+          <entry key="YAML" value="94" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -142,33 +130,34 @@
           <entry key="cell" value="325" />
           <entry key="css" value="15" />
           <entry key="dummy" value="18" />
-          <entry key="html" value="831" />
-          <entry key="java" value="4960" />
-          <entry key="js" value="189" />
+          <entry key="html" value="837" />
+          <entry key="java" value="6202" />
+          <entry key="js" value="296" />
           <entry key="json" value="57" />
-          <entry key="sql" value="137" />
-          <entry key="xml" value="42" />
-          <entry key="yml" value="210" />
+          <entry key="sql" value="241" />
+          <entry key="txt" value="5" />
+          <entry key="xml" value="47" />
+          <entry key="yml" value="304" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="15" />
-          <entry key="HTML" value="831" />
-          <entry key="JAVA" value="4960" />
+          <entry key="HTML" value="837" />
+          <entry key="JAVA" value="6202" />
           <entry key="JSON" value="57" />
-          <entry key="JavaScript" value="189" />
-          <entry key="PLAIN_TEXT" value="18" />
-          <entry key="SQL" value="50" />
-          <entry key="Scratch" value="412" />
-          <entry key="XML" value="42" />
-          <entry key="YAML" value="210" />
+          <entry key="JavaScript" value="296" />
+          <entry key="PLAIN_TEXT" value="23" />
+          <entry key="SQL" value="62" />
+          <entry key="Scratch" value="504" />
+          <entry key="XML" value="47" />
+          <entry key="YAML" value="304" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="450" />
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -200,9 +189,13 @@
       <find>管线</find>
       <find>deviceTotalByProvince</find>
       <find>deviceTotalByProvinceTest</find>
+      <find>selectIndexData</find>
+      <find>;</find>
+      <find>6379</find>
     </findStrings>
     <replaceStrings>
       <replace>站点</replace>
+      <replace>6380</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -211,57 +204,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/wechat/pom.xml" />
-        <option value="$PROJECT_DIR$/wechat/src/main/resources/static/detail.html" />
-        <option value="$PROJECT_DIR$/wechat/src/main/java/run/entity/KfnewsEntity.java" />
-        <option value="$PROJECT_DIR$/wechat/src/main/java/run/entity/ArticlesEntity.java" />
-        <option value="$PROJECT_DIR$/wechat/src/main/java/run/entity/article/ArticlesEntity.java" />
-        <option value="$PROJECT_DIR$/wechat/src/main/java/run/entity/article/Basebean.java" />
-        <option value="$PROJECT_DIR$/wechat/src/main/java/run/entity/article/BaseNews.java" />
-        <option value="$PROJECT_DIR$/wechat/src/main/java/run/service/WeChatService.java" />
-        <option value="$PROJECT_DIR$/wechat/src/main/java/run/mapper/WeChatMapper.java" />
-        <option value="$PROJECT_DIR$/wechat/src/main/java/run/controller/MyApplicationRunner.java" />
-        <option value="$PROJECT_DIR$/wechat/src/main/resources/application.yml" />
-        <option value="$PROJECT_DIR$/gateway/src/main/resources/application.yml" />
-        <option value="$PROJECT_DIR$/service-cat/src/main/resources/application.yml" />
-        <option value="$PROJECT_DIR$/service-connection/src/main/resources/application.yml" />
         <option value="$PROJECT_DIR$/service-etcr/src/main/resources/application.yml" />
         <option value="$PROJECT_DIR$/service-hc/src/main/resources/application.yml" />
         <option value="$PROJECT_DIR$/service-lightning/src/main/resources/application.yml" />
-        <option value="$PROJECT_DIR$/service-MQ/src/main/resources/application.yml" />
         <option value="$PROJECT_DIR$/service-rsws/src/main/resources/application.yml" />
         <option value="$PROJECT_DIR$/service-spd/src/main/resources/application.yml" />
         <option value="$PROJECT_DIR$/service-static/src/main/resources/application.yml" />
         <option value="$PROJECT_DIR$/service-stray/src/main/resources/application.yml" />
         <option value="$PROJECT_DIR$/service-svt/src/main/resources/application.yml" />
-        <option value="$PROJECT_DIR$/service-total/src/main/resources/application.yml" />
         <option value="$PROJECT_DIR$/wechat/src/main/java/run/entity/OutMsgEntity.java" />
         <option value="$PROJECT_DIR$/service-MQ/src/main/java/protobuf/Conf.java" />
-        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/b9d7ba9d-8b82-49e4-a010-712d10aaf1ea/console.sql" />
         <option value="$PROJECT_DIR$/gateway/pom.xml" />
         <option value="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/bmap/map_load.js" />
         <option value="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/Resources/css/layout.css" />
         <option value="$PROJECT_DIR$/service-connection/src/main/java/run/controller/RTUController.java" />
-        <option value="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/js/screen.js" />
         <option value="$PROJECT_DIR$/service-MQ/src/main/java/protobuf/Z4WMQ.java" />
-        <option value="$PROJECT_DIR$/service-MQ/src/main/java/run/ServiceMQApplication.java" />
         <option value="$PROJECT_DIR$/service-MQ/src/main/java/run/controller/MyApplicationRunner.java" />
         <option value="$PROJECT_DIR$/service-MQ/src/main/java/run/controller/Z4WAlarmController.java" />
-        <option value="$PROJECT_DIR$/wechat/src/main/java/run/controller/WeChatUtil.java" />
-        <option value="$PROJECT_DIR$/wechat/src/main/java/run/controller/WeChatController.java" />
         <option value="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/bmap/mapInit.js" />
-        <option value="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/login.html" />
-        <option value="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/main.html" />
-        <option value="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/Controllers/index.js" />
-        <option value="$PROJECT_DIR$/gateway/src/main/java/run/controller/LoginController.java" />
-        <option value="$PROJECT_DIR$/gateway/src/main/java/run/redis/RedisTest.java" />
         <option value="$PROJECT_DIR$/gateway/src/main/java/run/SecurityConf.java" />
         <option value="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/bmap/map.html" />
-        <option value="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/screen.html" />
         <option value="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/js/rtuShow.js" />
         <option value="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/js/areaSelect.js" />
         <option value="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/dataStatistic.html" />
+        <option value="$PROJECT_DIR$/gateway/src/main/java/run/controller/LoginController.java" />
+        <option value="$PROJECT_DIR$/gateway/src/main/java/run/GatewayApplication.java" />
+        <option value="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/login.html" />
+        <option value="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/Controllers/index.js" />
+        <option value="$PROJECT_DIR$/service-MQ/src/main/java/run/ServiceMQApplication.java" />
+        <option value="$PROJECT_DIR$/service-MQ/pom.xml" />
+        <option value="$PROJECT_DIR$/wechat/src/main/java/run/controller/MyApplicationRunner.java" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/b9d7ba9d-8b82-49e4-a010-712d10aaf1ea/console.sql" />
+        <option value="$PROJECT_DIR$/service-total/pom.xml" />
+        <option value="$PROJECT_DIR$/wechat/src/main/java/run/controller/WeChatUtil.java" />
+        <option value="$PROJECT_DIR$/wechat/src/main/java/run/WeChatApplication.java" />
+        <option value="$PROJECT_DIR$/wechat/src/main/java/run/mapper/WeChatMapper.java" />
+        <option value="$PROJECT_DIR$/wechat/src/main/java/run/service/WeChatService.java" />
+        <option value="$PROJECT_DIR$/service-MQ/src/main/java/run/websocket/CheckCenterController.java" />
+        <option value="$PROJECT_DIR$/wechat/src/main/java/run/controller/FeignForMQ.java" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/a635dd22-41eb-45e7-b300-3dc98d05f6d9/console.sql" />
+        <option value="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/screen.html" />
+        <option value="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/main.html" />
+        <option value="$PROJECT_DIR$/service-total/src/main/java/run/controller/FeignForWeChat.java" />
         <option value="$PROJECT_DIR$/service-total/src/main/java/run/controller/TotalController.java" />
+        <option value="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/js/screen.js" />
+        <option value="$PROJECT_DIR$/wechat/src/main/java/run/controller/WeChatController.java" />
+        <option value="$PROJECT_DIR$/gateway/src/main/resources/application.yml" />
+        <option value="$PROJECT_DIR$/service-connection/src/main/resources/application.yml" />
+        <option value="$PROJECT_DIR$/service-MQ/src/main/resources/application.yml" />
+        <option value="$PROJECT_DIR$/service-total/src/main/resources/application.yml" />
+        <option value="$PROJECT_DIR$/wechat/src/main/resources/application.yml" />
+        <option value="$PROJECT_DIR$/gateway/src/main/java/run/redis/RedisTest.java" />
       </list>
     </option>
   </component>
@@ -273,17 +266,7 @@
   </component>
   <component name="MavenProjectNavigator">
     <treeState>
-      <expand>
-        <path>
-          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="culture" type="9519ce18:MavenProjectsStructure$ProjectNode" />
-        </path>
-        <path>
-          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="culture" type="9519ce18:MavenProjectsStructure$ProjectNode" />
-          <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
-        </path>
-      </expand>
+      <expand />
       <select />
     </treeState>
   </component>
@@ -311,9 +294,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -325,6 +305,9 @@
           <select />
         </subPane>
       </pane>
+      <pane id="AndroidView" />
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -338,9 +321,9 @@
     <property name="RequestMappingsPanelWidth2" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1573809528819" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1574322448621" />
     <property name="database.console.LAST_STATE" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/gateway/target/config/static" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/wechat/target" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -349,12 +332,15 @@
     <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.annotationProcessors" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="run.controller" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/service-MQ/src/main/java/run" />
+      <recent name="$PROJECT_DIR$/gateway/src/main/java/run/controller" />
+      <recent name="$PROJECT_DIR$/gateway/src/main/java/run" />
       <recent name="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh" />
       <recent name="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/js" />
-      <recent name="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/bmap" />
-      <recent name="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/lib/echarts/util/mapData/params" />
-      <recent name="$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/images" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -375,7 +361,20 @@
     </option>
     <option name="contentProportion" value="0.28645235" />
   </component>
-  <component name="RunManager" selected="Application.WeChatUtil">
+  <component name="RunManager" selected="Spring Boot.ServiceMQApplication">
+    <configuration name="RedisTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="run.redis.RedisTest" />
+      <module name="gateway" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="run.redis.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="WeChatController" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="run.controller.WeChatController" />
       <module name="wechat" />
@@ -426,6 +425,8 @@
     <configuration name="EurekaApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="eureka-server" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="run.EurekaApplication" />
+      <option name="VM_PARAMETERS" value="-Xmx128m -Xms128m" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -545,9 +546,11 @@
       <item itemvalue="Spring Boot.WeChatApplication" />
       <item itemvalue="Application.WeChatController" />
       <item itemvalue="Application.WeChatUtil" />
+      <item itemvalue="Application.RedisTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.RedisTest" />
         <item itemvalue="Application.WeChatUtil" />
         <item itemvalue="Application.WeChatController" />
       </list>
@@ -586,11 +589,19 @@
       <workItem from="1573779909194" duration="103000" />
       <workItem from="1573802899293" duration="229000" />
       <workItem from="1573806040666" duration="2489000" />
+      <workItem from="1574043546516" duration="13913000" />
+      <workItem from="1574130288081" duration="11069000" />
+      <workItem from="1574212401425" duration="81000" />
+      <workItem from="1574213671735" duration="1339000" />
+      <workItem from="1574235224586" duration="7294000" />
+      <workItem from="1574298173383" duration="10628000" />
+      <workItem from="1574400893654" duration="3000" />
+      <workItem from="1574414874624" duration="118000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="157884000" />
+    <option name="totallyTimeSpent" value="202329000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -604,7 +615,7 @@
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25882354" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25266108" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -615,22 +626,62 @@
       <window_info id="Web" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32914287" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49915966" weight="0.464" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49915966" weight="0.3577143" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32914287" />
       <window_info anchor="bottom" id="DB Execution Console" order="7" />
       <window_info anchor="bottom" id="Spring" order="8" weight="0.32914287" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.472" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.33560863" />
       <window_info anchor="bottom" id="Docker" order="10" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50084037" side_tool="true" weight="0.584" />
       <window_info anchor="bottom" id="Messages" order="12" weight="0.32914287" />
       <window_info anchor="bottom" id="File Transfer" order="13" weight="0.46057144" />
-      <window_info anchor="bottom" id="Java Enterprise" order="14" />
+      <window_info anchor="bottom" id="Java Enterprise" order="14" weight="0.32914287" />
       <window_info anchor="bottom" id="Database Changes" order="15" weight="0.32914287" />
       <window_info anchor="bottom" id="Version Control" order="16" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run Dashboard" order="17" weight="0.352" />
+      <window_info anchor="bottom" id="Run Dashboard" order="17" weight="0.43542856" />
+      <window_info anchor="bottom" id="Database Console" order="18" weight="0.43542856" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.24985994" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="Maven Projects" order="5" visible="true" weight="0.24313726" />
+      <window_info anchor="right" id="Database" order="6" weight="0.19663866" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Theme Preview" order="8" />
+      <window_info anchor="right" id="Bean Validation" order="9" weight="0.329972" />
+    </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24369748" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="DB Browser" order="4" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="UI Designer" order="6" />
+      <window_info id="Favorites" order="7" side_tool="true" />
+      <window_info id="Web" order="8" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32914287" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49915966" weight="0.3577143" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32914287" />
+      <window_info anchor="bottom" id="DB Execution Console" order="7" />
+      <window_info anchor="bottom" id="Spring" order="8" weight="0.32914287" />
+      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.5062857" />
+      <window_info anchor="bottom" id="Docker" order="10" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50084037" side_tool="true" weight="0.584" />
+      <window_info anchor="bottom" id="Messages" order="12" weight="0.32914287" />
+      <window_info anchor="bottom" id="File Transfer" order="13" weight="0.46057144" />
+      <window_info anchor="bottom" id="Java Enterprise" order="14" weight="0.32914287" />
+      <window_info anchor="bottom" id="Database Changes" order="15" weight="0.32914287" />
+      <window_info anchor="bottom" id="Version Control" order="16" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Run Dashboard" order="17" weight="0.43542856" />
       <window_info anchor="bottom" id="Database Console" order="18" weight="0.43542856" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.24985994" />
@@ -638,47 +689,7 @@
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="right" id="Maven Projects" order="5" weight="0.24313726" />
-      <window_info anchor="right" id="Database" order="6" weight="0.34229693" />
-      <window_info anchor="right" id="Palette&#9;" order="7" />
-      <window_info anchor="right" id="Theme Preview" order="8" />
-      <window_info anchor="right" id="Bean Validation" order="9" weight="0.329972" />
-    </layout>
-    <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25826332" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Designer" order="2" />
-      <window_info id="Image Layers" order="3" />
-      <window_info id="DB Browser" order="4" />
-      <window_info id="Capture Tool" order="5" />
-      <window_info id="UI Designer" order="6" />
-      <window_info id="Favorites" order="7" side_tool="true" />
-      <window_info id="Web" order="8" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32914287" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49915966" weight="0.46057144" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32914287" />
-      <window_info anchor="bottom" id="DB Execution Console" order="7" />
-      <window_info anchor="bottom" id="Spring" order="8" weight="0.32914287" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.3622857" />
-      <window_info anchor="bottom" id="Docker" order="10" />
-      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50084037" side_tool="true" weight="0.584" />
-      <window_info anchor="bottom" id="Messages" order="12" weight="0.32914287" />
-      <window_info anchor="bottom" id="File Transfer" order="13" weight="0.46057144" />
-      <window_info anchor="bottom" id="Java Enterprise" order="14" />
-      <window_info anchor="bottom" id="Database Changes" order="15" weight="0.32914287" />
-      <window_info anchor="bottom" id="Version Control" order="16" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run Dashboard" order="17" weight="0.5222857" />
-      <window_info active="true" anchor="bottom" id="Database Console" order="18" visible="true" weight="0.43542856" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.24985994" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="right" id="Maven Projects" order="5" weight="0.24313726" />
-      <window_info anchor="right" id="Database" order="6" visible="true" weight="0.34229693" />
+      <window_info anchor="right" id="Database" order="6" weight="0.19663866" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="right" id="Theme Preview" order="8" />
       <window_info anchor="right" id="Bean Validation" order="9" weight="0.329972" />
@@ -695,369 +706,338 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="das://b9d7ba9d-8b82-49e4-a010-712d10aaf1ea/schema/lightingdetection/table/spd_config">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
+    <entry file="file://$PROJECT_DIR$/service-MQ/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="37" selection-start-line="37" selection-end-line="37" />
         </state>
       </provider>
     </entry>
-    <entry file="das://b9d7ba9d-8b82-49e4-a010-712d10aaf1ea/schema/lightingdetection/table/humiture_old_data">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
+    <entry file="file://$PROJECT_DIR$/gateway/target/config/application.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-148">
+          <caret line="105" column="12" lean-forward="true" selection-start-line="105" selection-start-column="12" selection-end-line="105" selection-end-column="12" />
         </state>
       </provider>
     </entry>
-    <entry file="das://b9d7ba9d-8b82-49e4-a010-712d10aaf1ea/schema/lightingdetection/table/humiture_now_data">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
+    <entry file="file://$PROJECT_DIR$/gateway/src/main/java/run/SecurityConf.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="573">
+          <caret line="48" column="53" selection-start-line="48" selection-start-column="53" selection-end-line="48" selection-end-column="53" />
         </state>
       </provider>
     </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/b9d7ba9d-8b82-49e4-a010-712d10aaf1ea/console.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="32" selection-start-column="32" selection-end-column="32" />
+          <caret selection-end-line="7" selection-end-column="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jdk8Test/src/main/java/Test.java">
+    <entry file="file://$PROJECT_DIR$/gateway/src/main/java/run/feign/FeignConfMQ.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="145">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service-MQ/src/main/java/run/websocket/WebSocketServer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="58">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <caret line="107" column="24" lean-forward="true" selection-start-line="107" selection-start-column="24" selection-end-line="107" selection-end-column="24" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/bmap/map_load.js">
+    <entry file="jar:///usr/lib/jdk-10.0.2/lib/src.zip!/java.base/java/text/DateFormat.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="580">
-          <caret line="20" column="67" selection-start-line="20" selection-start-column="67" selection-end-line="20" selection-end-column="67" />
+        <state relative-caret-position="153">
+          <caret line="371" column="24" selection-start-line="371" selection-start-column="24" selection-end-line="371" selection-end-column="24" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gateway/pom.xml">
+    <entry file="file://$PROJECT_DIR$/service-total/src/main/java/run/controller/FeignForStructure.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3826">
-          <caret line="139" column="12" lean-forward="true" selection-start-line="139" selection-start-column="12" selection-end-line="139" selection-end-column="12" />
+        <state relative-caret-position="145">
+          <caret line="13" column="17" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
         </state>
       </provider>
     </entry>
-    <entry file="das://b9d7ba9d-8b82-49e4-a010-712d10aaf1ea/schema/xhzh/table/user">
+    <entry file="file://$PROJECT_DIR$/wechat/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-145">
+          <caret line="40" column="21" lean-forward="true" selection-start-line="35" selection-start-column="8" selection-end-line="40" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service-total/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="362">
+          <caret line="32" column="21" selection-start-line="32" selection-start-column="21" selection-end-line="32" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wechat/src/main/java/run/controller/MyApplicationRunner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="271">
+          <caret line="29" column="36" selection-start-line="29" selection-start-column="36" selection-end-line="29" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wechat/src/main/java/run/controller/WeChatUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="116" column="10" selection-start-line="116" selection-start-column="10" selection-end-line="116" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service-MQ/src/main/java/run/SecurityConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service-MQ/src/main/java/run/ServiceMQApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="145">
+          <caret line="9" selection-start-line="9" selection-end-line="9" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service-total/src/main/java/run/TotalApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wechat/src/main/java/run/WeChatApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="145">
+          <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://a635dd22-41eb-45e7-b300-3dc98d05f6d9/schema/wechat/table/click_person">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/images/background1.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/lib/echarts/util/mapData/params/11.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/lib/echarts/util/mapData/params/65.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/lib/echarts/util/mapData/params/51.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/service-connection/src/main/java/run/controller/RTUController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="43" column="41" selection-start-line="43" selection-start-column="41" selection-end-line="43" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/Resources/css/layout.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="234" column="33" selection-start-line="234" selection-start-column="33" selection-end-line="234" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/lib/echarts/util/mapData/params/510500.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="65" selection-start-column="65" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/lib/water/js/waterbubble.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/lib/echarts/util/mapData/params/510100.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/service-hc/src/main/java/run/mapper/HcMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="65" column="13" lean-forward="true" selection-start-line="65" selection-start-column="13" selection-end-line="65" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/service-hc/src/main/java/run/service/HcService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="61" column="28" selection-start-line="61" selection-start-column="28" selection-end-line="61" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/rtuShow.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/service-hc/src/main/java/run/controller/HcController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="348" column="36" selection-start-line="348" selection-start-column="36" selection-end-line="348" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/service-MQ/src/main/java/run/ServiceMQApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="16" column="64" selection-start-line="16" selection-start-column="64" selection-end-line="16" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/service-MQ/src/main/java/protobuf/Conf.java">
+    <entry file="file://$PROJECT_DIR$/service-connection/src/main/java/run/mapper/RTUMapper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="29">
-          <caret line="16" column="25" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
+          <caret line="16" column="24" lean-forward="true" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/service-MQ/src/main/java/protobuf/Z4WMQ.java" />
-    <entry file="file://$PROJECT_DIR$/service-MQ/src/main/java/run/controller/MyApplicationRunner.java">
+    <entry file="file://$PROJECT_DIR$/wechat/src/main/java/run/service/WeChatService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+        <state relative-caret-position="124">
+          <caret line="30" selection-start-line="30" selection-end-line="30" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/service-MQ/src/main/java/run/controller/SendController.java">
+    <entry file="file://$PROJECT_DIR$/wechat/src/main/java/run/mapper/WeChatMapper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="58">
-          <caret line="17" column="46" selection-start-line="17" selection-start-column="46" selection-end-line="17" selection-end-column="46" />
+        <state relative-caret-position="374">
+          <caret line="42" column="49" selection-start-line="42" selection-start-column="49" selection-end-line="42" selection-end-column="49" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/service-MQ/src/main/java/run/controller/Z4WAlarmController.java">
+    <entry file="file://$PROJECT_DIR$/wechat/src/main/java/run/controller/FeignForMQ.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1099">
-          <caret line="757" column="28" selection-start-line="757" selection-start-column="28" selection-end-line="757" selection-end-column="28" />
+        <state relative-caret-position="217">
+          <caret line="17" column="1" lean-forward="true" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="222" column="74" lean-forward="true" selection-start-line="222" selection-start-column="74" selection-end-line="222" selection-end-column="74" />
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/ffe51376-79ad-4847-a204-66830528daab/console.sql">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="das://028873a1-b373-44fb-9509-41925c61e181/schema/xhzh/table/user">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/main.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="250" lean-forward="true" selection-start-line="250" selection-end-line="250" />
+    <entry file="das://a635dd22-41eb-45e7-b300-3dc98d05f6d9/schema/xhzh/table/user_authority">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://028873a1-b373-44fb-9509-41925c61e181/schema/lightingdetection/table/structure">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://a635dd22-41eb-45e7-b300-3dc98d05f6d9/schema/lightingdetection/table/structure">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://028873a1-b373-44fb-9509-41925c61e181/schema/xhzh/table/user_authority">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://028873a1-b373-44fb-9509-41925c61e181/schema/xhzh/table/user_group">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://028873a1-b373-44fb-9509-41925c61e181/schema/xhzh/table/role">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/Controllers/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="700">
-          <caret line="57" column="9" selection-start-line="57" selection-start-column="9" selection-end-line="57" selection-end-column="9" />
+        <state relative-caret-position="319">
+          <caret line="32" column="35" lean-forward="true" selection-start-line="26" selection-start-column="16" selection-end-line="32" selection-end-column="35" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gateway/src/main/java/run/redis/RedisTest.java">
+    <entry file="file://$PROJECT_DIR$/service-MQ/src/main/java/run/websocket/CheckCenterController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="455">
-          <caret line="95" column="5" selection-start-line="95" selection-start-column="5" selection-end-line="95" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gateway/src/main/java/run/MyFilter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2069">
-          <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gateway/src/main/java/run/SecurityConf.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="131">
-          <caret line="72" column="13" selection-start-line="72" selection-start-column="13" selection-end-line="72" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gateway/src/main/java/run/controller/LoginController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="148" column="5" selection-start-line="148" selection-start-column="5" selection-end-line="148" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/iconfont/7-1.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/bmap/area.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/js/site.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3045" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/js/dataStatistic.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/js/screen.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6728">
-          <caret line="257" column="37" selection-start-line="257" selection-start-column="37" selection-end-line="257" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wechat/src/main/java/run/controller/WeChatController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1714">
-          <caret line="31" column="7" lean-forward="true" selection-start-line="31" selection-start-column="7" selection-end-line="31" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wechat/src/main/java/run/controller/WeChatUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="743">
-          <caret line="90" column="25" selection-start-line="90" selection-start-column="25" selection-end-line="90" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/bmap/map.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="87">
-          <caret line="3" column="23" selection-start-line="3" selection-start-column="23" selection-end-line="3" selection-end-column="23" />
-          <folding>
-            <element signature="n#style#0;n#label#0;n#li#0;n#ul#0;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#3;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#ul#0;n#div#0;n#div#3;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#li#0;n#ul#0;n#div#0;n#div#3;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#li#1;n#ul#0;n#div#0;n#div#3;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#li#2;n#ul#0;n#div#0;n#div#3;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#button#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#div#3;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#div#4;n#body#0;n#html#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/bmap/mapInit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="34" column="11" lean-forward="true" selection-start-line="34" selection-start-column="11" selection-end-line="34" selection-end-column="11" />
-          <folding>
-            <element signature="n#style#0;n#label#0;n#li#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#label#0;n#li#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#label#0;n#li#0;n#!!top" expanded="true" />
-            <element signature="e#2989#3384#0" />
-            <element signature="e#3430#4084#0" />
-          </folding>
+        <state relative-caret-position="345">
+          <caret line="61" column="45" selection-start-line="61" selection-start-column="38" selection-end-line="61" selection-end-column="45" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/screen.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="249" column="24" lean-forward="true" selection-start-line="249" selection-start-column="24" selection-end-line="249" selection-end-column="24" />
+        <state relative-caret-position="97">
+          <caret line="295" column="8" lean-forward="true" selection-start-line="295" selection-start-column="8" selection-end-line="295" selection-end-column="8" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/js/areaSelect.js">
+    <entry file="file://$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/main.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="9569" column="36" selection-start-line="9569" selection-start-column="36" selection-end-line="9569" selection-end-column="36" />
-          <folding>
-            <element signature="e#1993#4223#0" />
-            <element signature="e#4229#6458#0" />
-            <element signature="e#6464#29126#0" />
-            <element signature="e#29132#45380#0" />
-            <element signature="e#45386#60190#0" />
-            <element signature="e#60196#74809#0" />
-            <element signature="e#74815#83696#0" />
-            <element signature="e#83702#101660#0" />
-            <element signature="e#101666#103895#0" />
-            <element signature="e#103901#117823#0" />
-            <element signature="e#117829#130596#0" />
-            <element signature="e#130602#146067#0" />
-            <element signature="e#146073#158054#0" />
-            <element signature="e#158060#172203#0" />
-            <element signature="e#172209#191814#0" />
-            <element signature="e#191820#213927#0" />
-            <element signature="e#213933#228250#0" />
-            <element signature="e#228256#245605#0" />
-            <element signature="e#245611#263890#0" />
-            <element signature="e#263896#279887#0" />
-            <element signature="e#279893#281512#0" />
-            <element signature="e#281518#286524#0" />
-            <element signature="e#312617#325067#0" />
-            <element signature="e#325073#343757#0" />
-            <element signature="e#343763#354101#0" />
-            <element signature="e#354107#368971#0" />
-            <element signature="e#368977#381814#0" />
-            <element signature="e#381820#388599#0" />
-            <element signature="e#388605#392156#0" />
-            <element signature="e#392162#406341#0" />
-            <element signature="e#406347#406700#0" />
-            <element signature="e#406706#407071#0" />
-            <element signature="e#407077#407442#0" />
-          </folding>
+        <state relative-caret-position="203">
+          <caret line="399" column="24" selection-start-line="399" selection-start-column="24" selection-end-line="399" selection-end-column="24" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/siteList-edit.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2330" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/siteList.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
-          <caret line="215" column="42" lean-forward="true" selection-start-line="215" selection-start-column="42" selection-end-line="215" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/js/rtuShow.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="481" column="42" selection-start-line="481" selection-start-column="42" selection-end-line="481" selection-end-column="42" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/js/device.js">
+    <entry file="file://$PROJECT_DIR$/wechat/target/config/application.yml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/dataStatistic.html">
+    <entry file="file://$PROJECT_DIR$/service-connection/src/main/java/run/redis/RedisTest.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service-MQ/src/main/java/run/redis/RedisTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
-          <caret line="103" column="49" lean-forward="true" selection-start-line="103" selection-start-column="49" selection-end-line="103" selection-end-column="49" />
+        <state relative-caret-position="-4587" />
+      </provider>
+    </entry>
+    <entry file="das://a635dd22-41eb-45e7-b300-3dc98d05f6d9/schema/xhzh/table/user">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://a635dd22-41eb-45e7-b300-3dc98d05f6d9/schema/xhzh/table/role">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/a635dd22-41eb-45e7-b300-3dc98d05f6d9/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="20" lean-forward="true" selection-start-column="20" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wechat/src/main/java/run/controller/WeChatController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="185" column="39" lean-forward="true" selection-start-line="185" selection-start-column="39" selection-end-line="185" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service-total/src/main/java/run/controller/FeignForWeChat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="251">
+          <caret line="20" column="37" lean-forward="true" selection-start-line="20" selection-start-column="37" selection-end-line="20" selection-end-column="37" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/service-total/src/main/java/run/controller/TotalController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-113">
-          <caret line="611" column="5" selection-start-line="611" selection-start-column="5" selection-end-line="611" selection-end-column="5" />
+        <state relative-caret-position="168">
+          <caret line="622" column="25" selection-start-line="622" selection-start-column="25" selection-end-line="622" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service-cat/src/main/resources/application.yml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service-connection/src/main/resources/application.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="116">
+          <caret line="4" column="35" selection-start-line="4" selection-start-column="35" selection-end-line="4" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service-total/src/main/resources/application.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="116">
+          <caret line="4" column="35" selection-start-line="4" selection-start-column="35" selection-end-line="4" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wechat/src/main/resources/application.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="29">
+          <caret line="7" column="27" lean-forward="true" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gateway/src/main/resources/static/xhzh/js/screen.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="448" selection-start-line="448" selection-end-line="448" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/eureka-server/src/main/resources/application.yml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service-MQ/src/main/resources/application.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="522">
+          <caret line="18" column="9" lean-forward="true" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gateway/src/main/resources/application.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2882">
+          <caret line="5" column="18" lean-forward="true" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gateway/src/main/java/run/redis/RedisTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="43" column="35" lean-forward="true" selection-start-line="43" selection-start-column="35" selection-end-line="43" selection-end-column="35" />
         </state>
       </provider>
     </entry>

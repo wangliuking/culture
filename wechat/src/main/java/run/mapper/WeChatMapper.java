@@ -1,5 +1,6 @@
 package run.mapper;
 
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
@@ -37,5 +38,13 @@ public interface WeChatMapper {
             "select * from table_news order by time desc limit 4 "+
             "</script>")
     List<Map<String,Object>> searchCurrentNews();
+
+    @Insert("insert into click_person(openId,type,time) values (#{openId},#{type},now())")
+    int insertClickNum(Map<String,Object> param);
+
+    @Select("<script>" +
+            "select * from click_person where time between #{startTime} and #{endTime}"+
+            "</script>")
+    List<Map<String,Object>> searchDayClickNum(Map<String,Object> param);
 
 }

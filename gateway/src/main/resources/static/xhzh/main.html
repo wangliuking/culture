@@ -246,6 +246,9 @@
 
             <!--search start-->
             <div class="searchform">
+                <!-- <input type="text" class="form-control" name="keyword" placeholder="公告栏" /> -->
+
+                <!-- <i class="fa fa-"></i> -->
                 <a href="#" onclick="xh.showMarqueeEdit()"><span class="input-group">公告&nbsp;<i class="fa fa-volume-up"></i></span></a>
                 <input ng-blur="updateMarquee()" id="marqueeInfo" name="marqueeInfo" value="" style="display: none;"/>
 
@@ -366,6 +369,47 @@
             $(".footer").css("display","none");
         }else{
             $(".footer").css("display","block");
+        }
+    }
+
+    function connectWebSocket(){
+        var sid = loginUser;
+        var socket;
+        if (typeof(WebSocket) == "undefined") {
+            console.log("您的浏览器不支持WebSocket");
+        } else {
+            console.log("您的浏览器支持WebSocket");
+            var domain = window.location.host;
+            console.log("当前域名 ： "+domain.split(":",1));
+            console.log("当前sid : "+sid);
+            //实现化WebSocket对象，指定要连接的服务器地址与端口  建立连接
+            // 等同于socket = new WebSocket("ws://localhost:8083/checkcentersys/websocket/20");
+            socket = new WebSocket("ws://"+domain.split(":",1)+":8082/websocket/"+sid);
+            //打开事件
+            socket.onopen = function () {
+                console.log("Socket 已打开");
+                //socket.send("这是来自客户端的消息" + location.href + new Date());  };
+                // 获得消息事件
+                socket.onmessage = function (msg) {
+                    console.log(msg);
+                    if(msg.data == "existUser"){
+                        alert("已有其他人登录，返回登录界面");
+                        window.location.href = "login.html";
+                        window.parent.location.href = "login.html";
+                    } else if(msg.data != "success" && msg.data != "existUser"){
+
+                    }
+                };
+                //关闭事件
+                socket.onclose = function () {
+                    console.log("Socket已关闭");e
+                };
+                //发生了错误事件
+                socket.onerror = function () {
+                    alert("Socket发生了错误");
+                    //此时可以尝试刷新页面
+                }
+            }
         }
     }
 </script>

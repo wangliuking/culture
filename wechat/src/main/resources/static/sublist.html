@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta content="text/html;charset=UTF-8"/>
+    <title>子列表</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0"/>
+    <link rel="stylesheet" href="css/weui.css"/>
+    <link rel="stylesheet" href="css/weuix.css"/>
+
+    <script src="js/zepto.min.js"></script>
+    <script src="js/echo.min.js"></script>
+    <script>
+        $(function(){
+            $("img.lazy").attr('src','img/loading.gif');//此处可改为具体懒加载图片
+        });
+
+
+        echo.init({
+            offset: 100,
+            throttle: 250
+        });
+
+        function back() {
+            window.location.href = 'http://39.104.184.219/list';
+        }
+    </script>
+</head>
+
+<body>
+<div class="page-hd">
+    <span class="icon icon-109 left" onclick="back()" style="margin-top: 2px;"></span>
+    <h1 class="page-hd-title" th:text="${pTitle}"></h1>
+    <p class="page-hd-desc" th:text="${pContent}"></p>
+</div>
+
+<div class="weui-panel weui-panel_access">
+    <div class="weui-panel__hd">子章节</div>
+    <div class="weui-panel__bd">
+        <a th:each="c : ${list}" th:attr="href=${c.id}" class="weui-media-box weui-media-box_appmsg">
+            <div class="weui-media-box__hd">
+                <img class="weui-media-box__thumb lazy" th:attr="data-echo=${c.img}" width="60" height="60" alt=""/>
+            </div>
+            <div class="weui-media-box__bd">
+                <h4 class="weui-media-box__title" th:text="${c.title}"></h4>
+                <p class="weui-media-box__desc" th:text="${c.content}"></p>
+            </div>
+        </a>
+    </div>
+</div>
+</body>
+</html>

@@ -39,9 +39,6 @@ public interface SPDMapper {
             "<if test=\"rtu_id != null and rtu_id != -1\">" +
             "and a.rtu_id =#{rtu_id}"+
             "</if>"+
-            "<if test=\"start !=null and limit != null and start != -1 and limit != -1\">" +
-            "limit #{start},#{limit}"+
-            "</if>"+
             "</script>")
     int selectAllSPDCount(Map<String,Object> param);
 

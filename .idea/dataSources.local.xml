@@ -29,7 +29,7 @@
       <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact" />
       <secret-storage>master_key</secret-storage>
       <user-name>root</user-name>
-      <introspection-schemas>*:lightingdetection,wechat,xhzh</introspection-schemas>
+      <introspection-schemas>*:wechat,xhpipeline,xhzh</introspection-schemas>
     </data-source>
   </component>
 </project>

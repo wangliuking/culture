@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import run.bean.RTU;
 import run.service.TotalService;
+import run.util.HttpsUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -411,7 +412,7 @@ public class TotalController {
 
     public static void main(String[] args) {
 
-        Date d = new Date();
+        /*Date d = new Date();
         long l = d.getTime();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         List<Object> list = new LinkedList<>();
@@ -421,7 +422,11 @@ public class TotalController {
             l -= 24*60*60*1000;
         }
         System.out.println(list);
-        System.out.println(list.get(0)+"==="+list.get(list.size()-1));
+        System.out.println(list.get(0)+"==="+list.get(list.size()-1));*/
+        Map<String,Object> resultMap = new HashMap<>();
+        String url = "http://39.104.184.219/getData";
+        JSONObject jsonObject = HttpsUtil.http(url,"GET",null);
+        System.out.println(jsonObject);
     }
 
     @RequestMapping(value = "/selectForFeignMQ",method = RequestMethod.GET)
@@ -618,10 +623,20 @@ public class TotalController {
     @RequestMapping(value = "/getWeChatInfo",method = RequestMethod.GET)
     public Map<String,Object> getWeChatInfo(){
         Map<String,Object> resultMap = new HashMap<>();
+        String url = "http://39.104.184.219/getData";
+        JSONObject jsonObject = HttpsUtil.http(url,"GET",null);
+        resultMap.put("click",jsonObject.get("click"));
+        resultMap.put("user",jsonObject.get("user"));
+        return resultMap;
+    }
+
+    /*@RequestMapping(value = "/getWeChatInfo",method = RequestMethod.GET)
+    public Map<String,Object> getWeChatInfo(){
+        Map<String,Object> resultMap = new HashMap<>();
         resultMap.put("click",feignForWeChat.dayClickNum().get("click"));
         resultMap.put("user",feignForWeChat.getUserList().get("user"));
         return resultMap;
-    }
+    }*/
 
     @RequestMapping(value = "/deviceTotalByProvince",method = RequestMethod.GET)
     public List<Map<String,Object>> deviceTotalByProvince(HttpServletRequest req){

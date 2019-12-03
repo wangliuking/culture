@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="css/weui.css"/>
     <link rel="stylesheet" href="css/weuix.css"/>
     <link rel="stylesheet" href="css/APlayer.min.css"/>
+    <style>
+        body{
+            touch-action: none;
+        }
+    </style>
 
     <script src="js/zepto.min.js"></script>
     <script src="js/swipe.js"></script>
@@ -16,8 +21,8 @@
             $("img.lazy").attr('src','img/loading.gif');//此处可改为具体懒加载图片
 
             $('#slide1').swipeSlide({
-                autoSwipe:true,//自动切换默认是
-                speed:3000,//速度默认4000
+                autoSwipe:false,//自动切换默认是
+                speed:9000,//速度默认4000
                 continuousScroll:true,//默认否
                 transitionType:'cubic-bezier(0.22, 0.69, 0.72, 0.88)',//过渡动画linear/ease/ease-in/ease-out/ease-in-out/cubic-bezier
                 lazyLoad:true,//懒加载默认否
@@ -34,6 +39,10 @@
             offset: 100,
             throttle: 250
         });
+        
+        function back() {
+            window.history.back(-1);
+        }
     </script>
     <style>
         #slide1{height:300px;}
@@ -42,14 +51,15 @@
 
 <body>
 <div class="container">
-    <div class="page-hd" style="padding: 10px 20px 10px 20px;">
-        <h6 class="page-hd-title" th:text="${map.title}"></h6>
+    <div class="page-hd clearfix" style="padding: 10px 20px 10px 10px;">
+        <span class="icon icon-109 left" onclick="back()" style="margin-top: 2px;"></span>
+        <h6 class="page-hd-title left" th:text="${map.title}"></h6>
     </div>
     <div class="slide" id="slide1">
         <ul>
             <li th:each="c : ${map.list}">
                 <a href="javascript:;">
-                    <img th:attr="data-echo=${c.imgUrl}" height="240" alt=""/>
+                    <img th:attr="src=${c.imgUrl}" height="240" alt=""/>
                 </a>
                 <div class="slide-desc" th:text="${c.imgDesc}"></div>
             </li>
@@ -59,7 +69,7 @@
         </div>
     </div>
     <div class="page-hd">
-        <p class="page-hd-desc" th:text="${map.content}"></p>
+        <p class="page-hd-desc" th:utext="${map.content}"></p>
     </div>
     <br/>
     <br/>

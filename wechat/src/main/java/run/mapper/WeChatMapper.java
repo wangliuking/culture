@@ -27,9 +27,20 @@ public interface WeChatMapper {
     List<Map<String,Object>> selectAllList(Map<String, Object> param);
 
     @Select("<script>" +
-            "select * from table_detail where 1=1 "+
+            "select a.*,b.title pTitle,b.content pContent from table_sublist a left join table_list b on a.pid=b.id where 1=1 "+
+            "<if test=\"pid != null and pid != ''\">" +
+            "and pid=#{pid}"+
+            "</if>"+
+            "<if test=\"title != null and title != ''\">" +
+            "and title like concat('%',#{title},'%')"+
+            "</if>"+
+            "</script>")
+    List<Map<String,Object>> selectAllSubList(Map<String, Object> param);
+
+    @Select("<script>" +
+            "select a.*,b.pid from table_detail a left join table_sublist b on a.id=b.id where 1=1 "+
             "<if test=\"id != null and id != ''\">" +
-            "and id = #{id}"+
+            "and a.id = #{id}"+
             "</if>"+
             "</script>")
     Map<String,Object> searchDetail(Map<String, Object> param);

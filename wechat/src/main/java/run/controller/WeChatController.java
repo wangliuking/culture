@@ -21,6 +21,26 @@ public class WeChatController {
     private WeChatService weChatService;
     @Autowired
     private FeignForMQ feignForMQ;
+    @Autowired
+    private MyApplicationRunner myApplicationRunner;
+    /**
+     * 外部数据接口
+     */
+    @RequestMapping(value="/getData",method = RequestMethod.GET)
+    @ResponseBody
+    public Map<String,Object> getData(){
+        JSONObject jsonObject = WeChatUtil.getUserList();
+        Map<String,Object> resultMap = new HashMap<>();
+        resultMap.put("user",jsonObject.getString("total"));
+
+        String time = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+        Map<String,Object> param = new HashMap<>();
+        param.put("startTime",time+" 00:00:00");
+        param.put("endTime",time+" 23:59:59");
+        resultMap.put("click",weChatService.searchClickNum(param).size());
+
+        return resultMap;
+    }
     /**
      * 获取所有关注用户
      */
@@ -103,7 +123,7 @@ public class WeChatController {
            }
            resultMap.put(media_id,list);
        }
-       return resultMap;
+       return jsonObject;
     }
 
     /**
@@ -215,7 +235,7 @@ public class WeChatController {
                     case "info":
                         return getNews(msg,"w-4TGEDAtnu7oYKICmt1rNGyJUwN6aE7e-qIZijlGBk");
                     case "news":
-                        return getNews(msg,"w-4TGEDAtnu7oYKICmt1rEIfBdjdyvtP3nZZc43Wm1M");
+                        return getNewsNow(msg,"【最新资讯】");
                     case "activity":
                         return getNews(msg,"w-4TGEDAtnu7oYKICmt1rCFtbFu6VGiu0YbxfWR4Q7M");
                     case "rpc":
@@ -242,7 +262,7 @@ public class WeChatController {
     }
 
     public String getNews(InMsgEntity msg,String str){
-        JSONArray jsonArray = MyApplicationRunner.jsonObject.getJSONArray("item");
+        JSONArray jsonArray = myApplicationRunner.jsonObject.getJSONArray("item");
         for(int i=0;i<jsonArray.size();i++){
             JSONObject js = jsonArray.getJSONObject(i);
             String media_id = js.getString("media_id");
@@ -283,6 +303,32 @@ public class WeChatController {
         return null;
     }
 
+    public String getNewsNow(InMsgEntity msg,String str){
+        myApplicationRunner.scheduledInit();
+        JSONArray jsonArray = myApplicationRunner.jsonObject.getJSONArray("item");
+        long updateTime = 0;
+        String mediaId = "";
+        for(int i=0;i<jsonArray.size();i++){
+            JSONObject js = jsonArray.getJSONObject(i);
+            String media_id = js.getString("media_id");
+            long update_time = Long.parseLong(js.getString("update_time"));
+            if(update_time > updateTime){
+                JSONArray itemArray = js.getJSONObject("content").getJSONArray("news_item");
+                for(int j=0;j<itemArray.size();j++) {
+                    JSONObject item = itemArray.getJSONObject(j);
+                    String title = item.getString("title");
+                    if(title.contains(str)){
+                        updateTime = update_time;
+                        mediaId = media_id;
+                    }
+                }
+            }
+
+        }
+
+        return getNews(msg,mediaId);
+    }
+
     public static void main(String[] args) {
         OutMsgEntity out = new OutMsgEntity();
         //把原来的发送方设置为接收方
@@ -300,23 +346,42 @@ public class WeChatController {
     }
 
     /**
-     * 图片列表页面
+     * 列表页面
      */
     @RequestMapping(value="/list",method= RequestMethod.GET)
-    public String list(String code,Model model){
+    public String list(Model model){
         Map<String,Object> param = new HashMap<>();
         param.put("title","");
         List<Map<String,Object>> list = weChatService.selectAllList(param);
         for(Map<String,Object> map : list){
             String id = map.get("id")+"";
-            map.put("id","detail?id="+id);
+            map.put("id","sublist?pid="+id);
         }
         model.addAttribute("list",list);
         return "list";
     }
 
     /**
-     * 图片列表页面
+     * 子列表页面
+     */
+    @RequestMapping(value="/sublist",method= RequestMethod.GET)
+    public String sublist(String pid,Model model){
+        Map<String,Object> param = new HashMap<>();
+        param.put("title","");
+        param.put("pid",pid);
+        List<Map<String,Object>> list = weChatService.selectAllSubList(param);
+        for(Map<String,Object> map : list){
+            String id = map.get("id")+"";
+            map.put("id","detail?id="+id);
+        }
+        model.addAttribute("list",list);
+        model.addAttribute("pTitle",list.get(0).get("pTitle"));
+        model.addAttribute("pContent",list.get(0).get("pContent"));
+        return "sublist";
+    }
+
+    /**
+     * 详情
      */
     @RequestMapping(value="/detail",method= RequestMethod.GET)
     public String detail(String id,Model model){
@@ -340,6 +405,9 @@ public class WeChatController {
         }
         map.put("list",list);
         model.addAttribute("map",map);
+        if(Integer.parseInt(id)>13){
+            return "movie";
+        }
         return "detail";
     }
 }

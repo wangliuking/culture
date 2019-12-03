@@ -204,13 +204,13 @@ html,body {
 			<div class="col-md-2 lg-left" style="padding-left:50px;">
 				<div class="row">
 					<div class="col-md-12 lg-box" style="margin-top:5px;">
-						<p>站点设备异常TOP5</p>
+						<p>RTU情况统计</p>
 						<div id="deviceWarning-top5" style="background-image:url('images/332211.png');background-size:100% 100%;;background-repeat:no-repeat;"></div>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-12 lg-box" style="margin-top:5px">
-						<p>站点设备离线TOP5</p>
+						<p>设备情况统计</p>
 						<div id="deviceOff-top5" style="background-image:url('images/332211.png');background-size:100% 100%;;background-repeat:no-repeat;"></div>
 					</div>
 				</div>
@@ -231,52 +231,27 @@ html,body {
 						<div id="call-bar" style="background-image:url('images/332211.png');background-size:100% 100%;;background-repeat:no-repeat;padding:0;"></div>
 					</div>
 				</div>
-				<div>
-					<div class="row">
-						<div class="col-md-6 lg-box" style="height:150px;">
-							<p>微信公众号关注人数</p>
-							<div class="row">
-								
-								<div class="col-md-12">
-									<canvas id="access2"></canvas>
-									<br>
-									<!--<b>正常</b>-->
-								</div>
+				<div class="row">
+					<div class="col-md-6 lg-box" style="height:150px;">
+						<p>微信公众号关注人数</p>
+						<div class="row">
+							<div class="col-md-12">
+								<canvas id="access2"></canvas>
+								<br>
+								<!--<b>正常</b>-->
 							</div>
-
-						</div>
-						<div class="col-md-6 lg-box" style="height:150px;">
-							<p>当日公众号点击数</p>
-							<div class="row">
-								<div class="col-md-12">
-									<canvas id="access1"></canvas>
-									<br>
-									<!--<b>数量</b>-->
-								</div>
-								
-							</div>
-
 						</div>
 					</div>
-					<div>
-						<!--<div class="row">
-							<div class="col-md-12 lg-box">
-								<p>公告栏</p>
-
-								<ul class="list-group">
-									<li class="list-group-item"><span>今日值班:</span><input
-										type="text" name="duty2" ng-model="dataTwo"
-										ng-blur="updateDuty()" ng-readonly="true" /></li>
-									<li class="list-group-item"><span>值班电话:</span><input
-										type="text" name="duty3" ng-model="dataThree"
-										ng-blur="updateDuty()" ng-readonly="true" /></li>
-								</ul>
+					<div class="col-md-6 lg-box" style="height:150px;">
+						<p>当日公众号点击数</p>
+						<div class="row">
+							<div class="col-md-12">
+								<canvas id="access1"></canvas>
+								<br>
+								<!--<b>数量</b>-->
 							</div>
-						</div>-->
-						<div>
 						</div>
 					</div>
-					<!-- lg-right -->
 				</div>
 				<!-- row -->
 			</div>

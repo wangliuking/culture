@@ -14,6 +14,7 @@ var alarmji=true;
 var appElement = document.querySelector('[ng-controller=screen]');
 var loginUser;
 var structure;
+var mapInitStatus = true;
 xh.load = function() {
 	var app = angular.module("app", []);
 	app.controller("screen", function($scope, $http) {
@@ -40,7 +41,8 @@ xh.load = function() {
         });
         //判断是否登录end
         xh.initTotal();
-        //setInterval(xh.initTotal, 30000);
+        mapInitStatus = false;
+        setInterval(xh.initTotal, 30000);
 
 	});
 };
@@ -53,14 +55,10 @@ xh.initTotal = function(){
         dataType : "json",
         async : false,
         success : function(response) {
-            var rtuList = response.rtuList;
             var siteNum = response.siteNum;
             var rtuNum = response.rtuNum;
             var deviceTotalNum = response.deviceTotalNum;
             var rtuWarningNum = response.rtuWarningNum;
-            var siteWarningTop5 = response.siteWarningTop5;
-            var siteDeviceOffTop5 = response.siteDeviceOffTop5;
-            var siteOff = response.siteOff;
             var data = response.num;
 
             $("#siteNum").html(siteNum);
@@ -68,21 +66,37 @@ xh.initTotal = function(){
             $("#deviceNum").html(deviceTotalNum);
             $("#rtuOffNum").html(rtuWarningNum);
 
-            xh.deviceWarningTop5(siteWarningTop5);
-            xh.deviceOffTop5(siteDeviceOffTop5);
-            xh.call(data);
-            xh.wechat();
-
             $.ajax({
-                url : '../../connect/selectAllRTU?start=&limit=&structure='+structure,
-                type : 'GET',
-                dataType : "json",
-                async : false,
-                success : function(response) {
-                    xh.map(response.items);
+                type: 'GET',
+                url: "../../total/selectSiteAllInfo?structure="+structure,
+                async: false,
+                dataType: 'json',
+                success: function (data) {
+                    var a = data.rtuNum - data.rtuOffNum - data.rtuWarningNum;
+                    var b = data.rtuWarningNum;
+                    var c = data.rtuOffNum;
+                    var x = data.spdNum + data.etcrNum + data.lightningNum + data.staticNum + data.rswsNum + data.svtNum + data.hcNum + data.strayNum + data.catNum - data.deviceWarningCount - data.deviceOffCount;
+                    var y = data.deviceWarningCount;
+                    var z = data.deviceOffCount;
+                    xh.deviceWarningTop5(a, b, c);
+                    xh.deviceOffTop5(x, y, z);
                 }
             });
 
+            xh.call(data);
+            xh.wechat();
+
+            if(mapInitStatus){
+                $.ajax({
+                    url : '../../connect/selectAllSite?start=&limit=&structure='+structure,
+                    type : 'GET',
+                    dataType : "json",
+                    async : false,
+                    success : function(response) {
+                        xh.map(response.items);
+                    }
+                });
+            }
 
         }
     });
@@ -123,8 +137,8 @@ xh.map=function(data){
 			    tooltip : {
 			        trigger: 'item',
 			        formatter: function (params, ticket, callback) {
-			            if(isNaN(params.name)){
-                            return params.name+'<br />'+"监测点数量:"+params.value;
+			            if(params.value != ""){
+                            return params.name+'<br />'+"站点数量:"+params.value;
                         }else{
                             return params.name;
                         }
@@ -170,7 +184,7 @@ xh.map=function(data){
                             clickable: false,
 			            	symbol:'pin',//'image://images/标注_l.png',
 			               	symbolSize : function (v){
-			                    return 3
+			                    return 6
 			                },
 			                effect : {
 			                    show: false,
@@ -213,54 +227,98 @@ xh.map=function(data){
 			                data : []
 			            }
 			            
-			        }
+			        },
+                    {
+                        name : '闪烁效果',
+                        type: 'map',
+                        roam: false,
+                        hoverable: true,
+                        mapType: 'CN',
+                        itemStyle:{
+                            normal:{
+                                borderColor:"#fff",
+                                label:{
+                                    show:true,
+                                    textStyle:{
+                                        color:'#fff',
+                                        fontSize:11
+                                    }
+                                } ,
+                                borderWidth:1,
+                                areaStyle:{
+                                    /*color: '#1b1b1b',*/
+                                    color:'#072631',
+                                    visibility: 'off'
+                                },
+
+                                emphasis:{label:{show:true}}
+                            }
+                        },
+                        geoCoord: {
+
+                        },
+                        data:[],
+                        markPoint : {
+                            symbol : 'emptyCircle',//'emptyCircle'
+
+                            symbolSize : function(v) {
+                                return 12;
+                            },
+                            effect : {
+                                show : true,
+                                shadowBlur : 0,
+                                color : 'yellow'
+                            },
+                            itemStyle : {
+                                normal : {
+                                    label : {
+                                        show : false
+                                    }
+                                },
+                                emphasis : {
+                                    label : {
+                                        position : 'top'
+                                    }
+                                }
+                            },
+                            data : []
+                        }
+                    }
 			    ]
 			};
-		 /*for (var i in data) {
-             option.series[0].geoCoord[data[i].site_name] = [parseFloat(data[i].site_lng), parseFloat(data[i].site_lat)];
-             option.series[0].markPoint.data.push({"name":data[i].site_name});
-		 }*/
-        /*for (var j in cityPosition) {
-            option.series[0].geoCoord[j] = [cityPosition[j][0], cityPosition[j][1]];
-            option.series[0].data.push({name:j,value:0});
-            //option.series[0].markPoint.data.push({name:j,value:100});
-        }*/
-        /*option.series[0].data.push({name:"四川省",value:5});
-        option.series[0].data.push({name:"成都市",value:4});
-        option.series[0].data.push({name:"阿坝藏族羌族自治州",value:1});*/
+        var provinceInit = [];
+        var cityInit = [];
         for(var i in data){
-            console.log(data[i]);
-            option.series[0].geoCoord[data[i].rtu_id] = [data[i].lng, data[i].lat];
-            option.series[0].markPoint.data.push({name:data[i].rtu_id});
+            option.series[0].geoCoord[data[i].site_name] = [data[i].site_lng, data[i].site_lat];
+            option.series[1].geoCoord[data[i].site_name] = [data[i].site_lng, data[i].site_lat];
+            option.series[0].markPoint.data.push({name:data[i].site_name,site_id:data[i].site_id});
+            option.series[1].markPoint.data.push({name:data[i].site_name,site_id:data[i].site_id});
+            provinceInit.push(data[i].site_city);
+            cityInit.push(data[i].site_county);
         }
-		chart.setOption(option);
+
+        var provinceTotal = totalMapEl(provinceInit);
+        var cityTotal = totalMapEl(cityInit);
+
+        for(var key in provinceTotal){
+            option.series[0].data.push({name:key,value:provinceTotal[key]});
+        }
+
+        for(var key in cityTotal){
+            option.series[0].data.push({name:key,value:cityTotal[key]});
+        }
+
+        chart.setOption(option);
 
         //点击事件,根据点击某个省份计算出这个省份的数据
         chart.on('dblclick', function (params) {
-            //console.log(params);
             var area = provinceJson[params.data.name];
             var chooseArea;
-
-            option.series[0].data = [];
-            option.series[0].data.push({name:"四川省",value:5});
-            option.series[0].data.push({name:"成都市",value:4});
-            option.series[0].data.push({name:"阿坝藏族羌族自治州",value:1});
-
             if(!area){
                 chooseArea = "51";
-                for(var i in data){
-                    console.log(data[i]);
-                    option.series[0].geoCoord[data[i].rtu_id] = [data[i].lng, data[i].lat];
-                    option.series[0].markPoint.data.push({name:data[i].rtu_id});
-                }
-			}else{
+            }else{
                 chooseArea = area;
-                for(var i in data){
-                    console.log(data[i]);
-                    option.series[0].geoCoord[data[i].rtu_id] = [data[i].lng, data[i].lat];
-                    option.series[0].markPoint.data.push({name:data[i].rtu_id});
-                }
-			}
+            }
             //逻辑控制
             chart.clear();
             require('echarts/util/mapData/params').params.CN = {
@@ -274,7 +332,26 @@ xh.map=function(data){
 	});
 	
 }
-xh.deviceWarningTop5=function(data){
+
+/**
+ * 统计地图上的省份和城市站点数量
+ * @param param
+ * @returns {*}
+ */
+function totalMapEl(param){
+    var temp = param.reduce(function (allNames, name) {
+        if (name in allNames) {
+            allNames[name]++;
+        }
+        else {
+            allNames[name] = 1;
+        }
+        return allNames;
+    }, {});
+    return temp;
+}
+
+xh.deviceWarningTop5=function(a,b,c){
 
 	// 设置容器宽高
 	var height=document.documentElement.clientHeight;
@@ -294,14 +371,9 @@ xh.deviceWarningTop5=function(data){
 	
 	require([ 'echarts', 'echarts/chart/pie' ], function(ec) {
 		chart = ec.init(document.getElementById('deviceWarning-top5'));
-		var leglend=[]
-        if(data.length > 0){
-            for(var i=0;i<data.length;i++){
-                leglend.push(data[i].name);
-            }
-        }
 		
 		var option = {
+            color:['#00CD66', '#EEAD0E','#DCDCDC'],
             tooltip : {
                 trigger: 'item',
                 padding: 10,
@@ -332,42 +404,36 @@ xh.deviceWarningTop5=function(data){
 					fontSize: 14,
 					fontWeight: "bold"
 				},
-                data:leglend
+                data:['正常','异常','离线']
             },
             calculable : true,
             series : [
                 {
-                    name:'异常数量',
-                    type:'pie',
+                    name: '统计数量',
+                    type: 'pie',
                     radius : '55%',
                     center: ['50%', '60%'],
-                    data:data,
-					itemStyle: {
-                    	normal: {
-                    		label: {
-                    			textStyle: {
-                    				color: "#fff",
-                    				fontSize: 14,
-									fontWeight: "bold"
-								}
-							}
-						}
-					}
+                    data:[
+                        {value:a, name:'正常'},
+                        {value:b, name:'异常'},
+                        {value:c, name:'离线'}
+                    ],
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
                 }
             ]
         };
-		if(data.length > 0){
-            chart.setOption(option);
-		}
+        chart.setOption(option);
 
 	});
-	/*window.onresize = function() {
-		// 重置容器高宽
-		chart.resize();
-	};*/
 	
 }
-xh.deviceOffTop5=function(data){
+xh.deviceOffTop5=function(x,y,z){
     //data = [{name:"管线1",value:100},{name:"管线2",value:150},{name:"管线3",value:180}]
 	// 设置容器宽高
 	var height=document.documentElement.clientHeight;
@@ -387,13 +453,9 @@ xh.deviceOffTop5=function(data){
 
 	require([ 'echarts', 'echarts/chart/pie' ], function(ec) {
 		chart = ec.init(document.getElementById('deviceOff-top5'));
-		var leglend=[]
-        if(data.length > 0){
-            for(var i=0;i<data.length;i++){
-                leglend.push(data[i].name);
-            }
-        }
+
         var option = {
+            color:['#00CD66', '#EEAD0E','#DCDCDC'],
             tooltip : {
                 trigger: 'item',
                 padding: 10,
@@ -419,40 +481,33 @@ xh.deviceOffTop5=function(data){
                     fontSize: 14,
                     fontWeight: "bold"
                 },
-                data:leglend
+                data:['正常','异常','离线']
             },
             calculable : true,
             series : [
                 {
-                    name:'离线数量',
-                    type:'pie',
+                    name: '统计数量',
+                    type: 'pie',
                     radius : '55%',
                     center: ['50%', '60%'],
-                    data:data,
+                    data:[
+                        {value:x, name:'正常'},
+                        {value:y, name:'异常'},
+                        {value:z, name:'离线'}
+                    ],
                     itemStyle: {
-                        normal: {
-                            label: {
-                                textStyle: {
-                                    color: "#fff",
-                                    fontSize: 14,
-                                    fontWeight: "bold"
-                                }
-                            }
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
                         }
                     }
                 }
             ]
         };
-        if(data.length > 0){
-            chart.setOption(option);
-        }
+        chart.setOption(option);
 
 	});
-	/*window.onresize = function() {
-		// 重置容器高宽
-		chart.resize();
-	};*/
-	
 }
 xh.call = function(data) {
     // 设置容器宽高
@@ -474,7 +529,18 @@ xh.call = function(data) {
         chart = ec.init(document.getElementById('call-bar'));
         var option = {
             tooltip : {
-                trigger: 'axis'
+                trigger: 'axis',
+                padding: 10,
+                backgroundColor: 'rgba(9, 131, 195, 0.83)',
+                position: function(a){
+                    console.log(a);
+                    return [a[0]*0.5,a[1]*0.5];
+                },
+                textStyle: {
+                    color: "#fff",
+                    fontSize: 14,
+                    fontWeight: "bold"
+                }
             },
             /*legend: {
                 data:['上报数据'],

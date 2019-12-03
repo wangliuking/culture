@@ -19,5 +19,8 @@
     <file url="file://$PROJECT_DIR$/service-svt" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/service-total" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/wechat" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wechat/src/main/resources/static/css/DPlayer.min.css" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wechat/src/main/resources/static/js/DPlayer.min.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wechat/src/main/resources/static/movie.html" charset="UTF-8" />
   </component>
 </project>

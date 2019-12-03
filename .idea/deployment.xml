@@ -38,6 +38,16 @@
           </mappings>
         </serverdata>
       </paths>
+      <paths name="文博服务器">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/usr/culture/web" local="$PROJECT_DIR$/gateway/target" />
+            <mapping deploy="/usr/culture" local="$PROJECT_DIR$/service-spd/target" />
+            <mapping deploy="/usr/culture" local="$PROJECT_DIR$/service-total/target" />
+          </mappings>
+        </serverdata>
+      </paths>
     </serverData>
   </component>
 </project>

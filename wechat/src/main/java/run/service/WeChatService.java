@@ -17,6 +17,10 @@ public class WeChatService {
         return weChatMapper.selectAllList(param);
     }
 
+    public List<Map<String,Object>> selectAllSubList(Map<String,Object> param){
+        return weChatMapper.selectAllSubList(param);
+    }
+
     public Map<String,Object> searchDetail(Map<String,Object> param){
         return weChatMapper.searchDetail(param);
     }

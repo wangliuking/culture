@@ -480,8 +480,9 @@ xh.load = function() {
                 for(var i=0;i<data.length;i++){
                     var devId = data[i][deviceId];
                     var rtu_channel = data[i]["rtu_channel"];
+                    var rtu_port = data[i]["rtu_port"];
                     for(var j=0;j<ids.length;j++){
-                        if(rtu_channel == channel && devId == ids[j]){
+                        if((rtu_channel == channel || rtu_port == channel) && devId == ids[j]){
                             finalData.push(data[i]);
                         }
                     }

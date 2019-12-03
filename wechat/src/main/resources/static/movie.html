@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>视频</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0"/>
+    <link rel="stylesheet" href="css/weui.css"/>
+    <link rel="stylesheet" href="css/weuix.css"/>
+    <script src="js/zepto.min.js"></script>
+    <script th:inline="javascript">
+        $(function(){
+            $(".weui-c-like .icon").click(function(){
+                if($(this).hasClass('on')) {
+                    $(this).removeClass('on')
+                }else{
+                    $(this).addClass('on')
+                }
+            })
+
+        });
+
+        var pid = [[${map.pid}]];
+        function back() {
+            window.location.href = 'http://39.104.184.219/sublist?pid='+pid;
+        }
+    </script>
+
+</head>
+
+<body>
+<div class="weui-content">
+    <div class="weui-c-inner">
+        <div class="weui-c-content">
+            <span class="icon icon-109 left" onclick="back()" style="margin-top: 2px;"></span>
+            <h2 class="weui-c-title" th:text="${map.title}"></h2>
+            <div class="weui-c-meta">
+                <span class="weui-c-nickname" th:text="${map.musicArtist}"></span>
+                <em class="weui-c-nickname" th:text="${map.time}"></em>
+            </div>
+            <div class="weui-c-article">
+                <p th:utext="${map.content}"></p>
+                <link rel="stylesheet" href="css/DPlayer.min.css"/>
+                <div id="dplayer"></div>
+                <script src="js/DPlayer.min.js"></script>
+                <script type="text/javascript" th:inline="javascript">
+                    var url = [[${map.musicUrl}]];
+                    var cover = [[${map.musicImg}]];
+                    var dp = new DPlayer({
+                        container: document.getElementById('dplayer'),
+                        screenshot: true,
+                        autoplay:false,
+                        video: {
+                            url: url,
+                            pic: cover,
+                            thumbnails: cover
+                        }
+                    });
+                </script>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

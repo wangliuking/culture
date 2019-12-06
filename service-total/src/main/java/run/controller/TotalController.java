@@ -525,10 +525,12 @@ public class TotalController {
         String startTime = req.getParameter("startTime");
         String endTime = req.getParameter("endTime");
         String deviceId = req.getParameter("deviceId");
+        String rtu_channel = req.getParameter("rtu_channel");
         int deviceType = Integer.parseInt(req.getParameter("deviceType"));
         Map<String,Object> param = new HashMap<>();
         param.put("rtu_id",rtu_id);
         param.put("site_id",site_id);
+        param.put("rtu_channel",rtu_channel);
         param.put("startTime",startTime);
         param.put("endTime",endTime);
         Map<String,Object> resultMap = new HashMap<>();

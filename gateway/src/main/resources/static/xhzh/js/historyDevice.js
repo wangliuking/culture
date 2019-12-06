@@ -152,7 +152,7 @@ xh.load = function() {
                     var tempArr = response.items;
                     var deviceIdArr = [];
                     for(var i=0;i<tempArr.length;i++){
-                        deviceIdArr.push({"id":tempArr[i].spd_number});
+                        deviceIdArr.push({"id":tempArr[i].spd_number,"name":tempArr[i].rtu_port});
                     }
                     $scope.deviceIds = deviceIdArr;
                 });
@@ -163,7 +163,7 @@ xh.load = function() {
                     var tempArr = response.items;
                     var deviceIdArr = [];
                     for(var i=0;i<tempArr.length;i++){
-                        deviceIdArr.push({"id":tempArr[i].rst_id});
+                        deviceIdArr.push({"id":tempArr[i].rst_id,"name":tempArr[i].rtu_port});
                     }
                     $scope.deviceIds = deviceIdArr;
                 });
@@ -174,7 +174,7 @@ xh.load = function() {
                     var tempArr = response.items;
                     var deviceIdArr = [];
                     for(var i=0;i<tempArr.length;i++){
-                        deviceIdArr.push({"id":tempArr[i].ltn_id});
+                        deviceIdArr.push({"id":tempArr[i].ltn_id,"name":tempArr[i].rtu_port});
                     }
                     $scope.deviceIds = deviceIdArr;
                 });
@@ -185,7 +185,7 @@ xh.load = function() {
                     var tempArr = response.items;
                     var deviceIdArr = [];
                     for(var i=0;i<tempArr.length;i++){
-                        deviceIdArr.push({"id":tempArr[i].staet_id});
+                        deviceIdArr.push({"id":tempArr[i].staet_id,"name":tempArr[i].rtu_port});
                     }
                     $scope.deviceIds = deviceIdArr;
                 });
@@ -196,7 +196,7 @@ xh.load = function() {
                     var tempArr = response.items;
                     var deviceIdArr = [];
                     for(var i=0;i<tempArr.length;i++){
-                        deviceIdArr.push({"id":tempArr[i].hmt_id});
+                        deviceIdArr.push({"id":tempArr[i].hmt_id,"name":tempArr[i].rtu_port});
                     }
                     $scope.deviceIds = deviceIdArr;
                 });
@@ -207,7 +207,7 @@ xh.load = function() {
                     var tempArr = response.items;
                     var deviceIdArr = [];
                     for(var i=0;i<tempArr.length;i++){
-                        deviceIdArr.push({"id":tempArr[i].tilt_id});
+                        deviceIdArr.push({"id":tempArr[i].tilt_id,"name":tempArr[i].rtu_port});
                     }
                     $scope.deviceIds = deviceIdArr;
                 });
@@ -218,7 +218,7 @@ xh.load = function() {
                     var tempArr = response.items;
                     var deviceIdArr = [];
                     for(var i=0;i<tempArr.length;i++){
-                        deviceIdArr.push({"id":tempArr[i].es_id});
+                        deviceIdArr.push({"id":tempArr[i].es_id,"name":tempArr[i].rtu_port});
                     }
                     $scope.deviceIds = deviceIdArr;
                 });
@@ -229,7 +229,7 @@ xh.load = function() {
                     var tempArr = response.items;
                     var deviceIdArr = [];
                     for(var i=0;i<tempArr.length;i++){
-                        deviceIdArr.push({"id":tempArr[i].stret_id});
+                        deviceIdArr.push({"id":tempArr[i].stret_id,"name":tempArr[i].rtu_port});
                     }
                     $scope.deviceIds = deviceIdArr;
                 });
@@ -240,7 +240,7 @@ xh.load = function() {
                     var tempArr = response.items;
                     var deviceIdArr = [];
                     for(var i=0;i<tempArr.length;i++){
-                        deviceIdArr.push({"id":tempArr[i].cathode_id});
+                        deviceIdArr.push({"id":tempArr[i].cathode_id,"name":tempArr[i].rtu_port});
                     }
                     $scope.deviceIds = deviceIdArr;
                 });
@@ -259,7 +259,7 @@ xh.load = function() {
 
             var site_id = $("#siteName").val();
             var rtu_id = $("#rtuName").val();
-            var deviceId = $("#deviceId").val();
+            var temp = $("#deviceId").val();
 
             if(site_id == null || site_id == ''){
                 alert("请选择站点！");
@@ -267,18 +267,20 @@ xh.load = function() {
             }else if(rtu_id == null || rtu_id == ''){
                 alert("请选择RTU！");
                 return false;
-            }else if(deviceId == null || deviceId == ''){
+            }else if(temp == null || temp == ''){
                 alert("请输入设备ID！");
                 return false;
             }
-            console.log(deviceName+" "+site_id+" "+rtu_id+" "+location+" "+deviceId);
+            var rtu_channel = temp.split("——")[0].split(":")[1];
+            var deviceId = temp.split("——")[1].split(":")[1];
+            console.log(deviceName+" "+site_id+" "+rtu_id+" "+rtu_channel+" "+deviceId);
 
 
             // 基于准备好的dom，初始化echarts实例 macarons
             myChart = echarts.init(document.getElementById('deviceHistory'));
             myChart.showLoading();
 
-            $http.get("../../total/selectHistoryValue?site_id="+site_id+"&rtu_id="+rtu_id+"&deviceId="+deviceId+"&deviceType="+deviceName+"&startTime="+startTime+"&endTime="+endTime).
+            $http.get("../../total/selectHistoryValue?site_id="+site_id+"&rtu_id="+rtu_id+"&deviceId="+deviceId+"&rtu_channel="+rtu_channel+"&deviceType="+deviceName+"&startTime="+startTime+"&endTime="+endTime).
             success(function(response){
                 var data = response.items;
                 console.log(data);

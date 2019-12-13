@@ -23,7 +23,7 @@ public class MyApplicationRunner implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments var1) throws Exception{
         System.out.println("MyApplicationRunner class will be execute when the project was started!");
-        //scheduledInit();
+        scheduledInit();
     }
 
     public void scheduledInit() {

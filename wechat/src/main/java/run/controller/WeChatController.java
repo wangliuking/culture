@@ -14,6 +14,7 @@ import run.service.WeChatService;
 import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Controller
 public class WeChatController {
@@ -200,13 +201,13 @@ public class WeChatController {
             //判断关注事件
             if("subscribe".equals(msg.getEvent())){
                 //广播页面
-                feignForMQ.broadcast();
+                //feignForMQ.broadcast();
                 out.setContent("欢迎关注![愉快]");
                 //设置消息的响应类型
                 out.setMsgType("text");
             }else if("unsubscribe".equals(msg.getEvent())){
                 //广播页面
-                feignForMQ.broadcast();
+                //feignForMQ.broadcast();
                 out.setContent("取消关注!");
                 //设置消息的响应类型
                 out.setMsgType("text");
@@ -218,7 +219,7 @@ public class WeChatController {
                 param.put("type",key);
                 weChatService.insertClickNum(param);
                 //广播页面
-                feignForMQ.broadcast();
+                //feignForMQ.broadcast();
                 switch (key){
                     case "base":
                         return getNews(msg,"w-4TGEDAtnu7oYKICmt1rJFFnbvI35vTiSfqbBMlIyc");
@@ -306,27 +307,48 @@ public class WeChatController {
     public String getNewsNow(InMsgEntity msg,String str){
         myApplicationRunner.scheduledInit();
         JSONArray jsonArray = myApplicationRunner.jsonObject.getJSONArray("item");
-        long updateTime = 0;
-        String mediaId = "";
+        String itemStr = "";
+        Map<Long,String> map = new HashMap<>();
+        List<Long> list = new LinkedList<>();
         for(int i=0;i<jsonArray.size();i++){
             JSONObject js = jsonArray.getJSONObject(i);
-            String media_id = js.getString("media_id");
             long update_time = Long.parseLong(js.getString("update_time"));
-            if(update_time > updateTime){
-                JSONArray itemArray = js.getJSONObject("content").getJSONArray("news_item");
-                for(int j=0;j<itemArray.size();j++) {
-                    JSONObject item = itemArray.getJSONObject(j);
-                    String title = item.getString("title");
-                    if(title.contains(str)){
-                        updateTime = update_time;
-                        mediaId = media_id;
-                    }
+            JSONArray itemArray = js.getJSONObject("content").getJSONArray("news_item");
+            for(int j=0;j<itemArray.size();j++) {
+                JSONObject item = itemArray.getJSONObject(j);
+                String title = item.getString("title");
+                if(title.contains(str)){
+                    String tempStr = "<item>" +
+                            "<Title>"+item.getString("title").replace(str,"")+"</Title>" +
+                            "<Description>"+item.getString("digest")+"</Description>" +
+                            "<PicUrl><![CDATA["+item.getString("thumb_url")+"]]></PicUrl>" +
+                            "<Url><![CDATA["+item.getString("url")+"]]></Url>" +
+                            "</item>";
+
+                    map.put(update_time,tempStr);
+                    list.add(update_time);
                 }
             }
 
         }
 
-        return getNews(msg,mediaId);
+        List<Long> collect = list.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
+        for(int i=0;i<3;i++){
+            Long key = collect.get(i);
+            String val = map.get(key);
+            itemStr += val;
+        }
+
+        int size = 3;
+        return "<xml>\n" +
+                "<ToUserName>"+msg.getFromUserName()+"</ToUserName>" +
+                "<FromUserName>"+msg.getToUserName()+"</FromUserName>" +
+                "<CreateTime>"+new Date().getTime()+"</CreateTime>" +
+                "<MsgType>news</MsgType>" +
+                "<ArticleCount>"+size+"</ArticleCount>" +
+                "<Articles>" + itemStr +
+                "</Articles>" +
+                "</xml>";
     }
 
     public static void main(String[] args) {

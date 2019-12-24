@@ -69,7 +69,7 @@ xh.load = function() {
                 siteNames.push(data[i].site_name);
 			}
         	$scope.siteNames = siteNames;
-        	$scope.industrys = ["请选择行业","医疗","气象","新能源","轨道交通","石油化工","国防军工","电力","通讯"]
+        	$scope.industrys = ["请选择行业","文博","医疗","气象","新能源","轨道交通","石油化工","国防军工","电力","通讯"]
             $scope.data = data;
             $scope.totals = response.totals;
 

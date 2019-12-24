@@ -77,7 +77,7 @@ xh.load = function() {
                 rtuNames.push({"rtu_id":data[i].rtu_id,"rtu_name":data[i].rtu_id});
             }
             $scope.rtuNames = rtuNames;
-            $scope.industrys = ["医疗","气象","新能源","轨道交通","石油化工","国防军工","电力","通讯"]
+            $scope.industrys = ["文博","医疗","气象","新能源","轨道交通","石油化工","国防军工","电力","通讯"]
 
             //判断是否需要直接显示RTU
             tempRTUId = $location.search().id;

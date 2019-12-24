@@ -231,7 +231,7 @@ xh.load = function() {
         };
         //deviceData end
 
-        $scope.industryData = ["医疗","气象","新能源","轨道交通","石油化工","国防军工","电力","通讯"];
+        $scope.industryData = ["文博","医疗","气象","新能源","轨道交通","石油化工","国防军工","电力","通讯"];
 
         $scope.searchShow = function(){
             if($(".navform").css("display") == "none"){
@@ -686,6 +686,14 @@ function addMarker() {  // 创建图标对象
                         iconImg = "../iconfont/1-3.png";
                     }
                 } else if ("通讯" == industry) {
+                    if (rtuNum == 0 || rtuOffNum > 0 || rtuStatusList == 0) {
+                        iconImg = "../iconfont/2-1.png";
+                    } else if (rtuWarningNum > 0) {
+                        iconImg = "../iconfont/2-2.png";
+                    } else {
+                        iconImg = "../iconfont/2-3.png";
+                    }
+                } else if ("文博" == industry) {
                     if (rtuNum == 0 || rtuOffNum > 0 || rtuStatusList == 0) {
                         iconImg = "../iconfont/2-1.png";
                     } else if (rtuWarningNum > 0) {

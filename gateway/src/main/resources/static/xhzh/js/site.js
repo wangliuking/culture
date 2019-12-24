@@ -83,7 +83,7 @@ xh.load = function() {
                 siteNames.push({"site_id":data[i].site_id,"site_name":data[i].site_name});
             }
         	$scope.siteNames = siteNames;
-        	$scope.industrys = ["全部行业","医疗","气象","新能源","轨道交通","石油化工","国防军工","电力","通讯"]
+        	$scope.industrys = ["全部行业","文博","医疗","气象","新能源","轨道交通","石油化工","国防军工","电力","通讯"]
 			$scope.siteStatus = [{"id":"","name":"全部状态"},{"id":0,"name":"正常"},{"id":1,"name":"离线"},{"id":2,"name":"异常"}]
             $scope.data = data;
             $scope.totals = response.totals;

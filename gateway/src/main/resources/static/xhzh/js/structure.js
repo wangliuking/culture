@@ -66,7 +66,7 @@ xh.load = function() {
 
         $http.get("../../connect/selectAllStructure?structure="+structure).
         success(function(data){
-            $scope.industrys = ["医疗","气象","新能源","轨道交通","石油化工","国防军工","电力","通讯"]
+            $scope.industrys = ["文博","医疗","气象","新能源","轨道交通","石油化工","国防军工","电力","通讯"]
             startTree(data);
             createEcharts(data);
         });

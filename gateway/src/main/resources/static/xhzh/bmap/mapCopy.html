@@ -415,6 +415,16 @@
                         } else {
                             iconImg = "../iconfont/2-3.png";
                         }
+                    } else if ("文博" == industry) {
+                        if (rtuNum == 0) {
+                            iconImg = "../iconfont/2-1.png";
+                        } else if (rtuOffNum > 0) {
+                            iconImg = "../iconfont/2-1.png";
+                        } else if (rtuWarningNum > 0) {
+                            iconImg = "../iconfont/2-2.png";
+                        } else {
+                            iconImg = "../iconfont/2-3.png";
+                        }
                     }
                     var zoom = map.getZoom();
                     var x;

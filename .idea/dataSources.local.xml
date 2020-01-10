@@ -21,5 +21,25 @@
       <user-name>root</user-name>
       <introspection-schemas>*:wechat,xhpipeline,xhzh</introspection-schemas>
     </data-source>
+    <data-source name="文博服务器" uuid="a95b0b7a-d325-4c81-8eff-9eff2d197339">
+      <database-info product="MySQL" version="5.7.28" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.47 ( Revision: fe1903b1ecb4a96a917f7ed3190d80c049b1de29 )" family="MYSQL" exact-version="5.7.28">
+        <extra-name-characters>#@</extra-name-characters>
+        <identifier-quote-string>`</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>root</user-name>
+      <introspection-schemas>*:lightingdetection,wechat,xhzh</introspection-schemas>
+    </data-source>
+    <data-source name="测试服务器" uuid="22531dfe-9506-4327-99f3-a45fe7d62b2f">
+      <database-info product="MySQL" version="5.7.24" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.47 ( Revision: fe1903b1ecb4a96a917f7ed3190d80c049b1de29 )" family="MYSQL" exact-version="5.7.24">
+        <extra-name-characters>#@</extra-name-characters>
+        <identifier-quote-string>`</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>root</user-name>
+      <introspection-schemas>*:lightingdetection</introspection-schemas>
+    </data-source>
   </component>
 </project>
